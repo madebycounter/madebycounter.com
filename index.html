@@ -1,0 +1,35 @@
+---
+layout: default
+title: about
+theme: dark
+---
+
+<div class="content" id="team">
+    <h2>Meet Our Team</h2>
+
+    <p>TBSB Media was founded in 2021 as a full-stack production company here in San Jose, California. Our passion
+        to
+        deliver
+        well rounded and robust packages to our clients has led us to develop a team of diverse and overlapping
+        skill sets
+        to
+        take on any project.
+    </p>
+
+    <div class="cards">
+        {% for member in site.data.team %}
+        <div>
+            <img src="{{ member.profile }}">
+            <p class="name">{{ member.name }}</p>
+            <p class="title">{{ member.title }}</p>
+            <ul>
+                {% for skill in member.skills %}
+                <li>
+                    <p>{{ skill }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</div>

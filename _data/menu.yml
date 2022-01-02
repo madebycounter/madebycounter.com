@@ -1,0 +1,11 @@
+- name: about
+  url: /
+
+- name: portfolio
+  url: /portfolio
+  
+- name: contact
+  url: /contact
+
+- name: blog
+  url: /blog

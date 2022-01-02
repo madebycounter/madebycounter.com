@@ -1,0 +1,22 @@
+- name: Gloria Brown
+  title: Realtor
+  profile: /assets/img/reviews/gloria_brown.png
+  content: >-
+    I engaged the services of Luke A. Makinson, to shoot and edit my first real estate video.
+    The final version was amazing. Luke's directorial guidance made the talking easy and gave
+    me confidence. I highly recommend Luke.
+
+- name: marcojacobs
+  title: Fiverr Client
+  profile: https://pointasolutions.com/wp-content/uploads/2019/06/4-210x210.jpg
+  content: This guy really knows how to write a good discord bot. Very happy with the results
+
+- name: blakegroves
+  title: Fiverr Client
+  profile: https://pointasolutions.com/wp-content/uploads/2019/06/4-210x210.jpg
+  content: Fast, helpful, and completed exactly as requested.
+
+- name: rotowave
+  title: Fiverr Client
+  profile: https://pointasolutions.com/wp-content/uploads/2019/06/4-210x210.jpg
+  content: Went above an beyond, delivered exactly what I asked for!

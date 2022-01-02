@@ -1,0 +1,19 @@
+---
+---
+
+[
+    {% for item in site.portfolio %}
+    {
+        "title": "{{ item.title }}",
+        "description": "{{ item.description }}",
+        "url": "{{ item.url }}",
+        "image": "{{ item.image }}",
+        "image2": "{{ item.image2 }}"
+    }
+    
+    {% if item != site.portfolio.last %}
+    ,
+    {% endif %}
+    
+    {% endfor %}
+]

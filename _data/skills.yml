@@ -1,0 +1,65 @@
+- name: Video Production
+  description: >-
+    Quality and engaging video content can have a huge impact on your brand
+    and/or business. Compelling visual storytelling requires a large assembly of talent
+    from screenwriters, cinematographers, directors, actors, and more. Here at TBSB
+    Media, we will take that burden off your shoulders and bring your ideas to life.
+  examples:
+    - Narrative
+    - Real estate
+    - Advertising
+  url: https://tbsbmedia.com/
+  images:
+    - https://gardna.net/f/cdn/test/office.jpg
+    - https://gardna.net/f/cdn/test/tanks.jpg
+    - https://gardna.net/f/cdn/test/mtn.jpg
+
+- name: Photography
+  description: >-
+    Stunning still images define our world and the social media spaces we interact with
+    every day. To set you and your business apart you need professional photos to speak
+    for you. TBSB Media works to make your photos beautiful for products, portraits,
+    and more.
+  examples:
+    - Products and events
+    - Portraits
+    - Arial photography
+  url: https://tbsbmedia.com/
+  images:
+    - https://gardna.net/f/cdn/test/city.jpg
+    - https://gardna.net/f/cdn/test/fire.jpg
+    - https://gardna.net/f/cdn/test/mtn.jpg
+    - https://gardna.net/f/cdn/test/fog.jpg
+
+- name: Graphic Design
+  description: >-
+    Colors and typography are small decisions that make a big impact on the overall look
+    of your brand. Don't leave it to chance! TBSB Media develops graphic designs that
+    communicate your vision.
+  examples:
+    - Social media graphics
+    - Print media
+    - Menus
+    - Product packaging
+  url: https://tbsbmedia.com/
+  images:
+    - https://gardna.net/f/cdn/test/tanks.jpg
+    - https://gardna.net/f/cdn/test/city.jpg
+    - https://gardna.net/f/cdn/test/road.jpg
+    - https://gardna.net/f/cdn/test/mtn.jpg
+
+- name: Interactive Design
+  description: >-
+    User interactivity is key in developing a dynamic online presence. Websites, mobile
+    apps, and rich web applications give you a professional edge against the competition.
+    Choose to stand out, choose TBSB Media.
+  examples:
+    - Websites
+    - Desktop applications
+    - Video games
+  url: https://tbsbmedia.com/
+  images:
+    - /assets/img/skills/interactive/lefty.png
+    - https://gardna.net/f/cdn/test/city.jpg
+    - https://gardna.net/f/cdn/test/road.jpg
+    - https://gardna.net/f/cdn/test/mtn.jpg

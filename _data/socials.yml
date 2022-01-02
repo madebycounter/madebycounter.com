@@ -1,0 +1,15 @@
+- name: Github
+  icon: github
+  url: https://github.com/TBSB-Media
+
+- name: LinkedIn
+  icon: linkedin
+  url: https://www.linkedin.com/company/tbsb-media
+
+- name: Instagram
+  icon: instagram
+  url: https://instagram.com/tbsbmedia/
+
+- name: Email
+  icon: envelope-open-fill
+  url: mailto:contact@tbsbmedia.com

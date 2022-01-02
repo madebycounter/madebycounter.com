@@ -1,0 +1,22 @@
+- name: William Gardner
+  title: Interactive Design Specialist
+  profile: /assets/img/site/mugs/william.jpg
+  skills:
+    - web developer
+    - drone pilot
+
+- name: Luke A. Makinson
+  title: Videography Specialist
+  profile: /assets/img/site/mugs/luke.jpg
+  skills:
+    - video production
+    - video editing
+    - motion graphics
+
+- name: Henry Buck
+  title: Graphic Design Specialist
+  profile: /assets/img/site/mugs/henry.jpg
+  skills:
+    - illustration
+    - graphic design
+    - photography
