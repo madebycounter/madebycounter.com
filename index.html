@@ -6,27 +6,23 @@ theme: dark
 
 <div id="hero">
     <video autoplay muted loop>
-        <source src="/assets/img/hero.mp4" type="video/mp4">
+        <source src="/assets/img/hero.mp4" type="video/mp4" />
         Your browser does not support the video tag.
     </video>
 </div>
 
 <div id="skills">
     <div class="content">
-        {% assign count = 0 %}
-        {% for skill in site.data.skills %}
-
-        {% assign flex_style = "" %}
-        {% assign text_style = "" %}
-
-        {% if count == 1 %}
-        {% assign flex_style = "reverse" %}
-        {% assign text_style = "right" %}
-        {% endif %}
+        {% assign count = 0 %} {% for skill in site.data.skills %} {% assign
+        flex_style = "" %} {% assign text_style = "" %} {% if count == 1 %} {%
+        assign flex_style = "reverse" %} {% assign text_style = "right" %} {%
+        endif %}
 
         <div class="skill {{ flex_style }}">
             <div class="images">
-                <img src="{{ skill.images.first }}">
+                {% for image in skill.images %}
+                <img src="{{ image }}" />
+                {% endfor %}
             </div>
 
             <div class="info">
@@ -47,10 +43,8 @@ theme: dark
 
         {% if skill != site.data.skills.last %}
         <br />
-        {% endif %}
-
-        {% assign count = count | plus: 1 | modulo: 2 %}
-        {% endfor %}
+        {% endif %} {% assign count = count | plus: 1 | modulo: 2 %} {% endfor
+        %}
     </div>
 </div>
 
@@ -58,23 +52,22 @@ theme: dark
     <div class="content">
         <h2>Meet Our Team</h2>
 
-        <p>For all of us here at TBSB Media, creating is our passion. This passion has led us to create this company and
-            to
-            bring
-            our creativity and expertise to you! Our skills range widely from filmmaking to computer science and
-            marketing
-            to drone
-            piloting. Yet, all of these talents combine seamlessly to produce media we are immensely proud to create.
+        <p>
+            For all of us here at TBSB Media, creating is our passion. This
+            passion has led us to create this company and to bring our
+            creativity and expertise to you! Our skills range widely from
+            filmmaking to computer science and marketing to drone piloting. Yet,
+            all of these talents combine seamlessly to produce media we are
+            immensely proud to create.
         </p>
 
         <div class="cards">
             {% for member in site.data.team %}
             <div>
-                <img src="{{ member.profile }}">
+                <img src="{{ member.profile }}" />
                 <p class="name">{{ member.name }}</p>
                 <p class="title">
-                    {% for title in member.titles %}
-                    {{ title }} <br />
+                    {% for title in member.titles %} {{ title }} <br />
                     {% endfor %}
                 </p>
             </div>
@@ -82,3 +75,9 @@ theme: dark
         </div>
     </div>
 </div>
+
+<script>
+    $(() => {
+        $(".images").slick({});
+    });
+</script>
