@@ -4,32 +4,81 @@ title: about
 theme: dark
 ---
 
-<div class="content" id="team">
-    <h2>Meet Our Team</h2>
+<div id="hero">
+    <video autoplay muted loop>
+        <source src="/assets/img/hero.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
 
-    <p>TBSB Media was founded in 2021 as a full-stack production company here in San Jose, California. Our passion
-        to
-        deliver
-        well rounded and robust packages to our clients has led us to develop a team of diverse and overlapping
-        skill sets
-        to
-        take on any project.
-    </p>
+<div id="skills">
+    <div class="content">
+        {% assign count = 0 %}
+        {% for skill in site.data.skills %}
 
-    <div class="cards">
-        {% for member in site.data.team %}
-        <div>
-            <img src="{{ member.profile }}">
-            <p class="name">{{ member.name }}</p>
-            <p class="title">{{ member.title }}</p>
-            <ul>
-                {% for skill in member.skills %}
-                <li>
-                    <p>{{ skill }}</p>
-                </li>
-                {% endfor %}
-            </ul>
+        {% assign flex_style = "" %}
+        {% assign text_style = "" %}
+
+        {% if count == 1 %}
+        {% assign flex_style = "reverse" %}
+        {% assign text_style = "right" %}
+        {% endif %}
+
+        <div class="skill {{ flex_style }}">
+            <div class="images">
+                <img src="{{ skill.images.first }}">
+            </div>
+
+            <div class="info">
+                <h3>{{ skill.name }}</h3>
+                <p>{{ skill.description }}</p>
+
+                <div class="examples">
+                    <ul>
+                        {% for example in skill.examples %}
+                        <li>{{ example }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    <a class="button alt" href="{{ skill.url }}">Learn More</a>
+                </div>
+            </div>
         </div>
+
+        {% if skill != site.data.skills.last %}
+        <br />
+        {% endif %}
+
+        {% assign count = count | plus: 1 | modulo: 2 %}
         {% endfor %}
+    </div>
+</div>
+
+<div id="team">
+    <div class="content">
+        <h2>Meet Our Team</h2>
+
+        <p>For all of us here at TBSB Media, creating is our passion. This passion has led us to create this company and
+            to
+            bring
+            our creativity and expertise to you! Our skills range widely from filmmaking to computer science and
+            marketing
+            to drone
+            piloting. Yet, all of these talents combine seamlessly to produce media we are immensely proud to create.
+        </p>
+
+        <div class="cards">
+            {% for member in site.data.team %}
+            <div>
+                <img src="{{ member.profile }}">
+                <p class="name">{{ member.name }}</p>
+                <p class="title">
+                    {% for title in member.titles %}
+                    {{ title }} <br />
+                    {% endfor %}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>

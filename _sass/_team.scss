@@ -1,9 +1,12 @@
 #team {
+    @include theme-grey;
+
     .cards {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
         gap: 1rem;
+        margin: 2rem 0;
 
         img {
             height: 250x;

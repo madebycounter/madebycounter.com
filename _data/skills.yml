@@ -8,7 +8,7 @@
     - Narrative
     - Real estate
     - Advertising
-  url: https://tbsbmedia.com/
+  url: /portfolio
   images:
     - https://gardna.net/f/cdn/test/office.jpg
     - https://gardna.net/f/cdn/test/tanks.jpg
@@ -24,7 +24,7 @@
     - Products and events
     - Portraits
     - Arial photography
-  url: https://tbsbmedia.com/
+  url: /portfolio
   images:
     - https://gardna.net/f/cdn/test/city.jpg
     - https://gardna.net/f/cdn/test/fire.jpg
@@ -41,7 +41,7 @@
     - Print media
     - Menus
     - Product packaging
-  url: https://tbsbmedia.com/
+  url: /portfolio
   images:
     - https://gardna.net/f/cdn/test/tanks.jpg
     - https://gardna.net/f/cdn/test/city.jpg
@@ -57,9 +57,8 @@
     - Websites
     - Desktop applications
     - Video games
-  url: https://tbsbmedia.com/
+  url: /portfolio
   images:
-    - /assets/img/skills/interactive/lefty.png
     - https://gardna.net/f/cdn/test/city.jpg
     - https://gardna.net/f/cdn/test/road.jpg
     - https://gardna.net/f/cdn/test/mtn.jpg

@@ -42,15 +42,35 @@
     margin: 0;
 }
 
+@mixin theme {
+    padding: 2rem 0;
+
+    background-color: var(--bg-color);
+    color: var(--text-color);
+
+    a {
+        color: var(--url-color);
+    }
+}
+
 @mixin theme-dark {
+    @include theme;
     --text-color: var(--c-white);
     --bg-color: var(--c-black);
     --url-color: var(--c-white);
 }
 
 @mixin theme-light {
+    @include theme;
     --text-color: var(--c-black);
     --bg-color: var(--c-white);
+    --url-color: var(--c-blue);
+}
+
+@mixin theme-grey {
+    @include theme;
+    --text-color: var(--c-white);
+    --bg-color: var(--c-darkgrey);
     --url-color: var(--c-blue);
 }
 
@@ -63,6 +83,10 @@
     @include theme-light();
 }
 
+.theme-grey {
+    @include theme-grey();
+}
+
 // generic styles
 * {
     margin: 0;
@@ -73,6 +97,7 @@ html {
     font-family: var(--body-font);
     position: relative;
     min-height: 100%;
+    line-height: 1.5;
 }
 
 h1,
@@ -113,12 +138,35 @@ p {
     margin-bottom: 1rem;
 }
 
+.content ul {
+    // list-style-type: "–  ";
+    padding-left: 1rem;
+}
+
+.button {
+    font-size: calc(var(--fs-sm) + 0.1rem);
+    text-decoration: none;
+    border: var(--text-color) 2px solid;
+    padding: 5px 15px;
+    color: var(--text-color) !important;
+    transition: all 200ms ease;
+    position: relative;
+}
+
+.button:hover,
+.button:focus {
+    background-color: var(--text-color);
+    color: var(--bg-color) !important;
+}
+
 #main {
     margin-bottom: calc(var(--footer) + 4rem);
 }
 
 // site elements
 @import "./footer";
+@import "./hero";
 @import "./nav";
 @import "./portfolio";
+@import "./skills";
 @import "./team";
