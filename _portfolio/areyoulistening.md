@@ -1,8 +1,8 @@
 ---
 title: Are You Listening?
 layout: portfolio
-image: https://pointasolutions.com/wp-content/uploads/2018/04/cmr-featured.jpg
-image2: https://pointasolutions.com/wp-content/uploads/2018/04/cmr-featured.jpg
+image: /assets/img/portfolio/ayl.png
+image2: /assets/img/portfolio/ayl-blank.png
 description: >-
     Areyoulistening.studio was a webstore that allowed for users to customize
     their own t-shirt to feature nine of their favorite albums.

@@ -1,48 +1,55 @@
 #team {
-    @include theme-grey;
+    .flex {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 2rem;
+
+        p {
+            flex: 1 1 375px;
+        }
+    }
 
     .cards {
         display: flex;
-        justify-content: space-between;
+        // justify-content: space-between;
         flex-wrap: wrap;
         gap: 1rem;
         margin: 2rem 0;
 
-        img {
-            height: 250x;
-            width: 250px;
-        }
+        .member {
+            flex: 0 1 289px;
 
-        .name {
-            text-align: center;
-            font-weight: bold;
-        }
+            img {
+                width: 100%;
+                // max-height: 300px;
+            }
 
-        .title {
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
+            .name {
+                text-align: center;
+                font-weight: bold;
+            }
 
-        ul {
-            list-style-type: "–  ";
-            padding-left: 1rem;
-        }
+            .title {
+                text-align: center;
+                margin-bottom: 0.5rem;
+            }
 
-        p {
-            @include small;
-            margin: 0px;
+            p {
+                @include small;
+                margin: 0px;
+            }
         }
     }
 
     @media (max-width: 814px) {
         .cards {
-            justify-content: flex-start;
-        }
-    }
-
-    @media (max-width: 547px) {
-        .cards {
             justify-content: center;
         }
     }
+
+    // @media (max-width: 547px) {
+    //     .cards {
+    //         justify-content: center;
+    //     }
+    // }
 }

@@ -1,0 +1,19 @@
+---
+layout: default
+title: blog
+theme: light
+---
+
+<div id="blog">
+    <div class="content">
+        {% for post in site.posts %}
+        <div class="post">
+            <h2>{{ post.title }}</h2>
+            {% include info.html post=post %} {{ post.content }}
+        </div>
+
+        {% if post != site.posts.last %}
+        <br /><br />
+        {% endif %} {% endfor %}
+    </div>
+</div>

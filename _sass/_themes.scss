@@ -1,0 +1,44 @@
+@mixin theme {
+    padding: 2rem 0;
+
+    background-color: var(--bg-color);
+    color: var(--text-color);
+
+    a {
+        color: var(--url-color);
+    }
+}
+
+@mixin theme-dark {
+    @include theme;
+    --text-color: var(--c-white);
+    --bg-color: var(--c-black);
+    --url-color: var(--c-white);
+}
+
+@mixin theme-light {
+    @include theme;
+    --text-color: var(--c-black);
+    --bg-color: var(--c-white);
+    --url-color: var(--c-blue);
+}
+
+@mixin theme-grey {
+    @include theme;
+    --text-color: var(--c-white);
+    --bg-color: var(--c-darkgrey);
+    --url-color: var(--c-blue);
+}
+
+// themes
+.theme-dark {
+    @include theme-dark();
+}
+
+.theme-light {
+    @include theme-light();
+}
+
+.theme-grey {
+    @include theme-grey();
+}

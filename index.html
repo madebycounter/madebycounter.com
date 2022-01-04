@@ -11,6 +11,87 @@ theme: dark
     </video>
 </div>
 
+<div id="about">
+    <div class="content">
+        <h2>Welcome to TBSB</h2>
+
+        <p>
+            For all of us here at TBSB Media, creating is our passion. This
+            passion has led us to create this company and to bring our
+            creativity and expertise to you! Our skills range widely from
+            filmmaking to computer science and marketing to drone piloting. Yet,
+            all of these talents combine seamlessly to produce media we are
+            immensely proud to create.
+        </p>
+    </div>
+</div>
+
+<div id="portfolio">
+    <div class="content">
+        <h2>Our Work</h2>
+
+        <p>
+            From <a href="#">photoshoots</a> to <a href="#">short films</a>, we
+            have a wide range of projects under our belt. We are well-practiced
+            in all aspects of media production with extensive experience in
+            social media management, web design, branding, and more.
+        </p>
+
+        <div class="cards">
+            {% for item in site.portfolio %}
+            <div class="item">
+                <img class="layer" src="{{ item.image2 }}" />
+                <img class="layer" src="/assets/img/site/fade.png" />
+                <img class="layer cover" src="{{ item.image }}" />
+
+                <a class="layer" href="{{ item.url }}">
+                    <div class="info">
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.description }}</p>
+                    </div>
+                </a>
+
+                <p class="arrow">&rarr;</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div id="team">
+    <div class="content">
+        <h2>Meet The Team</h2>
+
+        <div class="flex">
+            <p>
+                At TBSB Media, creating is our passion. This passion has led us
+                to create this company and to bring our creativity and expertise
+                to you!
+            </p>
+
+            <p>
+                Our skills range widely from filmmaking to computer science and
+                marketing to drone piloting. Yet, all of these talents combine
+                seamlessly to produce media we are immensely proud to create.
+            </p>
+        </div>
+
+        <div class="cards">
+            {% for member in site.data.team %}
+            <div class="member">
+                <img src="{{ member.profile }}" />
+                <p class="name">{{ member.name }}</p>
+                <p class="title">
+                    {% for title in member.titles %} {{ title }}
+                    <br />
+                    {% endfor %}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
 <div id="skills">
     <div class="content">
         {% assign count = 0 %} {% for skill in site.data.skills %} {% assign
@@ -47,35 +128,6 @@ theme: dark
         <br />
         {% endif %} {% assign count = count | plus: 1 | modulo: 2 %} {% endfor
         %}
-    </div>
-</div>
-
-<div id="team">
-    <div class="content">
-        <h2>Meet Our Team</h2>
-
-        <p>
-            For all of us here at TBSB Media, creating is our passion. This
-            passion has led us to create this company and to bring our
-            creativity and expertise to you! Our skills range widely from
-            filmmaking to computer science and marketing to drone piloting. Yet,
-            all of these talents combine seamlessly to produce media we are
-            immensely proud to create.
-        </p>
-
-        <div class="cards">
-            {% for member in site.data.team %}
-            <div>
-                <img src="{{ member.profile }}" />
-                <p class="name">{{ member.name }}</p>
-                <p class="title">
-                    {% for title in member.titles %} {{ title }}
-                    <br />
-                    {% endfor %}
-                </p>
-            </div>
-            {% endfor %}
-        </div>
     </div>
 </div>
 
