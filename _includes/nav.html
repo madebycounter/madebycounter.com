@@ -2,8 +2,8 @@
 {% assign logo = "black" %}
 
 {% if include.theme == "dark" %}
-{% assign class = "theme-dark" %}
-{% assign logo = "white" %}
+    {% assign class = "theme-dark" %}
+    {% assign logo = "white" %}
 {% endif %}
 
 <div id="nav" class="{{ class }}">
@@ -15,8 +15,9 @@
 
     <div class="links">
         {% for nav in site.data.menu %}
-        <a class="notd small {% if nav.name == page.title %}a{% endif %}" href="{{ nav.url }}">{{ nav.name | upcase
-            }}</a>
+            <a class="notd small {% if nav.name == page.title %}a{% endif %}" href="{{ nav.url }}">
+                {{ nav.name | upcase }}
+            </a>
         {% endfor %}
     </div>
 </div>

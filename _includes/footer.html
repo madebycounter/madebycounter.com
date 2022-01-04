@@ -6,13 +6,11 @@
 
         <div class="socials">
             {% for social in site.data.socials %}
+                <a href="{{ social.url }}" target="_blank">
+                    {% include tools/icon.html icon=social.icon width=32 %}
+                </a>
 
-            <a href="{{ social.url }}" target="_blank">
-                {% include tools/icon.html icon=social.icon width=32 %}
-            </a>
-
-            &nbsp;&nbsp;
-
+                &nbsp;&nbsp;
             {% endfor %}
         </div>
     </div>

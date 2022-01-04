@@ -5,7 +5,7 @@ theme: dark
 ---
 
 <div id="hero">
-    <video autoplay muted loop>
+    <video autoplay loop muted>
         <source src="/assets/img/hero.mp4" type="video/mp4" />
         Your browser does not support the video tag.
     </video>
@@ -21,7 +21,9 @@ theme: dark
         <div class="skill {{ flex_style }}">
             <div class="images">
                 {% for image in skill.images %}
-                <img src="{{ image }}" />
+                <div>
+                    <img src="{{ image }}" />
+                </div>
                 {% endfor %}
             </div>
 
@@ -67,7 +69,8 @@ theme: dark
                 <img src="{{ member.profile }}" />
                 <p class="name">{{ member.name }}</p>
                 <p class="title">
-                    {% for title in member.titles %} {{ title }} <br />
+                    {% for title in member.titles %} {{ title }}
+                    <br />
                     {% endfor %}
                 </p>
             </div>
@@ -78,6 +81,11 @@ theme: dark
 
 <script>
     $(() => {
-        $(".images").slick({});
+        $(".images").slick({
+            dots: true,
+            infinite: true,
+            slidesToShow: 1
+            // slidesToScroll: 3
+        });
     });
 </script>

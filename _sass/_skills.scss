@@ -13,11 +13,10 @@
         }
 
         .images {
-            flex: 1 1 385px;
-            position: relative;
+            width: 30%;
 
             img {
-                width: 100%;
+                // width: 100%;
                 object-fit: cover;
                 max-height: 200px;
             }

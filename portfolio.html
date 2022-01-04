@@ -9,25 +9,24 @@ theme: light
 
     <div class="cards">
         {% for item in site.portfolio %}
-        <div class="item">
-            <img class="layer" src="{{ item.image2 }}">
-            <img class="layer" src="/assets/img/site/fade.png">
-            <img class="layer cover" src="{{ item.image }}">
+            <div class="item">
+                <img class="layer" src="{{ item.image2 }}"/>
+                <img class="layer" src="/assets/img/site/fade.png"/>
+                <img class="layer cover" src="{{ item.image }}"/>
 
-            <a class="layer" href="{{ item.url }}">
-                <div class="info">
-                    <h3>{{ item.title }}</h3>
-                    <p>{{ item.description }}</p>
-                </div>
-            </a>
+                <a class="layer" href="{{ item.url }}">
+                    <div class="info">
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.description }}</p>
+                    </div>
+                </a>
 
-            <p class="arrow">&rarr;</p>
-        </div>
+                <p class="arrow">&rarr;</p>
+            </div>
         {% endfor %}
     </div>
 </div>
 
 <script>
-    $.get("/assets/data/portfolio.json", (data) => {
-    })
+    $.get("/assets/data/portfolio.json", (data) => {});
 </script>
