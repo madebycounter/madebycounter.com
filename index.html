@@ -98,8 +98,8 @@ theme: dark
             {% for member in site.data.team %}
             <div class="member">
                 <img src="{{ member.profile }}" />
-                <p class="name">{{ member.name }}</p>
                 <p class="title">
+                    <strong>{{ member.name }}</strong><br/>
                     {% for title in member.titles %} {{ title }}
                     <br />
                     {% endfor %}
