@@ -31,12 +31,12 @@
 
         .inner {
             padding-bottom: 12rem;
-            
-            p {
-                font-family: 'Roboto', sans-serif;
-                font-size: var(--fs-mega);
-                line-height: 1;
-                font-weight: 700;
+            margin: 2rem;
+        }
+
+        @media (max-width: 30em) {
+            .inner {
+                margin: 0;
             }
         }
     }

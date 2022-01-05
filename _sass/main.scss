@@ -15,25 +15,41 @@
 
     --fs-sm: 1rem;
     --fs-m: 1.3rem;
-    --fs-l: 1.8rem;
+    --fs-l: 3rem;
     --fs-xl: 6rem;
-    --fs-xxl: 3rem;
-    --fs-mega: 10rem;
+    --fs-xxl: 10rem;
 
     --padding: 2rem;
     --footer: 6rem;
 }
 
-@media (max-width: 40em) {
+@media (max-width: 70em) {
+    :root {
+        --fs-xxl: 8rem;
+    }
+}
+
+@media (max-width: 55em) {
+    :root {
+        --fs-xxl: 6rem;
+    }
+}
+
+@media (max-width: 42em) {
     :root {
         --fs-sm: 1rem;
         --fs-m: 1.2rem;
         --fs-l: 1.3rem;
         --fs-xl: 1.5rem;
-        --fs-xxl: 2.2rem;
-        --fs-mega: 4rem;
+        --fs-xxl: 4rem;
 
         --padding: 1rem;
+    }
+}
+
+@media (max-width: 30em) {
+    :root {
+        --fs-xxl: 3rem;
     }
 }
 

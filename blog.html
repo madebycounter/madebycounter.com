@@ -1,0 +1,22 @@
+---
+layout: default
+title: blog
+---
+
+<div class="block white" id="blog">
+    <div class="content">
+        {% for post in site.posts %}
+        <div class="post">
+            <h3>{{ post.title }}</h3>
+            {% include info.html post=post %}
+
+            {{ post.content }}
+        </div>
+
+        {% if post != site.posts.last %}
+        <br /><br />
+        {% endif %}
+
+        {% endfor %}
+    </div>
+</div>
