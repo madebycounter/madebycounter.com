@@ -29,16 +29,3 @@
     --bg-color: var(--c-darkgrey);
     --url-color: var(--c-blue);
 }
-
-// themes
-.theme-dark {
-    @include theme-dark();
-}
-
-.theme-light {
-    @include theme-light();
-}
-
-.theme-grey {
-    @include theme-grey();
-}

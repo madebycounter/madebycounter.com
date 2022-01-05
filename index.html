@@ -2,14 +2,8 @@
 layout: default
 title: about
 theme: dark
+hero: /assets/img/hero.mp4
 ---
-
-<div id="hero">
-    <video autoplay loop muted>
-        <source src="/assets/img/hero.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-    </video>
-</div>
 
 <div id="about">
     <div class="content">
@@ -31,10 +25,13 @@ theme: dark
         <h2>Our Work</h2>
 
         <p>
-            From <a href="#">photoshoots</a> to <a href="#">short films</a>, we
-            have a wide range of projects under our belt. We are well-practiced
-            in all aspects of media production with extensive experience in
-            social media management, web design, branding, and more.
+            From
+            <a href="#">photoshoots</a>
+            to
+            <a href="#">short films</a>, we have a wide range of projects under
+            our belt. We are well-practiced in all aspects of media production
+            with extensive experience in social media management, web design,
+            branding, and more.
         </p>
 
         <div class="cards">
@@ -92,7 +89,7 @@ theme: dark
     </div>
 </div>
 
-<div id="skills">
+<!-- <div id="skills">
     <div class="content">
         {% assign count = 0 %} {% for skill in site.data.skills %} {% assign
         flex_style = "" %} {% assign text_style = "" %} {% if count == 1 %} {%
@@ -129,7 +126,7 @@ theme: dark
         {% endif %} {% assign count = count | plus: 1 | modulo: 2 %} {% endfor
         %}
     </div>
-</div>
+</div> -->
 
 <script>
     $(() => {
