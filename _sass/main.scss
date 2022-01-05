@@ -40,10 +40,10 @@
         --fs-sm: 1rem;
         --fs-m: 1.2rem;
         --fs-l: 1.3rem;
-        --fs-xl: 1.5rem;
+        --fs-xl: 5rem;
         --fs-xxl: 4rem;
 
-        --padding: 1rem;
+        --padding: 2rem;
     }
 }
 
@@ -79,7 +79,7 @@ html {
 h1,
 h2,
 h3 {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 700;
     line-height: 1;
 }
@@ -149,30 +149,34 @@ p {
 
 .flex-title {
     display: flex;
-}
+    gap: 2rem;
 
-.flex-title > div {
-    flex: 50%;
-}
+    @media (max-width: 32em) {
+        flex-direction: column;
+    }
+    
+    & > div {
+        flex: 1 1 100%;
 
-.flex-title.left {
-    flex-direction: row;
+        &.left {
+            flex-direction: row;
 
-    h2 {
-        margin-right: 2rem;
-        text-align: left;
+            h2 {
+                margin-right: 2rem;
+                text-align: left;
+            }
+        }
+
+        &.right {
+            flex-direction: row-reverse;
+
+            h2 {
+                margin-left: 2rem;
+                text-align: right;
+            }
+        }
     }
 }
-
-.flex-title.right {
-    flex-direction: row-reverse;
-
-    h2 {
-        margin-left: 2rem;
-        text-align: right;
-    }
-}
-
 
 // site elements
 @import "./footer";
