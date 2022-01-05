@@ -9,10 +9,7 @@
     - Real estate
     - Advertising
   url: /portfolio
-  images:
-    - https://gardna.net/f/cdn/test/office.jpg
-    - https://gardna.net/f/cdn/test/tanks.jpg
-    - https://gardna.net/f/cdn/test/mtn.jpg
+  image: https://gardna.net/f/cdn/test/office.jpg
 
 - name: Photography
   description: >-
@@ -25,11 +22,8 @@
     - Portraits
     - Arial photography
   url: /portfolio
-  images:
-    - https://gardna.net/f/cdn/test/city.jpg
-    - https://gardna.net/f/cdn/test/fire.jpg
-    - https://gardna.net/f/cdn/test/mtn.jpg
-    - https://gardna.net/f/cdn/test/fog.jpg
+  image: https://gardna.net/f/cdn/test/office.jpg
+
 
 - name: Graphic Design
   description: >-
@@ -42,11 +36,7 @@
     - Menus
     - Product packaging
   url: /portfolio
-  images:
-    - https://gardna.net/f/cdn/test/tanks.jpg
-    - https://gardna.net/f/cdn/test/city.jpg
-    - https://gardna.net/f/cdn/test/road.jpg
-    - https://gardna.net/f/cdn/test/mtn.jpg
+  image: https://gardna.net/f/cdn/test/office.jpg
 
 - name: Interactive Design
   description: >-
@@ -58,7 +48,4 @@
     - Desktop applications
     - Video games
   url: /portfolio
-  images:
-    - https://gardna.net/f/cdn/test/city.jpg
-    - https://gardna.net/f/cdn/test/road.jpg
-    - https://gardna.net/f/cdn/test/mtn.jpg
+  image: https://gardna.net/f/cdn/test/office.jpg

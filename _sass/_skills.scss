@@ -10,11 +10,12 @@
             flex-direction: row-reverse;
         }
 
-        .images {
-            width: 30%;
+        .image {
+            flex: 1 0 300px;
 
             img {
-                // width: 100%;
+                width: 100%;
+                max-height: 300px;
                 object-fit: cover;
                 max-height: 200px;
             }

@@ -50,6 +50,8 @@ theme: dark
 
 <div id="portfolio">
     <div class="content">
+        <h3>Some things we've made...</h3>
+
         <div class="cards">
             {% for item in site.portfolio %}
             <div class="item">
@@ -110,28 +112,23 @@ theme: dark
     </div>
 </div>
 
-<div id="contact">
+<div id="skills">
     <div class="content">
-        <h2>Get in Touch</h2>
+        {% assign count = 0 %}
+        
+        {% for skill in site.data.skills %}
 
-        <input type="text" placeholder="Name" />
-    </div>
-</div>
+        {% assign flex_style = "" %}
+        {% assign text_style = "" %}
 
-<!-- <div id="skills">
-    <div class="content">
-        {% assign count = 0 %} {% for skill in site.data.skills %} {% assign
-        flex_style = "" %} {% assign text_style = "" %} {% if count == 1 %} {%
-        assign flex_style = "reverse" %} {% assign text_style = "right" %} {%
-        endif %}
+        {% if count == 1 %}        
+            {% assign flex_style = "reverse" %}
+            {% assign text_style = "right" %}
+        {% endif %}
 
         <div class="skill {{ flex_style }}">
-            <div class="images">
-                {% for image in skill.images %}
-                <div>
-                    <img src="{{ image }}" />
-                </div>
-                {% endfor %}
+            <div class="image">
+                <img src="{{ skill.image }}" />
             </div>
 
             <div class="info">
@@ -152,7 +149,20 @@ theme: dark
 
         {% if skill != site.data.skills.last %}
         <br />
-        {% endif %} {% assign count = count | plus: 1 | modulo: 2 %} {% endfor
-        %}
+        {% endif %}
+        
+        {% assign count = count | plus: 1 | modulo: 2 %}
+
+        {% endfor %}
     </div>
-</div> -->
+</div>
+
+
+<div id="contact">
+    <div class="content">
+        <h2>Get in Touch</h2>
+
+        <input type="text" placeholder="Name" />
+    </div>
+</div>
+
