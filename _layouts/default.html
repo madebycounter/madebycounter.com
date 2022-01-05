@@ -5,21 +5,7 @@
 
 <body>
     <div>
-        {% assign hero = false %}
-        {% if page.hero %}
-            {% assign hero = true %}
-        {% endif %}
-
-        {% include nav.html theme=page.theme hero=hero %}
-
-        {% if page.hero %}
-        <div id="hero">
-            <video autoplay loop muted>
-                <source src="{{ page.hero }}" type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        {% endif %}
+        {% include nav.html theme=page.theme %}
     </div>
 
     <div id="main">

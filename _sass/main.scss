@@ -14,10 +14,11 @@
     --url-color: var(--c-blue);
 
     --fs-sm: 1rem;
-    --fs-m: 1.2rem;
+    --fs-m: 1.3rem;
     --fs-l: 1.8rem;
-    --fs-xl: 2.5rem;
+    --fs-xl: 6rem;
     --fs-xxl: 3rem;
+    --fs-mega: 10rem;
 
     --padding: 2rem;
     --footer: 6rem;
@@ -30,6 +31,7 @@
         --fs-l: 1.3rem;
         --fs-xl: 1.5rem;
         --fs-xxl: 2.2rem;
+        --fs-mega: 4rem;
 
         --padding: 1rem;
     }
@@ -55,12 +57,15 @@ html {
     position: relative;
     min-height: 100%;
     line-height: 1.5;
+    scroll-behavior: smooth;
 }
 
 h1,
 h2,
 h3 {
-    font-family: "Mukta", sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    line-height: 1;
 }
 
 h3 {
@@ -69,6 +74,7 @@ h3 {
 
 h2 {
     font-size: var(--fs-xl);
+    font-weight: 700;
 }
 
 h1 {
@@ -85,6 +91,11 @@ p {
     margin: auto;
     padding-left: var(--padding);
     padding-right: var(--padding);
+}
+
+.content {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 .content h1,
@@ -120,12 +131,40 @@ p {
     margin-bottom: calc(var(--footer) + 4rem);
 }
 
+.flex-title {
+    display: flex;
+}
+
+.flex-title > div {
+    flex: 50%;
+}
+
+.flex-title.left {
+    flex-direction: row;
+
+    h2 {
+        margin-right: 2rem;
+        text-align: left;
+    }
+}
+
+.flex-title.right {
+    flex-direction: row-reverse;
+
+    h2 {
+        margin-left: 2rem;
+        text-align: right;
+    }
+}
+
+
 // site elements
 @import "./footer";
 @import "./nav";
 @import "./portfolio";
 @import "./skills";
 @import "./team";
+@import "./hero";
 
 // content themes
 #footer {
@@ -133,23 +172,33 @@ p {
 }
 
 #portfolio {
-    @include theme-light;
+    @include theme-dark;
 }
 
 #skills {
-    @include theme-light;
+    @include theme-dark;
 }
 
 #about {
-    @include theme-light;
-
-    padding-bottom: 0;
+    @include theme-dark;
 }
 
 #team {
-    @include theme-grey;
+    @include theme-dark;
 }
 
 #blog {
-    @include theme-light;
+    @include theme-dark;
+}
+
+#contact {
+    @include theme-dark;
+}
+
+#hero {
+    @include theme-dark;
+}
+
+#coolstuff {
+    @include theme-dark;
 }

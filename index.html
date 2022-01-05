@@ -2,27 +2,44 @@
 layout: default
 title: about
 theme: dark
-hero: /assets/img/hero.mp4
 ---
 
-<div id="about">
-    <div class="content">
-        <h2>Welcome to TBSB</h2>
+<div id="hero">
+    <!-- <div class="video">
+        <video autoplay loop muted>
+            <source src="/assets/img/hero.mp4" />
+            Your browser does not support the video tag.
+        </video>
+    </div> -->
 
-        <p>
-            For all of us here at TBSB Media, creating is our passion. This
-            passion has led us to create this company and to bring our
-            creativity and expertise to you! Our skills range widely from
-            filmmaking to computer science and marketing to drone piloting. Yet,
-            all of these talents combine seamlessly to produce media we are
-            immensely proud to create.
-        </p>
+    <div class="intro">
+        <div class="inner">
+            <p>We make cool<br />stuff, <a href="#coolstuff">see?</a></p>
+        </div>
     </div>
 </div>
 
-<div id="portfolio">
+<div id="coolstuff">
     <div class="content">
-        <h2>Our Work</h2>
+        <div class="flex-title left">
+            <div>
+                <h2>The Cool <br />Stuff</h2>
+            </div>
+
+            <div>
+                <p>
+                    For all of us here at TBSB Media, creating is our passion.
+                    This passion has led us to create this company and to bring
+                    our creativity and expertise to you!
+                </p>
+                <p>
+                    Our skills range widely from filmmaking to computer science
+                    and marketing to drone piloting. Yet, all of these talents
+                    combine seamlessly to produce media we are immensely proud
+                    to create.
+                </p>
+            </div>
+        </div>
 
         <p>
             From
@@ -33,11 +50,15 @@ hero: /assets/img/hero.mp4
             with extensive experience in social media management, web design,
             branding, and more.
         </p>
+    </div>
+</div>
 
+<div id="portfolio">
+    <div class="content">
         <div class="cards">
             {% for item in site.portfolio %}
             <div class="item">
-                <img class="layer" src="{{ item.image2 }}" />
+                <img class="layer" src="{{ item.underlay }}" />
                 <img class="layer" src="/assets/img/site/fade.png" />
                 <img class="layer cover" src="{{ item.image }}" />
 
@@ -57,20 +78,25 @@ hero: /assets/img/hero.mp4
 
 <div id="team">
     <div class="content">
-        <h2>Meet The Team</h2>
+        <div class="flex-title right">
+            <div>
+                <h2>Meet <br />The Team</h2>
+            </div>
 
-        <div class="flex">
-            <p>
-                At TBSB Media, creating is our passion. This passion has led us
-                to create this company and to bring our creativity and expertise
-                to you!
-            </p>
+            <div>
+                <p>
+                    Our skills range widely from filmmaking to computer science
+                    and marketing to drone piloting. Yet, all of these talents
+                    combine seamlessly to produce media we are immensely proud
+                    to create.
+                </p>
 
-            <p>
-                Our skills range widely from filmmaking to computer science and
-                marketing to drone piloting. Yet, all of these talents combine
-                seamlessly to produce media we are immensely proud to create.
-            </p>
+                <p>
+                    At TBSB Media, creating is our passion. This passion has led
+                    us to create this company and to bring our creativity and
+                    expertise to you!
+                </p>
+            </div>
         </div>
 
         <div class="cards">
@@ -86,6 +112,14 @@ hero: /assets/img/hero.mp4
             </div>
             {% endfor %}
         </div>
+    </div>
+</div>
+
+<div id="contact">
+    <div class="content">
+        <h2>Get in Touch</h2>
+
+        <input type="text" placeholder="Name" />
     </div>
 </div>
 
@@ -127,14 +161,3 @@ hero: /assets/img/hero.mp4
         %}
     </div>
 </div> -->
-
-<script>
-    $(() => {
-        $(".images").slick({
-            dots: true,
-            infinite: true,
-            slidesToShow: 1
-            // slidesToScroll: 3
-        });
-    });
-</script>

@@ -10,7 +10,7 @@ theme: light
     <div class="cards">
         {% for item in site.portfolio %}
             <div class="item">
-                <img class="layer" src="{{ item.image2 }}"/>
+                <img class="layer" src="{{ item.underlay }}"/>
                 <img class="layer" src="/assets/img/site/fade.png"/>
                 <img class="layer cover" src="{{ item.image }}"/>
 
@@ -26,7 +26,3 @@ theme: light
         {% endfor %}
     </div>
 </div>
-
-<script>
-    $.get("/assets/data/portfolio.json", (data) => {});
-</script>
