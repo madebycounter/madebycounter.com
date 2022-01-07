@@ -139,17 +139,28 @@ p {
 .button {
     font-size: calc(var(--fs-sm) + 0.1rem);
     text-decoration: none;
-    border: var(--text-color) 2px solid;
     padding: 5px 15px;
-    color: var(--text-color) !important;
     transition: all 200ms ease;
     position: relative;
+
+    border: var(--text-color) 2px solid;
+    color: var(--text-color) !important;
+
+    &.invert {
+        background: var(--text-color);
+        color: var(--bg-color) !important;
+    }
 }
 
 .button:hover,
 .button:focus {
     background-color: var(--text-color);
     color: var(--bg-color) !important;
+
+    &.invert {
+        color: var(--text-color) !important;
+        background: var(--bg-color);
+    }
 }
 
 #main {
@@ -163,26 +174,26 @@ p {
     @media (max-width: 32em) {
         flex-direction: column;
     }
-    
-    & > div {
+
+    div {
         flex: 1 1 100%;
+    }
 
-        &.left {
-            flex-direction: row;
+    &.left {
+        flex-direction: row;
 
-            h2 {
-                margin-right: 2rem;
-                text-align: left;
-            }
+        h2 {
+            margin-right: 2rem;
+            text-align: left;
         }
+    }
 
-        &.right {
-            flex-direction: row-reverse;
+    &.right {
+        flex-direction: row-reverse;
 
-            h2 {
-                margin-left: 2rem;
-                text-align: right;
-            }
+        h2 {
+            margin-left: 2rem;
+            text-align: right;
         }
     }
 }
@@ -194,6 +205,7 @@ p {
 @import "./skills";
 @import "./team";
 @import "./hero";
+@import "./form";
 
 // content themes
 #footer {
