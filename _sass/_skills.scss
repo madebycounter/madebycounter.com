@@ -6,10 +6,22 @@
 
     &.reverse {
         flex-direction: row-reverse;
+
+        .image {
+            transform: translate(25px);
+        }
     }
 
     .image {
         flex: 1 0 300px;
+        opacity: 0;
+        transform: translateX(-25px);
+        transition: opacity ease-in-out 250ms 250ms, transform ease 500ms 250ms;
+
+        &.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
 
         img {
             width: 100%;

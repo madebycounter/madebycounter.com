@@ -112,10 +112,18 @@ theme: dark
     </div>
 </div>
 
+{% assign count = 0 %} 
 {% for skill in site.data.skills %}
+
+{% assign flex_style = "" %}
+
+{% if count == 1 %}
+    {% assign flex_style = "reverse" %}
+{% endif %}
+
 <div id="skill">
-    <div class="content reveal">
-        <div class="image">
+    <div class="content reveal {{ flex_style }}">
+        <div class="image reveal">
             <img src="{{ skill.image }}" />
         </div>
     
@@ -135,6 +143,9 @@ theme: dark
         </div>
     </div>
 </div>
+
+{% assign count = count | plus: 1 | modulo: 2 %}
+
 {% endfor %}
 
 <div id="contact">
