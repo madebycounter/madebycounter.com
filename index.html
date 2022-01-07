@@ -112,51 +112,30 @@ theme: dark
     </div>
 </div>
 
-<div id="skills">
+{% for skill in site.data.skills %}
+<div id="skill">
     <div class="content reveal">
-        {% assign count = 0 %}
-        
-        {% for skill in site.data.skills %}
-
-        {% assign flex_style = "" %}
-        {% assign text_style = "" %}
-
-        {% if count == 1 %}        
-            {% assign flex_style = "reverse" %}
-            {% assign text_style = "right" %}
-        {% endif %}
-
-        <div class="skill {{ flex_style }}">
-            <div class="image">
-                <img src="{{ skill.image }}" />
-            </div>
-
-            <div class="info">
-                <h3>{{ skill.name }}</h3>
-                <p>{{ skill.description }}</p>
-
-                <div class="examples">
-                    <ul>
-                        {% for example in skill.examples %}
-                        <li>{{ example }}</li>
-                        {% endfor %}
-                    </ul>
-
-                    <a class="button alt" href="{{ skill.url }}">Learn More</a>
-                </div>
+        <div class="image">
+            <img src="{{ skill.image }}" />
+        </div>
+    
+        <div class="info">
+            <h3>{{ skill.name }}</h3>
+            <p>{{ skill.description }}</p>
+    
+            <div class="examples">
+                <ul>
+                    {% for example in skill.examples %}
+                    <li>{{ example }}</li>
+                    {% endfor %}
+                </ul>
+    
+                <a class="button alt" href="{{ skill.url }}">Learn More</a>
             </div>
         </div>
-
-        {% if skill != site.data.skills.last %}
-        <br />
-        {% endif %}
-        
-        {% assign count = count | plus: 1 | modulo: 2 %}
-
-        {% endfor %}
     </div>
 </div>
-
+{% endfor %}
 
 <div id="contact">
     <div class="content reveal">
@@ -189,5 +168,6 @@ theme: dark
         }
     }
 
-    window.addEventListener("scroll", reveal);
+    $(window).scroll(reveal);
+    $(window).resize(reveal);
 </script>

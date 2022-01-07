@@ -1,41 +1,38 @@
-#skills {
-    .skill {
-        margin: 1rem 0px;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        gap: 30px;
+#skill .content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 2rem;
 
-        &.reverse {
-            flex-direction: row-reverse;
+    &.reverse {
+        flex-direction: row-reverse;
+    }
+
+    .image {
+        flex: 1 0 300px;
+
+        img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            max-height: 200px;
+        }
+    }
+
+    .info {
+        flex: 1 1 400px;
+
+        h3 {
+            margin-top: -0.5rem;
         }
 
-        .image {
-            flex: 1 0 300px;
-
-            img {
-                width: 100%;
-                max-height: 300px;
-                object-fit: cover;
-                max-height: 200px;
-            }
-        }
-
-        .info {
-            flex: 1 1 400px;
-
-            h3 {
-                margin-top: -0.5rem;
-            }
-
-            .examples {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 2rem;
-                justify-content: space-between;
-                align-items: flex-end;
-                width: 100%;
-            }
+        .examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+            align-items: flex-end;
+            width: 100%;
         }
     }
 }
