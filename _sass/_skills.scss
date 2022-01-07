@@ -16,7 +16,7 @@
         flex: 1 0 300px;
         opacity: 0;
         transform: translateX(-25px);
-        transition: opacity ease-in-out 250ms 250ms, transform ease 500ms 250ms;
+        transition: opacity ease-in-out 250ms 100ms, transform ease 500ms 100ms;
 
         &.active {
             opacity: 1;
