@@ -23,19 +23,19 @@
     --footer: 6rem;
 }
 
-@media (max-width: 70em) {
+@media (max-width: 74em) {
     :root {
         --fs-xxl: 8rem;
     }
 }
 
-@media (max-width: 55em) {
+@media (max-width: 58em) {
     :root {
         --fs-xxl: 6rem;
     }
 }
 
-@media (max-width: 42em) {
+@media (max-width: 44em) {
     :root {
         --fs-sm: 1rem;
         --fs-m: 1.2rem;
@@ -208,7 +208,7 @@ p {
 }
 
 #blog {
-    @include theme-dark;
+    @include theme-light;
 }
 
 #contact {

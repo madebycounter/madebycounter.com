@@ -30,8 +30,14 @@
         justify-content: center;
 
         .inner {
-            padding-bottom: 12rem;
+            padding-bottom: 16rem;
             margin: 2rem;
+        }
+
+        @media (max-width: 44em) {
+            .inner {
+                padding-bottom: 24rem;
+            }
         }
 
         @media (max-width: 30em) {
