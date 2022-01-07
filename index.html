@@ -8,7 +8,7 @@ theme: dark
     <!-- <div class="video">
         <video autoplay loop muted>
             <source src="/assets/img/hero.mp4" />
-            Your browser does not support the video tag.
+            Your browser does not support the video tag.r
         </video>
     </div> -->
 
@@ -20,7 +20,7 @@ theme: dark
 </div>
 
 <div id="coolstuff">
-    <div class="content">
+    <div class="content reveal">
         <div class="flex-title left">
             <div class="title">
                 <h2>The Cool <br />Stuff</h2>
@@ -49,12 +49,12 @@ theme: dark
 </div>
 
 <div id="portfolio">
-    <div class="content">
+    <div class="content reveal">
         <h3>Some things we've made...</h3>
 
         <div class="cards">
             {% for item in site.portfolio %}
-            <div class="item">
+            <div class="item reveal">
                 <img class="layer" src="{{ item.underlay }}" />
                 <img class="layer" src="/assets/img/site/fade.png" />
                 <img class="layer cover" src="{{ item.image }}" />
@@ -74,10 +74,10 @@ theme: dark
 </div>
 
 <div id="team">
-    <div class="content">
+    <div class="content reveal">
         <div class="flex-title right">
             <div class="title">
-                <h2>Meet <br />The<br/> Team</h2>
+                <h2>Meet <br />The<br/> <span class="title reveal">Team</span></h2>
             </div>
 
             <div>
@@ -113,7 +113,7 @@ theme: dark
 </div>
 
 <div id="skills">
-    <div class="content">
+    <div class="content reveal">
         {% assign count = 0 %}
         
         {% for skill in site.data.skills %}
@@ -159,10 +159,35 @@ theme: dark
 
 
 <div id="contact">
-    <div class="content">
+    <div class="content reveal">
         <h2>Get in Touch</h2>
 
         <input type="text" placeholder="Name" />
     </div>
 </div>
 
+<script>
+    $(() => {
+        if (window.location.href.endsWith("#coolstuff")) {
+            window.location.href = "#";
+        };
+    });
+
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 150;
+
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            } else {
+                reveals[i].classList.remove("active");
+            }
+        }
+    }
+
+    window.addEventListener("scroll", reveal);
+</script>

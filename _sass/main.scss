@@ -127,6 +127,15 @@ p {
     padding-left: 1rem;
 }
 
+.content.reveal {
+    opacity: 0;
+    transition: opacity ease-in-out 500ms;
+
+    &.active {
+        opacity: 1;
+    }
+}
+
 .button {
     font-size: calc(var(--fs-sm) + 0.1rem);
     text-decoration: none;
