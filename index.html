@@ -47,9 +47,9 @@ theme: dark
     </div>
 </div>
 
-<div id="portfolio">
+<div id="portfolio" style="padding-top: 0;">
     <div class="content reveal">
-        <h3>Some things we've made...</h3>
+        <h3>Some highlights...</h3>
 
         <div class="cards">
             {% for item in site.portfolio %}
@@ -111,41 +111,25 @@ theme: dark
     </div>
 </div>
 
-{% assign count = 0 %} 
-{% for skill in site.data.skills %}
+<div id="skills">
+    <div class="content">
+        <div class="skill reveal">
+            <img class="banner" src="https://gardna.net/f/cdn/test/office.jpg">
 
-{% assign flex_style = "" %}
-
-{% if count == 1 %}
-    {% assign flex_style = "reverse" %}
-{% endif %}
-
-<div id="skill">
-    <div class="content reveal {{ flex_style }}">
-        <div class="image reveal">
-            <img src="{{ skill.image }}" />
+            <div class="typo">
+                <h2>Hello, world!</h2>
+            </div>
         </div>
-    
-        <div class="info">
-            <h3>{{ skill.name }}</h3>
-            <p>{{ skill.description }}</p>
-    
-            <div class="examples">
-                <ul>
-                    {% for example in skill.examples %}
-                    <li>{{ example }}</li>
-                    {% endfor %}
-                </ul>
-    
-                <!-- <a class="button" href="{{ skill.url }}">Learn More</a> -->
+
+        <div class="skill reveal">
+            <img class="banner" src="https://gardna.net/f/cdn/test/office.jpg">
+
+            <div class="typo">
+                <h2>Hello, world!</h2>
             </div>
         </div>
     </div>
 </div>
-
-{% assign count = count | plus: 1 | modulo: 2 %}
-
-{% endfor %}
 
 <div id="contact">
     <div class="content reveal">
