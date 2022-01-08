@@ -29,6 +29,7 @@
             min-height: 200px;
             resize: none;
             border: 4px solid var(--text-color);
+            width: calc(99.2% - 1rem);
         }
 
         label {
