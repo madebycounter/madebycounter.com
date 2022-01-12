@@ -282,7 +282,7 @@ p {
     }
 }
 
-.highlight.reveal {
+.highlight {
     position: relative;
     color: var(--text-color);
     transition: color ease-in-out 500ms 100ms;
@@ -309,4 +309,8 @@ p {
             transform: scaleX(1);
         }
     }
+}
+
+.underline {
+    text-decoration: underline;
 }

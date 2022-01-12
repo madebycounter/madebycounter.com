@@ -6,14 +6,17 @@ theme: dark
 
 <a href="#coolstuff">
     <div class="caret">
-        <img src="/assets/img/site/caret-white.png">
+        <img src="/assets/img/site/caret-white.png" />
     </div>
 </a>
 
 <div id="hero">
     <div class="intro">
         <div class="inner">
-            <h1>We make cool<br />stuff, <span class="highlight reveal">see?</span></h1>
+            <h1>
+                We make cool<br />stuff,
+                <span class="highlight reveal">see?</span>
+            </h1>
         </div>
     </div>
 </div>
@@ -27,10 +30,10 @@ theme: dark
 
             <div>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Esse praesentium nisi aliquid, maiores unde repellat totam
-                    quas iste ipsum, enim deleniti aut eaque dignissimos laborum
-                    in beatae sequi quam voluptas.
+                    Simply put, we just like making cool stuff. It truly is the
+                    only boundary we grant ourselves and the only mantra we
+                    follow. This mantra has led us to create this company and to
+                    bring our creativity and expertise to you!
                 </p>
             </div>
         </div>
@@ -47,7 +50,7 @@ theme: dark
     </div>
 </div>
 
-<div id="portfolio" style="padding-top: 0;">
+<div id="portfolio" style="padding-top: 0">
     <div class="content reveal">
         <h3>Some highlights...</h3>
 
@@ -76,7 +79,10 @@ theme: dark
     <div class="content reveal">
         <div class="flex-title right">
             <div class="title">
-                <h2>Meet <br />The<br/> <span class="highlight reveal">Team</span></h2>
+                <h2>
+                    Meet <br />The<br />
+                    <span class="highlight reveal">Team</span>
+                </h2>
             </div>
 
             <div>
@@ -100,7 +106,7 @@ theme: dark
             <div class="member">
                 <img src="{{ member.profile }}" />
                 <p class="title">
-                    <strong>{{ member.name }}</strong><br/>
+                    <strong>{{ member.name }}</strong><br />
                     {% for title in member.titles %} {{ title }}
                     <br />
                     {% endfor %}
@@ -114,18 +120,29 @@ theme: dark
 <div id="skills">
     <div class="content">
         <div class="skill reveal">
-            <img class="banner" src="https://gardna.net/f/cdn/test/office.jpg">
-
-            <div class="typo">
-                <h2>Hello, world!</h2>
+            <video muted autoplay loop class="banner">
+                <source src="/assets/img/site/bannervid.mp4" type="video/mp4">
+            </video>
+            <div class="typo left">
+                <h3><span class="highlight reveal active">Videography</span></h3>
             </div>
         </div>
-
         <div class="skill reveal">
             <img class="banner" src="https://gardna.net/f/cdn/test/office.jpg">
-
-            <div class="typo">
-                <h2>Hello, world!</h2>
+            <div class="typo right">
+                <h3><span class="highlight reveal active">Photography</span></h3>
+            </div>
+        </div>
+        <div class="skill reveal">
+            <img class="banner" src="https://gardna.net/f/cdn/test/office.jpg">
+            <div class="typo left">
+                <h3><span class="highlight reveal active">Interactive Media</span></h3>
+            </div>
+        </div>
+        <div class="skill reveal">
+            <img class="banner" src="https://gardna.net/f/cdn/test/office.jpg">
+            <div class="typo right">
+                <h3><span class="highlight reveal active">And More...</span></h3>
             </div>
         </div>
     </div>
@@ -133,36 +150,38 @@ theme: dark
 
 <div id="contact">
     <div class="content reveal">
-
         <div class="flex-title left">
             <div class="title">
-                <h2>Pretty<br/>Cool,<br><span class="highlight reveal">Right?</span></h2>
+                <h2>
+                    Pretty<br />Cool,<br /><span class="highlight reveal"
+                        >Right?</span
+                    >
+                </h2>
             </div>
 
             <div>
                 <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae aperiam
-                    expedita nisi, soluta officiis reiciendis natus doloremque repellendus
-                    cupiditate facere atque! Nemo incidunt illo.
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Molestiae aperiam expedita nisi, soluta officiis reiciendis
+                    natus doloremque repellendus cupiditate facere atque! Nemo
+                    incidunt illo.
                 </p>
 
                 <div class="form">
                     <div class="input">
                         <input id="_name" type="text" placeholder="Name" />
                     </div>
-    
+
                     <div class="input">
-                        <input id="_email" type="text" placeholder="Email"/>
+                        <input id="_email" type="text" placeholder="Email" />
                     </div>
-
                 </div>
-
             </div>
 
-            <div class="form" style="margin-top: 0;">
-                <div class="input" style="margin-top: 0;">
+            <div class="form" style="margin-top: 0">
+                <div class="input" style="margin-top: 0">
                     <textarea id="_email"></textarea>
-                    <label for="_email" type="text" ></label>
+                    <label for="_email" type="text"></label>
                 </div>
 
                 <a class="submit" href="#" style="float: right">Submit</a>
@@ -175,7 +194,7 @@ theme: dark
     $(() => {
         if (window.location.href.endsWith("#coolstuff")) {
             window.location.href = "#";
-        };
+        }
     });
 
     function reveal() {
