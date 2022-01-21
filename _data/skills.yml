@@ -1,29 +1,25 @@
-- name: Video Production
+- name: Aerial Photography
   description: >-
-    Quality and engaging video content can have a huge impact on your brand
-    and/or business. Compelling visual storytelling requires a large assembly of talent
-    from screenwriters, cinematographers, directors, actors, and more. Here at TBSB
-    Media, we will take that burden off your shoulders and bring your ideas to life.
+    With increasing regulation, drone operation is becoming more and more difficult to
+    navigate. We are commercially certified by the FAA and are experts in legal and safe
+    drone operation.
   examples:
-    - Narrative
     - Real estate
-    - Advertising
+    - Videography
+    - Mapping
   url: /portfolio
   image: https://gardna.net/f/cdn/test/office.jpg
 
-- name: Photography
+- name: Interactive Design
   description: >-
-    Stunning still images define our world and the social media spaces we interact with
-    every day. To set you and your business apart you need professional photos to speak
-    for you. TBSB Media works to make your photos beautiful for products, portraits,
-    and more.
+    User interactivity is key in developing a dynamic online presence. Websites, mobile
+    apps, and rich web applications give you a professional edge against the competition.
   examples:
-    - Products and events
-    - Portraits
-    - Arial photography
+    - Websites
+    - Online experiences
+    - Video games
   url: /portfolio
-  image: https://gardna.net/f/cdn/test/office.jpg
-
+  image: /assets/img/portfolio/littleguys.png
 
 - name: Graphic Design
   description: >-
@@ -37,15 +33,3 @@
     - Product packaging
   url: /portfolio
   image: https://gardna.net/f/cdn/test/office.jpg
-
-- name: Interactive Design
-  description: >-
-    User interactivity is key in developing a dynamic online presence. Websites, mobile
-    apps, and rich web applications give you a professional edge against the competition.
-    Choose to stand out, choose TBSB Media.
-  examples:
-    - Websites
-    - Desktop applications
-    - Video games
-  url: /portfolio
-  image: /assets/img/portfolio/littleguys.png
