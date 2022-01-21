@@ -1,0 +1,16 @@
+- name: Skill One
+  position:
+    x: 0%
+    y: 0px
+  image: https://picsum.photos/700/400
+  width: 80%
+  z-index: 0
+
+- name: Skill Two
+  position:
+    x: 20%
+    y: 3vw
+  image: https://picsum.photos/700/400
+  width: 80%
+  z-index: 1
+  final: true

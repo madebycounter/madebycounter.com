@@ -50,6 +50,37 @@ theme: dark
     </div>
 </div>
 
+<div id="skills">
+    <div class="content">
+        <div class="container">
+            {% for skill in site.data.skills %}
+                <img
+                    {% if skill.final %}
+                    id="_final_skill"
+                    {% endif %}
+                    class="skill"
+                    style="width: {{ skill.width }};
+                           top: {{ skill.position.y }};
+                           left: {{ skill.position.x }};
+                           z-index: {{ skill.z-index }};"
+                    src="{{ skill.image }}" >
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+    function resize() {
+        var height = $("#_final_skill").height();
+        var offset = $("#_final_skill").css("top");
+
+        $(".container").height(height + parseInt(offset));
+    }
+
+    $(window).resize(resize);
+    $(".skill").load(resize);
+</script>
+
 <div id="portfolio" style="padding-top: 0">
     <div class="content reveal">
         <h3>Some highlights...</h3>
@@ -117,45 +148,13 @@ theme: dark
     </div>
 </div>
 
-<div id="skills">
-    <div class="content">
-        <div class="skill reveal">
-            <video muted autoplay loop class="banner">
-                <source src="/assets/img/site/bannervid.mp4" type="video/mp4">
-            </video>
-            <div class="typo left">
-                <h3><span class="highlight reveal active">Videography</span></h3>
-            </div>
-        </div>
-        <div class="skill reveal">
-            <img class="banner" src="https://gardna.net/f/cdn/test/office.jpg">
-            <div class="typo right">
-                <h3><span class="highlight reveal active">Photography</span></h3>
-            </div>
-        </div>
-        <div class="skill reveal">
-            <img class="banner" src="https://gardna.net/f/cdn/test/office.jpg">
-            <div class="typo left">
-                <h3><span class="highlight reveal active">Interactive Media</span></h3>
-            </div>
-        </div>
-        <div class="skill reveal">
-            <img class="banner" src="https://gardna.net/f/cdn/test/office.jpg">
-            <div class="typo right">
-                <h3><span class="highlight reveal active">And More...</span></h3>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div id="contact">
     <div class="content reveal">
         <div class="flex-title left">
             <div class="title">
                 <h2>
-                    Pretty<br />Cool,<br /><span class="highlight reveal"
-                        >Right?</span
-                    >
+                    Pretty<br />Cool,<br />
+                    <span class="highlight reveal">Right?</span>
                 </h2>
             </div>
 
