@@ -1,0 +1,35 @@
+- name: Aerial Photography
+  description: >-
+    With increasing regulation, drone operation is becoming more and more difficult to
+    navigate. We are commercially certified by the FAA and are experts in legal and safe
+    drone operation.
+  examples:
+    - Real estate
+    - Videography
+    - Mapping
+  url: /portfolio
+  image: https://gardna.net/f/cdn/test/office.jpg
+
+- name: Interactive Design
+  description: >-
+    User interactivity is key in developing a dynamic online presence. Websites, mobile
+    apps, and rich web applications give you a professional edge against the competition.
+  examples:
+    - Websites
+    - Online experiences
+    - Video games
+  url: /portfolio
+  image: /assets/img/portfolio/littleguys.png
+
+- name: Graphic Design
+  description: >-
+    Colors and typography are small decisions that make a big impact on the overall look
+    of your brand. Don't leave it to chance! TBSB Media develops graphic designs that
+    communicate your vision.
+  examples:
+    - Social media graphics
+    - Print media
+    - Menus
+    - Product packaging
+  url: /portfolio
+  image: https://gardna.net/f/cdn/test/office.jpg

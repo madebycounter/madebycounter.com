@@ -4,6 +4,5 @@ layout: default
 image: /assets/img/portfolio/phoenix.png
 underlay: /assets/img/portfolio/phoenix-blank.png
 description: >-
-    Areyoulistening.studio was a webstore that allowed for users to customize
-    their own t-shirt to feature nine of their favorite albums.
+    Hired to design logo and branding, culminating into a cohesive full-spread Instagram page showcasing organization members.
 ---

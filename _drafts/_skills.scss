@@ -1,0 +1,50 @@
+#skill .content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 2rem;
+
+    &.reverse {
+        flex-direction: row-reverse;
+
+        .image {
+            transform: translate(25px);
+        }
+    }
+
+    .image {
+        flex: 1 0 300px;
+        opacity: 0;
+        transform: translateX(-25px);
+        transition: opacity ease-in-out 250ms 100ms, transform ease 500ms 100ms;
+
+        &.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            max-height: 200px;
+        }
+    }
+
+    .info {
+        flex: 1 1 400px;
+
+        h3 {
+            margin-top: -0.5rem;
+        }
+
+        .examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+            align-items: flex-end;
+            width: 100%;
+        }
+    }
+}
