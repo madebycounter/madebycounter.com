@@ -30,22 +30,13 @@ theme: dark
 
             <div>
                 <p>
-                    Simply put, we just like making cool stuff. It truly is the
-                    only boundary we grant ourselves and the only mantra we
-                    follow. This mantra has led us to create this company and to
-                    bring our creativity and expertise to you!
+                    {{ site.data.content.about.coolstuff.a | markdownify }}
                 </p>
             </div>
         </div>
 
         <p>
-            From
-            <a href="#">photoshoots</a>
-            to
-            <a href="#">short films</a>, we have a wide range of projects under
-            our belt. We are well-practiced in all aspects of media production
-            with extensive experience in social media management, web design,
-            branding, and more.
+            {{ site.data.content.about.coolstuff.b | markdownify }}
         </p>
     </div>
 </div>
@@ -118,16 +109,11 @@ theme: dark
 
             <div>
                 <p>
-                    Our skills range widely from filmmaking to computer science
-                    and marketing to drone piloting. Yet, all of these talents
-                    combine seamlessly to produce media we are immensely proud
-                    to create.
+                    {{ site.data.content.about.theteam.a | markdownify }}
                 </p>
 
                 <p>
-                    At TBSB Media, creating is our passion. This passion has led
-                    us to create this company and to bring our creativity and
-                    expertise to you!
+                    {{ site.data.content.about.theteam.b | markdownify }}
                 </p>
             </div>
         </div>
@@ -160,10 +146,7 @@ theme: dark
 
             <div>
                 <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Molestiae aperiam expedita nisi, soluta officiis reiciendis
-                    natus doloremque repellendus cupiditate facere atque! Nemo
-                    incidunt illo.
+                    {{ site.data.content.about.contact | markdownify }}
                 </p>
 
                 <div class="form">
