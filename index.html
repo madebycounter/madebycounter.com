@@ -45,7 +45,7 @@ theme: dark
     <div class="content">
         <div class="container">
             {% for skill in site.data.skills %}
-                <img
+                <video
                     {% if skill.final %}
                     id="_final_skill"
                     {% endif %}
@@ -54,7 +54,10 @@ theme: dark
                            top: {{ skill.position.y }};
                            left: {{ skill.position.x }};
                            z-index: {{ skill.z-index }};"
-                    src="{{ skill.image }}" >
+                    loop autoplay muted>
+                    <source src="{{ skill.image }}" type="video/mp4">
+                    Your browser does not support video :(
+                </video>
             {% endfor %}
         </div>
     </div>
@@ -69,7 +72,7 @@ theme: dark
     }
 
     $(window).resize(resize);
-    $(".skill").load(resize);
+    $(".skill").on("play", resize);
 </script>
 
 <div id="portfolio" style="padding-top: 0">
