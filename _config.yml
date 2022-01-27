@@ -1,6 +1,6 @@
 url: ""
 baseurl: ""
-title: "TBSB Media"
+title: "Counter"
 collections:
   portfolio:
     output: true
