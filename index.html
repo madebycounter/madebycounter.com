@@ -41,39 +41,7 @@ theme: dark
     </div>
 </div>
 
-<div id="skills">
-    <div class="content">
-        <div class="container">
-            {% for skill in site.data.skills %}
-                <video
-                    {% if skill.final %}
-                    id="_final_skill"
-                    {% endif %}
-                    class="skill"
-                    style="width: {{ skill.width }};
-                           top: {{ skill.position.y }};
-                           left: {{ skill.position.x }};
-                           z-index: {{ skill.z-index }};"
-                    loop autoplay muted>
-                    <source src="{{ skill.image }}" type="video/mp4">
-                    Your browser does not support video :(
-                </video>
-            {% endfor %}
-        </div>
-    </div>
-</div>
-
-<script>
-    function resize() {
-        var height = $("#_final_skill").height();
-        var offset = $("#_final_skill").css("top");
-
-        $(".container").height(height + parseInt(offset));
-    }
-
-    $(window).resize(resize);
-    $(".skill").on("play", resize);
-</script>
+{% include cloud.html data=site.data.clouds.skills name="skills" %}
 
 <div id="portfolio" style="padding-top: 0">
     <div class="content reveal">
