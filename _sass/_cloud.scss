@@ -6,5 +6,12 @@
         .cloud-item {
             position: absolute;
         }
+
+        @media (max-width: 1200px) {
+            .cloud-item {
+                position: static;
+                width: 100% !important;
+            }
+        }
     }
 }
