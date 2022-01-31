@@ -1,24 +1,24 @@
-- name: Video Production
+- name: Sesame 1
   position:
     x: 30%
     y: 0px
-  image: /assets/img/skills/video.mp4
+  image: /assets/img/sesame/snippet1.mp4
   width: 80%
   z-index: 1
 
-- name: Photography
+- name: Sesame 1
   position:
     x: -10%
     y: 230px
-  image: /assets/img/skills/photo.mp4
+  image: /assets/img/sesame/snippet2.mp4
   width: 50%
   z-index: 0
 
-- name: Drone Operations
+- name: Sesame 1
   position:
     x: 45%
     y: 580px
-  image: /assets/img/skills/drone.mp4
+  image: /assets/img/sesame/snippet3.mp4
   width: 70%
   z-index: 0
   final: true

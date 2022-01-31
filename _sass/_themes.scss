@@ -36,3 +36,7 @@
     --bg-color: var(--c-darkgrey);
     --url-color: var(--c-blue);
 }
+
+.theme-dark {
+    @include theme-dark();
+}

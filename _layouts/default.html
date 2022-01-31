@@ -16,7 +16,7 @@
 
     <script>
         function resize() {
-            if (screen.width >= 1200) {
+            if (window.innerWidth >= 1200) {
                 $(".cloud-container").each((_, elem) => {
                     var label = $(elem).attr("cloud_label");
     
@@ -28,7 +28,7 @@
             } else {
                 $(".cloud-container").each((_, elem) => {
                     var label = $(elem).attr("cloud_label");
-                    $(`#cloud_${label}`).height("");
+                    $(`#cloud_${label}`).height("auto");
                 });
             }
         }

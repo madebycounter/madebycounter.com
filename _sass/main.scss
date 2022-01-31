@@ -170,13 +170,14 @@ p {
 .flex-title {
     display: flex;
     gap: 2rem;
+    flex-wrap: wrap;
 
     @media (max-width: 32em) {
         flex-direction: column;
     }
 
     div {
-        flex: 1 1 100%;
+        flex: 1 1 300px;
     }
 
     &.left {
@@ -202,7 +203,7 @@ p {
 @import "./footer";
 @import "./nav";
 @import "./portfolio";
-@import "./skills";
+@import "./cloud";
 @import "./team";
 @import "./hero";
 @import "./form";
@@ -217,7 +218,7 @@ p {
     @include theme-dark;
 }
 
-#skills {
+.cloud {
     @include theme-dark;
 }
 
@@ -314,4 +315,8 @@ p {
 
 .underline {
     text-decoration: underline;
+}
+
+.strong {
+    font-weight: 700;
 }
