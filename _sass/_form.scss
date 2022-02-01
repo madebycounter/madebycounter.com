@@ -12,7 +12,6 @@
 
             border: none;
             border-bottom: 4px solid var(--text-color);
-            // border-radius: 2px;
             color: var(--text-color);
 
             height: 2rem;
@@ -22,7 +21,6 @@
             &:focus {
                 outline: none;
             }
-            
         }
 
         textarea {
@@ -37,7 +35,6 @@
             font-size: var(--fs-m);
             font-weight: 500;
 
-            // background-color: var(--bg-color);
             color: var(--bg-color);
    
             position: absolute;
@@ -51,5 +48,23 @@
    .submit {
         font-weight: 600;
         font-size: var(--fs-m);
+        color: var(--body-font);
+    }
+}
+
+.theme-light {
+    .form {
+        input, textarea {
+            border-bottom: 2px solid var(--text-color);
+        }
+
+        textarea {
+            border: 2px solid var(--text-color);
+            width: calc(99.7% - 1rem);
+        }
+    }
+    
+    .submit {
+        font-weight: 400 !important;
     }
 }
