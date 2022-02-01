@@ -208,39 +208,6 @@ p {
 @import "./form";
 @import "./pages";
 
-// content themes
-#footer {
-    @include theme-dark;
-}
-
-#portfolio {
-    @include theme-dark;
-}
-
-#about {
-    @include theme-dark;
-}
-
-#team {
-    @include theme-dark;
-}
-
-#blog {
-    @include theme-light;
-}
-
-#contact {
-    @include theme-dark;
-}
-
-#hero {
-    @include theme-dark;
-}
-
-#intro {
-    @include theme-dark;
-}
-
 .caret {
     @keyframes bounce {
         0% {
