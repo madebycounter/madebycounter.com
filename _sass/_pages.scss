@@ -11,7 +11,7 @@
     }
 
     &.sesame {
-        .video-wrapper {
+        .wrapper {
             width: calc(100% - 2rem);
             height: 75%;
             
@@ -31,9 +31,9 @@
     }
 
     &.phoenix {
-        .logo-box {
+        .wrapper {
             width: calc(100% - 4rem);
-            height: 80%;
+            height: 75%;
 
             display: flex;
             align-items: center;
@@ -46,18 +46,39 @@
             }
         }
     }
-}
 
-.ayl-resize {
-    @media (max-width: 800px) {
-        .Package1,
-        .Package2 {
-            display: none;
-        }
+    &.ayl {
+        .wrapper {
+            max-width: 1400px;
+            height: 70%;
+            margin: auto;
 
-        .Package3 {
-            position: static !important;
-            width: 100% !important;
+            .desktop {
+                display: block;
+            }
+
+            .mobile {
+                height: 100%;
+                display: none;
+
+                .package {
+                    width: 100%;
+                    height: 100%;
+                    background-image: url("/assets/img/ayl/package2.jpg");
+                    background-position: center;
+                    background-size: cover;
+                }
+            }
+
+            @media (max-width: 600px) {
+                .desktop {
+                    display: none;
+                }
+
+                .mobile {
+                    display: block;
+                }
+            }
         }
     }
 }

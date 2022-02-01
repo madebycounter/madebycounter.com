@@ -1,27 +1,26 @@
-maxWidth: 1000
-mobile: 500
+width: 1400
+mobile: 0
 data:
-  - id: Package1
+  - id: package1
+    width: 18
     position:
-      x: 10%
-      y: 50px
+      x: 5
+      y: 2
+      z: 0
     image: /assets/img/ayl/package1.jpg
-    width: 12%
-    z-index: 1
 
-  - id: Package2
+  - id: package2
+    width: 24
     position:
-      x: 28%
-      y: 250px
+      x: 34
+      y: 10
+      z: 0
     image: /assets/img/ayl/package3.jpg
-    width: 20%
-    z-index: 0
-    final: true
 
-  - id: Package3
+  - id: package3
+    width: 27
     position:
-      x: 60%
-      y: 0px;
+      x: 68
+      y: 0
+      z: 0
     image: /assets/img/ayl/package2.jpg
-    width: 28%
-    z-index: 0
