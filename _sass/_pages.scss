@@ -84,6 +84,9 @@
             max-width: 1400px;
             height: 70%;
             margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             .desktop {
                 display: block;
@@ -95,8 +98,6 @@
 
                 display: none;
                 visibility: hidden;
-                justify-content: center;
-                align-items: center;
 
                 .package {
                     max-height: 100%;
@@ -111,7 +112,7 @@
                 }
 
                 .mobile {
-                    display: flex;
+                    display: block;
                     visibility: visible;
                 }
             }
