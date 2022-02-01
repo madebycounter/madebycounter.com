@@ -7,7 +7,7 @@ data:
       x: 5
       y: 2
       z: 0
-    image: /assets/img/ayl/package1.jpg
+    image: /assets/img/ayl/posts/post4.png
 
   - id: package2
     width: 24
@@ -15,7 +15,7 @@ data:
       x: 34
       y: 10
       z: 0
-    image: /assets/img/ayl/package3.jpg
+    image: /assets/img/ayl/posts/post1.png
 
   - id: package3
     width: 27
@@ -23,4 +23,4 @@ data:
       x: 68
       y: 0
       z: 0
-    image: /assets/img/ayl/package2.jpg
+    image: /assets/img/ayl/posts/post3.png

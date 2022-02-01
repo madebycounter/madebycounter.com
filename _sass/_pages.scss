@@ -22,8 +22,8 @@
         bottom: 1rem;
         right: 1rem;
 
-        height: calc(var(--fs-xl) * 0.7);
-        width: calc(var(--fs-xl) * 0.7);
+        height: 40px;
+        width: 40px;
 
         @keyframes bounce {
             0% {
@@ -94,26 +94,33 @@
                 padding: 0 1rem;
 
                 display: none;
+                visibility: hidden;
                 justify-content: center;
                 align-items: center;
 
                 .package {
+                    max-height: 100%;
                     max-width: 100%;
                     height: auto;
                 }
             }
 
-            @media (max-width: 600px) {
+            @media (max-width: 900px) {
                 .desktop {
                     display: none;
                 }
 
                 .mobile {
                     display: flex;
+                    visibility: visible;
                 }
             }
         }
     }
+}
+
+.site-to-behold {
+    flex-wrap: wrap-reverse;
 }
 
 .splash {
@@ -141,6 +148,11 @@
         flex: 1 1 300px;
 
         img {
+            width: 100%;
+            margin-top: 0;
+        }
+
+        video {
             width: 100%;
         }
     }
