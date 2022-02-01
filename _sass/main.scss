@@ -2,6 +2,7 @@
 :root {
     --body-font: "Ubuntu", sans-serif;
     --mono-font: "Courier New", monospace;
+    --alt-font: "Roboto", sans-serif;
 
     --c-white: white;
     --c-black: #000003;
@@ -80,7 +81,7 @@ html {
 h1,
 h2,
 h3 {
-    font-family: "Roboto", sans-serif;
+    font-family: var(--alt-font);
     font-weight: 700;
     line-height: 1;
 }
@@ -287,4 +288,13 @@ p {
 
 .overflow {
     max-width: 1000px;
+}
+
+.cta {
+    p {
+        font-weight: 600;
+        font-family: var(--alt-font);
+        font-size: var(--fs-l);
+        text-align: center;
+    }
 }
