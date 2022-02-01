@@ -48,27 +48,8 @@
 }
 
 #contact {
-    .flex-title {
-        flex-wrap: wrap;
-
-        div {
-            flex: 1 0 350px;
-        }
-    }
-
-    .submit {
+   .submit {
         font-weight: 600;
         font-size: var(--fs-m);
-        // text-decoration: underline;
     }
 }
-
-
-// ::-webkit-input-placeholder,
-// :-moz-placeholder,
-// ::-moz-placeholder,
-// :-ms-input-placeholder,
-// ::placeholder {
-//     color: #35363d;
-//     opacity: 1;
-// }
