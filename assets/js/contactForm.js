@@ -6,7 +6,7 @@ function submitContact() {
 
     $.ajax({
         type: "POST",
-        url: "https://formspree.io/f/mayveobr",
+        url: _FORM_URL,
         headers: {
             Accept: "application/json"
         },
