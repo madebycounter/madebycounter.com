@@ -12,9 +12,9 @@ data:
       type: "video/mp4"
 
 - id: snippet2
-  width: 22
+  width: 26
   position:
-    x: 24
+    x: 20
     y: 45
     z: 0
   video:
@@ -32,7 +32,7 @@ data:
       type: "video/mp4"
 
 - id: snippet4
-  width: 30
+  width: 40
   position:
     x: 48
     y: 42
