@@ -18,6 +18,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+
             padding: 1rem 1rem;
             
             video {
@@ -31,16 +32,17 @@
 
     &.phoenix {
         .logo-box {
-            text-align: center;
-            padding: 1rem 3rem;
+            width: calc(100% - 4rem);
+            height: 80%;
 
-            .logo {
-                max-width: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 2rem;
+
+            img {
                 width: 100%;
-            }
-
-            @media (max-width: 44em) {
-                padding: 7rem 1rem;
+                max-width: 500px;
             }
         }
     }
@@ -76,11 +78,22 @@
     }
 }
 
-.split {
+.flex-split {
     display: flex;
     flex-wrap: wrap;
+    gap: 1rem;
 
-    .col {
-        flex: 1 0 400px;
+    div {
+        flex: 1 1 300px;
+
+        img {
+            width: 100%;
+        }
     }
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
