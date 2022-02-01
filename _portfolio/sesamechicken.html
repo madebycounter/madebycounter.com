@@ -10,7 +10,7 @@ description: >-
 ---
 
 <div class="portfolio-hero sesame">
-    <div class="video">
+    <div class="video-wrapper">
         <video width="100%" poster="/assets/video/sesamechicken.png" controls>
             <source src="/assets/video/sesamechicken.mp4" type="video/mp4" />
         </video>
@@ -57,7 +57,13 @@ description: >-
     </div>
 </div>
 
-{% include cloud.html data=site.data.clouds.sesame1 name="sesame1" %}
+<div class="theme-dark">
+    <div class="content overflow">
+        <div id="_cc_sesame1"></div>
+    </div>
+</div>
+
+{% include tools/cloudcode.html data=site.data.clouds.sesame1 id="_cc_sesame1" %}
 
 <div class="theme-dark">
     <div class="content">
@@ -89,4 +95,10 @@ description: >-
     </div>
 </div>
 
-{% include cloud.html data=site.data.clouds.sesame2 name="sesame2" %}
+<div class="theme-dark">
+    <div class="content overflow">
+        <div id="_cc_sesame2"></div>
+    </div>
+</div>
+
+{% include tools/cloudcode.html data=site.data.clouds.sesame2 id="_cc_sesame2" %}

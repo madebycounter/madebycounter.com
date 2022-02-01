@@ -41,7 +41,13 @@ theme: dark
     </div>
 </div>
 
-{% include cloud.html data=site.data.clouds.skills name="skills" %}
+<div class="theme-dark">
+    <div class="content overflow">
+        <div id="_cc_skills"></div>
+    </div>
+</div>
+
+{% include tools/cloudcode.html data=site.data.clouds.skills id="_cc_skills" %}
 
 <div id="portfolio" style="padding-top: 0">
     <div class="content reveal">

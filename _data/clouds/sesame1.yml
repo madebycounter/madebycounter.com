@@ -1,24 +1,32 @@
-- name: Sesame 1
+width: 1000
+mobile: 600
+data:
+- id: snippet1
+  width: 50
   position:
-    x: 30%
-    y: 0px
-  image: /assets/img/sesame/snippet1.mp4
-  width: 80%
-  z-index: 1
+    x: 0
+    y: 0
+    z: 0
+  video:
+    - path: /assets/img/sesame/snippet1.mp4
+      type: "video/mp4"
 
-- name: Sesame 1
+- id: snippet2
+  width: 47
   position:
-    x: -10%
-    y: 230px
-  image: /assets/img/sesame/snippet2.mp4
-  width: 50%
-  z-index: 0
+    x: 53
+    y: 10
+    z: 0
+  video:
+    - path: /assets/img/sesame/snippet2.mp4
+      type: "video/mp4"
 
-- name: Sesame 1
+- id: snippet3
+  width: 50
   position:
-    x: 45%
-    y: 580px
-  image: /assets/img/sesame/snippet3.mp4
-  width: 70%
-  z-index: 0
-  final: true
+    x: 20
+    y: 48
+    z: 0
+  video:
+    - path: /assets/img/sesame/snippet3.mp4
+      type: "video/mp4"

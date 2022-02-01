@@ -1,0 +1,27 @@
+maxWidth: 1000
+mobile: 500
+data:
+  - id: Package1
+    position:
+      x: 10%
+      y: 50px
+    image: /assets/img/ayl/package1.jpg
+    width: 12%
+    z-index: 1
+
+  - id: Package2
+    position:
+      x: 28%
+      y: 250px
+    image: /assets/img/ayl/package3.jpg
+    width: 20%
+    z-index: 0
+    final: true
+
+  - id: Package3
+    position:
+      x: 60%
+      y: 0px;
+    image: /assets/img/ayl/package2.jpg
+    width: 28%
+    z-index: 0
