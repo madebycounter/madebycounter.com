@@ -15,14 +15,14 @@ theme: dark
         <div class="inner">
             <h1>
                 We make cool<br />stuff,
-                <span class="highlight reveal">see?</span>
+                <span class="highlight reveal reveal-150">see?</span>
             </h1>
         </div>
     </div>
 </div>
 
 <div class="theme-dark" id="content">
-    <div class="content reveal">
+    <div class="content reveal reveal-0">
         <div class="flex-title left">
             <div class="title">
                 <h2>The Cool <br />Stuff</h2>
@@ -50,12 +50,12 @@ theme: dark
 {% include tools/cloudcode.html data=site.data.clouds.skills id="_cc_skills" %}
 
 <div class="theme-dark" id="portfolio" style="padding-top: 0">
-    <div class="content reveal">
+    <div class="content reveal reveal-0">
         <h3>Some highlights...</h3>
 
         <div class="cards">
             {% for item in site.portfolio %}
-            <div class="item reveal">
+            <div class="item">
                 <img class="layer" src="{{ item.underlay }}" />
                 <img class="layer" src="/assets/img/site/fade.png" />
                 <img class="layer cover" src="{{ item.image }}" />
@@ -75,12 +75,12 @@ theme: dark
 </div>
 
 <div class="theme-dark" id="team">
-    <div class="content reveal">
+    <div class="content reveal reveal-0">
         <div class="flex-title right">
             <div class="title">
                 <h2>
                     Meet <br />The<br />
-                    <span class="highlight reveal">Team</span>
+                    <span class="highlight reveal reveal-150">Team</span>
                 </h2>
             </div>
 
@@ -112,12 +112,12 @@ theme: dark
 </div>
 
 <div class="theme-dark" id="contact">
-    <div class="content reveal">
+    <div class="content reveal reveal-0">
         <div class="flex-title left">
             <div class="title">
                 <h2>
                     Pretty<br />Cool,<br />
-                    <span class="highlight reveal">Right?</span>
+                    <span class="highlight reveal reveal-150">Right?</span>
                 </h2>
             </div>
 
@@ -148,25 +148,3 @@ theme: dark
         </div>
     </div>
 </div>
-
-<script>
-    function reveal() {
-        var reveals = document.querySelectorAll(".reveal");
-
-        for (var i = 0; i < reveals.length; i++) {
-            var windowHeight = window.innerHeight;
-            var elementTop = reveals[i].getBoundingClientRect().top;
-            var elementVisible = 150;
-
-            if (elementTop < windowHeight - elementVisible) {
-                reveals[i].classList.add("active");
-            } else {
-                reveals[i].classList.remove("active");
-            }
-        }
-    }
-
-    $(window).scroll(reveal);
-    $(window).resize(reveal);
-    $(window).load(reveal);
-</script>

@@ -32,11 +32,45 @@
     <script src="/assets/js/contentclouds.js" type="text/javascript"></script>
 
     <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal-150");
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                } else {
+                    reveals[i].classList.remove("active");
+                }
+            }
+
+            var earlyReveals = document.querySelectorAll(".reveal-0");
+
+            for (var i = 0; i < earlyReveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = earlyReveals[i].getBoundingClientRect().top;
+                var elementVisible = 0;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    earlyReveals[i].classList.add("active");
+                } else {
+                    earlyReveals[i].classList.remove("active");
+                }
+            }
+        }
+
         $(() => {
             if (window.location.href.endsWith("#content")) {
                 window.location.href = "#";
             }
         });
+
+        $(window).scroll(reveal);
+        $(window).resize(reveal);
+        $(window).load(reveal);
     </script>
 
     {% include tools/header.html %}
