@@ -1,6 +1,7 @@
 .portfolio-hero {
     height: calc(100vh - 6rem);
     position: relative;
+    width: 100%;
 
     .title {
         position: absolute;
@@ -10,16 +11,20 @@
     }
 
     &.sesame {
-        .video {
-            max-width: 1000px;
-            margin: auto;
-            padding: 1rem 3rem;
-            height: 70%;
+        .video-wrapper {
+            width: calc(100% - 2rem);
+            height: 75%;
+            
             display: flex;
             align-items: center;
-    
-            @media (max-width: 44em) {
-                padding: 1rem 1rem;
+            justify-content: center;
+            padding: 1rem 1rem;
+            
+            video {
+                margin: auto;
+                width: auto;
+                max-height: 100%;
+                max-width: 100%;
             }
         }
     }
@@ -41,6 +46,20 @@
     }
 }
 
+.ayl-resize {
+    @media (max-width: 800px) {
+        .Package1,
+        .Package2 {
+            display: none;
+        }
+
+        .Package3 {
+            position: static !important;
+            width: 100% !important;
+        }
+    }
+}
+
 .splash {
     display: flex;
     justify-content: right;
@@ -48,7 +67,7 @@
     margin: 1rem;
 
     div {
-        max-width: 500px;
+        max-width: 600px;
     }
 
 

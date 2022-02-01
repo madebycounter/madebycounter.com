@@ -40,3 +40,7 @@
 .theme-dark {
     @include theme-dark();
 }
+
+.theme-light {
+    @include theme-light();
+}

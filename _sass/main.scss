@@ -203,7 +203,6 @@ p {
 @import "./footer";
 @import "./nav";
 @import "./portfolio";
-@import "./cloud";
 @import "./team";
 @import "./hero";
 @import "./form";
@@ -215,10 +214,6 @@ p {
 }
 
 #portfolio {
-    @include theme-dark;
-}
-
-.cloud {
     @include theme-dark;
 }
 
@@ -319,4 +314,8 @@ p {
 
 .strong {
     font-weight: 700;
+}
+
+.overflow {
+    max-width: 1000px;
 }

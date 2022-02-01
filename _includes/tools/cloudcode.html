@@ -1,0 +1,36 @@
+<!-- Translated from YML file by Jekyll -->
+<script>
+    var {{ include.id }}_cloud = new ContentCloud({
+        "id": "{{ include.id }}",
+        "maxWidth": {{ include.data.width | default: 900 }},
+        "mobileWidth": {{ include.data.mobile | default: 500 }},
+        "items": [
+            {% for item in include.data.data %}
+            {
+                "id": "{{ item.id }}",
+                "width": {{ item.width }},
+                "position": {
+                    "x": {{ item.position.x }},
+                    "y": {{ item.position.y }},
+                    "z": {{ item.position.z }},
+                },
+
+                {% if item.video %}
+                "video": [
+                    {% for source in item.video %}
+                    {
+                        "path": "{{ source.path }}",
+                        "format": "{{ source.format }}"
+                    },
+                    {% endfor %}
+                ],
+                {% endif %}
+
+                {% if item.image %}
+                "image": "{{ item.image }}",
+                {% endif %}
+            },
+            {% endfor %}
+        ],
+    });
+</script>

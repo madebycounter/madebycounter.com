@@ -13,29 +13,6 @@
     </div>
 
     {% include footer.html %}
-
-    <script>
-        function resize() {
-            if (window.innerWidth >= 1200) {
-                $(".cloud-container").each((_, elem) => {
-                    var label = $(elem).attr("cloud_label");
-    
-                    var height = $(`#_cloud_final_${label}`).height();
-                    var offset = $(`#_cloud_final_${label}`).css("top");
-        
-                    $(`#cloud_${label}`).height(height + parseInt(offset));
-                });
-            } else {
-                $(".cloud-container").each((_, elem) => {
-                    var label = $(elem).attr("cloud_label");
-                    $(`#cloud_${label}`).height("auto");
-                });
-            }
-        }
-
-        $(window).resize(resize);
-        $(".cloud-item").on("play", resize);
-    </script>
 </body>
 
 </html>

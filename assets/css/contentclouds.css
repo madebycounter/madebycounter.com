@@ -1,0 +1,16 @@
+.contentcloud {
+    position: relative;
+}
+
+.contentcloud-desktop .contentcloud-item {
+    position: absolute;
+}
+
+.contentcloud-mobile .contentcloud-item {
+    position: static;
+}
+
+.contentcloud-image,
+.contentcloud-video {
+    width: 100%;
+}
