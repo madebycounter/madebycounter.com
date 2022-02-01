@@ -4,7 +4,7 @@ title: about
 theme: dark
 ---
 
-<a href="#intro">
+<a href="#content">
     <div class="caret">
         <img src="/assets/img/site/caret-white.png" />
     </div>
@@ -21,7 +21,7 @@ theme: dark
     </div>
 </div>
 
-<div class="theme-dark" id="intro">
+<div class="theme-dark" id="content">
     <div class="content reveal">
         <div class="flex-title left">
             <div class="title">
@@ -150,12 +150,6 @@ theme: dark
 </div>
 
 <script>
-    $(() => {
-        if (window.location.href.endsWith("#intro")) {
-            window.location.href = "#";
-        }
-    });
-
     function reveal() {
         var reveals = document.querySelectorAll(".reveal");
 

@@ -1,19 +1,51 @@
 .portfolio-hero {
-    height: calc(100vh - 6rem);
+    height: calc(100vh - 8rem);
+
+    @media (max-width: 809px) {
+        height: calc(100vh - 8.375rem);
+    }
+
+
     position: relative;
     width: 100%;
 
     .title {
         position: absolute;
         left: 1rem;
-        bottom: 3rem;
-        width: 80%;
+        bottom: 1rem;
+        width: 85%;
+    }
+
+    .portfolio-caret {
+        position: absolute;
+
+        bottom: 1rem;
+        right: 1rem;
+
+        height: calc(var(--fs-xl) * 0.7);
+        width: calc(var(--fs-xl) * 0.7);
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+
+            25% {
+                transform: translateY(-10px);
+            }
+
+            50% {
+                transform: translateY(0);
+            }
+        }
+
+        animation: bounce 2s ease infinite;
     }
 
     &.sesame {
         .wrapper {
             width: calc(100% - 2rem);
-            height: 75%;
+            height: 65%;
             
             display: flex;
             align-items: center;

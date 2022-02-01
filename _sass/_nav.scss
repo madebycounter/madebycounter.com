@@ -72,12 +72,6 @@
         }
     }
 
-    @media (max-width: 300px) {
-        .links {
-            flex-direction: column;
-        }
-    }
-
     &.hero {
         position: absolute;
         width: calc(100% - var(--padding) * 2);
