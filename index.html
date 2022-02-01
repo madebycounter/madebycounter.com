@@ -111,40 +111,58 @@ theme: dark
     </div>
 </div>
 
-<div class="theme-dark" id="contact">
-    <div class="content reveal reveal-0">
-        <div class="flex-title left">
-            <div class="title">
-                <h2>
-                    Pretty<br />Cool,<br />
-                    <span class="highlight reveal reveal-150">Right?</span>
-                </h2>
-            </div>
-
-            <div>
-                <p>
-                    {{ site.data.content.about.contact | markdownify }}
-                </p>
-
-                <div class="form">
-                    <div class="input">
-                        <input id="_name" type="text" placeholder="Name" />
-                    </div>
-
-                    <div class="input">
-                        <input id="_email" type="text" placeholder="Email" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="form" style="margin-top: 0">
-                <div class="input" style="margin-top: 0">
-                    <textarea id="_email"></textarea>
-                    <label for="_email" type="text"></label>
+<div class="theme-light" id="contact">
+    <div class="content">
+        <form>
+            <div class="flex-title left">
+                <div class="title">
+                    <h2>
+                        Pretty<br />Cool,<br />
+                        <span class="highlight reveal reveal-150">Right?</span>
+                    </h2>
                 </div>
 
-                <a class="submit" href="#" style="float: right">Submit</a>
+                <div>
+                    <p>{{ site.data.content.about.contact | markdownify }}</p>
+
+                    <div class="form">
+                        <div class="input">
+                            <input
+                                id="_name"
+                                type="text"
+                                placeholder="Name"
+                                name="name"
+                            />
+                        </div>
+
+                        <div class="input">
+                            <input
+                                id="_email"
+                                type="text"
+                                placeholder="Email"
+                                name="email"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form" style="margin-top: 0">
+                    <div class="input" style="margin-top: 0">
+                        <textarea id="_msg"></textarea>
+                        <label for="_msg" type="text"></label>
+                    </div>
+
+                    <input type="hidden" id="_origin" name="origin" value="Landing Page">
+
+                    <a
+                        class="submit"
+                        href="#contact"
+                        onclick="submitContact()"
+                        style="float: right"
+                        >Submit</a
+                    >
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
