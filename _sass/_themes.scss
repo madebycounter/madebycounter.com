@@ -27,14 +27,7 @@
     @include theme;
     --text-color: var(--c-black);
     --bg-color: var(--c-white);
-    --url-color: var(--c-blue);
-}
-
-@mixin theme-grey {
-    @include theme;
-    --text-color: var(--c-white);
-    --bg-color: var(--c-darkgrey);
-    --url-color: var(--c-blue);
+    --url-color: var(--c-black);
 }
 
 .theme-dark {

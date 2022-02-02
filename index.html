@@ -6,13 +6,14 @@ theme: dark
 
 {% assign content = site.data.content.index %}
 
-<a href="#content">
-    <div class="caret">
-        <img src="/assets/img/site/caret-white.png" />
-    </div>
-</a>
 
-<div class="theme-dark" id="hero">
+<div class="index-hero theme-dark">
+    <div class="caret">
+        <a href="#content">
+            <img src="/assets/img/site/caret-white.png" />
+        </a>
+    </div>
+
     <div class="intro">
         <div class="inner">
             <h1>
@@ -20,7 +21,7 @@ theme: dark
                 <span class="highlight reveal reveal-150">see?</span>
             </h1>
         </div>
-    </div>
+    </div>    
 </div>
 
 <div class="theme-dark" id="content">
@@ -47,7 +48,7 @@ theme: dark
 
 {% include tools/cloudcode.html data=site.data.clouds.skills id="_cc_skills" %}
 
-<div class="theme-dark" id="portfolio" style="padding-top: 0">
+<div class="index-portfolio theme-dark" style="padding-top: 0">
     <div class="content reveal reveal-0">
         <h3>Some highlights...</h3>
 
@@ -72,7 +73,7 @@ theme: dark
     </div>
 </div>
 
-<div class="theme-dark" id="team">
+<div class="index-team theme-dark">
     <div class="content reveal reveal-0">
         <div class="flex-title right">
             <div class="title">
@@ -103,7 +104,7 @@ theme: dark
     </div>
 </div>
 
-<div class="theme-dark" id="contact">
+<div class="contact theme-dark">
     <div class="content">
         <form>
             <div class="flex-title left">

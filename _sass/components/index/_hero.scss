@@ -1,8 +1,8 @@
-#hero {
+.index-hero {
     height: calc(100vh - 6rem);
     position: relative;
     padding: 0;
-    
+
     .video {
         height: 100%;
         width: 100%;
@@ -21,7 +21,7 @@
     .intro {
         position: absolute;
         text-align: left;
-        
+
         top: 0;
         width: 100%;
         height: 70%;
@@ -38,6 +38,44 @@
             .inner {
                 margin: 0;
             }
+        }
+    }
+
+    .caret {
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+
+            25% {
+                transform: translateY(-10px);
+            }
+
+            50% {
+                transform: translateY(0);
+            }
+        }
+
+        animation: bounce 2s ease infinite;
+
+        --size: 40px;
+
+        position: absolute;
+        z-index: 1;
+
+        left: calc(50% - var(--size) / 2);
+        bottom: 5rem;
+
+        width: var(--size);
+        height: var(--size);
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        &:hover {
+            filter: brightness(0.6);
         }
     }
 }

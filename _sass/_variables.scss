@@ -1,0 +1,58 @@
+// variables
+:root {
+    --body-font: "Ubuntu", sans-serif;
+    --mono-font: "Courier New", monospace;
+    --alt-font: "Roboto", sans-serif;
+
+    --c-white: white;
+    --c-black: #000003;
+    --c-grey: #91a3b0;
+    --c-darkgrey: #2c3539;
+    --c-blue: #007ad8;
+
+    --text-color: var(--c-black);
+    --bg-color: var(--c-white);
+    --url-color: var(--c-blue);
+
+    --fs-sm: 1rem;
+    --fs-m: 1.3rem;
+    --fs-l: 3rem;
+    --fs-xl: 6rem;
+    --fs-xxl: 10rem;
+
+    --padding: 2rem;
+    --footer: 6.5rem;
+}
+
+// font resizing
+@media (max-width: 74em) {
+    :root {
+        --fs-xxl: 8rem;
+    }
+}
+
+@media (max-width: 58em) {
+    :root {
+        --fs-xxl: 6rem;
+    }
+}
+
+@media (max-width: 44em) {
+    :root {
+        --fs-sm: 1rem;
+        --fs-m: 1.2rem;
+        --fs-l: 1.7rem;
+        --fs-xl: 5rem;
+        --fs-xxl: 4rem;
+
+        --padding: 2rem;
+    }
+}
+
+@media (max-width: 30em) {
+    :root {
+        --fs-xl: 3rem;
+        --fs-xxl: 3rem;
+    }
+}
+

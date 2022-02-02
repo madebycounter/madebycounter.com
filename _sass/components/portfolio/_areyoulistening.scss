@@ -1,0 +1,39 @@
+.portfolio-hero.ayl {
+    .wrapper {
+        max-width: 1400px;
+        height: 70%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .desktop {
+            display: block;
+        }
+
+        .mobile {
+            height: 100%;
+            padding: 0 1rem;
+
+            display: none;
+            visibility: hidden;
+
+            .package {
+                max-height: 100%;
+                max-width: 100%;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .desktop {
+                display: none;
+            }
+
+            .mobile {
+                display: block;
+                visibility: visible;
+            }
+        }
+    }
+}

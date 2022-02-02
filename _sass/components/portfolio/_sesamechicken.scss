@@ -1,0 +1,19 @@
+.portfolio-hero.sesame {
+    .wrapper {
+        width: calc(100% - 2rem);
+        height: 65%;
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 1rem 1rem;
+        
+        video {
+            margin: auto;
+            width: auto;
+            max-height: 100%;
+            max-width: 100%;
+        }
+    }
+}

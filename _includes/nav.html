@@ -1,12 +1,12 @@
-{% assign theme = "nav-light" %}
+{% assign theme = "theme-light" %}
 {% assign logo = "black" %}
 
 {% if include.theme == "dark" %}
-    {% assign theme = "nav-dark" %}
+    {% assign theme = "theme-dark" %}
     {% assign logo = "white" %}
 {% endif %}
 
-<div id="nav" class="{{ theme }}">
+<div class="nav {{ theme }}">
     <div class="logo">
         <a href="/">
             <img src="/assets/img/site/logo_banner_{{ logo }}.png">

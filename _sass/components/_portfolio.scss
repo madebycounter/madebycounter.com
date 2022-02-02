@@ -1,0 +1,62 @@
+.portfolio-hero {
+    height: calc(100vh - 8rem);
+    position: relative;
+    width: 100%;
+
+    @media (max-width: 809px) {
+        height: calc(100vh - 8.375rem);
+    }
+
+    .title {
+        position: absolute;
+        left: 1rem;
+        bottom: 1rem;
+        width: 85%;
+    }
+
+    .caret {
+        position: absolute;
+
+        bottom: 1rem;
+        right: 1rem;
+
+        height: 40px;
+        width: 40px;
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+
+            25% {
+                transform: translateY(-10px);
+            }
+
+            50% {
+                transform: translateY(0);
+            }
+        }
+
+        animation: bounce 2s ease infinite;
+    }
+}
+
+.portfolio-splash {
+    display: flex;
+    justify-content: right;
+    padding: 1rem;
+    margin: 1rem;
+
+    div {
+        max-width: 600px;
+    }
+
+
+    @media (max-width: 44em) {
+        justify-content: left;
+    }
+}
+
+@import "./portfolio/areyoulistening";
+@import "./portfolio/phoenixcoalition";
+@import "./portfolio/sesamechicken";
