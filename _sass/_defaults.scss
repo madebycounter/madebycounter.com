@@ -37,6 +37,10 @@ p {
     font-weight: 300;
 }
 
+video::-internal-media-controls-overlay-cast-button {
+    display: none;
+}
+
 .content {
     max-width: 900px;
     margin: auto;

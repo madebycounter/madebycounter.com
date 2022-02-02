@@ -119,7 +119,7 @@ class ContentCloud {
                             />`;
         }
 
-        return `<video
+        return `<video disableRemotePlayback
                         class="contentcloud-image cloudcontent-image-${this.id}"
                         id="${this.id}_${id}_media"
                         autoplay loop muted>
