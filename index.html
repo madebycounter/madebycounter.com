@@ -4,6 +4,8 @@ title: about
 theme: dark
 ---
 
+{% assign content = site.data.content.index %}
+
 <a href="#content">
     <div class="caret">
         <img src="/assets/img/site/caret-white.png" />
@@ -29,15 +31,11 @@ theme: dark
             </div>
 
             <div>
-                <p>
-                    {{ site.data.content.about.coolstuff.a | markdownify }}
-                </p>
+                {% include tools/content.html data=content.intro1 %}
             </div>
         </div>
 
-        <p>
-            {{ site.data.content.about.coolstuff.b | markdownify }}
-        </p>
+        {% include tools/content.html data=content.intro2 %}
     </div>
 </div>
 
@@ -85,13 +83,7 @@ theme: dark
             </div>
 
             <div>
-                <p>
-                    {{ site.data.content.about.theteam.a | markdownify }}
-                </p>
-
-                <p>
-                    {{ site.data.content.about.theteam.b | markdownify }}
-                </p>
+                {% include tools/content.html data=content.team %}
             </div>
         </div>
 
@@ -123,7 +115,7 @@ theme: dark
                 </div>
 
                 <div>
-                    <p>{{ site.data.content.about.contact | markdownify }}</p>
+                    {% include tools/content.html data=content.contact %}
 
                     <div class="form">
                         <div class="input">

@@ -9,6 +9,8 @@ description: >-
     Hired to design logo and branding, culminating into a cohesive full-spread Instagram page showcasing organization members.
 ---
 
+{% assign content = site.data.content.portfolio.phoenixcoalition %}
+
 <div class="portfolio-hero phoenix">
     <div class="wrapper" id="_phx_hero">
         <img src="/assets/img/phoenix/center.png" />
@@ -24,10 +26,7 @@ description: >-
     <div>
         <h3>Cohesive Branding.</h3>
 
-        <p>
-            A branding and social media content package cohesively designed to
-            balance aesthetics and function.
-        </p>
+        {% include tools/content.html data=content.splash %}
     </div>
 </div>
 
@@ -39,16 +38,7 @@ description: >-
             </div>
 
             <div>
-                <p>
-                    All media for the phoenix coalition was designed, produced,
-                    and delivered in a single day. This is not to say it was
-                    created without character, form, and functionality in mind.
-                </p>
-
-                <p>
-                    The logo was delivered in several versions to be utilized in
-                    a variety of contexts and professional use-cases:
-                </p>
+                {% include tools/content.html data=content.usability %}
             </div>
         </div>
     </div>
@@ -87,18 +77,7 @@ description: >-
 
                 <br />
 
-                <p>
-                    The Instagram page showcased a clear visual aesthetic while
-                    not compromising the functionality of each post.
-                </p>
-
-                <p>
-                    Created with the grid structure of Instagram in mind, each
-                    post either displayed a member of the coalition,
-                    highlighting information about them and their campaign
-                    platform, or presented a tenet that the coalition stands for
-                    with further information in the caption.
-                </p>
+                {% include tools/content.html data=content.function %}
             </div>
 
             <div>

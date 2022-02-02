@@ -9,6 +9,8 @@ description: >-
     A short film about a man's uncontrollable rage as he is faced with a grave loss - the discontinuation of Panda Express Sesame Chicken.
 ---
 
+{% assign content = site.data.content.portfolio.sesamechicken %}
+
 <div class="portfolio-hero sesame">
     <div class="wrapper">
         <video width="100%" poster="/assets/video/sesamechicken.png" controls>
@@ -26,11 +28,7 @@ description: >-
     <div>
         <h3>A Short Film.</h3>
     
-        <p>
-            This short film sought to achieve a neo-noir visual style
-            through the satirical misadventures of a man who just wants
-            his sesame chicken.
-        </p>
+        {% include tools/content.html data=content.splash %}
     </div>
 </div>
 
@@ -42,19 +40,7 @@ description: >-
             </div>
 
             <div style="flex-grow: 3">
-                <p>
-                    Experimentation through shot variety was a large priority.
-                    Drone videography gives a greater sense of scale to an
-                    otherwise claustrophobic film. Additionally, car-mounted
-                    shots break up the more traditional shoulder-mount or static
-                    camera segments.
-                </p>
-
-                <p>
-                    Not only was the diversity of the shots key to the cinematic
-                    language of the film, it also pushed us as filmmakers to
-                    uniquely tell a story that itself was just as unique.
-                </p>
+                {% include tools/content.html data=content.variety %}
             </div>
         </div>
     </div>
@@ -80,19 +66,7 @@ description: >-
             </div>
 
             <div style="flex-grow: 3">
-                <p>
-                    The use of colored lighting on set gave the film a
-                    consistently recognizable aesthetic throughout the film.
-                </p>
-
-                <p>
-                    Dynamic visual contrast was achieved through selective color
-                    grading that highlighted a certain color in each shot,
-                    emphasizing the use of colored lighting. This contrast plays
-                    a large role in the overall storytelling through placing
-                    increased significance on the color, and emotion, that is
-                    present in each shot.
-                </p>
+                {% include tools/content.html data=content.style %}
             </div>
         </div>
     </div>

@@ -13,7 +13,7 @@ theme: light
                 </div>
 
                 <div>
-                    <p>{{ site.data.content.about.contact | markdownify }}</p>
+                    {% include tools/content.html data=site.data.content.index.contact %}
 
                     <div class="form">
                         <div class="input">

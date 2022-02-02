@@ -10,6 +10,8 @@ description: >-
     their own t-shirt to feature nine of their favorite albums.
 ---
 
+{% assign content = site.data.content.portfolio.areyoulistening %}
+
 <div class="portfolio-hero ayl">
     <div class="wrapper">
         <div class="desktop" id="_cc_ayl"></div>
@@ -36,11 +38,7 @@ description: >-
     <div>
         <h3>E-Commerce, Customized.</h3>
 
-        <p>
-            AYL was a collaborative business venture that utilized our wide
-            range of skills to market and sell custom shirts displaying the
-            customer's nine favorite albums.
-        </p>
+        {% include tools/content.html data=content.splash %}
     </div>
 </div>
 
@@ -52,23 +50,7 @@ description: >-
             </div>
 
             <div>
-                <p>
-                    Customization can be a hurdle in advertising since marketing
-                    due to the wide range of potential users with varying
-                    personal interests.
-                </p>
-
-                <p>
-                    We saw this as an opportunity to utilize the power of
-                    targeted advertising to showcase our product to as many
-                    different musical subcultures and communities as possible.
-                </p>
-
-                <p>
-                    By designing ads specific to certain age groups, genres, and
-                    artists, we were able to attract customers who would
-                    otherwise be not interested.
-                </p>
+                {% include tools/content.html data=content.reach %}
             </div>
         </div>
 
@@ -104,18 +86,7 @@ description: >-
 
                 <img src="/assets/img/ayl/worldwide.jpg" />
 
-                <p>
-                    Our social media presence sought to engage our audience
-                    through community engagement and interaction.
-                </p>
-
-                <p>
-                    Instagram story posts inviting users to share their songs of
-                    the week that would later be posted for everyone to see
-                    helped to develop a sense of community while also giving us
-                    a better understanding of the listening habits of the
-                    followers we were marketing to.
-                </p>
+                {% include tools/content.html data=content.community %}
             </div>
 
             <div>
@@ -144,14 +115,7 @@ description: >-
             <div style="flex: 1 0 380px">
                 <h2 style="text-align: right">A Site To<br />Behold</h2>
 
-                <p>
-                    At the end of the day, what is our advertising leading our
-                    users to? An intuitive and sleek customization experience
-                    with mobile users at the forefront. More often than not,
-                    mobile web design is left as an afterthought. Instead, we
-                    tailored an experience that plays to the strengths of the
-                    smaller screen, rather than against it.
-                </p>
+                {% include tools/content.html data=content.behold %}
 
                 <video autoplay muted loop>
                     <source

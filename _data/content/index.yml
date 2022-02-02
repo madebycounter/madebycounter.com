@@ -1,27 +1,27 @@
-coolstuff:
-  a: >-
+intro1:
+  - >-
     Simply put, we just like making cool stuff. It truly is the
     only boundary we grant ourselves and the only mantra we
     follow. This mantra has led us to create this company and to
     bring our creativity and expertise to you!
-  b: >-
+intro2:
+  - >-
     From photoshoots to short films, we have a wide range
     of projects under our belt. We are well-practiced in all aspects
     of media production with extensive experience in social media
     management, web design, branding, and more.
-
-theteam:
-  a: >-
+team:
+  - >-
     Our skills range widely from filmmaking to computer science
     and marketing to drone piloting. Yet, all of these talents
     combine seamlessly to produce media we are immensely proud
     to create.
-  b: >-
+  - >-
     At Counter, creating is our passion. This passion has led
     us to create this company and to bring our creativity and
     expertise to you!
-
-contact: >-
-  Do you have a design in mind, a vision you want to make into reality,
-  or do you have no clue what you need? Either way, just let us know a
-  little bit about you and we can figure out the rest!
+contact:
+  - >-
+    Do you have a design in mind, a vision you want to make into reality,
+    or do you have no clue what you need? Either way, just let us know a
+    little bit about you and we can figure out the rest!

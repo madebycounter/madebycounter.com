@@ -1,0 +1,5 @@
+{% for text in include.data %}
+<p>
+    {{ text | markdownify }}
+</p>
+{% endfor %}
