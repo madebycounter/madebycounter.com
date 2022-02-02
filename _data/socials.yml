@@ -1,15 +1,15 @@
 - name: Github
   icon: github
-  url: https://github.com/TBSB-Media
+  url: https://github.com/madebycounter
 
 - name: LinkedIn
   icon: linkedin
-  url: https://www.linkedin.com/company/tbsb-media
+  url: https://www.linkedin.com/company/counter-studios
 
 - name: Instagram
   icon: instagram
-  url: https://instagram.com/tbsbmedia/
+  url: https://instagram.com/madebycounter/
 
 - name: Email
   icon: envelope-open-fill
-  url: mailto:contact@tbsbmedia.com
+  url: mailto:contact@madebycounter.com
