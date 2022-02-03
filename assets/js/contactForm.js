@@ -4,6 +4,8 @@ function submitContact(theme) {
     var msg = $("#_msg").val();
     var origin = $("#_origin").val();
 
+    var firstName = name.split(" ")[0]
+
     $.ajax({
         type: "POST",
         url: _FORM_URL,
@@ -18,7 +20,7 @@ function submitContact(theme) {
         },
         success: (data) => {
             openModal("_form_success", theme, {
-                message: "Thanks! We'll be in touch shortly."
+                message: `Thanks, ${firstName}! We'll be in touch shortly.`
             });
         },
         error: (xhr) => {
