@@ -1,4 +1,4 @@
-function submitContact() {
+function submitContact(theme) {
     var name = $("#_name").val();
     var email = $("#_email").val();
     var msg = $("#_msg").val();
@@ -17,7 +17,7 @@ function submitContact() {
             origin: origin
         },
         success: (data) => {
-            openModal("_form_success", "theme-dark", {
+            openModal("_form_success", theme, {
                 message: "Thanks! We'll be in touch shortly."
             });
         },
@@ -25,11 +25,11 @@ function submitContact() {
             var msg = JSON.parse(xhr.responseText);
             
             if (msg.error == "Validation errors" && msg.errors.length != 0 && msg.errors[0].field == "email") {
-                openModal("_form_error", "theme-dark", {
+                openModal("_form_error", theme, {
                     message: "Invalid email address!"
                 });
             } else {
-                openModal("_form_error", "theme-dark", {
+                openModal("_form_error", theme, {
                     message: "An error occured. Please try again soon."
                 });
             }
