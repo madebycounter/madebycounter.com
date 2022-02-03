@@ -82,3 +82,7 @@ video::-internal-media-controls-overlay-cast-button {
 #main {
     margin-bottom: calc(var(--footer) + 4rem);
 }
+
+#_jumbotron {
+    height: calc(100vh - 6rem);
+}

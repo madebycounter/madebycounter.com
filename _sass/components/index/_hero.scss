@@ -1,22 +1,5 @@
-.index-hero {
-    height: calc(100vh - 6rem);
+.index-jumbotron {
     position: relative;
-    padding: 0;
-
-    .video {
-        height: 100%;
-        width: 100%;
-
-        overflow: hidden;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        video {
-            min-height: 100%;
-        }
-    }
 
     .intro {
         position: absolute;

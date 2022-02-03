@@ -1,11 +1,5 @@
-.portfolio-hero {
-    height: calc(100vh - 8rem);
+.portfolio-jumbotron {
     position: relative;
-    width: 100%;
-
-    @media (max-width: 809px) {
-        height: calc(calc(var(--vh, 1vh) * 100) - 8.375rem);
-    }
 
     .title {
         position: absolute;
