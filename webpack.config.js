@@ -3,7 +3,7 @@ const WatchExternalFilesPlugin = require("webpack-watch-files-plugin").default;
 const path = require("path");
 
 module.exports = {
-    entry: "./src/_ts/Main.ts",
+    entry: "./src/_script/Main.ts",
     mode: "production",
     module: {
         rules: [
