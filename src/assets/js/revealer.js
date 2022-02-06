@@ -6,10 +6,10 @@ function reveal() {
         var elementTop = reveals[i].getBoundingClientRect().top;
         var elementVisible = 150;
 
-        reveals[i].classList.add("active");
         if (elementTop < windowHeight - elementVisible) {
+            reveals[i].classList.add("active");
         } else {
-            // reveals[i].classList.remove("active");
+            reveals[i].classList.remove("active");
         }
     }
 
@@ -20,10 +20,10 @@ function reveal() {
         var elementTop = earlyReveals[i].getBoundingClientRect().top;
         var elementVisible = 0;
 
-        earlyReveals[i].classList.add("active");
         if (elementTop < windowHeight - elementVisible) {
+            earlyReveals[i].classList.add("active");
         } else {
-            // earlyReveals[i].classList.remove("active");
+            earlyReveals[i].classList.remove("active");
         }
     }
 }

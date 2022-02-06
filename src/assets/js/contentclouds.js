@@ -61,27 +61,27 @@ class ContentCloud {
         if (containerWidth > this.mobileWidth) {
             var scaler = containerWidth / 100;
             var maxHeight = 0;
-    
+
             for (let idx in this.items) {
                 let item = this.items[idx];
                 let itemElem = $(`#${this.id}_${item.id}`);
                 let top = item.position.y * scaler;
-    
+
                 $(itemElem).width(scaler * item.width);
                 $(itemElem).css("left", item.position.x * scaler);
                 $(itemElem).css("top", top);
                 $(itemElem).css("z-index", item.position.z);
-    
+
                 let calculatedHeight = $(itemElem).height();
                 let bottomHeight = calculatedHeight + top;
-    
+
                 if (bottomHeight > maxHeight) {
                     maxHeight = bottomHeight;
                 }
             }
 
             $(this.elem).removeClass("cloudcontent-mobile");
-            $(this.elem).addClass("contentcloud-desktop")
+            $(this.elem).addClass("contentcloud-desktop");
             $(this.elem).height(maxHeight);
         } else {
             for (let idx in this.items) {

@@ -4,7 +4,7 @@ function jumbotron() {
     if (!_jumbotron_scrolling) {
         var navHeight = $("#_jumbotron_nav").outerHeight() || 0;
         var windowHeight = window.innerHeight;
-    
+
         $("#_jumbotron").outerHeight(windowHeight - navHeight);
     }
 }

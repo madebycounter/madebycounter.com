@@ -4,7 +4,7 @@ function submitContact(theme) {
     var msg = $("#_msg").val();
     var origin = $("#_origin").val();
 
-    var firstName = name.split(" ")[0]
+    var firstName = name.split(" ")[0];
 
     $.ajax({
         type: "POST",
@@ -25,8 +25,12 @@ function submitContact(theme) {
         },
         error: (xhr) => {
             var msg = JSON.parse(xhr.responseText);
-            
-            if (msg.error == "Validation errors" && msg.errors.length != 0 && msg.errors[0].field == "email") {
+
+            if (
+                msg.error == "Validation errors" &&
+                msg.errors.length != 0 &&
+                msg.errors[0].field == "email"
+            ) {
                 openModal("_form_error", theme, {
                     message: "Invalid email address!"
                 });

@@ -1,7 +1,7 @@
 $(() => {
     $(".modal").each((_, elem) => {
         var id = $(elem).attr("id");
-        
+
         $(`#${id}_close`).click((evt) => {
             evt.preventDefault();
             closeModal(id);
