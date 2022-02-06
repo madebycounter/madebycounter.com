@@ -1,5 +1,5 @@
 # Jekyll
-_site/
+public/
 *-cache/
 .jekyll-metadata
 .jekyll-cache
@@ -28,3 +28,7 @@ gh-pages/
 pkg/
 test/dest
 tmp/*
+
+# Webpack
+node_modules/
+src/assets/js/bundle.js

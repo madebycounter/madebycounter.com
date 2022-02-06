@@ -2,7 +2,7 @@
 title: Sesame Chicken
 layout: default
 theme: light
-permalink: /sesamechicken
+permalink: /sesamechicken/
 image: /assets/img/portfolio/sesame.png
 underlay: /assets/img/portfolio/sesame-blank.png
 description: >-
@@ -23,14 +23,14 @@ description: >-
     <h2 class="title">{{ page.title }}</h2>
 
     <a href="#content">
-        <img class="caret" src="/assets/img/site/caret-black.png">
+        <img class="caret" src="/assets/img/site/caret-black.png" />
     </a>
 </div>
 
 <div class="portfolio-splash theme-light" id="content">
     <div>
         <h3>A Short Film.</h3>
-    
+
         {% include tools/content.html data=content.splash %}
     </div>
 </div>
@@ -55,7 +55,8 @@ description: >-
     </div>
 </div>
 
-{% include tools/cloudcode.html data=site.data.clouds.sesame1 id="_cc_sesame1" %}
+{% include tools/cloudcode.html data=site.data.clouds.sesame1 id="_cc_sesame1"
+%}
 
 <div class="theme-dark">
     <div class="content">
@@ -81,4 +82,5 @@ description: >-
     </div>
 </div>
 
-{% include tools/cloudcode.html data=site.data.clouds.sesame2 id="_cc_sesame2" %}
+{% include tools/cloudcode.html data=site.data.clouds.sesame2 id="_cc_sesame2"
+%}

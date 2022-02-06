@@ -2,7 +2,7 @@
 title: Are You Listening?
 layout: default
 theme: light
-permalink: /areyoulistening
+permalink: /areyoulistening/
 image: /assets/img/portfolio/ayl.png
 underlay: /assets/img/portfolio/ayl-blank.png
 description: >-
@@ -18,7 +18,14 @@ description: >-
         <div class="desktop" id="_cc_ayl"></div>
 
         <div class="mobile">
-            <video class="package" disableRemotePlayback playsInline autoplay muted loop>
+            <video
+                class="package"
+                disableRemotePlayback
+                playsinline
+                autoplay
+                muted
+                loop
+            >
                 <source
                     src="/assets/img/ayl/posts/slideshow.mp4"
                     type="video/mp4"
@@ -51,14 +58,12 @@ description: >-
                 <h2>Reach<br />Your<br />Audience</h2>
             </div>
 
-            <div>
-                {% include tools/content.html data=content.reach %}
-            </div>
+            <div>{% include tools/content.html data=content.reach %}</div>
         </div>
 
         <div class="flex-split">
             <div>
-                <video disableRemotePlayback playsInline autoplay muted loop>
+                <video disableRemotePlayback playsinline autoplay muted loop>
                     <source
                         src="/assets/img/ayl/notebook.mp4"
                         type="video/mp4"
@@ -67,7 +72,7 @@ description: >-
             </div>
 
             <div>
-                <video disableRemotePlayback playsInline autoplay muted loop>
+                <video disableRemotePlayback playsinline autoplay muted loop>
                     <source
                         src="/assets/img/ayl/fotoshop.mp4"
                         type="video/mp4"
@@ -109,7 +114,7 @@ description: >-
     <div class="content">
         <div class="flex-split" style="flex-wrap: wrap-reverse">
             <div>
-                <video disableRemotePlayback playsInline autoplay muted loop>
+                <video disableRemotePlayback playsinline autoplay muted loop>
                     <source src="/assets/img/ayl/mobile.mp4" type="video/mp4" />
                 </video>
             </div>
@@ -119,7 +124,7 @@ description: >-
 
                 {% include tools/content.html data=content.behold %}
 
-                <video disableRemotePlayback playsInline autoplay muted loop>
+                <video disableRemotePlayback playsinline autoplay muted loop>
                     <source
                         src="/assets/img/ayl/desktop.mp4"
                         type="video/mp4"

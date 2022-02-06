@@ -2,7 +2,7 @@
 layout: default
 title: blog
 theme: light
-permalink: /blog
+permalink: /blog/
 ---
 
 <div class="blog theme-light">
@@ -10,15 +10,11 @@ permalink: /blog
         {% for post in site.posts %}
         <div class="post">
             <h3>{{ post.title }}</h3>
-            {% include info.html post=post %}
-
-            {{ post.content }}
+            {% include info.html post=post %} {{ post.content }}
         </div>
 
         {% if post != site.posts.last %}
         <br /><br />
-        {% endif %}
-
-        {% endfor %}
+        {% endif %} {% endfor %}
     </div>
 </div>

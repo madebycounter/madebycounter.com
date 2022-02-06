@@ -1,7 +1,9 @@
-url: ""
-baseurl: ""
 title: "Counter"
 formUrl: https://formspree.io/f/mayveobr
 collections:
   portfolio:
     output: true
+
+# build settings
+source: src
+destination: public

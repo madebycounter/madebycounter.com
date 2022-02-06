@@ -1,12 +1,13 @@
 .contact {
     .form {
         margin: 2rem 0;
-        
+
         .input {
             position: relative;
             margin: 1rem 0;
 
-            input, textarea {
+            input,
+            textarea {
                 font-family: var(--body-font);
                 font-size: var(--fs-m);
                 background-color: var(--bg-color);
@@ -37,16 +38,16 @@
                 font-weight: 500;
 
                 color: var(--bg-color);
-    
+
                 position: absolute;
                 left: 0.5rem;
                 top: 0.5rem;
             }
         }
     }
-    
+
     .submit {
         font-size: var(--fs-m);
         color: var(--body-font);
-     }
+    }
 }

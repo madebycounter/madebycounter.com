@@ -31,9 +31,7 @@ permalink: /
                 <h2>The Cool <br />Stuff</h2>
             </div>
 
-            <div>
-                {% include tools/content.html data=content.intro1 %}
-            </div>
+            <div>{% include tools/content.html data=content.intro1 %}</div>
         </div>
 
         {% include tools/content.html data=content.intro2 %}
@@ -83,9 +81,7 @@ permalink: /
                 </h2>
             </div>
 
-            <div>
-                {% include tools/content.html data=content.team %}
-            </div>
+            <div>{% include tools/content.html data=content.team %}</div>
         </div>
 
         <div class="cards">
@@ -145,7 +141,12 @@ permalink: /
                         <label for="_msg" type="text"></label>
                     </div>
 
-                    <input type="hidden" id="_origin" name="origin" value="Landing Page">
+                    <input
+                        type="hidden"
+                        id="_origin"
+                        name="origin"
+                        value="Landing Page"
+                    />
 
                     <a
                         class="submit"

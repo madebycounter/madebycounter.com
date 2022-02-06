@@ -2,7 +2,7 @@
 layout: default
 title: contact
 theme: light
-permalink: /contact
+permalink: /contact/
 ---
 
 <div class="contact theme-light" id="contact">
@@ -14,7 +14,8 @@ permalink: /contact
                 </div>
 
                 <div>
-                    {% include tools/content.html data=site.data.content.index.contact %}
+                    {% include tools/content.html
+                    data=site.data.content.index.contact %}
 
                     <div class="form">
                         <div class="input">
@@ -43,7 +44,12 @@ permalink: /contact
                         <label for="_msg" type="text"></label>
                     </div>
 
-                    <input type="hidden" id="_origin" name="origin" value="Contact Page">
+                    <input
+                        type="hidden"
+                        id="_origin"
+                        name="origin"
+                        value="Contact Page"
+                    />
 
                     <a
                         class="submit"

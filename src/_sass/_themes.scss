@@ -6,7 +6,10 @@
         color: var(--url-color);
     }
 
-    p, h1, h2, h3 {
+    p,
+    h1,
+    h2,
+    h3 {
         a:hover,
         a:focus {
             filter: brightness(0.6);
