@@ -28,6 +28,8 @@ function reveal() {
     }
 }
 
-$(window).scroll(reveal);
-$(window).resize(reveal);
-$(window).load(reveal);
+export function initRevealer() {
+    $(window).on("scroll", reveal);
+    $(window).on("resize", reveal);
+    $(window).on("load", reveal);
+}

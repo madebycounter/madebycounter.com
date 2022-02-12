@@ -1,0 +1,6 @@
+{
+    "mode": "development",
+    "platform": "windows",
+    "port": 4000,
+    "library": "JekyllPack"
+}

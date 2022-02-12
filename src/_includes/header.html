@@ -4,9 +4,7 @@
     <meta charset="utf-8" />
 
     <!-- GLOBALS -->
-    <script>
-        var _FORM_URL = "{{ site.formUrl }}";
-    </script>
+    <input type="hidden" id="_FORM_URL" value="{{ site.formUrl }}" />
 
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,30 +17,14 @@
     <!-- CSS -->
     <link href="/assets/slick/slick.css" rel="stylesheet" />
     <link href="/assets/slick/slick-theme.css" rel="stylesheet" />
-    <link href="/assets/css/main.css" rel="stylesheet" />
     <link href="/assets/css/contentclouds.css" rel="stylesheet" />
 
-    <!-- JQUERY -->
+    <!-- JAVASCRIPT -->
     <script
         src="/assets/js/jquery-3.6.0.min.js"
         type="text/javascript"
     ></script>
-    <script
-        src="/assets/js/jquery-migrate-3.3.2.min.js"
-        type="text/javascript"
-    ></script>
-
-    <!-- JAVASCRIPT -->
-    <script src="/assets/slick/slick.min.js" type="text/javascript"></script>
-    <script
-        src="/assets/js/jquery.ba-throttle-debounce.min.js"
-        type="text/javascript"
-    ></script>
     <script src="/assets/js/contentclouds.js" type="text/javascript"></script>
-    <script src="/assets/js/revealer.js" type="text/javascript"></script>
-    <script src="/assets/js/contactForm.js" type="text/javascript"></script>
-    <script src="/assets/js/jumbotron.js" type="text/javascript"></script>
-    <script src="/assets/js/modals.js" type="text/javascript"></script>
     <script src="/assets/js/bundle.js" type="text/javascript"></script>
 
     {% include tools/header.html %}

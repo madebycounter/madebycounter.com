@@ -31,4 +31,4 @@ tmp/*
 
 # Webpack
 node_modules/
-src/assets/js/bundle.js
+src/assets/js/bundle.js*

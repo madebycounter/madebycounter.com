@@ -1,46 +1,49 @@
-const { exec } = require("child_process");
 const WatchExternalFilesPlugin = require("webpack-watch-files-plugin").default;
+const WebpackJekyllPlugin = require("./webpack-jekyll-plugin.js");
 const path = require("path");
+const jekyllpackConfig = require("./jekyllpack.config.json");
+const webpack = require("webpack");
 
 module.exports = {
-    entry: "./src/_script/Main.ts",
-    mode: "production",
+    mode: jekyllpackConfig.mode,
+    devtool: "source-map",
+    entry: ["./src/_script/main.ts", "./src/_style/main.scss"],
+    output: {
+        library: jekyllpackConfig.library,
+        path: path.resolve(__dirname, "src/assets/js"),
+        filename: "bundle.js",
+        publicPath: "/assets/js/",
+    },
+    resolve: {
+        extensions: [".ts", ".js", ".json"],
+    },
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
+                include: [path.resolve(__dirname, "src/_style/")],
+                use: ["style-loader", "css-loader", "sass-loader"],
+            },
+            {
+                include: [path.resolve(__dirname, "src/_script/")],
                 loader: "ts-loader",
-                exclude: /node_modules/,
-                options: {
-                    configFile: "tsconfig.json"
-                }
-            }
-        ]
-    },
-    output: {
-        library: "TS",
-        path: path.resolve(__dirname, "./src/assets/js/"),
-        filename: "bundle.js",
-        publicPath: "/assets/js/"
+            },
+        ],
     },
     devServer: {
-        hot: true,
-        magicHtml: true,
-        port: 4000
+        port: jekyllpackConfig.port,
     },
     plugins: [
-        new WatchExternalFilesPlugin({
-            files: ["./src/**", "!./src/assets/js/bundle.js"]
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jquery: "jquery",
         }),
-        {
-            apply: (compiler) => {
-                compiler.hooks.afterEmit.tap("JekyllPlugin", (compilation) => {
-                    exec("bundler exec jekyll build", (err, stdout, stderr) => {
-                        if (stdout) process.stdout.write(stdout);
-                        if (stderr) process.stderr.write(stderr);
-                    });
-                });
-            }
-        }
-    ]
+        new WatchExternalFilesPlugin({
+            files: ["./src/**", "!./src/assets/js/bundle.js"],
+        }),
+        new WebpackJekyllPlugin(
+            jekyllpackConfig.platform == "windows"
+                ? "buildJekyll.bat"
+                : "buildJekyll.sh"
+        ),
+    ],
 };

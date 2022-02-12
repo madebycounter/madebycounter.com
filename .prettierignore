@@ -1,2 +1,2 @@
 src/_includes/tools/**
-src/_data/
+*.yml
