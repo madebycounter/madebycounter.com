@@ -1,0 +1,29 @@
+---
+layout: default
+blog: true
+---
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .banner {
+        width: 100%;
+        height: calc(100vw * 0.75);
+        max-height: 500px;
+        background-image: url("{{ page.banner }}");
+        background-size: cover;
+        background-position: 50% {{ page.center }}%;
+    }
+</style>
+
+<div class="banner"></div>
+
+<div class="theme-light">
+    <div class="content">
+        <h3>{{ page.title }}</h3>
+        {% include info.html post=page %} {{ content }}
+    </div>
+</div>
