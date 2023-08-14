@@ -1,0 +1,87 @@
+import React from "react";
+import styled from "styled-components";
+import YALB from "yet-another-react-lightbox";
+import { GenericSlide } from "yet-another-react-lightbox";
+import Counter from "yet-another-react-lightbox/plugins/counter";
+import "yet-another-react-lightbox/plugins/counter.css";
+import "yet-another-react-lightbox/styles.css";
+
+import { MediaData } from "../../global/types";
+
+import Media, { ResizeMode } from "./Media";
+
+declare module "yet-another-react-lightbox" {
+    export interface MediaSlide {
+        type: "media-slide";
+        data: MediaData;
+    }
+
+    interface SlideTypes {
+        "media-slide": MediaSlide;
+    }
+}
+
+const StyledViewer = styled.div`
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.8);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > div {
+        width: 80%;
+    }
+
+    img,
+    video {
+        max-width: 100%;
+        max-height: 80%;
+    }
+`;
+
+type LightboxProps = {
+    media: MediaData[];
+    open: boolean;
+    close: () => void;
+    current?: string;
+};
+
+const Lightbox = ({ media, open, close, current }: LightboxProps) => {
+    var index = 0;
+
+    if (current) {
+        index = media.findIndex((item) => item?.contentful_id === current);
+    }
+
+    return (
+        <YALB
+            open={open}
+            close={close}
+            plugins={[Counter]}
+            index={index}
+            slides={media.map((item) => ({
+                type: "media-slide",
+                data: item,
+            }))}
+            render={{
+                slide: ({ slide }) =>
+                    slide.type === "media-slide" ? (
+                        <Media
+                            src={slide.data}
+                            resizeMode={ResizeMode.Contain}
+                        />
+                    ) : undefined,
+            }}
+        />
+    );
+};
+
+export default Lightbox;

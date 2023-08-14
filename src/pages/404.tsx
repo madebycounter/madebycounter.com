@@ -1,49 +1,53 @@
-import * as React from "react"
-import { Link, HeadFC, PageProps } from "gatsby"
+import { Link } from "gatsby";
+import React from "react";
+import styled, { ThemeProvider } from "styled-components";
 
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
+import GlobalStyle from "../global/globalStyle";
+import { DarkTheme } from "../global/themes";
+
+import Header from "../components/Header";
+import Navbar from "../components/Navbar";
+
+const StyledSplash = styled.div`
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h1 {
+        padding-bottom: 10rem;
+        font-size: 12vw;
+    }
+
+    a {
+        position: absolute;
+        bottom: 4rem;
+        font-size: min(2rem, 8vw);
+        color: ${({ theme }) => theme.color};
+    }
+`;
+
+export default function ErrorPage() {
+    return (
+        <ThemeProvider theme={DarkTheme}>
+            <GlobalStyle />
+
+            <Navbar active="about" />
+
+            <StyledSplash>
+                <h1>
+                    error 404,
+                    <br />
+                    page not found
+                </h1>
+
+                <Link to="/">← go home</Link>
+            </StyledSplash>
+        </ThemeProvider>
+    );
 }
 
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-
-const NotFoundPage: React.FC<PageProps> = () => {
-  return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry 😔, we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
-  )
-}
-
-export default NotFoundPage
-
-export const Head: HeadFC = () => <title>Not found</title>
+export const Head = () => <Header title="Page Not Found" description="" />;

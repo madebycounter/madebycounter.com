@@ -1,4 +1,9 @@
-node_modules/
 .cache/
-public
+.vscode/
+
+node_modules/
+public/
+
 src/gatsby-types.d.ts
+testing.tsx
+.env
