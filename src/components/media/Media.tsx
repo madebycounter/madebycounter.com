@@ -106,7 +106,8 @@ export default function Media({
     const videoRef = useRef<HTMLVideoElement>(null);
 
     if (aspectRatio === null || aspectRatio === undefined) {
-        aspectRatio = dimensions?.width / dimensions?.height;
+        console.log(dimensions);
+        aspectRatio = dimensions.width / dimensions.height;
     }
 
     return (

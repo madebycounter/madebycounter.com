@@ -13,6 +13,7 @@ import Content from "../components/Content";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
+import { Heading1 } from "../components/Typography";
 import Media, { ResizeMode } from "../components/media/Media";
 
 const StyledBlogBanner = styled.div`
@@ -60,7 +61,7 @@ const BlogPost = ({ data }: BlogPostProps) => {
             </StyledBlogBanner>
 
             <Content>
-                <h1>{title}</h1>
+                <Heading1>{title}</Heading1>
 
                 <Author author={author} date={date} />
 
@@ -91,15 +92,7 @@ export const query = graphql`
             content {
                 raw
                 references {
-                    ... on ContentfulAsset {
-                        contentful_id
-                        title
-                        description
-                        publicUrl
-                        gatsbyImageData
-                        __typename
-                        mimeType
-                    }
+                    ...Media
                     ... on ContentfulSocialMediaEmbed {
                         contentful_id
                         title

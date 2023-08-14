@@ -11,6 +11,7 @@ import Content from "../components/Content";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
+import { Heading1 } from "../components/Typography";
 import Gallery from "../components/media/Gallery";
 import Lightbox from "../components/media/Lightbox";
 import Slideshow from "../components/media/Slideshow";
@@ -35,12 +36,9 @@ const StyledHeader = styled.div`
     .info {
         flex: 4;
 
-        h1 {
+        ${Heading1} {
             margin-top: 0;
             margin-bottom: 1rem;
-            letter-spacing: calc(min(4rem, 12vw) / -21);
-            font-size: min(4rem, 12vw);
-            line-height: 1;
         }
     }
 
@@ -95,7 +93,7 @@ const PortfolioItem = ({ data }: PortfolioItemProps) => {
             <Content>
                 <StyledHeader>
                     <div className="info">
-                        <h1>{title}</h1>
+                        <Heading1>{title}</Heading1>
                         <Details
                             date={date}
                             tags={tags}

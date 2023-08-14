@@ -12,6 +12,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import { FadeReveal } from "../components/Revealer";
+import { Heading3 } from "../components/Typography";
 import Media from "../components/media/Media";
 
 const ItemBox = styled.div`
@@ -28,6 +29,10 @@ const ItemBox = styled.div`
 `;
 
 const StyledItem = styled.div`
+    ${Heading3} {
+        margin: 0.5rem 0;
+    }
+
     a {
         text-decoration: none;
         color: inherit;
@@ -38,13 +43,6 @@ const StyledItem = styled.div`
 
         display: flex;
         justify-content: space-between;
-
-        h2 {
-            font-size: 1.6rem;
-            margin: 0.5rem 0;
-            letter-spacing: -0.988235px;
-            line-height: 25.6px;
-        }
 
         p {
             font-size: 1rem;
@@ -74,7 +72,7 @@ const Item = ({ image, title, tags, href }: ItemProps) => {
                 <Media src={image} aspectRatio={16 / 9} />
 
                 <div className="info">
-                    <h2>{title}</h2>
+                    <Heading3>{title}</Heading3>
 
                     <p>
                         {tags.map((tag, idx) => (

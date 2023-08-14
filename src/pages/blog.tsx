@@ -11,6 +11,7 @@ import Content from "../components/Content";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
+import { Heading3 } from "../components/Typography";
 import Media from "../components/media/Media";
 
 const BlogPage = () => {
@@ -40,8 +41,7 @@ const BlogPage = () => {
             }
         }
 
-        h2 {
-            font-size: 1.6rem;
+        ${Heading3} {
             margin: 0.5rem 0;
         }
     `;
@@ -62,9 +62,9 @@ const BlogPage = () => {
                                 <Media src={banner} aspectRatio={4 / 3} />
                             </Link>
 
-                            <h2>
+                            <Heading3>
                                 <Link to={`/blog/${slug}`}>{title}</Link>
-                            </h2>
+                            </Heading3>
 
                             <Author author={author} date={date} />
                         </div>
