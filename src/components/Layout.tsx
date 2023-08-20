@@ -12,7 +12,7 @@ const LayoutAboutWrapper = styled.div`
         margin: 0 auto;
         padding: 0 1rem;
         width: calc(100% - 2rem);
-        max-width: 900px;
+        max-width: 800px;
     }
 `;
 

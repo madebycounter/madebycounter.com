@@ -259,6 +259,7 @@ const William = styled(BaseMember)`
 const PrettyCoolRight = styled.div`
     display: flex;
     gap: 1rem;
+    margin-bottom: 2rem;
 
     @media (max-width: 864px) {
         flex-direction: column;
