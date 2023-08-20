@@ -3,7 +3,7 @@ import React from "react";
 import { Envelope, Instagram, Linkedin, Youtube } from "react-bootstrap-icons";
 import styled from "styled-components";
 
-import Column from "./Column";
+import { Layout } from "./Layout";
 
 const StyledFooter = styled.div`
     position: absolute;
@@ -12,11 +12,9 @@ const StyledFooter = styled.div`
     right: 0;
     padding: 0;
 
-    margin: 0 1rem;
-
     --footer: 6.5rem;
 
-    > div > div {
+    ${Layout} {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -24,10 +22,12 @@ const StyledFooter = styled.div`
         gap: 1rem 2rem;
         height: var(--footer);
     }
+
     .socials a {
         text-decoration: none;
         color: ${({ theme }) => theme.color};
     }
+
     p {
         font-size: var(--fs-sm);
         line-height: 1.4;
@@ -54,7 +54,7 @@ export default function Footer() {
         <>
             <StyledFooterSpacer />
             <StyledFooter>
-                <Column>
+                <Layout>
                     <div className="info">
                         <p>Made by Counter LLC</p>
                         <p>Last updated {data.site.buildTime}</p>
@@ -93,7 +93,7 @@ export default function Footer() {
                             <Envelope size={32} />
                         </a>
                     </div>
-                </Column>
+                </Layout>
             </StyledFooter>
         </>
     );

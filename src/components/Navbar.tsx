@@ -85,7 +85,7 @@ const StyledNavbar = styled.div`
     }
 `;
 
-type NavbarItem = "about" | "services" | "portfolio" | "blog";
+type NavbarItem = "about" | "services" | "portfolio" | "blog" | "";
 
 type NavbarProps = {
     active: NavbarItem;

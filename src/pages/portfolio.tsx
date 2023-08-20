@@ -6,10 +6,9 @@ import GlobalStyle from "../global/globalStyle";
 import { DarkTheme } from "../global/themes";
 import { MediaData, PortfolioData } from "../global/types";
 
-import Column from "../components/Column";
-import Content from "../components/Content";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { Layout, Column1, LayoutNarrow } from "../components/Layout";
 import Navbar from "../components/Navbar";
 import { FadeReveal } from "../components/Revealer";
 import { Heading3 } from "../components/Typography";
@@ -111,27 +110,24 @@ const PortfolioPage = () => {
 
             <Navbar active={"portfolio"} />
 
-            <Content>
-                <Column>
-                    <ItemBox>
-                        {nodes.map((node, idx) => (
-                            <FadeReveal
-                                className="fade-revealer"
-                                duration={500}
-                                key={idx}
-                            >
-                                <Item
-                                    image={node.thumbnail}
-                                    title={node.title}
-                                    tags={node.tags}
-                                    href={`/portfolio/${node.slug}`}
-                                />
-                            </FadeReveal>
-                        ))}
-                    </ItemBox>
-                </Column>
-            </Content>
-
+            <LayoutNarrow>
+                <ItemBox>
+                    {nodes.map((node, idx) => (
+                        <FadeReveal
+                            className="fade-revealer"
+                            duration={500}
+                            key={idx}
+                        >
+                            <Item
+                                image={node.thumbnail}
+                                title={node.title}
+                                tags={node.tags}
+                                href={`/portfolio/${node.slug}`}
+                            />
+                        </FadeReveal>
+                    ))}
+                </ItemBox>
+            </LayoutNarrow>
             <Footer />
         </ThemeProvider>
     );

@@ -7,9 +7,9 @@ import { LightTheme } from "../global/themes";
 import { BlogPostData } from "../global/types";
 
 import Author from "../components/Author";
-import Content from "../components/Content";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { Layout } from "../components/Layout";
 import Navbar from "../components/Navbar";
 import { Heading3 } from "../components/Typography";
 import Media from "../components/media/Media";
@@ -54,7 +54,7 @@ const BlogPage = () => {
 
             <Navbar active={"blog"} />
 
-            <Content>
+            <Layout>
                 <BlogList>
                     {nodes.map(({ author, date, slug, title, banner }, idx) => (
                         <div key={idx}>
@@ -70,7 +70,7 @@ const BlogPage = () => {
                         </div>
                     ))}
                 </BlogList>
-            </Content>
+            </Layout>
 
             <Footer />
         </ThemeProvider>

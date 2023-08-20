@@ -100,13 +100,16 @@ export default function Media({
     onClick = (id: string) => {},
     onReady = () => {},
 }: MediaProps) {
+    if (!src) {
+        return <span>No source</span>;
+    }
+
     const { mimeType, publicUrl, description, gatsbyImageData, dimensions } =
         src;
 
     const videoRef = useRef<HTMLVideoElement>(null);
 
     if (aspectRatio === null || aspectRatio === undefined) {
-        console.log(dimensions);
         aspectRatio = dimensions.width / dimensions.height;
     }
 

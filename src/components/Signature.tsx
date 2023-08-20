@@ -14,21 +14,22 @@ const StyledImage = styled.img`
 
 type SignatureProps = {
     name: TeamMember;
+    className?: string;
 };
 
 function chooseSignature(name: TeamMember) {
     switch (name) {
-        case TeamMember.Luke:
+        case "Luke":
             return LukeSignature;
-        case TeamMember.William:
+        case "William":
             return WilliamSignature;
-        case TeamMember.Henry:
+        case "Henry":
             return HenrySignature;
     }
 }
 
-const Signature = ({ name }: SignatureProps) => {
-    return <StyledImage src={chooseSignature(name)} />;
+const Signature = ({ name, className }: SignatureProps) => {
+    return <StyledImage className={className} src={chooseSignature(name)} />;
 };
 
 export default Signature;

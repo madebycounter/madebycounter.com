@@ -20,10 +20,10 @@ const StyledHighlight = styled(Revealer)<StyledHighlightProps>`
         content: "";
         position: absolute;
         z-index: -1;
-        top: 15%;
+        top: 10%;
         left: 0;
         width: 102%;
-        height: 70%;
+        height: 90%;
         transition: transform ease-in-out 500ms 100ms;
         transform-origin: left;
 

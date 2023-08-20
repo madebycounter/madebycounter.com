@@ -9,15 +9,16 @@ import { LightTheme } from "../global/themes";
 import { BlogPostData } from "../global/types";
 
 import Author from "../components/Author";
-import Content from "../components/Content";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { Layout, LayoutNarrow } from "../components/Layout";
 import Navbar from "../components/Navbar";
 import { Heading1 } from "../components/Typography";
 import Media, { ResizeMode } from "../components/media/Media";
 
 const StyledBlogBanner = styled.div`
     width: 100%;
+    margin-bottom: 1rem;
 
     .gatsby-image-wrapper {
         max-height: 500px;
@@ -60,13 +61,13 @@ const BlogPost = ({ data }: BlogPostProps) => {
                 />
             </StyledBlogBanner>
 
-            <Content>
+            <LayoutNarrow>
                 <Heading1>{title}</Heading1>
 
                 <Author author={author} date={date} />
 
                 <div>{renderRichText(content, richTextOptions)}</div>
-            </Content>
+            </LayoutNarrow>
 
             <Footer />
         </ThemeProvider>

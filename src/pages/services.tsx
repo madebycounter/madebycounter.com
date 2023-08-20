@@ -6,11 +6,11 @@ import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "../global/globalStyle";
 import richTextOptions from "../global/richTextOptions";
 import { DarkTheme } from "../global/themes";
-import { ServiceData, SlideshowData } from "../global/types";
+import { SlideshowData } from "../global/types";
 
-import Content from "../components/Content";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { LayoutNarrow } from "../components/Layout";
 import Navbar from "../components/Navbar";
 import Title from "../components/Title";
 import Slideshow from "../components/media/Slideshow";
@@ -97,10 +97,15 @@ const Service = ({
 const ServicesPage = () => {
     const data: {
         allContentfulService: {
-            nodes: ServiceData[];
+            nodes: {
+                name: string;
+                youTube: string;
+                slideshow: SlideshowData;
+                description: any;
+            }[];
         };
     } = useStaticQuery(graphql`
-        query AllServices {
+        query {
             allContentfulService(sort: { order: ASC }) {
                 nodes {
                     name
@@ -124,7 +129,7 @@ const ServicesPage = () => {
 
             <Navbar active={"services"} />
 
-            <Content>
+            <LayoutNarrow>
                 {nodes.map((service, idx) => (
                     <Service
                         key={idx}
@@ -135,7 +140,7 @@ const ServicesPage = () => {
                         align={idx % 2 === 0 ? "right" : "left"}
                     />
                 ))}
-            </Content>
+            </LayoutNarrow>
 
             <Footer />
         </ThemeProvider>

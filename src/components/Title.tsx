@@ -13,31 +13,24 @@ function letter_in_array(word: string, letter_array: string[]) {
 }
 
 type StyledTitleProps = {
-    $fontSize: string;
     $dip: boolean;
 };
 
 const StyledTitle = styled.h1<StyledTitleProps>`
-    font-size: ${(props) => props.$fontSize};
-    letter-spacing: calc(${(props) => props.$fontSize} / -25);
+    font-size: min(8rem, 14vw);
+    line-height: 1em;
+    letter-spacing: -0.04em;
     margin: 1rem 0;
     ${(props) => !props.$dip && "margin-bottom: 0"};
 `;
 
 type TitleProps = {
     content: string;
-    fontSize?: string;
 };
 
-export default function Title({
-    content,
-    fontSize = "min(8rem, 14vw)",
-}: TitleProps) {
+export default function Title({ content }: TitleProps) {
     return (
-        <StyledTitle
-            $fontSize={fontSize}
-            $dip={letter_in_array(content, DIP_LETTERS)}
-        >
+        <StyledTitle $dip={letter_in_array(content, DIP_LETTERS)}>
             {content}
         </StyledTitle>
     );

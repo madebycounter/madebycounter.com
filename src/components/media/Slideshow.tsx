@@ -42,7 +42,7 @@ type SlideshowProps = {
 
 export default function Slideshow({
     src,
-    aspectRatio,
+    aspectRatio = 16 / 9,
     onClick,
 }: SlideshowProps) {
     const firstRender = useRef(true);

@@ -9,6 +9,8 @@ const GlobalStyle = createGlobalStyle`
         --heading-font: "Counter Arial", "Arial", "Helvetica Neue", "Helvetica",
             sans-serif;
         --mono-font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        --c100: calc(100vw - 2rem);
+
     }
 
     // default styles

@@ -4,12 +4,11 @@ import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
 import { LightTheme } from "../global/themes";
-import { MediaData, PortfolioData } from "../global/types";
+import { PortfolioData } from "../global/types";
 
-import Column from "../components/Column";
-import Content from "../components/Content";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { Layout, LayoutNarrow } from "../components/Layout";
 import Navbar from "../components/Navbar";
 import { Heading1 } from "../components/Typography";
 import Gallery from "../components/media/Gallery";
@@ -90,7 +89,7 @@ const PortfolioItem = ({ data }: PortfolioItemProps) => {
 
             <Navbar active="portfolio" />
 
-            <Content>
+            <Layout>
                 <StyledHeader>
                     <div className="info">
                         <Heading1>{title}</Heading1>
@@ -121,11 +120,11 @@ const PortfolioItem = ({ data }: PortfolioItemProps) => {
                         {youtube && <YouTube url={youtube} />}
                     </div>
                 </StyledHeader>
+            </Layout>
 
-                <Column>
-                    <Gallery images={gallery} onClick={openLightbox} />
-                </Column>
-            </Content>
+            <LayoutNarrow>
+                <Gallery images={gallery} onClick={openLightbox} />
+            </LayoutNarrow>
 
             <Lightbox
                 media={slideshow.concat(gallery)}

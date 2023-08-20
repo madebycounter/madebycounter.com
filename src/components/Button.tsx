@@ -198,7 +198,6 @@ export function MediaCarousel(props: MediaCarouselProps) {
         var start = (divsNeeded - 1) * divSize;
         var speed = (divsNeeded * divSize) / imageSpeed;
         var delay = divSize / imageSpeed;
-        console.log(divSize, divsNeeded, start, speed, delay);
 
         setAnimState({
             divSize,
