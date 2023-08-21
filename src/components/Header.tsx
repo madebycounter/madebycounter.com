@@ -27,6 +27,8 @@ const Header = ({
             }
         `);
 
+    const fullTitle = `Counter | ${title}`;
+
     return (
         <>
             <meta charSet="UTF-8" />
@@ -43,20 +45,20 @@ const Header = ({
                 rel="stylesheet"
             />
 
-            <title>Counter | {title}</title>
+            <title>{fullTitle}</title>
             <meta name="image" content={image} />
             <meta name="description" content={description} />
 
-            <meta property="og:url" content="https://madebycounter.com" />
+            <meta property="og:url" content={window.location.href} />
             <meta property="og:type" content="website" />
-            <meta property="og:title" content="Counter | About" />
+            <meta property="og:title" content={fullTitle} />
             <meta property="og:description" content={description} />
             <meta property="og:image" content={image} />
 
             <meta name="twitter:card" content="summary_large_image" />
             <meta property="twitter:domain" content="madebycounter.com" />
-            <meta property="twitter:url" content="https://madebycounter.com" />
-            <meta name="twitter:title" content="Counter | About" />
+            <meta property="twitter:url" content={window.location.href} />
+            <meta name="twitter:title" content={fullTitle} />
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content={image} />
 
