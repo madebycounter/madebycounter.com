@@ -17,6 +17,8 @@ import Slideshow from "../components/media/Slideshow";
 import YouTube from "../components/media/YouTube";
 import Details from "../components/portfolio/Details";
 
+import defaultImage from "../images/meta.png";
+
 export const query = graphql`
     query PortfolioItemData($contentful_id: String) {
         contentfulPortfolioItem(contentful_id: { eq: $contentful_id }) {
@@ -145,5 +147,9 @@ export const Head = ({ data }: PortfolioItemProps) => (
         location={`/portfolio/${data.contentfulPortfolioItem.slug}`}
         title={data.contentfulPortfolioItem.title}
         description={data.contentfulPortfolioItem.description.description}
+        image={
+            data.contentfulPortfolioItem.thumbnailMeta.gatsbyImageData?.images
+                .fallback?.src || defaultImage
+        }
     />
 );

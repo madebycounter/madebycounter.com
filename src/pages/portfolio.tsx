@@ -156,6 +156,14 @@ export const query = graphql`
         thumbnail {
             ...Media
         }
+        thumbnailMeta: thumbnail {
+            gatsbyImageData(
+                height: 627
+                width: 1200
+                breakpoints: 1200
+                resizingBehavior: FILL
+            )
+        }
         slideshow {
             ...Media
         }

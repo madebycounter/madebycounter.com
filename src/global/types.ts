@@ -24,6 +24,9 @@ export interface PortfolioData {
     slug: string;
     description: { description: string };
     thumbnail: MediaData;
+    thumbnailMeta: {
+        gatsbyImageData?: import("gatsby-plugin-image").IGatsbyImageData;
+    };
     slideshow?: MediaData[];
     gallery?: MediaData[];
     youtube?: string;
