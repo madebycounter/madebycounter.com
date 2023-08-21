@@ -1,18 +1,18 @@
-const dotenv = require("dotenv");
+require("dotenv").config();
 
 module.exports = {
     siteMetadata: {
         title: "madebycounter.com",
         siteUrl: "https://madebycounter.com",
-        web3forms: dotenv.config().parsed.W3F_ACCESS_TOKEN,
+        web3forms: process.env.W3F_ACCESS_TOKEN,
     },
     graphqlTypegen: true,
     plugins: [
         {
             resolve: "gatsby-source-contentful",
             options: {
-                accessToken: dotenv.config().parsed.CTF_ACCESS_TOKEN,
-                spaceId: dotenv.config().parsed.CTF_SPACE_ID,
+                accessToken: process.env.CTF_ACCESS_TOKEN,
+                spaceId: process.env.CTF_SPACE_ID,
             },
         },
         "gatsby-plugin-image",
