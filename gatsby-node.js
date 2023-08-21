@@ -1,8 +1,7 @@
 const ffprobe = require("ffprobe-static");
 const path = require("path");
-
-var exec = require("mz/child_process").execFile;
-var assert = require("assert");
+const exec = require("mz/child_process").execFile;
+const assert = require("assert");
 
 // https://github.com/jongleberry-bot/get-video-dimensions
 function getVideoDimensions(filename) {
