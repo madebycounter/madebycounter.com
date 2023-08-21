@@ -98,7 +98,7 @@ export default function Media({
     className,
     center = 50,
     resizeMode = ResizeMode.Contain,
-    videoPlaying = false,
+    videoPlaying = true,
     videoLoop = true,
     onVideoEnd = () => {},
     onClick = (id: string) => {},
