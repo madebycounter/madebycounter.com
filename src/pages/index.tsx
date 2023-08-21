@@ -638,4 +638,9 @@ const IndexPage = () => {
 
 export default IndexPage;
 
-export const Head = () => <Header title="About" description="" />;
+export const Head = () => (
+    <Header
+        title="About"
+        description="Counter LLC is a media production company and creative agency based in San Jose, California offering a variety of services including videography, photography, graphic design, real estate, and web development."
+    />
+);

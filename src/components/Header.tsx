@@ -1,12 +1,21 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 
+import defaultImage from "../images/meta.png";
+
 type HeaderProps = {
     title: string;
-    description: string;
+    description?: string;
+    image?: string;
+    children?: React.ReactNode;
 };
 
-const Header = ({ title, description }: HeaderProps) => {
+const Header = ({
+    title,
+    description,
+    image = defaultImage,
+    children,
+}: HeaderProps) => {
     const data: { site: { siteMetadata: { hubspot: string } } } =
         useStaticQuery(graphql`
             {
@@ -35,7 +44,21 @@ const Header = ({ title, description }: HeaderProps) => {
             />
 
             <title>Counter | {title}</title>
+            <meta name="image" content={image} />
             <meta name="description" content={description} />
+
+            <meta property="og:url" content="https://madebycounter.com" />
+            <meta property="og:type" content="website" />
+            <meta property="og:title" content="Counter | About" />
+            <meta property="og:description" content={description} />
+            <meta property="og:image" content={image} />
+
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta property="twitter:domain" content="madebycounter.com" />
+            <meta property="twitter:url" content="https://madebycounter.com" />
+            <meta name="twitter:title" content="Counter | About" />
+            <meta name="twitter:description" content={description} />
+            <meta name="twitter:image" content={image} />
 
             <script
                 type="text/javascript"
@@ -44,6 +67,8 @@ const Header = ({ title, description }: HeaderProps) => {
                 defer
                 src={data.site.siteMetadata.hubspot}
             ></script>
+
+            {children}
         </>
     );
 };

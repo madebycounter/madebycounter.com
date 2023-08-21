@@ -11,10 +11,12 @@ import { BlogPostData } from "../global/types";
 import Author from "../components/Author";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { Layout, LayoutNarrow } from "../components/Layout";
+import { LayoutNarrow } from "../components/Layout";
 import Navbar from "../components/Navbar";
 import { Heading1 } from "../components/Typography";
 import Media, { ResizeMode } from "../components/media/Media";
+
+import defaultImage from "../images/meta.png";
 
 const StyledBlogBanner = styled.div`
     width: 100%;
@@ -85,7 +87,14 @@ const BlogPost = ({ data }: BlogPostProps) => {
 export default BlogPost;
 
 export const Head = ({ data }: BlogPostProps) => (
-    <Header title={data.contentfulBlogPost.title} description="" />
+    <Header
+        title={data.contentfulBlogPost.title}
+        description=""
+        image={
+            data.contentfulBlogPost.bannerMeta.gatsbyImageData?.images.fallback
+                ?.src || defaultImage
+        }
+    />
 );
 
 export const query = graphql`
@@ -96,6 +105,14 @@ export const query = graphql`
             date(formatString: "MMMM D, YYYY")
             banner {
                 ...Media
+            }
+            bannerMeta: banner {
+                gatsbyImageData(
+                    height: 627
+                    width: 1200
+                    breakpoints: 1200
+                    resizingBehavior: FILL
+                )
             }
             bannerMiddle
             content {

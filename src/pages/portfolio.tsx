@@ -135,7 +135,9 @@ const PortfolioPage = () => {
 
 export default PortfolioPage;
 
-export const Head = () => <Header title="Portfolio" description="" />;
+export const Head = () => (
+    <Header title="Portfolio" description="Check out our past work!" />
+);
 
 export const query = graphql`
     fragment PortfolioItem on ContentfulPortfolioItem {

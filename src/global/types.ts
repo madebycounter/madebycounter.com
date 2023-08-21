@@ -45,6 +45,9 @@ export interface BlogPostData {
     slug: string;
     content: any;
     banner: MediaData;
+    bannerMeta: {
+        gatsbyImageData?: import("gatsby-plugin-image").IGatsbyImageData;
+    };
     bannerMiddle: number;
 }
 
