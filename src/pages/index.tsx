@@ -49,8 +49,8 @@ const BaseMember = styled.div`
     .portrait,
     .drone {
         transition:
-            opacity 500ms ease-in-out,
-            transform 500ms cubic-bezier(0.66, 0.72, 0.56, 1.18);
+            opacity 400ms ease-in-out,
+            transform 400ms cubic-bezier(0.66, 0.72, 0.56, 1.18);
     }
 `;
 
@@ -283,8 +283,8 @@ const TeamFooter = styled.div`
     .portrait {
         position: absolute;
         transition:
-            opacity 500ms ease-in-out,
-            transform 500ms cubic-bezier(0.66, 0.72, 0.56, 1.18);
+            opacity 400ms ease-in-out,
+            transform 400ms cubic-bezier(0.66, 0.72, 0.56, 1.18);
 
         &.william {
             --width: 30%;
@@ -420,7 +420,6 @@ const IndexPage = () => {
                     <DirectionReveal
                         offsetX={150}
                         offsetY={0}
-                        duration={250}
                         className="portrait"
                         scrollOffset={50}
                     >
@@ -473,7 +472,6 @@ const IndexPage = () => {
                     <DirectionReveal
                         offsetX={150}
                         offsetY={0}
-                        duration={250}
                         scrollOffset={50}
                         className="portrait"
                     >
@@ -541,7 +539,6 @@ const IndexPage = () => {
                     <DirectionReveal
                         offsetX={150}
                         offsetY={0}
-                        duration={250}
                         scrollOffset={50}
                         className="portrait"
                     >
@@ -555,7 +552,6 @@ const IndexPage = () => {
                     <DirectionReveal
                         offsetX={0}
                         offsetY={-250}
-                        duration={250}
                         scrollOffset={200}
                         className="drone"
                     >
@@ -594,7 +590,6 @@ const IndexPage = () => {
                     <DirectionReveal
                         offsetX={-250}
                         offsetY={0}
-                        duration={250}
                         className="portrait luke"
                         scrollOffset={100}
                         ref={footerTrigger}
@@ -609,7 +604,6 @@ const IndexPage = () => {
                     <DirectionReveal
                         offsetX={0}
                         offsetY={250}
-                        duration={250}
                         scrollOffset={100}
                         className="portrait william"
                         trigger={footerTrigger}
@@ -624,7 +618,6 @@ const IndexPage = () => {
                     <DirectionReveal
                         offsetX={250}
                         offsetY={0}
-                        duration={250}
                         scrollOffset={100}
                         className="portrait henry"
                         trigger={footerTrigger}

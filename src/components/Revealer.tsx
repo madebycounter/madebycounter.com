@@ -101,17 +101,18 @@ type FadeRevealProps = {
 };
 
 const FadeReveal = styled(Revealer)<FadeRevealProps>`
-    /* opacity: 0; */
+    opacity: 0;
     transition: opacity ease-in-out ${({ duration }) => duration}ms;
 
     &.active {
-        /* opacity: 1; */
+        opacity: 1;
     }
 `;
 
 type DirectionRevealProps = {
     offsetX: number;
     offsetY: number;
+    duration?: number;
 };
 
 const DirectionReveal = styled(FadeReveal)<DirectionRevealProps>`
@@ -127,11 +128,6 @@ const DirectionReveal = styled(FadeReveal)<DirectionRevealProps>`
         transform: translate(0, 0);
     }
 `;
-
-DirectionReveal.defaultProps = {
-    offsetX: 0,
-    offsetY: 0,
-};
 
 export { FadeReveal, DirectionReveal };
 export default Revealer;
