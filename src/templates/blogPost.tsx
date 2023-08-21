@@ -1,3 +1,4 @@
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { graphql } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import React from "react";
@@ -18,6 +19,35 @@ import { Heading1 } from "../components/Typography";
 import Media, { ResizeMode } from "../components/media/Media";
 
 import defaultImage from "../images/meta.png";
+
+// https://stackoverflow.com/questions/5454235/shorten-string-without-cutting-words-in-javascript
+function shorten(str: string, maxLen: number, separator: string = " ") {
+    if (str.length <= maxLen) return str;
+    return str.substring(0, str.lastIndexOf(separator, maxLen));
+}
+
+function generateDescription(content: any) {
+    const text = documentToPlainTextString(JSON.parse(content.raw));
+    var shortened = shorten(text, 180);
+
+    if (
+        shortened.endsWith(".") ||
+        shortened.endsWith("!") ||
+        shortened.endsWith("?")
+    ) {
+        return shortened;
+    } else if (
+        shortened.endsWith(",") ||
+        shortened.endsWith(";") ||
+        shortened.endsWith(":") ||
+        shortened.endsWith(")") ||
+        shortened.endsWith("]")
+    ) {
+        return shortened.substring(0, shortened.length - 1) + "...";
+    } else {
+        return shortened + "...";
+    }
+}
 
 const StyledBlogBanner = styled.div`
     width: 100%;
@@ -94,6 +124,7 @@ export const Head = ({ data }: BlogPostProps) => (
     <Header
         location={`/blog/${data.contentfulBlogPost.slug}`}
         title={data.contentfulBlogPost.title}
+        description={generateDescription(data.contentfulBlogPost.content)}
         image={
             data.contentfulBlogPost.bannerMeta.gatsbyImageData?.images.fallback
                 ?.src || defaultImage

@@ -12,6 +12,7 @@
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
+        "@contentful/rich-text-plain-text-renderer": "^16.0.6",
         "@trivago/prettier-plugin-sort-imports": "^4.2.0",
         "babel-plugin-styled-components": "^2.1.4",
         "dotenv": "^16.3.1",
