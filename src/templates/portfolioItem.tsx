@@ -140,13 +140,10 @@ const PortfolioItem = ({ data }: PortfolioItemProps) => {
 
 export default PortfolioItem;
 
-type PortfolioHeadProps = {
-    data: Queries.PortfolioItemDataQuery;
-};
-
-export const Head = ({ data }: PortfolioHeadProps) => (
+export const Head = ({ data }: PortfolioItemProps) => (
     <Header
-        title={data.contentfulPortfolioItem?.title || "Portfolio Item"}
-        description=""
+        location={`/portfolio/${data.contentfulPortfolioItem.slug}`}
+        title={data.contentfulPortfolioItem.title}
+        description={data.contentfulPortfolioItem.description.description}
     />
 );

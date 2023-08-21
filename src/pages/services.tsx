@@ -150,5 +150,9 @@ const ServicesPage = () => {
 export default ServicesPage;
 
 export const Head = () => (
-    <Header title="Services" description="Services offered by Counter LLC." />
+    <Header
+        location="/services"
+        title="Services"
+        description="Services offered by Counter LLC."
+    />
 );

@@ -59,4 +59,4 @@ const Error404 = () => {
 
 export default Error404;
 
-export const Head = () => <Header title="Success!" description="" />;
+export const Head = () => <Header location="/success" title="Success!" />;

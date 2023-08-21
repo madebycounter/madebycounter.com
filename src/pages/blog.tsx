@@ -80,7 +80,11 @@ const BlogPage = () => {
 export default BlogPage;
 
 export const Head = () => (
-    <Header title="Blog" description="All the latest updates from the team." />
+    <Header
+        location="/blog"
+        title="Blog"
+        description="All the latest updates from the team."
+    />
 );
 
 export const query = graphql`

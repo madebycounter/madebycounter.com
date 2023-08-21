@@ -56,6 +56,8 @@ const BlogPost = ({ data }: BlogPostProps) => {
     const { title, author, date, content, banner, bannerMiddle } =
         data.contentfulBlogPost;
 
+    console.log(data.contentfulBlogPost);
+
     return (
         <ThemeProvider theme={LightTheme}>
             <GlobalStyle />
@@ -90,8 +92,8 @@ export default BlogPost;
 
 export const Head = ({ data }: BlogPostProps) => (
     <Header
+        location={`/blog/${data.contentfulBlogPost.slug}`}
         title={data.contentfulBlogPost.title}
-        description=""
         image={
             data.contentfulBlogPost.bannerMeta.gatsbyImageData?.images.fallback
                 ?.src || defaultImage
@@ -105,6 +107,7 @@ export const query = graphql`
             title
             author
             date(formatString: "MMMM D, YYYY")
+            slug
             banner {
                 ...Media
             }

@@ -1,4 +1,3 @@
-import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 
 import { useSiteMetadata } from "../global/hooks";
@@ -7,6 +6,7 @@ import defaultImage from "../images/meta.png";
 
 type HeaderProps = {
     title: string;
+    location: string;
     description?: string;
     image?: string;
     children?: React.ReactNode;
@@ -15,11 +15,13 @@ type HeaderProps = {
 const Header = ({
     title,
     description,
+    location,
     image = defaultImage,
     children,
 }: HeaderProps) => {
     const siteMetadata = useSiteMetadata();
     const fullTitle = `Counter | ${title}`;
+    const fullLocation = `${siteMetadata.siteUrl}${location}`;
 
     return (
         <>
@@ -41,7 +43,7 @@ const Header = ({
             <meta name="image" content={image} />
             <meta name="description" content={description} />
 
-            <meta property="og:url" content={window.location.href} />
+            <meta property="og:url" content={fullLocation} />
             <meta property="og:type" content="website" />
             <meta property="og:title" content={fullTitle} />
             <meta property="og:description" content={description} />
@@ -49,7 +51,7 @@ const Header = ({
 
             <meta name="twitter:card" content="summary_large_image" />
             <meta property="twitter:domain" content="madebycounter.com" />
-            <meta property="twitter:url" content={window.location.href} />
+            <meta property="twitter:url" content={fullLocation} />
             <meta name="twitter:title" content={fullTitle} />
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content={image} />

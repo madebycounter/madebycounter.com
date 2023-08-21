@@ -136,7 +136,11 @@ const PortfolioPage = () => {
 export default PortfolioPage;
 
 export const Head = () => (
-    <Header title="Portfolio" description="Check out our past work!" />
+    <Header
+        location="/portfolio"
+        title="Portfolio"
+        description="Check out our past work!"
+    />
 );
 
 export const query = graphql`

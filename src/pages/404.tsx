@@ -50,4 +50,4 @@ export default function ErrorPage() {
     );
 }
 
-export const Head = () => <Header title="Page Not Found" description="" />;
+export const Head = () => <Header location="/404" title="Page Not Found" />;
