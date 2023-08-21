@@ -14,6 +14,23 @@ import Navbar from "../components/Navbar";
 import { Heading3 } from "../components/Typography";
 import Media from "../components/media/Media";
 
+const BlogList = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+
+    @media (min-width: 700px) {
+        .fade-revealer {
+            transition: none;
+            opacity: 1;
+        }
+    }
+
+    ${Heading3} {
+        margin: 0.5rem 0;
+    }
+`;
+
 const BlogPage = () => {
     const data: {
         allContentfulBlogPost: {
@@ -28,23 +45,6 @@ const BlogPage = () => {
             }
         }
     `);
-
-    const BlogList = styled.div`
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-
-        @media (min-width: 700px) {
-            .fade-revealer {
-                transition: none;
-                opacity: 1;
-            }
-        }
-
-        ${Heading3} {
-            margin: 0.5rem 0;
-        }
-    `;
 
     const nodes = data.allContentfulBlogPost.nodes;
 
