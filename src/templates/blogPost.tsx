@@ -36,6 +36,12 @@ const StyledBlogBanner = styled.div`
     }
 `;
 
+const BlogPostContent = styled.div`
+    > div {
+        margin: 1rem 0;
+    }
+`;
+
 type BlogPostProps = {
     data: {
         contentfulBlogPost: BlogPostData;
@@ -66,7 +72,9 @@ const BlogPost = ({ data }: BlogPostProps) => {
 
                 <Author author={author} date={date} />
 
-                <div>{renderRichText(content, richTextOptions)}</div>
+                <BlogPostContent>
+                    {renderRichText(content, richTextOptions)}
+                </BlogPostContent>
             </LayoutNarrow>
 
             <Footer />
