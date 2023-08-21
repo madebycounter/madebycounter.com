@@ -87,6 +87,8 @@ export default function Slideshow({
                             key={idx}
                             src={slide}
                             aspectRatio={aspectRatio}
+                            videoPlaying={visible}
+                            videoLoop={false}
                             onVideoEnd={() => navigate(1)}
                             onClick={onClick}
                         />

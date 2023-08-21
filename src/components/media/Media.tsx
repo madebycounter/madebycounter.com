@@ -1,6 +1,6 @@
 import { graphql } from "gatsby";
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styled, { css } from "styled-components";
 
 import { ThemedProps } from "../../global/themes";
@@ -85,6 +85,8 @@ export type MediaProps = {
     center?: number;
     resizeMode?: ResizeMode;
     className?: string;
+    videoPlaying?: boolean;
+    videoLoop?: boolean;
     onVideoEnd?: () => void;
     onClick?: (id: string) => void;
     onReady?: () => void;
@@ -96,6 +98,8 @@ export default function Media({
     className,
     center = 50,
     resizeMode = ResizeMode.Contain,
+    videoPlaying = false,
+    videoLoop = true,
     onVideoEnd = () => {},
     onClick = (id: string) => {},
     onReady = () => {},
@@ -108,6 +112,17 @@ export default function Media({
         src;
 
     const videoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        if (!isVideo(mimeType) || !videoRef.current) return;
+
+        if (videoPlaying) {
+            videoRef.current.currentTime = 0;
+            videoRef.current.play();
+        } else {
+            videoRef.current.pause();
+        }
+    }, [videoPlaying]);
 
     if (aspectRatio === null || aspectRatio === undefined) {
         aspectRatio = dimensions.width / dimensions.height;
@@ -146,8 +161,8 @@ export default function Media({
                         disableRemotePlayback
                         playsInline
                         muted
-                        loop={true}
-                        autoPlay={true}
+                        loop={videoLoop}
+                        autoPlay={videoPlaying}
                         onEnded={onVideoEnd}
                         onCanPlay={onReady}
                     >
