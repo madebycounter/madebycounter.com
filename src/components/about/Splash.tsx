@@ -32,7 +32,7 @@ const Splash = () => {
     return (
         <StyledSplash>
             <h1>
-                we make cool
+                We make cool
                 <br />
                 stuff,&nbsp;
                 <Highlight>see?</Highlight>
