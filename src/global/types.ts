@@ -59,3 +59,10 @@ export enum Direction {
     Up,
     Down,
 }
+
+export interface SiteMetadata {
+    title: string;
+    siteUrl: string;
+    web3forms: string;
+    hubspot: string;
+}

@@ -4,6 +4,7 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
+import { useSiteMetadata } from "../global/hooks";
 import richTextOptions from "../global/richTextOptions";
 import { LightTheme } from "../global/themes";
 import { BlogPostData } from "../global/types";
@@ -51,6 +52,7 @@ type BlogPostProps = {
 };
 
 const BlogPost = ({ data }: BlogPostProps) => {
+    const siteMetadata = useSiteMetadata();
     const { title, author, date, content, banner, bannerMiddle } =
         data.contentfulBlogPost;
 

@@ -1,6 +1,8 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 
+import { useSiteMetadata } from "../global/hooks";
+
 import defaultImage from "../images/meta.png";
 
 type HeaderProps = {
@@ -16,17 +18,7 @@ const Header = ({
     image = defaultImage,
     children,
 }: HeaderProps) => {
-    const data: { site: { siteMetadata: { hubspot: string } } } =
-        useStaticQuery(graphql`
-            {
-                site {
-                    siteMetadata {
-                        hubspot
-                    }
-                }
-            }
-        `);
-
+    const siteMetadata = useSiteMetadata();
     const fullTitle = `Counter | ${title}`;
 
     return (
@@ -67,7 +59,7 @@ const Header = ({
                 id="hs-script-loader"
                 async
                 defer
-                src={data.site.siteMetadata.hubspot}
+                src={siteMetadata.hubspot}
             ></script>
 
             {children}
