@@ -1,3 +1,4 @@
+import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 
 type HeaderProps = {
@@ -6,6 +7,17 @@ type HeaderProps = {
 };
 
 const Header = ({ title, description }: HeaderProps) => {
+    const data: { site: { siteMetadata: { hubspot: string } } } =
+        useStaticQuery(graphql`
+            {
+                site {
+                    siteMetadata {
+                        hubspot
+                    }
+                }
+            }
+        `);
+
     return (
         <>
             <meta charSet="UTF-8" />
@@ -24,6 +36,14 @@ const Header = ({ title, description }: HeaderProps) => {
 
             <title>Counter | {title}</title>
             <meta name="description" content={description} />
+
+            <script
+                type="text/javascript"
+                id="hs-script-loader"
+                async
+                defer
+                src={data.site.siteMetadata.hubspot}
+            ></script>
         </>
     );
 };

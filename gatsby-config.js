@@ -5,6 +5,7 @@ module.exports = {
         title: "madebycounter.com",
         siteUrl: "https://madebycounter.com",
         web3forms: process.env.W3F_ACCESS_TOKEN,
+        hubspot: process.env.HUBSPOT_TRACKING_SCRIPT,
     },
     graphqlTypegen: true,
     plugins: [
