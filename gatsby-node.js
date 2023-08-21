@@ -1,5 +1,32 @@
-const getDimensions = require("get-video-dimensions");
+const ffprobe = require("ffprobe-static");
 const path = require("path");
+
+var exec = require("mz/child_process").execFile;
+var assert = require("assert");
+
+// https://github.com/jongleberry-bot/get-video-dimensions
+function getVideoDimensions(filename) {
+    return exec(ffprobe.path, [
+        "-v",
+        "error",
+        "-of",
+        "flat=s=_",
+        "-select_streams",
+        "v:0",
+        "-show_entries",
+        "stream=height,width",
+        filename,
+    ]).then(function (out) {
+        var stdout = out[0].toString("utf8");
+        var width = /width=(\d+)/.exec(stdout);
+        var height = /height=(\d+)/.exec(stdout);
+        assert(width && height, "No dimensions found!");
+        return {
+            width: parseInt(width[1]),
+            height: parseInt(height[1]),
+        };
+    });
+}
 
 exports.createPages = async ({ graphql, actions }) => {
     const { data } = await graphql(`
@@ -73,7 +100,7 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
             type: "Dimensions!",
             resolve: async (source) => {
                 if (source.mimeType === "video/mp4") {
-                    return getDimensions(source.url).then(
+                    return getVideoDimensions(source.url).then(
                         ({ width, height }) => {
                             return { width, height };
                         },
