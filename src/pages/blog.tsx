@@ -14,6 +14,8 @@ import Navbar from "../components/Navbar";
 import { Heading3 } from "../components/Typography";
 import Media from "../components/media/Media";
 
+import BlogPost from "../types/BlogPost";
+
 const BlogList = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -34,7 +36,7 @@ const BlogList = styled.div`
 const BlogPage = () => {
     const data: {
         allContentfulBlogPost: {
-            nodes: BlogPostData[];
+            nodes: BlogPost[];
         };
     } = useStaticQuery(graphql`
         {
@@ -86,19 +88,3 @@ export const Head = () => (
         description="All the latest updates from the team."
     />
 );
-
-export const query = graphql`
-    fragment BlogPost on ContentfulBlogPost {
-        contentful_id
-        author
-        date(formatString: "MMMM D, YYYY")
-        slug
-        title
-        content {
-            raw
-        }
-        banner {
-            ...Media
-        }
-    }
-`;

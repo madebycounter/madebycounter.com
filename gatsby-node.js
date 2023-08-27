@@ -42,11 +42,6 @@ exports.createPages = async ({ graphql, actions }) => {
                     contentful_id
                 }
             }
-            redirects: allContentfulRedirects {
-                nodes {
-                    slug
-                }
-            }
         }
     `);
 
@@ -69,16 +64,6 @@ exports.createPages = async ({ graphql, actions }) => {
             },
         });
     });
-
-    // data.redirects.nodes.forEach((node) => {
-    //     actions.createPage({
-    //         path: node.slug,
-    //         component: path.resolve("./src/templates/redirect.js"),
-    //         context: {
-    //             slug: node.slug,
-    //         },
-    //     });
-    // });
 };
 
 exports.createSchemaCustomization = ({ actions }) => {

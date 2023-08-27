@@ -29,7 +29,7 @@ export interface PortfolioData {
     };
     slideshow?: MediaData[];
     gallery?: MediaData[];
-    youtube?: string;
+    youTube?: string;
 }
 
 export interface ServiceData {

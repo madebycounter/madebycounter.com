@@ -13,6 +13,8 @@ import {
 } from "../components/Typography";
 import Media, { ResizeMode } from "../components/media/Media";
 
+import SocialMediaEmbed from "../types/SocialMediaEmbed";
+
 const StyledCodeBlock = styled.div`
     font-family: var(--mono-font);
     font-size: 1rem;
@@ -40,7 +42,7 @@ const richTextOptions: any = {
             node: Block | Inline,
             children: ReactNode,
         ) => {
-            const { url, platform } = node.data.target;
+            const { url, platform } = node.data.target as SocialMediaEmbed;
 
             if (platform === "Instagram") return <InstagramEmbed url={url} />;
             else return <p>Unsupported embed</p>;

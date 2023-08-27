@@ -8,7 +8,7 @@ import { MediaData, PortfolioData } from "../global/types";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { Layout, Column1, LayoutNarrow } from "../components/Layout";
+import { LayoutNarrow } from "../components/Layout";
 import Navbar from "../components/Navbar";
 import { FadeReveal } from "../components/Revealer";
 import { Heading3 } from "../components/Typography";
@@ -142,33 +142,3 @@ export const Head = () => (
         description="Check out our past work!"
     />
 );
-
-export const query = graphql`
-    fragment PortfolioItem on ContentfulPortfolioItem {
-        title
-        date(formatString: "MM.DD.YYYY")
-        tags
-        description {
-            description
-        }
-        slug
-        youtube
-        thumbnail {
-            ...Media
-        }
-        thumbnailMeta: thumbnail {
-            gatsbyImageData(
-                height: 627
-                width: 1200
-                breakpoints: 1200
-                resizingBehavior: FILL
-            )
-        }
-        slideshow {
-            ...Media
-        }
-        gallery {
-            ...Media
-        }
-    }
-`;

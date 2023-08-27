@@ -5,7 +5,6 @@ import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
 import { DarkTheme } from "../global/themes";
-import { SlideshowData } from "../global/types";
 
 import ContactForm from "../components/ContactForm";
 import Footer from "../components/Footer";
@@ -24,6 +23,8 @@ import {
     Title,
 } from "../components/about/Typography";
 import Slideshow from "../components/media/Slideshow";
+
+import { useAboutPage } from "../types/pages/AboutPage";
 
 const BaseMember = styled.div`
     position: relative;
@@ -337,37 +338,14 @@ const TeamFooter = styled.div`
 
 const IndexPage = () => {
     const footerTrigger = useRef<HTMLDivElement>(null);
-    const slideshowData: {
-        luke1: SlideshowData;
-        luke2: SlideshowData;
-        henry1: SlideshowData;
-        henry2: SlideshowData;
-        william1: SlideshowData;
-        william2: SlideshowData;
-    } = useStaticQuery(graphql`
-        {
-            luke1: contentfulSlideshow(slug: { eq: "about-luke-1" }) {
-                ...Slideshow
-            }
-            luke2: contentfulSlideshow(slug: { eq: "about-luke-2" }) {
-                ...Slideshow
-            }
-            henry1: contentfulSlideshow(slug: { eq: "about-henry-1" }) {
-                ...Slideshow
-            }
-            henry2: contentfulSlideshow(slug: { eq: "about-henry-2" }) {
-                ...Slideshow
-            }
-            william1: contentfulSlideshow(slug: { eq: "about-william-1" }) {
-                ...Slideshow
-            }
-            william2: contentfulSlideshow(slug: { eq: "about-william-2" }) {
-                ...Slideshow
-            }
-        }
-    `);
-
-    const { luke1, luke2, henry1, henry2, william1, william2 } = slideshowData;
+    const {
+        lukeSlideshow1,
+        lukeSlideshow2,
+        henrySlideshow1,
+        henrySlideshow2,
+        williamSlideshow1,
+        williamSlideshow2,
+    } = useAboutPage();
 
     return (
         <ThemeProvider theme={DarkTheme}>
@@ -431,9 +409,9 @@ const IndexPage = () => {
                     </DirectionReveal>
 
                     <div className="slideshows">
-                        <Slideshow src={luke1} aspectRatio={16 / 9} />
+                        <Slideshow src={lukeSlideshow1} aspectRatio={16 / 9} />
 
-                        <Slideshow src={luke2} aspectRatio={16 / 9} />
+                        <Slideshow src={lukeSlideshow2} aspectRatio={16 / 9} />
                     </div>
                 </Luke>
 
@@ -485,11 +463,17 @@ const IndexPage = () => {
                     <div className="slideshows">
                         <div>
                             <div className="ssp">
-                                <Slideshow src={henry2} aspectRatio={4 / 5} />
+                                <Slideshow
+                                    src={henrySlideshow2}
+                                    aspectRatio={4 / 5}
+                                />
                             </div>
 
                             <div className="ssl">
-                                <Slideshow src={henry1} aspectRatio={16 / 9} />
+                                <Slideshow
+                                    src={henrySlideshow1}
+                                    aspectRatio={16 / 9}
+                                />
                             </div>
                         </div>
                     </div>
@@ -563,9 +547,15 @@ const IndexPage = () => {
                     </DirectionReveal>
 
                     <div className="slideshows">
-                        <Slideshow src={william1} aspectRatio={16 / 9} />
+                        <Slideshow
+                            src={williamSlideshow1}
+                            aspectRatio={16 / 9}
+                        />
 
-                        <Slideshow src={william2} aspectRatio={16 / 9} />
+                        <Slideshow
+                            src={williamSlideshow2}
+                            aspectRatio={16 / 9}
+                        />
                     </div>
                 </William>
 

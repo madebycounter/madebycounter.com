@@ -16,6 +16,10 @@ import Title from "../components/Title";
 import Slideshow from "../components/media/Slideshow";
 import YouTube from "../components/media/YouTube";
 
+import Asset from "../types/Asset";
+import Service, { useServices } from "../types/Service";
+import { useServicesPage } from "../types/pages/ServicesPage";
+
 type ServiceWrapperProps = {
     $align: "left" | "right";
 };
@@ -42,6 +46,7 @@ const ServiceWrapper = styled.div<ServiceWrapperProps>`
                 margin: 0;
                 font-size: var(--size);
                 line-height: calc(var(--size) * 1.13);
+                font-weight: 300;
 
                 b {
                     font-family: var(--heading-font);
@@ -63,16 +68,16 @@ const ServiceWrapper = styled.div<ServiceWrapperProps>`
 type ServiceProps = {
     title: string;
     align: "left" | "right";
-    description: any;
-    slideshow?: SlideshowData;
+    offerings: string[];
+    slideshow?: Asset[];
     youtube?: string;
 };
 
-const Service = ({
+const ServiceBlock = ({
     title,
     align,
     slideshow,
-    description,
+    offerings,
     youtube,
 }: ServiceProps) => {
     return (
@@ -81,7 +86,12 @@ const Service = ({
 
             <div>
                 <div className="deets">
-                    {renderRichText(description, richTextOptions)}
+                    <p>
+                        <b>/services</b>
+                    </p>
+                    {offerings.map((offering, idx) => (
+                        <p key={idx}>{offering}</p>
+                    ))}
                 </div>
 
                 <div className="slideshow">
@@ -95,33 +105,7 @@ const Service = ({
 };
 
 const ServicesPage = () => {
-    const data: {
-        allContentfulService: {
-            nodes: {
-                name: string;
-                youTube: string;
-                slideshow: SlideshowData;
-                description: any;
-            }[];
-        };
-    } = useStaticQuery(graphql`
-        query {
-            allContentfulService(sort: { order: ASC }) {
-                nodes {
-                    name
-                    youTube
-                    slideshow {
-                        ...Slideshow
-                    }
-                    description {
-                        raw
-                    }
-                }
-            }
-        }
-    `);
-
-    const nodes = data.allContentfulService.nodes;
+    const servicesPage = useServicesPage();
 
     return (
         <ThemeProvider theme={DarkTheme}>
@@ -130,12 +114,12 @@ const ServicesPage = () => {
             <Navbar active={"services"} />
 
             <LayoutNarrow>
-                {nodes.map((service, idx) => (
-                    <Service
+                {servicesPage.services.map((service, idx) => (
+                    <ServiceBlock
                         key={idx}
-                        title={service.name}
+                        title={service.title}
                         slideshow={service.slideshow}
-                        description={service.description}
+                        offerings={service.offerings}
                         youtube={service.youTube}
                         align={idx % 2 === 0 ? "right" : "left"}
                     />

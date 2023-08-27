@@ -20,6 +20,8 @@ import Media, { ResizeMode } from "../components/media/Media";
 
 import defaultImage from "../images/meta.png";
 
+import BlogPost from "../types/BlogPost";
+
 // https://stackoverflow.com/questions/5454235/shorten-string-without-cutting-words-in-javascript
 function shorten(str: string, maxLen: number, separator: string = " ") {
     if (str.length <= maxLen) return str;
@@ -77,11 +79,11 @@ const BlogPostContent = styled.div`
 
 type BlogPostProps = {
     data: {
-        contentfulBlogPost: BlogPostData;
+        contentfulBlogPost: BlogPost;
     };
 };
 
-const BlogPost = ({ data }: BlogPostProps) => {
+const BlogPostPage = ({ data }: BlogPostProps) => {
     const siteMetadata = useSiteMetadata();
     const { title, author, date, content, banner, bannerMiddle } =
         data.contentfulBlogPost;
@@ -118,7 +120,7 @@ const BlogPost = ({ data }: BlogPostProps) => {
     );
 };
 
-export default BlogPost;
+export default BlogPostPage;
 
 export const Head = ({ data }: BlogPostProps) => (
     <Header
@@ -126,7 +128,7 @@ export const Head = ({ data }: BlogPostProps) => (
         title={data.contentfulBlogPost.title}
         description={generateDescription(data.contentfulBlogPost.content)}
         image={
-            data.contentfulBlogPost.bannerMeta.gatsbyImageData?.images.fallback
+            data.contentfulBlogPost.metaImage.gatsbyImageData?.images.fallback
                 ?.src || defaultImage
         }
     />
@@ -135,34 +137,7 @@ export const Head = ({ data }: BlogPostProps) => (
 export const query = graphql`
     query ($contentful_id: String!) {
         contentfulBlogPost(contentful_id: { eq: $contentful_id }) {
-            title
-            author
-            date(formatString: "MMMM D, YYYY")
-            slug
-            banner {
-                ...Media
-            }
-            bannerMeta: banner {
-                gatsbyImageData(
-                    height: 627
-                    width: 1200
-                    breakpoints: 1200
-                    resizingBehavior: FILL
-                )
-            }
-            bannerMiddle
-            content {
-                raw
-                references {
-                    ...Media
-                    ... on ContentfulSocialMediaEmbed {
-                        contentful_id
-                        title
-                        platform
-                        url
-                    }
-                }
-            }
+            ...BlogPost
         }
     }
 `;

@@ -4,7 +4,6 @@ import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
 import { LightTheme } from "../global/themes";
-import { PortfolioData } from "../global/types";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -13,11 +12,14 @@ import Navbar from "../components/Navbar";
 import { Heading1 } from "../components/Typography";
 import Gallery from "../components/media/Gallery";
 import Lightbox from "../components/media/Lightbox";
+import { isVideo } from "../components/media/Media";
 import Slideshow from "../components/media/Slideshow";
 import YouTube from "../components/media/YouTube";
 import Details from "../components/portfolio/Details";
 
 import defaultImage from "../images/meta.png";
+
+import PortfolioItem from "../types/PortfolioItem";
 
 export const query = graphql`
     query PortfolioItemData($contentful_id: String) {
@@ -55,21 +57,29 @@ const StyledHeader = styled.div`
 
 type PortfolioItemProps = {
     data: {
-        contentfulPortfolioItem: PortfolioData;
+        contentfulPortfolioItem: PortfolioItem;
     };
 };
 
-const PortfolioItem = ({ data }: PortfolioItemProps) => {
+const PortfolioItemPage = ({ data }: PortfolioItemProps) => {
     const [state, setState] = useState({
         lightbox: false,
         lightboxCurrent: "",
     });
 
-    const { title, date, tags, description, youtube } =
+    const { title, date, tags, description, youTube } =
         data.contentfulPortfolioItem;
 
     const slideshow = data.contentfulPortfolioItem.slideshow || [];
     const gallery = data.contentfulPortfolioItem.gallery || [];
+
+    var videoOnly = slideshow.length != 0 && isVideo(slideshow[0].mimeType);
+
+    for (let i = 1; i < slideshow.length; i++) {
+        if (!isVideo(slideshow[i].mimeType)) {
+            return <p>Video elements may not be mixed with images</p>;
+        }
+    }
 
     const closeLightbox = () => {
         setState({
@@ -103,23 +113,20 @@ const PortfolioItem = ({ data }: PortfolioItemProps) => {
                     </div>
 
                     <div className="cover">
-                        {!youtube && (
+                        {!youTube && (
                             // hack to convert array of images into slideshow object
                             // TODO: convert portfolio image arrays into slideshows
                             <Slideshow
-                                src={{
-                                    contentful_id: "",
-                                    content: slideshow,
-                                    autoplayDelay: 5000,
-                                    autoplayOffset: 0,
-                                    autoplay: slideshow.length !== 0,
-                                }}
+                                src={slideshow}
+                                autoplayDelay={5000}
+                                autoplayOffset={0}
+                                autoplay={!videoOnly}
                                 aspectRatio={16 / 9}
                                 onClick={openLightbox}
                             />
                         )}
 
-                        {youtube && <YouTube url={youtube} />}
+                        {youTube && <YouTube url={youTube} />}
                     </div>
                 </StyledHeader>
             </Layout>
@@ -140,7 +147,7 @@ const PortfolioItem = ({ data }: PortfolioItemProps) => {
     );
 };
 
-export default PortfolioItem;
+export default PortfolioItemPage;
 
 export const Head = ({ data }: PortfolioItemProps) => (
     <Header
@@ -148,7 +155,7 @@ export const Head = ({ data }: PortfolioItemProps) => (
         title={data.contentfulPortfolioItem.title}
         description={data.contentfulPortfolioItem.description.description}
         image={
-            data.contentfulPortfolioItem.thumbnailMeta.gatsbyImageData?.images
+            data.contentfulPortfolioItem.metaImage.gatsbyImageData?.images
                 .fallback?.src || defaultImage
         }
     />

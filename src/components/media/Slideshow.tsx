@@ -2,8 +2,7 @@ import { graphql } from "gatsby";
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
-import { SlideshowData } from "../../global/types";
-
+import Asset from "../../types/Asset";
 import Media from "./Media";
 
 function mod(n: number, m: number) {
@@ -35,13 +34,19 @@ const StyledSlideshow = styled.div<StyledSlideshowProps>`
 `;
 
 type SlideshowProps = {
-    src: SlideshowData;
+    src: Asset[];
+    autoplayDelay?: number;
+    autoplayOffset?: number;
+    autoplay?: boolean;
     aspectRatio?: number;
     onClick?: (cfid: string) => void;
 };
 
 export default function Slideshow({
     src,
+    autoplayDelay = 5000,
+    autoplayOffset = 0,
+    autoplay = true,
     aspectRatio = 16 / 9,
     onClick,
 }: SlideshowProps) {
@@ -51,23 +56,23 @@ export default function Slideshow({
     });
 
     const navigate = (delta: number) => {
-        if (src.content.length <= 1) return;
+        if (src.length <= 1) return;
 
         setState({
-            index: mod(state.index + delta, src.content.length),
+            index: mod(state.index + delta, src.length),
         });
     };
 
     useEffect(() => {
-        if (!src.autoplay) return;
+        if (!autoplay) return;
 
         var timeout: NodeJS.Timeout;
 
         if (firstRender.current) {
             firstRender.current = false;
-            timeout = setTimeout(() => navigate(1), src.autoplayOffset);
+            timeout = setTimeout(() => navigate(1), autoplayOffset);
         } else {
-            timeout = setTimeout(() => navigate(1), src.autoplayDelay);
+            timeout = setTimeout(() => navigate(1), autoplayDelay);
         }
 
         return () => {
@@ -77,7 +82,7 @@ export default function Slideshow({
 
     return (
         <StyledSlideshow $aspectRatio={aspectRatio}>
-            {src.content.map((slide, idx) => {
+            {src.map((slide, idx) => {
                 const visible = state.index === idx;
                 var className = visible ? "active" : "";
 
@@ -88,7 +93,7 @@ export default function Slideshow({
                             src={slide}
                             aspectRatio={aspectRatio}
                             videoPlaying={visible}
-                            videoLoop={false}
+                            videoLoop={src.length == 1}
                             onVideoEnd={() => navigate(1)}
                             onClick={onClick}
                         />

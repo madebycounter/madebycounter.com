@@ -6,15 +6,15 @@ import styled, { css } from "styled-components";
 import { ThemedProps } from "../../global/themes";
 import { MediaData } from "../../global/types";
 
-function isVideo(mimeType: string) {
+export function isVideo(mimeType: string): boolean {
     return ["video/mp4", "video/webm"].includes(mimeType);
 }
 
-function isImage(mimeType: string) {
+export function isImage(mimeType: string): boolean {
     return ["image/jpeg", "image/png"].includes(mimeType);
 }
 
-function isGif(mimeType: string) {
+export function isGif(mimeType: string): boolean {
     return mimeType === "image/gif";
 }
 
@@ -116,9 +116,10 @@ export default function Media({
     useEffect(() => {
         if (!isVideo(mimeType) || !videoRef.current) return;
 
+        // TODO: proper error handling
         if (videoPlaying) {
             videoRef.current.currentTime = 0;
-            videoRef.current.play();
+            videoRef.current.play().catch(console.log);
         } else {
             videoRef.current.pause();
         }
