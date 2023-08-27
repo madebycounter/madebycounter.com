@@ -1,6 +1,12 @@
+import { BLOCKS, Block, Inline } from "@contentful/rich-text-types";
 import { Link } from "gatsby";
-import React from "react";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
+
+import richTextOptions from "../../global/richTextOptions";
+
+import { RichText } from "../../types";
 
 const StyledDetails = styled.div`
     p {
@@ -22,36 +28,42 @@ const StyledDetails = styled.div`
     clear: both;
 `;
 
+const richTextOptionsDetails: any = {
+    renderNode: {
+        [BLOCKS.PARAGRAPH]: (node: Block | Inline, children: ReactNode) => {
+            return <>{children}</>;
+        },
+    },
+};
+
 type DetailsProps = {
     date: string;
     tags: string[] | ReadonlyArray<string | null>;
-    description: string;
+    description: RichText;
 };
 
-const Details = ({ date, tags, description }: DetailsProps) => {
-    return (
-        <StyledDetails>
-            <p>
-                <span className="title">/date&nbsp;</span>
-                <span>{date}</span>
-            </p>
+const Details = ({ date, tags, description }: DetailsProps) => (
+    <StyledDetails>
+        <p>
+            <span className="title">/date&nbsp;</span>
+            <span>{date}</span>
+        </p>
 
-            <p>
-                <span className="title">/tags&nbsp;</span>
-                {tags.map((tag, idx) => (
-                    <span key={idx}>
-                        <Link to="#">{tag}</Link>
-                        {idx !== tags.length - 1 ? <>,&nbsp;</> : ""}
-                    </span>
-                ))}
-            </p>
+        <p>
+            <span className="title">/tags&nbsp;</span>
+            {tags.map((tag, idx) => (
+                <span key={idx}>
+                    <Link to="#">{tag}</Link>
+                    {idx !== tags.length - 1 ? <>,&nbsp;</> : ""}
+                </span>
+            ))}
+        </p>
 
-            <p>
-                <span className="title">/description&nbsp;</span>
-                {description}
-            </p>
-        </StyledDetails>
-    );
-};
+        <p>
+            <span className="title">/description&nbsp;</span>
+            {renderRichText(description, richTextOptionsDetails)}
+        </p>
+    </StyledDetails>
+);
 
 export default Details;

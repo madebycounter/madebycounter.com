@@ -1,3 +1,4 @@
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { graphql } from "gatsby";
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
@@ -81,6 +82,12 @@ const PortfolioItemPage = ({ data }: PortfolioItemProps) => {
         }
     }
 
+    console.log(
+        documentToPlainTextString(
+            JSON.parse(data.contentfulPortfolioItem.description.raw),
+        ),
+    );
+
     const closeLightbox = () => {
         setState({
             ...state,
@@ -108,7 +115,7 @@ const PortfolioItemPage = ({ data }: PortfolioItemProps) => {
                         <Details
                             date={date}
                             tags={tags}
-                            description={description.description}
+                            description={description}
                         />
                     </div>
 
@@ -153,7 +160,9 @@ export const Head = ({ data }: PortfolioItemProps) => (
     <Header
         location={`/portfolio/${data.contentfulPortfolioItem.slug}`}
         title={data.contentfulPortfolioItem.title}
-        description={data.contentfulPortfolioItem.description.description}
+        description={documentToPlainTextString(
+            JSON.parse(data.contentfulPortfolioItem.description.raw),
+        )}
         image={
             data.contentfulPortfolioItem.metaImage.gatsbyImageData?.images
                 .fallback?.src || defaultImage
