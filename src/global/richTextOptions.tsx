@@ -9,7 +9,10 @@ import {
     Heading1,
     Heading2,
     Heading3,
+    ListItem,
+    OrderedList,
     Paragraph,
+    UnorderedList,
 } from "../components/Typography";
 import Media, { ResizeMode } from "../components/media/Media";
 
@@ -55,6 +58,15 @@ const richTextOptions: any = {
         },
         [BLOCKS.PARAGRAPH]: (node: Block | Inline, children: ReactNode) => {
             return <Paragraph>{children}</Paragraph>;
+        },
+        [BLOCKS.OL_LIST]: (node: Block | Inline, children: ReactNode) => {
+            return <OrderedList>{children}</OrderedList>;
+        },
+        [BLOCKS.UL_LIST]: (node: Block | Inline, children: ReactNode) => {
+            return <UnorderedList>{children}</UnorderedList>;
+        },
+        [BLOCKS.LIST_ITEM]: (node: Block | Inline, children: ReactNode) => {
+            return <ListItem>{children}</ListItem>;
         },
     },
     renderMark: {
