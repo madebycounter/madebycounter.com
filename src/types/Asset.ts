@@ -19,7 +19,11 @@ export const assetFragment = graphql`
         description
         mimeType
         publicUrl
-        gatsbyImageData(breakpoints: [750, 1080, 1366, 1920], formats: WEBP)
+        gatsbyImageData(
+            breakpoints: [400, 750, 1080, 1366, 1920]
+            placeholder: DOMINANT_COLOR
+            quality: 40
+        )
         dimensions {
             width
             height
