@@ -39,7 +39,7 @@ StyledSplash.defaultProps = {
     theme: DarkTheme,
 };
 
-const Error404 = () => {
+const SuccessPage = () => {
     return (
         <ThemeProvider theme={DarkTheme}>
             <GlobalStyle />
@@ -57,6 +57,6 @@ const Error404 = () => {
     );
 };
 
-export default Error404;
+export default SuccessPage;
 
 export const Head = () => <Header location="/success" title="Success!" />;
