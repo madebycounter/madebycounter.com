@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 
 import { MetaImage, RichText } from ".";
 import Asset from "./Asset";
@@ -15,6 +15,18 @@ export default interface PortfolioItem {
     gallery?: Asset[];
     youTube?: string;
     slug: string;
+}
+
+export function usePortfolioItems(): PortfolioItem[] {
+    return useStaticQuery(graphql`
+        {
+            allContentfulPortfolioItem(sort: { date: DESC }) {
+                nodes {
+                    ...PortfolioItem
+                }
+            }
+        }
+    `).allContentfulPortfolioItem.nodes;
 }
 
 export const portfolioEntryFragment = graphql`

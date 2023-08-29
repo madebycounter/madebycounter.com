@@ -14,6 +14,8 @@ import { FadeReveal } from "../components/Revealer";
 import { Heading3 } from "../components/Typography";
 import Media from "../components/media/Media";
 
+import { usePortfolioItems } from "../types/PortfolioItem";
+
 const ItemBox = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -88,21 +90,7 @@ const Item = ({ image, title, tags, href }: ItemProps) => {
 };
 
 const PortfolioPage = () => {
-    const data: {
-        allContentfulPortfolioItem: {
-            nodes: PortfolioData[];
-        };
-    } = useStaticQuery(graphql`
-        {
-            allContentfulPortfolioItem(sort: { date: DESC }) {
-                nodes {
-                    ...PortfolioItem
-                }
-            }
-        }
-    `);
-
-    const nodes = data.allContentfulPortfolioItem.nodes;
+    const nodes = usePortfolioItems();
 
     return (
         <ThemeProvider theme={DarkTheme}>
