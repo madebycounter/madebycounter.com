@@ -78,7 +78,6 @@ type BlogPostProps = {
 };
 
 const BlogPostPage = ({ data }: BlogPostProps) => {
-    const siteMetadata = useSiteMetadata();
     const { title, author, date, content, banner, bannerMiddle } =
         data.contentfulBlogPost;
 
