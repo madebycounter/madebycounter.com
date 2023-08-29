@@ -29,11 +29,18 @@ type StyledMediaProps = ThemedProps & {
     $aspectRatio: number;
     $center: number;
     $resizeMode: ResizeMode;
+    $hasClickEvent: boolean;
 };
 
 const StyledMedia = styled.div<StyledMediaProps>`
     aspect-ratio: ${({ $aspectRatio }) => $aspectRatio};
     overflow: hidden;
+
+    ${({ $hasClickEvent }) =>
+        $hasClickEvent &&
+        css`
+            cursor: pointer;
+        `}
 
     ${({ $resizeMode }) => {
         switch ($resizeMode) {
@@ -101,7 +108,7 @@ export default function Media({
     videoPlaying = true,
     videoLoop = true,
     onVideoEnd = () => {},
-    onClick = (id: string) => {},
+    onClick,
     onReady = () => {},
 }: MediaProps) {
     if (!src) {
@@ -134,6 +141,7 @@ export default function Media({
             $aspectRatio={aspectRatio}
             $center={center}
             $resizeMode={resizeMode}
+            $hasClickEvent={!!onClick}
             onClick={() => onClick && onClick(src.contentful_id)}
             className={className}
         >
