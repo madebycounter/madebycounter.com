@@ -81,8 +81,6 @@ const BlogPostPage = ({ data }: BlogPostProps) => {
     const { title, author, date, content, banner, bannerMiddle } =
         data.contentfulBlogPost;
 
-    console.log(data.contentfulBlogPost);
-
     return (
         <ThemeProvider theme={LightTheme}>
             <GlobalStyle />
