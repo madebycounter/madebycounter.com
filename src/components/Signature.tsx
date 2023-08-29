@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import { TeamMember } from "../global/types";
-
 import HenrySignature from "../images/about/henry-signature.png";
 import LukeSignature from "../images/about/luke-signature.png";
 import WilliamSignature from "../images/about/william-signature.png";
+
+import { TeamMember } from "../types";
 
 const StyledImage = styled.img`
     filter: ${({ theme }) => theme.imageFilter};

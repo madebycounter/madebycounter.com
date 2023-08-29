@@ -4,7 +4,8 @@ import React, { useEffect, useRef } from "react";
 import styled, { css } from "styled-components";
 
 import { ThemedProps } from "../../global/themes";
-import { MediaData } from "../../global/types";
+
+import Asset from "../../types/Asset";
 
 export function isVideo(mimeType: string): boolean {
     return ["video/mp4", "video/webm"].includes(mimeType);
@@ -87,7 +88,7 @@ const StyledMedia = styled.div<StyledMediaProps>`
 `;
 
 export type MediaProps = {
-    src: MediaData;
+    src: Asset;
     aspectRatio?: number | null;
     center?: number;
     resizeMode?: ResizeMode;

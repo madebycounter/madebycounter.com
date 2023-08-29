@@ -1,6 +1,11 @@
 import { graphql, useStaticQuery } from "gatsby";
 
-import { SiteMetadata } from "./types";
+export interface SiteMetadata {
+    title: string;
+    siteUrl: string;
+    web3forms: string;
+    hubspot: string;
+}
 
 export function useSiteMetadata(): SiteMetadata {
     return useStaticQuery(graphql`

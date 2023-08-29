@@ -1,19 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import YALB from "yet-another-react-lightbox";
-import { GenericSlide } from "yet-another-react-lightbox";
 import Counter from "yet-another-react-lightbox/plugins/counter";
 import "yet-another-react-lightbox/plugins/counter.css";
 import "yet-another-react-lightbox/styles.css";
 
-import { MediaData } from "../../global/types";
-
+import Asset from "../../types/Asset";
 import Media, { ResizeMode } from "./Media";
 
 declare module "yet-another-react-lightbox" {
     export interface MediaSlide {
         type: "media-slide";
-        data: MediaData;
+        data: Asset;
     }
 
     interface SlideTypes {
@@ -48,7 +46,7 @@ const StyledViewer = styled.div`
 `;
 
 type LightboxProps = {
-    media: MediaData[];
+    media: Asset[];
     open: boolean;
     close: () => void;
     current?: string;

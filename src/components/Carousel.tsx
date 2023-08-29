@@ -1,9 +1,8 @@
-import { dir } from "console";
 import React, { useEffect } from "react";
 import styled, { css } from "styled-components";
 
-import { Direction, MediaData } from "../global/types";
-
+import { Direction } from "../types";
+import Asset from "../types/Asset";
 import Media, { ResizeMode } from "./media/Media";
 
 function directionToTranslate(direction: Direction, offset: number) {
@@ -145,7 +144,7 @@ const CarouselArticle = styled.div<ICarouselArticle>`
 `;
 
 type CarouselProps = {
-    images: MediaData[];
+    images: Asset[];
     direction?: Direction;
     gap?: number;
     speed?: number;

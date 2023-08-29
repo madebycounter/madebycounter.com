@@ -5,10 +5,8 @@ import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
-import { useSiteMetadata } from "../global/hooks";
 import { blogPostOptions } from "../global/richTextOptions";
 import { LightTheme } from "../global/themes";
-import { BlogPostData } from "../global/types";
 
 import Author from "../components/Author";
 import Footer from "../components/Footer";

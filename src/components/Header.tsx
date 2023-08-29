@@ -1,8 +1,8 @@
 import React from "react";
 
-import { useSiteMetadata } from "../global/hooks";
-
 import defaultImage from "../images/meta.png";
+
+import { useSiteMetadata } from "../types/SiteMetadata";
 
 type HeaderProps = {
     title: string;

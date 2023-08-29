@@ -1,11 +1,11 @@
-import { Link, StaticQuery, graphql } from "gatsby";
+import { Link, graphql } from "gatsby";
 import React, { useEffect, useRef, useState } from "react";
 import styled, { css } from "styled-components";
-import { useDebounce, useDebouncedCallback } from "use-debounce";
 
 import { ThemedProps } from "../global/themes";
-import { Direction, MediaData } from "../global/types";
 
+import { Direction } from "../types";
+import Asset from "../types/Asset";
 import Media from "./media/Media";
 
 type DirectionProps = ThemedProps & {
@@ -106,7 +106,7 @@ export type ButtonProps = {
     children: React.ReactNode;
     to: string;
     direction: Direction.Left | Direction.Right;
-    images: MediaData[];
+    images: Asset[];
 };
 
 export function Button(props: ButtonProps) {
@@ -160,7 +160,7 @@ const MediaStyled = styled.div<ThemedProps>`
 `;
 
 type MediaCarouselProps = {
-    images: MediaData[];
+    images: Asset[];
     gap: number;
 };
 

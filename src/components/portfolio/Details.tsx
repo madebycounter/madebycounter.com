@@ -1,7 +1,6 @@
-import { BLOCKS, Block, Inline } from "@contentful/rich-text-types";
 import { Link } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
-import React, { ReactNode } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { portfolioOptions } from "../../global/richTextOptions";

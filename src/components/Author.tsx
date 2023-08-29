@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-import { TeamMember } from "../global/types";
-
 import CounterPFP from "../images/authors/counter.png";
 import HenryPFP from "../images/authors/henry.png";
 import LukePFP from "../images/authors/luke.png";
 import WilliamPFP from "../images/authors/william.png";
+
+import { TeamMember } from "../types";
 
 const StyledAuthor = styled.div`
     display: flex;

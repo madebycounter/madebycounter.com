@@ -1,10 +1,9 @@
-import { graphql, Link, useStaticQuery } from "gatsby";
+import { Link } from "gatsby";
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
 import { DarkTheme } from "../global/themes";
-import { MediaData, PortfolioData } from "../global/types";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -14,6 +13,7 @@ import { FadeReveal } from "../components/Revealer";
 import { Heading3 } from "../components/Typography";
 import Media from "../components/media/Media";
 
+import Asset from "../types/Asset";
 import { usePortfolioItems } from "../types/PortfolioItem";
 
 const ItemBox = styled.div`
@@ -60,7 +60,7 @@ const StyledItem = styled.div`
 `;
 
 type ItemProps = {
-    image: MediaData;
+    image: Asset;
     title: string;
     tags: string[];
     href: string;

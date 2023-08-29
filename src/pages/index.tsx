@@ -1,4 +1,3 @@
-import { graphql, useStaticQuery } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import React, { useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";

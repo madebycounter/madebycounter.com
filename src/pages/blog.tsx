@@ -4,7 +4,6 @@ import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
 import { LightTheme } from "../global/themes";
-import { BlogPostData } from "../global/types";
 
 import Author from "../components/Author";
 import Footer from "../components/Footer";

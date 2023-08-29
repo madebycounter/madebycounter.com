@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { MediaData } from "../../global/types";
-
+import Asset from "../../types/Asset";
 import Media from "./Media";
 
 const StyledGallery = styled.div`
@@ -29,7 +28,7 @@ const StyledGallery = styled.div`
 `;
 
 type GalleryProps = {
-    images: MediaData[];
+    images: Asset[];
     onClick: (src: string) => void;
 };
 

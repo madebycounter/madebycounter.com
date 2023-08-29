@@ -1,12 +1,8 @@
-import { graphql, useStaticQuery } from "gatsby";
-import { renderRichText } from "gatsby-source-contentful/rich-text";
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
-import richTextOptions from "../global/richTextOptions";
 import { DarkTheme } from "../global/themes";
-import { SlideshowData } from "../global/types";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -17,7 +13,6 @@ import Slideshow from "../components/media/Slideshow";
 import YouTube from "../components/media/YouTube";
 
 import Asset from "../types/Asset";
-import Service, { useServices } from "../types/Service";
 import { useServicesPage } from "../types/pages/ServicesPage";
 
 type ServiceWrapperProps = {
