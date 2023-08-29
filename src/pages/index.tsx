@@ -401,7 +401,7 @@ const IndexPage = () => {
                         scrollOffset={50}
                     >
                         <StaticImage
-                            src="../images/about/luke.png"
+                            src="../images/about/luke.webp"
                             placeholder="none"
                             alt=""
                         />
@@ -453,7 +453,7 @@ const IndexPage = () => {
                         className="portrait"
                     >
                         <StaticImage
-                            src="../images/about/henry.png"
+                            src="../images/about/henry.webp"
                             placeholder="none"
                             alt=""
                         />
@@ -526,7 +526,7 @@ const IndexPage = () => {
                         className="portrait"
                     >
                         <StaticImage
-                            src="../images/about/william.png"
+                            src="../images/about/william.webp"
                             placeholder="none"
                             alt=""
                         />
@@ -539,7 +539,7 @@ const IndexPage = () => {
                         className="drone"
                     >
                         <StaticImage
-                            src="../images/about/drone.png"
+                            src="../images/about/drone.webp"
                             placeholder="none"
                             alt=""
                         />
@@ -584,7 +584,7 @@ const IndexPage = () => {
                         ref={footerTrigger}
                     >
                         <StaticImage
-                            src="../images/about/luke-footer.png"
+                            src="../images/about/luke-footer.webp"
                             placeholder="none"
                             alt=""
                         />
@@ -598,7 +598,7 @@ const IndexPage = () => {
                         trigger={footerTrigger}
                     >
                         <StaticImage
-                            src="../images/about/william-footer.png"
+                            src="../images/about/william-footer.webp"
                             placeholder="none"
                             alt=""
                         />
@@ -612,7 +612,7 @@ const IndexPage = () => {
                         trigger={footerTrigger}
                     >
                         <StaticImage
-                            src="../images/about/henry-footer.png"
+                            src="../images/about/henry-footer.webp"
                             placeholder="none"
                             alt=""
                         />

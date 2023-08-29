@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import CaretImg from "../../images/caret.png";
+import CaretImg from "../../images/caret.webp";
 
 interface StyledCaretProps {
     size?: string;
