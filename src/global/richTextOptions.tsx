@@ -18,11 +18,6 @@ import Media from "../components/media/Media";
 import "../../node_modules/highlight.js/styles/atom-one-dark.css";
 import SocialMediaEmbed from "../types/SocialMediaEmbed";
 
-type BlockRenderFunction = (
-    node: Block | Inline,
-    children: ReactNode,
-) => ReactNode;
-
 const StyledCodeBlock = styled.div`
     font-family: var(--mono-font);
     font-size: 1rem;
@@ -58,9 +53,9 @@ function renderMedia(node: Block | Inline, children: ReactNode) {
     return <Media src={node.data.target} />;
 }
 
-function blogContainerWrap(func: BlockRenderFunction) {
-    return function (node: Block | Inline, children: ReactNode) {
-        return <BlogAssetContainer>{func(node, children)}</BlogAssetContainer>;
+function blogContainerWrap(func: (...args: any[]) => ReactNode) {
+    return function (...args: any[]) {
+        return <BlogAssetContainer>{func(...args)}</BlogAssetContainer>;
     };
 }
 
@@ -102,7 +97,7 @@ export const blogPostOptions: any = {
         },
     },
     renderMark: {
-        [MARKS.CODE]: renderCode,
+        [MARKS.CODE]: blogContainerWrap(renderCode),
     },
 };
 
