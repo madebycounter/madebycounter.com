@@ -1,7 +1,7 @@
 import { BLOCKS, Block, Inline, MARKS } from "@contentful/rich-text-types";
 import React, { ReactNode } from "react";
 import "react-bootstrap-icons";
-import { CodeBlock, vs2015 } from "react-code-blocks";
+import Highlight from "react-highlight";
 import { InstagramEmbed } from "react-social-media-embed";
 import styled from "styled-components";
 
@@ -16,6 +16,7 @@ import {
 } from "../components/Typography";
 import Media, { ResizeMode } from "../components/media/Media";
 
+import "../../node_modules/highlight.js/styles/atom-one-dark.css";
 import SocialMediaEmbed from "../types/SocialMediaEmbed";
 
 const StyledCodeBlock = styled.div`
@@ -80,12 +81,7 @@ const richTextOptions: any = {
             // TODO: Fix this
             return (
                 <StyledCodeBlock>
-                    {/* <CodeBlock
-                        text={text}
-                        language={language}
-                        showLineNumbers={true}
-                        theme={vs2015}
-                    /> */}
+                    <Highlight className={language}>{text}</Highlight>
                 </StyledCodeBlock>
             );
         },
