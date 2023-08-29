@@ -162,8 +162,6 @@ export default function Carousel({
     const wrapperRef = React.useRef<HTMLDivElement>(null);
     const [currentSize, setCurrentSize] = React.useState<number>(0);
 
-    console.log(identifier);
-
     function updateSize() {
         if (isHorizontal(direction)) {
             setCurrentSize((blockRef.current?.offsetWidth || 0) + gap);
@@ -185,8 +183,6 @@ export default function Carousel({
     }, []);
 
     useEffect(updateSize, [blockRef.current]);
-
-    console.log(direction, currentSize);
 
     return (
         <CarouselWrapper $direction={direction} ref={wrapperRef}>

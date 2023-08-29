@@ -82,12 +82,6 @@ const PortfolioItemPage = ({ data }: PortfolioItemProps) => {
         }
     }
 
-    console.log(
-        documentToPlainTextString(
-            JSON.parse(data.contentfulPortfolioItem.description.raw),
-        ),
-    );
-
     const closeLightbox = () => {
         setState({
             ...state,
