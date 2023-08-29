@@ -6,7 +6,7 @@ import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
 import { useSiteMetadata } from "../global/hooks";
-import richTextOptions from "../global/richTextOptions";
+import { blogPostOptions } from "../global/richTextOptions";
 import { LightTheme } from "../global/themes";
 import { BlogPostData } from "../global/types";
 
@@ -111,7 +111,7 @@ const BlogPostPage = ({ data }: BlogPostProps) => {
                 <Author author={author} date={date} />
 
                 <BlogPostContent>
-                    {renderRichText(content, richTextOptions)}
+                    {renderRichText(content, blogPostOptions)}
                 </BlogPostContent>
             </LayoutNarrow>
 

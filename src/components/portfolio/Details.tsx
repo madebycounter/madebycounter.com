@@ -4,7 +4,7 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 import React, { ReactNode } from "react";
 import styled from "styled-components";
 
-import richTextOptions from "../../global/richTextOptions";
+import { portfolioOptions } from "../../global/richTextOptions";
 
 import { RichText } from "../../types";
 
@@ -27,14 +27,6 @@ const StyledDetails = styled.div`
 
     clear: both;
 `;
-
-const richTextOptionsDetails: any = {
-    renderNode: {
-        [BLOCKS.PARAGRAPH]: (node: Block | Inline, children: ReactNode) => {
-            return <>{children}</>;
-        },
-    },
-};
 
 type DetailsProps = {
     date: string;
@@ -61,7 +53,7 @@ const Details = ({ date, tags, description }: DetailsProps) => (
 
         <p>
             <span className="title">/description&nbsp;</span>
-            {renderRichText(description, richTextOptionsDetails)}
+            {renderRichText(description, portfolioOptions)}
         </p>
     </StyledDetails>
 );

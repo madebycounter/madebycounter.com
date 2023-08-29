@@ -8,13 +8,12 @@ import styled from "styled-components";
 import {
     Heading1,
     Heading2,
-    Heading3,
     ListItem,
     OrderedList,
     Paragraph,
     UnorderedList,
 } from "../components/Typography";
-import Media, { ResizeMode } from "../components/media/Media";
+import Media from "../components/media/Media";
 
 import "../../node_modules/highlight.js/styles/atom-one-dark.css";
 import SocialMediaEmbed from "../types/SocialMediaEmbed";
@@ -34,7 +33,7 @@ const BlogHeading2 = styled(Heading2)`
     margin: 1rem 0;
 `;
 
-const richTextOptions: any = {
+export const blogPostOptions: any = {
     renderNode: {
         [BLOCKS.EMBEDDED_ASSET]: (
             node: Block | Inline,
@@ -78,7 +77,6 @@ const richTextOptions: any = {
             if (split[0].startsWith("#")) language = split[0].substring(1);
             text = split.slice(1).join("\n");
 
-            // TODO: Fix this
             return (
                 <StyledCodeBlock>
                     <Highlight className={language}>{text}</Highlight>
@@ -88,4 +86,10 @@ const richTextOptions: any = {
     },
 };
 
-export default richTextOptions;
+export const portfolioOptions: any = {
+    renderNode: {
+        [BLOCKS.PARAGRAPH]: (node: Block | Inline, children: ReactNode) => {
+            return <>{children}</>;
+        },
+    },
+};
