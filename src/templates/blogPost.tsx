@@ -1,7 +1,7 @@
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { graphql } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
-import React from "react";
+import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
@@ -16,6 +16,7 @@ import Header from "../components/Header";
 import { LayoutNarrow } from "../components/Layout";
 import Navbar from "../components/Navbar";
 import { Heading1 } from "../components/Typography";
+import Lightbox from "../components/media/Lightbox";
 import Media, { ResizeMode } from "../components/media/Media";
 
 import defaultImage from "../images/meta.png";
@@ -78,8 +79,29 @@ type BlogPostProps = {
 };
 
 const BlogPostPage = ({ data }: BlogPostProps) => {
+    const [state, setState] = useState({
+        lightbox: false,
+        lightboxCurrent: "",
+    });
+
+    const closeLightbox = () => {
+        setState({
+            ...state,
+            lightbox: false,
+        });
+    };
+
+    const openLightbox = (cfid: string) => {
+        setState({
+            lightbox: true,
+            lightboxCurrent: cfid,
+        });
+    };
+
     const { title, author, date, content, banner, bannerMiddle } =
         data.contentfulBlogPost;
+
+    console.log(content.references);
 
     return (
         <ThemeProvider theme={LightTheme}>
@@ -93,6 +115,7 @@ const BlogPostPage = ({ data }: BlogPostProps) => {
                     center={bannerMiddle}
                     resizeMode={ResizeMode.Fill}
                     aspectRatio={0}
+                    onClick={openLightbox}
                 />
             </StyledBlogBanner>
 
@@ -101,8 +124,21 @@ const BlogPostPage = ({ data }: BlogPostProps) => {
 
                 <Author author={author} date={date} />
 
-                <div>{renderRichText(content, blogPostOptions)}</div>
+                <div>
+                    {renderRichText(content, blogPostOptions(openLightbox))}
+                </div>
             </LayoutNarrow>
+
+            <Lightbox
+                media={[banner].concat(
+                    content.references.filter(
+                        (ref: any) => ref.__typename === "ContentfulAsset",
+                    ),
+                )}
+                open={state.lightbox}
+                current={state.lightboxCurrent}
+                close={closeLightbox}
+            />
 
             <Footer />
         </ThemeProvider>

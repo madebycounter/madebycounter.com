@@ -49,8 +49,10 @@ function renderEmbed(node: Block | Inline, children: ReactNode) {
     else return <p>Unsupported embed</p>;
 }
 
-function renderMedia(node: Block | Inline, children: ReactNode) {
-    return <Media src={node.data.target} />;
+function renderMedia(onClick?: (cfid: string) => void) {
+    return (node: Block | Inline, children: ReactNode) => {
+        return <Media src={node.data.target} onClick={onClick} />;
+    };
 }
 
 function blogContainerWrap(func: (...args: any[]) => ReactNode) {
@@ -73,33 +75,35 @@ function renderCode(text: string) {
     );
 }
 
-export const blogPostOptions: any = {
-    renderNode: {
-        [BLOCKS.EMBEDDED_ASSET]: blogContainerWrap(renderMedia),
-        [BLOCKS.EMBEDDED_ENTRY]: blogContainerWrap(renderEmbed),
-        [BLOCKS.HEADING_1]: (node: Block | Inline, children: ReactNode) => {
-            return <BlogHeading1>{children}</BlogHeading1>;
+export function blogPostOptions(onClick: (cfid: string) => void): any {
+    return {
+        renderNode: {
+            [BLOCKS.EMBEDDED_ASSET]: blogContainerWrap(renderMedia(onClick)),
+            [BLOCKS.EMBEDDED_ENTRY]: blogContainerWrap(renderEmbed),
+            [BLOCKS.HEADING_1]: (node: Block | Inline, children: ReactNode) => {
+                return <BlogHeading1>{children}</BlogHeading1>;
+            },
+            [BLOCKS.HEADING_2]: (node: Block | Inline, children: ReactNode) => {
+                return <BlogHeading2>{children}</BlogHeading2>;
+            },
+            [BLOCKS.PARAGRAPH]: (node: Block | Inline, children: ReactNode) => {
+                return <Paragraph>{children}</Paragraph>;
+            },
+            [BLOCKS.OL_LIST]: (node: Block | Inline, children: ReactNode) => {
+                return <OrderedList>{children}</OrderedList>;
+            },
+            [BLOCKS.UL_LIST]: (node: Block | Inline, children: ReactNode) => {
+                return <UnorderedList>{children}</UnorderedList>;
+            },
+            [BLOCKS.LIST_ITEM]: (node: Block | Inline, children: ReactNode) => {
+                return <ListItem>{children}</ListItem>;
+            },
         },
-        [BLOCKS.HEADING_2]: (node: Block | Inline, children: ReactNode) => {
-            return <BlogHeading2>{children}</BlogHeading2>;
+        renderMark: {
+            [MARKS.CODE]: blogContainerWrap(renderCode),
         },
-        [BLOCKS.PARAGRAPH]: (node: Block | Inline, children: ReactNode) => {
-            return <Paragraph>{children}</Paragraph>;
-        },
-        [BLOCKS.OL_LIST]: (node: Block | Inline, children: ReactNode) => {
-            return <OrderedList>{children}</OrderedList>;
-        },
-        [BLOCKS.UL_LIST]: (node: Block | Inline, children: ReactNode) => {
-            return <UnorderedList>{children}</UnorderedList>;
-        },
-        [BLOCKS.LIST_ITEM]: (node: Block | Inline, children: ReactNode) => {
-            return <ListItem>{children}</ListItem>;
-        },
-    },
-    renderMark: {
-        [MARKS.CODE]: blogContainerWrap(renderCode),
-    },
-};
+    };
+}
 
 export const portfolioOptions: any = {
     renderNode: {
