@@ -18,6 +18,11 @@ import Media from "../components/media/Media";
 import "../../node_modules/highlight.js/styles/atom-one-dark.css";
 import SocialMediaEmbed from "../types/SocialMediaEmbed";
 
+type BlockRenderFunction = (
+    node: Block | Inline,
+    children: ReactNode,
+) => ReactNode;
+
 const StyledCodeBlock = styled.div`
     font-family: var(--mono-font);
     font-size: 1rem;
@@ -33,6 +38,15 @@ const BlogHeading2 = styled(Heading2)`
     margin: 1rem 0;
 `;
 
+const BlogAssetContainer = styled.div`
+    width: 75%;
+    margin: 1rem auto !important;
+
+    @media (max-width: 900px) {
+        width: 100%;
+    }
+`;
+
 function renderEmbed(node: Block | Inline, children: ReactNode) {
     const { url, platform } = node.data.target as SocialMediaEmbed;
 
@@ -42,6 +56,12 @@ function renderEmbed(node: Block | Inline, children: ReactNode) {
 
 function renderMedia(node: Block | Inline, children: ReactNode) {
     return <Media src={node.data.target} />;
+}
+
+function blogContainerWrap(func: BlockRenderFunction) {
+    return function (node: Block | Inline, children: ReactNode) {
+        return <BlogAssetContainer>{func(node, children)}</BlogAssetContainer>;
+    };
 }
 
 function renderCode(text: string) {
@@ -60,8 +80,8 @@ function renderCode(text: string) {
 
 export const blogPostOptions: any = {
     renderNode: {
-        [BLOCKS.EMBEDDED_ASSET]: renderMedia,
-        [BLOCKS.EMBEDDED_ENTRY]: renderEmbed,
+        [BLOCKS.EMBEDDED_ASSET]: blogContainerWrap(renderMedia),
+        [BLOCKS.EMBEDDED_ENTRY]: blogContainerWrap(renderEmbed),
         [BLOCKS.HEADING_1]: (node: Block | Inline, children: ReactNode) => {
             return <BlogHeading1>{children}</BlogHeading1>;
         },
