@@ -115,8 +115,6 @@ const PortfolioItemPage = ({ data }: PortfolioItemProps) => {
 
                     <div className="cover">
                         {!youTube && (
-                            // hack to convert array of images into slideshow object
-                            // TODO: convert portfolio image arrays into slideshows
                             <Slideshow
                                 src={slideshow}
                                 autoplayDelay={5000}
