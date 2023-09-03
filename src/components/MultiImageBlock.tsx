@@ -18,16 +18,24 @@ const StyledMultiImageBlock = styled.div`
 
 type MultiImageBlockProps = {
     images: Asset[];
+    onClick?: (cfid: string) => void;
 };
 
-export default function MultiImageBlock({ images }: MultiImageBlockProps) {
+export default function MultiImageBlock({
+    images,
+    onClick,
+}: MultiImageBlockProps) {
     const aspectRatio =
         images[0].dimensions.width / images[0].dimensions.height;
 
     return (
         <StyledMultiImageBlock>
             {images.map((image) => (
-                <Media src={image} aspectRatio={aspectRatio} />
+                <Media
+                    src={image}
+                    aspectRatio={aspectRatio}
+                    onClick={onClick}
+                />
             ))}
         </StyledMultiImageBlock>
     );

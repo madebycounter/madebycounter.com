@@ -43,25 +43,31 @@ function renderSocialEmbed(node: Block | Inline, children: ReactNode) {
     else return <p>Unsupported embed</p>;
 }
 
-function renderEntry(node: Block | Inline, children: ReactNode) {
-    console.log(node);
-    switch (node.data.target.__typename) {
-        case "ContentfulBlogPost":
-            return <p>Blog posts not supported</p>;
-        case "ContentfulPortfolioItem":
-            return (
-                <PortfolioCard
-                    item={{
-                        ...node.data.target,
-                        description: node.data.target.portfolioDescription,
-                    }}
-                />
-            );
-        case "ContentfulSocialMediaEmbed":
-            return renderSocialEmbed(node, children);
-        case "ContentfulMultiImageBlock":
-            return <MultiImageBlock images={node.data.target.images} />;
-    }
+function renderEntry(onClick?: (cfid: string) => void) {
+    return (node: Block | Inline, children: ReactNode) => {
+        switch (node.data.target.__typename) {
+            case "ContentfulBlogPost":
+                return <p>Blog posts not supported</p>;
+            case "ContentfulPortfolioItem":
+                return (
+                    <PortfolioCard
+                        item={{
+                            ...node.data.target,
+                            description: node.data.target.portfolioDescription,
+                        }}
+                    />
+                );
+            case "ContentfulSocialMediaEmbed":
+                return renderSocialEmbed(node, children);
+            case "ContentfulMultiImageBlock":
+                return (
+                    <MultiImageBlock
+                        images={node.data.target.images}
+                        onClick={onClick}
+                    />
+                );
+        }
+    };
 }
 
 function renderMedia(onClick?: (cfid: string) => void) {
@@ -94,7 +100,7 @@ export function blogPostOptions(onClick: (cfid: string) => void): any {
     return {
         renderNode: {
             [BLOCKS.EMBEDDED_ASSET]: blogContainerWrap(renderMedia(onClick)),
-            [BLOCKS.EMBEDDED_ENTRY]: blogContainerWrap(renderEntry),
+            [BLOCKS.EMBEDDED_ENTRY]: blogContainerWrap(renderEntry(onClick)),
             [BLOCKS.HEADING_1]: (node: Block | Inline, children: ReactNode) => {
                 return <BlogHeading1>{children}</BlogHeading1>;
             },

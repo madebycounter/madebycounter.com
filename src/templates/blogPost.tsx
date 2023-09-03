@@ -99,9 +99,20 @@ const BlogPostPage = ({ data }: BlogPostProps) => {
 
             <Lightbox
                 media={[banner].concat(
-                    content.references.filter(
-                        (ref: any) => ref.__typename === "ContentfulAsset",
-                    ),
+                    content.references
+                        .filter(
+                            (ref: any) => ref.__typename === "ContentfulAsset",
+                        )
+                        .concat(
+                            content.references
+                                .filter(
+                                    (ref: any) =>
+                                        ref.__typename ===
+                                        "ContentfulMultiImageBlock",
+                                )
+                                .map((ref: any) => ref.images)
+                                .flat(),
+                        ),
                 )}
                 open={state.lightbox}
                 current={state.lightboxCurrent}
