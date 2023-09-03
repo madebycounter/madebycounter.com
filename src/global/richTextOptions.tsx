@@ -5,6 +5,8 @@ import Highlight from "react-highlight";
 import { InstagramEmbed } from "react-social-media-embed";
 import styled from "styled-components";
 
+import BlogAssetContainer from "../components/BlogAssetContainer";
+import MultiImageBlock from "../components/MultiImageBlock";
 import {
     Heading1,
     Heading2,
@@ -13,10 +15,11 @@ import {
     Paragraph,
     UnorderedList,
 } from "../components/Typography";
+import { PortfolioCard } from "../components/cards/PortfolioCard";
 import Media from "../components/media/Media";
+import SocialMediaEmbed from "../types/components/SocialMediaEmbed";
 
 import "../../node_modules/highlight.js/styles/atom-one-dark.css";
-import SocialMediaEmbed from "../types/SocialMediaEmbed";
 
 const StyledCodeBlock = styled.div`
     font-family: var(--mono-font);
@@ -33,20 +36,32 @@ const BlogHeading2 = styled(Heading2)`
     margin: 1rem 0;
 `;
 
-const BlogAssetContainer = styled.div`
-    width: 75%;
-    margin: 1rem auto !important;
-
-    @media (max-width: 900px) {
-        width: 100%;
-    }
-`;
-
-function renderEmbed(node: Block | Inline, children: ReactNode) {
+function renderSocialEmbed(node: Block | Inline, children: ReactNode) {
     const { url, platform } = node.data.target as SocialMediaEmbed;
 
     if (platform === "Instagram") return <InstagramEmbed url={url} />;
     else return <p>Unsupported embed</p>;
+}
+
+function renderEntry(node: Block | Inline, children: ReactNode) {
+    console.log(node);
+    switch (node.data.target.__typename) {
+        case "ContentfulBlogPost":
+            return <p>Blog posts not supported</p>;
+        case "ContentfulPortfolioItem":
+            return (
+                <PortfolioCard
+                    item={{
+                        ...node.data.target,
+                        description: node.data.target.portfolioDescription,
+                    }}
+                />
+            );
+        case "ContentfulSocialMediaEmbed":
+            return renderSocialEmbed(node, children);
+        case "ContentfulMultiImageBlock":
+            return <MultiImageBlock images={node.data.target.images} />;
+    }
 }
 
 function renderMedia(onClick?: (cfid: string) => void) {
@@ -79,7 +94,7 @@ export function blogPostOptions(onClick: (cfid: string) => void): any {
     return {
         renderNode: {
             [BLOCKS.EMBEDDED_ASSET]: blogContainerWrap(renderMedia(onClick)),
-            [BLOCKS.EMBEDDED_ENTRY]: blogContainerWrap(renderEmbed),
+            [BLOCKS.EMBEDDED_ENTRY]: blogContainerWrap(renderEntry),
             [BLOCKS.HEADING_1]: (node: Block | Inline, children: ReactNode) => {
                 return <BlogHeading1>{children}</BlogHeading1>;
             },

@@ -10,13 +10,13 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { Layout, LayoutNarrow } from "../components/Layout";
 import Navbar from "../components/Navbar";
+import Details from "../components/PortfolioDetails";
 import { Heading1 } from "../components/Typography";
 import Gallery from "../components/media/Gallery";
 import Lightbox from "../components/media/Lightbox";
 import { isVideo } from "../components/media/Media";
 import Slideshow from "../components/media/Slideshow";
 import YouTube from "../components/media/YouTube";
-import Details from "../components/portfolio/Details";
 
 import defaultImage from "../images/meta.png";
 

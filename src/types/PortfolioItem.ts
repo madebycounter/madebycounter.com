@@ -4,6 +4,7 @@ import { MetaImage, RichText } from ".";
 import Asset from "./Asset";
 
 export default interface PortfolioItem {
+    __typename: "ContentfulPortfolioItem";
     contentful_id: string;
     title: string;
     date: string;
@@ -31,6 +32,7 @@ export function usePortfolioItems(): PortfolioItem[] {
 
 export const portfolioEntryFragment = graphql`
     fragment PortfolioItem on ContentfulPortfolioItem {
+        __typename
         contentful_id
         title
         date(formatString: "MM.DD.YYYY")

@@ -2,6 +2,7 @@ import { graphql } from "gatsby";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 
 export default interface Asset {
+    __typename: "ContentfulAsset";
     contentful_id: string;
     title: string;
     description: string;

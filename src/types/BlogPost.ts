@@ -4,6 +4,7 @@ import { MetaImage, RichText, TeamMember } from ".";
 import Asset from "./Asset";
 
 export default interface BlogPost {
+    __typename: "ContentfulBlogPost";
     contentful_id: string;
     title: string;
     date: string;
@@ -17,6 +18,7 @@ export default interface BlogPost {
 
 export const blogPostFragment = graphql`
     fragment BlogPost on ContentfulBlogPost {
+        __typename
         contentful_id
         title
         date(formatString: "MMMM D, YYYY")
@@ -36,14 +38,29 @@ export const blogPostFragment = graphql`
         content {
             raw
             references {
-                ... on ContentfulAsset {
-                    ...Asset
-                }
-                ... on ContentfulSocialMediaEmbed {
-                    ...SocialMediaEmbed
-                }
+                ...Asset
+                ...SocialMediaEmbed
+                ...MultiImageBlock
             }
         }
         slug
     }
 `;
+
+// ... on ContentfulPortfolioItem {
+//     __typename
+//     contentful_id
+//     title
+//     date(formatString: "MM.DD.YYYY")
+//     tags
+//     portfolioDescription: description {
+//         raw
+//     }
+//     thumbnail {
+//         ...Asset
+//     }
+//     slideshow {
+//         ...Asset
+//     }
+//     slug
+// }

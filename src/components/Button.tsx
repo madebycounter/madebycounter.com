@@ -38,7 +38,7 @@ function ButtonArrow(props: ButtonArrowProps) {
     return (
         <ButtonArrowStyled direction={props.direction} height="50" width="20">
             {props.direction == Direction.Right && (
-                <polygon points="0,0 20,25 0,50" />
+                <polygon points="0,0 16,0 0,50" />
             )}
             {props.direction == Direction.Left && (
                 <polygon points="20,0 0,25 20,50" />
@@ -122,7 +122,7 @@ export function Button(props: ButtonProps) {
 }
 
 const MediaCarouselStyled = styled.div<ThemedProps>`
-    background-color: red;
+    /* background-color: red; */
     position: relative;
     overflow: hidden;
     min-width: 50px;
