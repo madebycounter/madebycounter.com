@@ -98,6 +98,7 @@ const BlogPostPage = ({ data }: BlogPostProps) => {
             </LayoutNarrow>
 
             <Lightbox
+                // merge banner with images from contentful references
                 media={[banner].concat(
                     content.references
                         .filter(
