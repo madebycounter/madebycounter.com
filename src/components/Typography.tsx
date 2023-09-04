@@ -8,6 +8,16 @@ export const Paragraph = styled.p`
     margin: 1rem 0;
 `;
 
+export const Tags = styled.p`
+    font-size: 1rem;
+    line-height: 1em;
+    font-weight: 300;
+
+    > * {
+        white-space: nowrap;
+    }
+`;
+
 export const Heading1 = styled.h1`
     font-family: ${(props) => props.theme.fonts.heading};
     font-weight: 400;

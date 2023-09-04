@@ -15,7 +15,7 @@ import {
     Paragraph,
     UnorderedList,
 } from "../components/Typography";
-import { PortfolioCard } from "../components/cards/PortfolioCard";
+import { PortfolioCardLarge } from "../components/cards/PortfolioCard";
 import Media from "../components/media/Media";
 import SocialMediaEmbed from "../types/components/SocialMediaEmbed";
 
@@ -50,7 +50,7 @@ function renderEntry(onClick?: (cfid: string) => void) {
                 return <p>Blog posts not supported</p>;
             case "ContentfulPortfolioItem":
                 return (
-                    <PortfolioCard
+                    <PortfolioCardLarge
                         item={{
                             ...node.data.target,
                             description: node.data.target.portfolioDescription,

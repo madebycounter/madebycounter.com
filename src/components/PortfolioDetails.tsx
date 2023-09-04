@@ -8,54 +8,63 @@ import { portfolioOptions } from "../global/richTextOptions";
 import { RichText } from "../types";
 import { Paragraph } from "./Typography";
 
-const StyledDetails = styled.div`
-    ${Paragraph} {
-        margin: 0.5rem;
-        font-size: 1.5rem;
-        line-height: 1.1em;
+const DetailsParagraph = styled(Paragraph)`
+    margin: 0.5rem;
+    font-size: 1.5rem;
+    line-height: 1.1em;
 
-        span {
-            display: inline-block;
-        }
+    span {
+        display: inline-block;
     }
-
-    .title {
-        font-family: var(--heading-font);
-    }
-
-    clear: both;
 `;
 
+const DetailsTitle = styled.span`
+    font-family: ${(props) => props.theme.fonts.heading};
+    font-weight: 400;
+`;
+
+export const DetailsDate = styled(DetailsParagraph)``;
+export const DetailsTags = styled(DetailsParagraph)``;
+export const DetailsDescription = styled(DetailsParagraph)``;
+
 type DetailsProps = {
-    date: string;
-    tags: string[] | ReadonlyArray<string | null>;
+    date?: string;
+    tags?: string[] | ReadonlyArray<string | null>;
     description?: RichText;
     plainText?: string;
 };
 
 const Details = ({ date, tags, description, plainText }: DetailsProps) => (
-    <StyledDetails>
-        <Paragraph>
-            <span className="title">/date&nbsp;</span>
-            <span>{date}</span>
-        </Paragraph>
+    <div>
+        {date && (
+            <DetailsDate>
+                <DetailsTitle>/date&nbsp;</DetailsTitle>
+                <span>{date}</span>
+            </DetailsDate>
+        )}
 
-        <Paragraph>
-            <span className="title">/tags&nbsp;</span>
-            {tags.map((tag, idx) => (
-                <span key={idx}>
-                    <Link to="#">{tag}</Link>
-                    {idx !== tags.length - 1 ? <>,&nbsp;</> : ""}
-                </span>
-            ))}
-        </Paragraph>
+        {tags && tags.length > 0 && (
+            <DetailsTags>
+                <DetailsTitle>/tags&nbsp;</DetailsTitle>
+                {tags.map((tag, idx) => (
+                    <span key={idx}>
+                        <Link to="#">{tag}</Link>
+                        {idx !== tags.length - 1 ? <>,&nbsp;</> : ""}
+                    </span>
+                ))}
+            </DetailsTags>
+        )}
 
-        <Paragraph>
-            <span className="title">/description&nbsp;</span>
-            {plainText ? plainText : ""}
-            {description ? renderRichText(description, portfolioOptions) : ""}
-        </Paragraph>
-    </StyledDetails>
+        {(description || plainText) && (
+            <DetailsDescription>
+                <DetailsTitle>/description&nbsp;</DetailsTitle>
+                {plainText ? plainText : ""}
+                {description
+                    ? renderRichText(description, portfolioOptions)
+                    : ""}
+            </DetailsDescription>
+        )}
+    </div>
 );
 
 export default Details;

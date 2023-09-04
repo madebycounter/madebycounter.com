@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import Asset from "../../types/Asset";
-import Media from "./Media";
+import Media, { ResizeMode } from "./Media";
 
 function mod(n: number, m: number) {
     return ((n % m) + m) % m;
@@ -17,11 +17,13 @@ const StyledSlideshow = styled.div<StyledSlideshowProps>`
     position: relative;
     overflow: hidden;
     width: 100%;
+    height: 100%;
     aspect-ratio: ${(props) => props.$aspectRatio};
 
     > div {
         position: absolute;
         width: 100%;
+        height: 100%;
         z-index: 0;
 
         background: ${({ theme }) => theme.backgroundColor};
@@ -35,6 +37,7 @@ const StyledSlideshow = styled.div<StyledSlideshowProps>`
 
 type SlideshowProps = {
     src: Asset[];
+    className?: string;
     autoplayDelay?: number;
     autoplayOffset?: number;
     autoplay?: boolean;
@@ -47,7 +50,8 @@ export default function Slideshow({
     autoplayDelay = 5000,
     autoplayOffset = 0,
     autoplay = true,
-    aspectRatio = 16 / 9,
+    aspectRatio,
+    className,
     onClick,
 }: SlideshowProps) {
     const firstRender = useRef(true);
@@ -81,13 +85,13 @@ export default function Slideshow({
     }, [state.index]);
 
     return (
-        <StyledSlideshow $aspectRatio={aspectRatio}>
+        <StyledSlideshow $aspectRatio={aspectRatio} className={className}>
             {src.map((slide, idx) => {
                 const visible = state.index === idx;
-                var className = visible ? "active" : "";
+                var divClassName = visible ? "active" : "";
 
                 return (
-                    <div className={className} key={idx}>
+                    <div className={divClassName} key={idx}>
                         <Media
                             key={idx}
                             src={slide}
@@ -96,6 +100,7 @@ export default function Slideshow({
                             videoLoop={src.length == 1}
                             onVideoEnd={() => navigate(1)}
                             onClick={onClick}
+                            resizeMode={ResizeMode.Fill}
                         />
                     </div>
                 );

@@ -10,7 +10,7 @@ import Header from "../components/Header";
 import { LayoutNarrow } from "../components/Layout";
 import Navbar from "../components/Navbar";
 import { FadeReveal } from "../components/Revealer";
-import { Heading3 } from "../components/Typography";
+import { Heading3, Tags } from "../components/Typography";
 import Media from "../components/media/Media";
 
 import Asset from "../types/Asset";
@@ -45,16 +45,9 @@ const StyledItem = styled.div`
         display: flex;
         justify-content: space-between;
 
-        p {
-            font-size: 1rem;
-            line-height: 1;
-            text-align: right;
+        ${Tags} {
             margin: 0.5rem 0;
-            font-weight: 300;
-
-            span {
-                white-space: nowrap;
-            }
+            text-align: right;
         }
     }
 `;
@@ -75,14 +68,14 @@ const Item = ({ image, title, tags, href }: ItemProps) => {
                 <div className="info">
                     <Heading3>{title}</Heading3>
 
-                    <p>
+                    <Tags>
                         {tags.map((tag, idx) => (
-                            <span key={idx}>
-                                {tag}
+                            <>
+                                <span key={idx}>{tag}</span>
                                 <br />
-                            </span>
+                            </>
                         ))}
-                    </p>
+                    </Tags>
                 </div>
             </Link>
         </StyledItem>
