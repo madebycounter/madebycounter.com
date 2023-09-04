@@ -12,24 +12,12 @@ import Details, { DetailsDescription } from "../PortfolioDetails";
 import { Heading2, Paragraph, Tags } from "../Typography";
 import Media from "../media/Media";
 import Slideshow from "../media/Slideshow";
+import LinkDiv from "./utils/LinkDiv";
+import Slash from "./utils/Slash";
 
 type PortfolioCardProps = {
     item: PortfolioItem;
 };
-
-const Slash = styled.div`
-    aspect-ratio: 400 / 1650;
-
-    background-color: ${(props) => props.theme.backgroundColor};
-    z-index: 10;
-
-    clip-path: polygon(0% 0%, 0% 100%, 50% 50%, 100% 0%);
-`;
-
-const LinkDiv = styled(Link)`
-    display: block;
-    text-decoration: none;
-`;
 
 const CardMediumOverlay = styled.div`
     position: absolute;
