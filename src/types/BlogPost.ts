@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 
 import { MetaImage, RichText, TeamMember } from ".";
 import Asset from "./Asset";
@@ -14,6 +14,18 @@ export default interface BlogPost {
     metaImage: MetaImage;
     content: RichText;
     slug: string;
+}
+
+export function useBlogPosts(): BlogPost[] {
+    return useStaticQuery(graphql`
+        query BlogPosts {
+            allContentfulBlogPost {
+                nodes {
+                    ...BlogPost
+                }
+            }
+        }
+    `).allContentfulBlogPost.nodes;
 }
 
 export const blogPostFragment = graphql`
