@@ -15,7 +15,6 @@ import {
     Paragraph,
     UnorderedList,
 } from "../components/Typography";
-import { PortfolioCardLarge } from "../components/cards/PortfolioCard";
 import Media from "../components/media/Media";
 import SocialMediaEmbed from "../types/components/SocialMediaEmbed";
 
@@ -49,14 +48,7 @@ function renderEntry(onClick?: (cfid: string) => void) {
             case "ContentfulBlogPost":
                 return <p>Blog posts not supported</p>;
             case "ContentfulPortfolioItem":
-                return (
-                    <PortfolioCardLarge
-                        item={{
-                            ...node.data.target,
-                            description: node.data.target.portfolioDescription,
-                        }}
-                    />
-                );
+                return <p>Portfolio items not supported</p>;
             case "ContentfulSocialMediaEmbed":
                 return renderSocialEmbed(node, children);
             case "ContentfulMultiImageBlock":

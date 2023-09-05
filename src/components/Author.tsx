@@ -7,6 +7,7 @@ import LukePFP from "../images/authors/luke.webp";
 import WilliamPFP from "../images/authors/william.webp";
 
 import { TeamMember } from "../types";
+import { Paragraph } from "./Typography";
 
 const StyledAuthor = styled.div`
     display: flex;
@@ -21,6 +22,12 @@ const StyledAuthor = styled.div`
     img {
         border-radius: 50%;
         max-width: 3rem;
+    }
+
+    ${Paragraph} {
+        font-size: 1rem;
+        font-weight: 400;
+        margin: 0;
     }
 `;
 
@@ -40,18 +47,19 @@ function getProfilePhoto(author: TeamMember) {
 type AuthorProps = {
     author: TeamMember;
     date: string;
+    className?: string;
 };
 
-const Author = ({ author, date }: AuthorProps) => {
+const Author = ({ author, date, className }: AuthorProps) => {
     return (
-        <StyledAuthor>
+        <StyledAuthor className={className}>
             <img src={getProfilePhoto(author)} alt="" />
 
-            <span>
+            <Paragraph>
                 Written by {author}
                 <br />
                 {date}
-            </span>
+            </Paragraph>
         </StyledAuthor>
     );
 };
