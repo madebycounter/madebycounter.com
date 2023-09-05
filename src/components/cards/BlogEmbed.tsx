@@ -14,16 +14,16 @@ import FadeOutText from "./utils/FadeOutText";
 import LinkDiv from "./utils/LinkDiv";
 import Slash from "./utils/Slash";
 
-type BlogCardProps = {
+type BlogEmbedProps = {
     item: BlogPost;
 };
 
-const StyledCardAuthor = styled(Author)`
+const StyledEmbedAuthor = styled(Author)`
     margin: 0.5rem 0;
     margin-bottom: 0;
 `;
 
-const StyledCardImage = styled(LinkDiv)`
+const StyledEmbedImage = styled(LinkDiv)`
     position: relative;
 
     img {
@@ -44,7 +44,7 @@ const StyledCardImage = styled(LinkDiv)`
     }
 `;
 
-const StyledCardInfo = styled(LinkDiv)`
+const StyledEmbedInfo = styled(LinkDiv)`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -70,7 +70,7 @@ const SideBySide = styled.div`
     align-items: center;
 `;
 
-const StyledCard = styled.div`
+const StyledEmbed = styled.div`
     margin: 2rem 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -93,7 +93,7 @@ const StyledCard = styled.div`
             font-size: 1.6rem;
         }
 
-        ${StyledCardInfo} {
+        ${StyledEmbedInfo} {
             > div > ${Paragraph}, ${Heading3} {
                 display: none;
             }
@@ -101,13 +101,13 @@ const StyledCard = styled.div`
     }
 
     &:hover {
-        ${StyledCardImage} img {
+        ${StyledEmbedImage} img {
             transform: scale(1.08);
         }
     }
 `;
 
-export function BlogCard({ item }: BlogCardProps) {
+export function BlogEmbed({ item }: BlogEmbedProps) {
     const [matches, ref] = useContainerQuery<HTMLDivElement>({
         small: {
             max: 730,
@@ -115,8 +115,8 @@ export function BlogCard({ item }: BlogCardProps) {
     });
 
     return (
-        <StyledCard ref={ref} className={classnames(matches)}>
-            <StyledCardInfo to={`/blog/${item.slug}`}>
+        <StyledEmbed ref={ref} className={classnames(matches)}>
+            <StyledEmbedInfo to={`/blog/${item.slug}`}>
                 <div>
                     <Heading2>{item.title}</Heading2>
 
@@ -127,16 +127,16 @@ export function BlogCard({ item }: BlogCardProps) {
                 </div>
 
                 <SideBySide>
-                    <StyledCardAuthor author={item.author} date={item.date} />
+                    <StyledEmbedAuthor author={item.author} date={item.date} />
                     <Heading3>Read More</Heading3>
                 </SideBySide>
-            </StyledCardInfo>
+            </StyledEmbedInfo>
 
-            <StyledCardImage to={`/blog/${item.slug}`}>
+            <StyledEmbedImage to={`/blog/${item.slug}`}>
                 <Media src={item.banner} resizeMode={ResizeMode.Fill} />
 
                 <Slash />
-            </StyledCardImage>
-        </StyledCard>
+            </StyledEmbedImage>
+        </StyledEmbed>
     );
 }
