@@ -2,29 +2,45 @@ const ffprobe = require("ffprobe-static");
 const path = require("path");
 const exec = require("mz/child_process").execFile;
 const assert = require("assert");
+const commandExists = require("command-exists");
+
+function getFfprobePath() {
+    return commandExists("ffprobe")
+        .then(() => {
+            return "ffprobe";
+        })
+        .catch(() => {
+            return ffprobe.path;
+        });
+}
 
 // https://github.com/jongleberry-bot/get-video-dimensions
 function getVideoDimensions(filename) {
-    return exec(ffprobe.path, [
-        "-v",
-        "error",
-        "-of",
-        "flat=s=_",
-        "-select_streams",
-        "v:0",
-        "-show_entries",
-        "stream=height,width",
-        filename,
-    ]).then(function (out) {
-        var stdout = out[0].toString("utf8");
-        var width = /width=(\d+)/.exec(stdout);
-        var height = /height=(\d+)/.exec(stdout);
-        assert(width && height, "No dimensions found!");
-        return {
-            width: parseInt(width[1]),
-            height: parseInt(height[1]),
-        };
-    });
+    return getFfprobePath()
+        .then((path) => {
+            return exec(path, [
+                "-v",
+                "error",
+                "-of",
+                "flat=s=_",
+                "-select_streams",
+                "v:0",
+                "-show_entries",
+                "stream=height,width",
+                filename,
+            ]);
+        })
+        .then((out) => {
+            var stdout = out[0].toString("utf8");
+            var width = /width=(\d+)/.exec(stdout);
+            var height = /height=(\d+)/.exec(stdout);
+            assert(width && height, "No dimensions found!");
+
+            return {
+                width: parseInt(width[1]),
+                height: parseInt(height[1]),
+            };
+        });
 }
 
 exports.createPages = async ({ graphql, actions }) => {
