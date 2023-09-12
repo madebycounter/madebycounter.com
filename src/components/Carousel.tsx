@@ -7,52 +7,52 @@ import Media, { ResizeMode } from "./media/Media";
 
 function directionToTranslate(direction: Direction, offset: number) {
     switch (direction) {
-        case Direction.Up:
+        case Direction.UP:
             return `translateY(${offset}px)`;
-        case Direction.Down:
+        case Direction.DOWN:
             return `translateY(${offset}px)`;
-        case Direction.Left:
+        case Direction.LEFT:
             return `translateX(${offset}px)`;
-        case Direction.Right:
+        case Direction.RIGHT:
             return `translateX(${offset}px)`;
     }
 }
 
 function isReversed(direction: Direction) {
     switch (direction) {
-        case Direction.Up:
+        case Direction.UP:
             return true;
-        case Direction.Down:
+        case Direction.DOWN:
             return false;
-        case Direction.Left:
+        case Direction.LEFT:
             return true;
-        case Direction.Right:
+        case Direction.RIGHT:
             return false;
     }
 }
 
 function isHorizontal(direction: Direction) {
     switch (direction) {
-        case Direction.Up:
+        case Direction.UP:
             return false;
-        case Direction.Down:
+        case Direction.DOWN:
             return false;
-        case Direction.Left:
+        case Direction.LEFT:
             return true;
-        case Direction.Right:
+        case Direction.RIGHT:
             return true;
     }
 }
 
 function directionToFlex(direction: Direction) {
     switch (direction) {
-        case Direction.Up:
+        case Direction.UP:
             return "column";
-        case Direction.Down:
+        case Direction.DOWN:
             return "column";
-        case Direction.Left:
+        case Direction.LEFT:
             return "row";
-        case Direction.Right:
+        case Direction.RIGHT:
             return "row";
     }
 }
@@ -152,7 +152,7 @@ type CarouselProps = {
 
 export default function Carousel({
     images,
-    direction = Direction.Down,
+    direction = Direction.DOWN,
     gap = 10,
     speed = 100,
 }: CarouselProps) {

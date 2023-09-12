@@ -1,16 +1,14 @@
-import { match } from "assert";
 import classnames from "classnames";
 import React from "react";
 import styled from "styled-components";
 
 import useContainerQuery from "../../global/containerQuery";
-import { renderPlainText, smartShorten } from "../../global/textHelpers";
+import { smartShorten } from "../../global/textHelpers";
 
 import BlogPost from "../../types/BlogPost";
 import Author from "../Author";
 import { Heading2, Heading3, Paragraph, Tags } from "../Typography";
 import Media, { ResizeMode } from "../media/Media";
-import FadeOutText from "./utils/FadeOutText";
 import LinkDiv from "./utils/LinkDiv";
 import Slash from "./utils/Slash";
 
@@ -21,20 +19,11 @@ type BlogEmbedProps = {
 const StyledEmbedAuthor = styled(Author)`
     margin: 0.5rem 0;
     margin-bottom: 0;
+    font-size: 1.1rem;
 `;
 
 const StyledEmbedImage = styled(LinkDiv)`
     position: relative;
-
-    img {
-        transform: scale(1.08);
-
-        /* opacity transition copied as to not override gatsby-image behaviour */
-        /* could probably make a seperate div layer to do this but this is far easier lol */
-        transition:
-            transform 0.1s ease-in-out,
-            opacity 0.25s linear !important;
-    }
 
     ${Slash} {
         position: absolute;
@@ -86,31 +75,53 @@ const StyledEmbed = styled.div`
         margin: 0.5rem 0;
     }
 
-    &.small {
-        grid-template-columns: 1fr 200px;
-
-        ${Heading2} {
-            font-size: 1.6rem;
-        }
+    &.medium {
+        grid-template-columns: 1fr 1fr;
 
         ${StyledEmbedInfo} {
+            justify-content: flex-start;
+
             > div > ${Paragraph}, ${Heading3} {
                 display: none;
             }
         }
+
+        ${StyledEmbedAuthor} {
+            font-size: 1.2rem;
+        }
+    }
+
+    &.small {
+        grid-template-columns: 3fr 2fr;
+
+        ${Heading2} {
+            font-size: 1.4rem;
+        }
+
+        ${StyledEmbedAuthor} {
+            font-size: 0.9rem;
+        }
+    }
+
+    .media-wrapper {
+        transform: scale(1);
+        transition: transform 0.1s ease-in-out;
     }
 
     &:hover {
-        ${StyledEmbedImage} img {
-            transform: scale(1.08);
+        .media-wrapper {
+            transform: scale(1.05);
         }
     }
 `;
 
 export function BlogEmbed({ item }: BlogEmbedProps) {
     const [matches, ref] = useContainerQuery<HTMLDivElement>({
-        small: {
+        medium: {
             max: 730,
+        },
+        small: {
+            max: 500,
         },
     });
 

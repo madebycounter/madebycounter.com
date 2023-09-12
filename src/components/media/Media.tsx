@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import { graphql } from "gatsby";
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import React, { useEffect, useRef } from "react";
@@ -151,11 +152,12 @@ export default function Media({
                     image={gatsbyImageData as IGatsbyImageData}
                     alt={description ? description : ""}
                     onLoad={onReady}
+                    className="media-wrapper image-wrapper"
                 />
             )}
 
             {isGif(mimeType) && (
-                <div className="gif-wrapper">
+                <div className="media-wrapper gif-wrapper">
                     <img
                         src={publicUrl}
                         alt={description ? description : ""}
@@ -165,7 +167,7 @@ export default function Media({
             )}
 
             {isVideo(mimeType) && (
-                <div className="video-wrapper">
+                <div className="media-wrapper video-wrapper">
                     <video
                         ref={videoRef}
                         disableRemotePlayback

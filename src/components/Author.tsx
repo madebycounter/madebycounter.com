@@ -1,65 +1,61 @@
 import React from "react";
 import styled from "styled-components";
 
-import CounterPFP from "../images/authors/counter.webp";
-import HenryPFP from "../images/authors/henry.webp";
-import LukePFP from "../images/authors/luke.webp";
-import WilliamPFP from "../images/authors/william.webp";
-
-import { TeamMember } from "../types";
+import { Direction, TeamMember } from "../types";
+import ProfilePhoto from "./ProfilePhoto";
 import { Paragraph } from "./Typography";
 
-const StyledAuthor = styled.div`
+type StyledAuthorProps = {
+    $direction: Direction.LEFT | Direction.RIGHT;
+};
+
+const StyledAuthor = styled.div<StyledAuthorProps>`
     display: flex;
-    align-items: center;
+    align-items: last baseline;
     justify-content: flex-start;
-    gap: 0.5rem;
-    margin: 1rem 0;
+    font-size: 1rem;
+    gap: 0.5em;
+
+    flex-direction: ${({ $direction }) =>
+        $direction === Direction.LEFT ? "row" : "row-reverse"};
 
     color: ${({ theme }) => theme.color};
-    background-color: ${({ theme }) => theme.backgroundColor};
 
     img {
-        border-radius: 50%;
-        max-width: 3rem;
+        width: 2.8em;
     }
 
     ${Paragraph} {
-        font-size: 1rem;
-        font-weight: 400;
+        font-size: inherit;
+        text-align: ${({ $direction }) =>
+            $direction === Direction.LEFT ? "left" : "right"};
+        font-weight: 300;
+        line-height: 1.3em;
         margin: 0;
     }
 `;
-
-function getProfilePhoto(author: TeamMember) {
-    switch (author) {
-        case "Counter":
-            return CounterPFP;
-        case "Henry":
-            return HenryPFP;
-        case "Luke":
-            return LukePFP;
-        case "William":
-            return WilliamPFP;
-    }
-}
 
 type AuthorProps = {
     author: TeamMember;
     date: string;
     className?: string;
+    direction?: Direction.LEFT | Direction.RIGHT;
 };
 
-const Author = ({ author, date, className }: AuthorProps) => {
+const Author = ({
+    author,
+    date,
+    className,
+    direction = Direction.LEFT,
+}: AuthorProps) => {
     return (
-        <StyledAuthor className={className}>
-            <img src={getProfilePhoto(author)} alt="" />
+        <StyledAuthor className={className} $direction={direction}>
+            <ProfilePhoto member={author} />
 
-            <Paragraph>
-                Written by {author}
-                <br />
-                {date}
-            </Paragraph>
+            <div>
+                <Paragraph>Written by {author}</Paragraph>
+                <Paragraph>{date}</Paragraph>
+            </div>
         </StyledAuthor>
     );
 };

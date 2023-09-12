@@ -9,7 +9,7 @@ import Asset from "../types/Asset";
 import Media from "./media/Media";
 
 type DirectionProps = ThemedProps & {
-    direction: Direction.Left | Direction.Right;
+    direction: Direction.LEFT | Direction.RIGHT;
 };
 
 const ButtonArrowStyled = styled.svg<DirectionProps>`
@@ -18,29 +18,29 @@ const ButtonArrowStyled = styled.svg<DirectionProps>`
     z-index: 5;
 
     ${(props) =>
-        props.direction == Direction.Right &&
+        props.direction == Direction.RIGHT &&
         css`
             right: -20px;
         `};
 
     ${(props) =>
-        props.direction == Direction.Left &&
+        props.direction == Direction.LEFT &&
         css`
             left: -20px;
         `};
 `;
 
 type ButtonArrowProps = {
-    direction: Direction.Left | Direction.Right;
+    direction: Direction.LEFT | Direction.RIGHT;
 };
 
 function ButtonArrow(props: ButtonArrowProps) {
     return (
         <ButtonArrowStyled direction={props.direction} height="50" width="20">
-            {props.direction == Direction.Right && (
+            {props.direction == Direction.RIGHT && (
                 <polygon points="0,0 16,0 0,50" />
             )}
-            {props.direction == Direction.Left && (
+            {props.direction == Direction.LEFT && (
                 <polygon points="20,0 0,25 20,50" />
             )}
         </ButtonArrowStyled>
@@ -63,7 +63,7 @@ const ButtonLabelStyled = styled(Link)<DirectionProps>`
     padding: 0 0.5rem;
 
     ${(props) =>
-        props.direction == Direction.Left &&
+        props.direction == Direction.LEFT &&
         css`
             order: 1;
         `};
@@ -72,7 +72,7 @@ const ButtonLabelStyled = styled(Link)<DirectionProps>`
 export type ButtonLabelProps = {
     children: React.ReactNode;
     to: string;
-    direction: Direction.Left | Direction.Right;
+    direction: Direction.LEFT | Direction.RIGHT;
 };
 
 export function ButtonLabel(props: ButtonLabelProps) {
@@ -90,13 +90,13 @@ const ButtonStyled = styled.div<DirectionProps>`
     display: grid;
 
     ${(props) =>
-        props.direction == Direction.Left &&
+        props.direction == Direction.LEFT &&
         css`
             grid-template-columns: 1fr auto;
         `};
 
     ${(props) =>
-        props.direction == Direction.Right &&
+        props.direction == Direction.RIGHT &&
         css`
             grid-template-columns: auto 1fr;
         `};
@@ -105,7 +105,7 @@ const ButtonStyled = styled.div<DirectionProps>`
 export type ButtonProps = {
     children: React.ReactNode;
     to: string;
-    direction: Direction.Left | Direction.Right;
+    direction: Direction.LEFT | Direction.RIGHT;
     images: Asset[];
 };
 

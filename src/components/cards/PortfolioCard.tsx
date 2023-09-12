@@ -5,23 +5,11 @@ import styled from "styled-components";
 import PortfolioItem from "../../types/PortfolioItem";
 import { Heading2, Tags } from "../Typography";
 import Media from "../media/Media";
+import Overlay from "./utils/Overlay";
 
 type PortfolioCardProps = {
     item: PortfolioItem;
 };
-
-const StyledCardOverlay = styled.div`
-    position: absolute;
-    z-index: 5;
-
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-
-    /* background: linear-gradient(black -20%, transparent 50%, black 120%); */
-    background: black;
-`;
 
 const StyledCard = styled(Link)`
     position: relative;
@@ -48,27 +36,22 @@ const StyledCard = styled(Link)`
         text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     }
 
-    ${StyledCardOverlay} {
+    ${Overlay} {
         opacity: 0.2;
-        transition: opacity 0.2s ease-in-out;
+        transition: opacity 0.1s ease-in-out;
     }
 
-    img {
+    .media-wrapper {
         transform: scale(1);
-
-        /* opacity transition copied as to not override gatsby-image behaviour */
-        /* could probably make a seperate div layer to do this but this is far easier lol */
-        transition:
-            transform 0.1s ease-in-out,
-            opacity 0.25s linear !important;
+        transition: transform 0.1s ease-in-out;
     }
 
     &:hover {
-        ${StyledCardOverlay} {
+        ${Overlay} {
             opacity: 0;
         }
 
-        img {
+        .media-wrapper {
             transform: scale(1.05);
         }
     }
@@ -79,7 +62,7 @@ export function PortfolioCard({ item }: PortfolioCardProps) {
         <StyledCard to={`/portfolio/${item.slug}`}>
             <Media src={item.thumbnail} aspectRatio={4 / 3} />
 
-            <StyledCardOverlay />
+            <Overlay />
 
             <Heading2>{item.title}</Heading2>
 

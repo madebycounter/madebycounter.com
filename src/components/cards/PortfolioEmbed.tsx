@@ -51,18 +51,13 @@ const StyledEmbed = styled.div`
         margin: 0.5rem 0;
     }
 
-    img {
+    .media-wrapper {
         transform: scale(1);
-
-        /* opacity transition copied as to not override gatsby-image behaviour */
-        /* could probably make a seperate div layer to do this but this is far easier lol */
-        transition:
-            transform 0.1s ease-in-out,
-            opacity 0.25s linear !important;
+        transition: transform 0.1s ease-in-out;
     }
 
     &:hover {
-        img {
+        .media-wrapper {
             transform: scale(1.08);
         }
     }

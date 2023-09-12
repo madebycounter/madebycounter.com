@@ -9,10 +9,10 @@ export type MetaImage = {
 export type TeamMember = "Luke" | "Henry" | "William" | "Counter";
 
 export enum Direction {
-    Left,
-    Right,
-    Up,
-    Down,
+    LEFT,
+    RIGHT,
+    UP,
+    DOWN,
 }
 
 export interface SiteMetadata {
