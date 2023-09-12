@@ -90,7 +90,9 @@ const ServiceBlock = ({
                 </div>
 
                 <div className="slideshow">
-                    {slideshow && <Slideshow src={slideshow} />}
+                    {slideshow && (
+                        <Slideshow src={slideshow} aspectRatio={16 / 9} />
+                    )}
 
                     {youtube && <YouTube url={youtube} aspectRatio={16 / 9} />}
                 </div>
