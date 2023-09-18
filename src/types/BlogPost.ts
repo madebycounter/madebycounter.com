@@ -14,6 +14,9 @@ export default interface BlogPost {
     metaImage: MetaImage;
     content: RichText;
     slug: string;
+    description: {
+        description: string;
+    };
 }
 
 export function useBlogPosts(): BlogPost[] {
@@ -56,23 +59,8 @@ export const blogPostFragment = graphql`
             }
         }
         slug
+        description {
+            description
+        }
     }
 `;
-
-// ... on ContentfulPortfolioItem {
-//     __typename
-//     contentful_id
-//     title
-//     date(formatString: "MM.DD.YYYY")
-//     tags
-//     portfolioDescription: description {
-//         raw
-//     }
-//     thumbnail {
-//         ...Asset
-//     }
-//     slideshow {
-//         ...Asset
-//     }
-//     slug
-// }

@@ -8,8 +8,7 @@ export function shorten(str: string, maxLen: number, separator: string = " ") {
     return str.substring(0, str.lastIndexOf(separator, maxLen));
 }
 
-export function smartShorten(content: RichText, length: number = 180) {
-    const text = documentToPlainTextString(JSON.parse(content.raw));
+export function smartShorten(text: string, length: number = 180) {
     var shortened = shorten(text, length);
 
     if (

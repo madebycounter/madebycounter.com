@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 import useContainerQuery from "../../global/containerQuery";
-import { smartShorten } from "../../global/textHelpers";
+import { renderPlainText, smartShorten } from "../../global/textHelpers";
 
 import PortfolioItem from "../../types/PortfolioItem";
 import Details, { DetailsDescription } from "../PortfolioDetails";
@@ -99,7 +99,7 @@ export function PortfolioEmbed({ item }: PortfolioEmbedProps) {
                     tags={item.tags}
                     date={item.date}
                     plainText={smartShorten(
-                        item.description,
+                        renderPlainText(item.description),
                         item.title.length > 19 ? 140 : 180,
                     )}
                 />

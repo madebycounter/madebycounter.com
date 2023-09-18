@@ -6,7 +6,7 @@ import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
 import { blogPostOptions } from "../global/richTextOptions";
-import { smartShorten } from "../global/textHelpers";
+import { renderPlainText, smartShorten } from "../global/textHelpers";
 import { LightTheme } from "../global/themes";
 
 import Author from "../components/Author";
@@ -131,7 +131,9 @@ export const Head = ({ data }: BlogPostProps) => (
     <Header
         location={`/blog/${data.contentfulBlogPost.slug}`}
         title={data.contentfulBlogPost.title}
-        description={smartShorten(data.contentfulBlogPost.content)}
+        description={smartShorten(
+            renderPlainText(data.contentfulBlogPost.content),
+        )}
         image={
             data.contentfulBlogPost.metaImage.gatsbyImageData?.images.fallback
                 ?.src || defaultImage
