@@ -42,6 +42,13 @@ export const LayoutNarrow = styled.div`
     max-width: 900px;
 `;
 
+export const LayoutMini = styled.div`
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: calc(100% - 2rem);
+    max-width: 600px;
+`;
+
 export const Column12 = styled.div`
     display: grid;
     grid-auto-flow: row;
