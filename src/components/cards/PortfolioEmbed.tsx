@@ -38,7 +38,6 @@ const StyledEmbedSlideshow = styled(LinkDiv)`
 `;
 
 const StyledEmbed = styled.div`
-    margin: 2rem 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
 

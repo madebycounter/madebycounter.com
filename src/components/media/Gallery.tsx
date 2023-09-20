@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 import Asset from "../../types/Asset";
+import { usePortfolioItems } from "../../types/PortfolioItem";
+import { PortfolioEmbed } from "../cards/PortfolioEmbed";
 import Media from "./Media";
 
 const StyledGallery = styled.div`
@@ -45,9 +47,11 @@ const Gallery = ({ images, onClick }: GalleryProps) => {
         <StyledGallery>
             <div>
                 {col1.map((img, idx) => (
-                    <div key={idx}>
-                        <Media src={img} onClick={onClick} />
-                    </div>
+                    <>
+                        <div key={idx}>
+                            <Media src={img} onClick={onClick} />
+                        </div>
+                    </>
                 ))}
             </div>
 

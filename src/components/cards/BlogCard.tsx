@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Direction } from "../../types";
 import BlogPost from "../../types/BlogPost";
 import Author from "../Author";
-import { Heading2, Paragraph, Tags } from "../Typography";
+import { Heading2 } from "../Typography";
 import Media from "../media/Media";
 import LinkDiv from "./utils/LinkDiv";
 import Overlay from "./utils/Overlay";
