@@ -4,6 +4,7 @@ export const Paragraph = styled.p`
     font-family: ${(props) => props.theme.fonts.body};
     font-weight: 300;
     font-size: 1.3rem;
+    line-height: 1.5em;
 
     margin: 1rem 0;
 `;
@@ -40,6 +41,16 @@ export const Heading3 = styled.h3`
     font-family: ${(props) => props.theme.fonts.heading};
     font-weight: 400;
     font-size: 1.6rem;
+
+    line-height: 1em;
+    letter-spacing: -0.04em;
+    margin: 0.5rem 0px;
+`;
+
+export const Heading4 = styled.h4`
+    font-family: ${(props) => props.theme.fonts.heading};
+    font-weight: 400;
+    font-size: 1.3rem;
 
     line-height: 1em;
     letter-spacing: -0.04em;
