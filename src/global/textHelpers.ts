@@ -33,3 +33,8 @@ export function smartShorten(text: string, length: number = 180) {
 export function renderPlainText(content: RichText) {
     return documentToPlainTextString(JSON.parse(content.raw));
 }
+
+export function firstSentence(text: string) {
+    var split = text.split(/\.|\?|!/);
+    return split[0] + text.charAt(split[0].length);
+}
