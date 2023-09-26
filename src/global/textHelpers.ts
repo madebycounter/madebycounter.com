@@ -36,5 +36,7 @@ export function renderPlainText(content: RichText) {
 
 export function firstSentence(text: string) {
     var split = text.split(/\.|\?|!/);
-    return split[0] + text.charAt(split[0].length);
+    var end = text.charAt(split[0].length);
+    if (text.charAt(split[0].length + 1) === '"') end += '"';
+    return split[0] + end;
 }
