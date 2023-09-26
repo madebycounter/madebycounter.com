@@ -9,7 +9,7 @@ import { blogPostOptions } from "../global/richTextOptions";
 import { renderPlainText, smartShorten } from "../global/textHelpers";
 import { LightTheme } from "../global/themes";
 
-import Author from "../components/Author";
+import { AuthorCard } from "../components/Author";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { LayoutNarrow } from "../components/Layout";
@@ -90,7 +90,7 @@ const BlogPostPage = ({ data }: BlogPostProps) => {
             <LayoutNarrow>
                 <Heading1>{title}</Heading1>
 
-                <Author author={author} date={date} />
+                <AuthorCard author={author} date={date} />
 
                 <div>
                     {renderRichText(content, blogPostOptions(openLightbox))}

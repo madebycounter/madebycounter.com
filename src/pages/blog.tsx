@@ -5,7 +5,7 @@ import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "../global/globalStyle";
 import { LightTheme } from "../global/themes";
 
-import Author from "../components/Author";
+import { AuthorCard } from "../components/Author";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { Layout } from "../components/Layout";
@@ -67,7 +67,7 @@ const BlogPage = () => {
                                 <Link to={`/blog/${slug}`}>{title}</Link>
                             </Heading3>
 
-                            <Author author={author} date={date} />
+                            <AuthorCard author={author} date={date} />
                         </div>
                     ))}
                 </BlogList>

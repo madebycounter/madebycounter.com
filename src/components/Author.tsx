@@ -1,15 +1,65 @@
 import React from "react";
 import styled from "styled-components";
 
+import CounterPFP from "../images/authors/counter.png";
+import HenryPFP from "../images/authors/henry.png";
+import LukePFP from "../images/authors/luke.png";
+import WilliamPFP from "../images/authors/william.png";
+
 import { Direction, TeamMember } from "../types";
-import ProfilePhoto from "./ProfilePhoto";
 import { Paragraph } from "./Typography";
 
-type StyledAuthorProps = {
+export function getFullName(author: TeamMember) {
+    switch (author) {
+        case "Counter":
+            return "Counter";
+        case "Henry":
+            return "Henry Buck";
+        case "Luke":
+            return "Luke A. Makinson";
+        case "William":
+            return "William Gardner";
+    }
+}
+
+function getProfilePhoto(author: TeamMember) {
+    switch (author) {
+        case "Counter":
+            return CounterPFP;
+        case "Henry":
+            return HenryPFP;
+        case "Luke":
+            return LukePFP;
+        case "William":
+            return WilliamPFP;
+    }
+}
+
+const StyledImage = styled.img`
+    aspect-ratio: 1;
+`;
+
+export function ProfilePhoto({
+    member,
+    className,
+}: {
+    member: TeamMember;
+    className?: string;
+}) {
+    return (
+        <StyledImage
+            className={className}
+            src={getProfilePhoto(member)}
+            alt={`Photo of ${member}`}
+        />
+    );
+}
+
+type StyledAuthorCardProps = {
     $direction: Direction.LEFT | Direction.RIGHT;
 };
 
-const StyledAuthor = styled.div<StyledAuthorProps>`
+const StyledAuthorCard = styled.div<StyledAuthorCardProps>`
     display: flex;
     align-items: last baseline;
     justify-content: flex-start;
@@ -35,29 +85,27 @@ const StyledAuthor = styled.div<StyledAuthorProps>`
     }
 `;
 
-type AuthorProps = {
+type AuthorCardProps = {
     author: TeamMember;
     date: string;
     className?: string;
     direction?: Direction.LEFT | Direction.RIGHT;
 };
 
-const Author = ({
+export function AuthorCard({
     author,
     date,
     className,
     direction = Direction.LEFT,
-}: AuthorProps) => {
+}: AuthorCardProps) {
     return (
-        <StyledAuthor className={className} $direction={direction}>
+        <StyledAuthorCard className={className} $direction={direction}>
             <ProfilePhoto member={author} />
 
             <div>
                 <Paragraph>Written by {author}</Paragraph>
                 <Paragraph>{date}</Paragraph>
             </div>
-        </StyledAuthor>
+        </StyledAuthorCard>
     );
-};
-
-export default Author;
+}
