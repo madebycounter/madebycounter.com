@@ -3,10 +3,10 @@ import React from "react";
 import styled from "styled-components";
 
 import useContainerQuery from "../../global/containerQuery";
-import { smartShorten } from "../../global/textHelpers";
+import { firstSentence, smartShorten } from "../../global/textHelpers";
 
 import BlogPost from "../../types/BlogPost";
-import Author from "../Author";
+import { AuthorCard } from "../Author";
 import { Heading2, Heading3, Paragraph, Tags } from "../Typography";
 import Media, { ResizeMode } from "../media/Media";
 import LinkDiv from "./utils/LinkDiv";
@@ -16,7 +16,7 @@ type BlogEmbedProps = {
     item: BlogPost;
 };
 
-const StyledEmbedAuthor = styled(Author)`
+const StyledEmbedAuthor = styled(AuthorCard)`
     margin: 0.5rem 0;
     margin-bottom: 0;
     font-size: 1.1rem;
@@ -39,7 +39,7 @@ const StyledEmbedInfo = styled(LinkDiv)`
     justify-content: space-between;
     padding: 0.5rem;
 
-    > div > ${Paragraph} {
+    > ${Paragraph} {
         font-size: 1rem;
         margin: 0.5rem 0;
     }
@@ -58,10 +58,14 @@ const StyledEmbed = styled.div`
         margin: 0.5rem 0;
     }
 
-    &.small {
-        grid-template-columns: 3fr 2fr;
+    ${Heading2} {
+        font-size: 1.6rem;
+    }
 
-        ${StyledEmbedInfo} > div > ${Paragraph} {
+    &.small {
+        grid-template-columns: 2fr 1fr;
+
+        ${StyledEmbedInfo} > ${Paragraph} {
             display: none;
         }
 
@@ -94,13 +98,11 @@ export function BlogEmbed({ item }: BlogEmbedProps) {
     return (
         <StyledEmbed ref={ref} className={classnames(matches)}>
             <StyledEmbedInfo to={`/blog/${item.slug}`}>
-                <div>
-                    <Heading2>{item.title}</Heading2>
+                <Heading2>{item.title}</Heading2>
 
-                    <Paragraph>
-                        {smartShorten(item.description?.description || "", 100)}
-                    </Paragraph>
-                </div>
+                <Paragraph>
+                    {firstSentence(item.description?.description || "")}
+                </Paragraph>
 
                 <StyledEmbedAuthor author={item.author} date={item.date} />
             </StyledEmbedInfo>

@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 import { Direction } from "../../types";
 import BlogPost from "../../types/BlogPost";
-import Author from "../Author";
-import { Heading2 } from "../Typography";
+import { ProfilePhoto, getFullName } from "../Author";
+import { Heading2, Tags } from "../Typography";
 import Media from "../media/Media";
 import LinkDiv from "./utils/LinkDiv";
 import Overlay from "./utils/Overlay";
@@ -14,19 +14,49 @@ type BlogCardProps = {
     item: BlogPost;
 };
 
+const StyledAuthorContainer = styled.div`
+    position: absolute;
+    bottom: 0;
+    right: 0.5rem;
+
+    width: 8rem;
+    height: 8rem;
+
+    z-index: 10;
+
+    img {
+        width: 100%;
+        filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 1));
+    }
+`;
+
 const StyledCard = styled(LinkDiv)`
     position: relative;
-    --margin: 0.5rem;
+    overflow: hidden;
 
     ${Heading2} {
         position: absolute;
         color: ${(props) => props.theme.backgroundColor};
-        top: var(--margin);
-        left: var(--margin);
         z-index: 10;
-        width: calc(100% - (2 * var(--margin)));
 
-        font-size: 4rem;
+        top: 0;
+        left: 0;
+        width: calc(100% - 1rem);
+        margin: 0.5rem;
+
+        font-size: 2rem;
+        text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    ${Tags} {
+        position: absolute;
+        color: ${(props) => props.theme.backgroundColor};
+        bottom: 0;
+        left: 0;
+        margin: 0.5rem;
+        z-index: 10;
+        font-size: 1.2rem;
+        line-height: 1.1em;
 
         text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     }
@@ -38,7 +68,7 @@ const StyledCard = styled(LinkDiv)`
     }
 
     ${Overlay} {
-        opacity: 0.3;
+        opacity: 0.2;
         transition: opacity 0.1s ease-in-out;
     }
 
@@ -54,28 +84,6 @@ const StyledCard = styled(LinkDiv)`
     }
 `;
 
-const StyledCardAuthor = styled(Author)`
-    font-size: 1.4rem;
-`;
-
-const StyledCardAuthorBox = styled.div`
-    padding: 0.8rem 0.8rem;
-    position: absolute;
-    bottom: 2rem;
-    right: 0;
-    z-index: 10;
-
-    background-color: ${(props) => props.theme.backgroundColor};
-
-    ${Slash} {
-        position: absolute;
-        height: 100%;
-        top: 0;
-        left: 0;
-        transform: translateX(-100%);
-    }
-`;
-
 export function BlogCard({ item }: BlogCardProps) {
     return (
         <StyledCard to={`/blog/${item.slug}`}>
@@ -85,15 +93,15 @@ export function BlogCard({ item }: BlogCardProps) {
 
             <Heading2>{item.title}</Heading2>
 
-            <StyledCardAuthorBox>
-                <StyledCardAuthor
-                    direction={Direction.RIGHT}
-                    author={item.author}
-                    date={item.date}
-                />
+            <Tags>
+                {getFullName(item.author)}
+                <br />
+                {item.dateDotted}
+            </Tags>
 
-                <Slash direction={Direction.RIGHT} />
-            </StyledCardAuthorBox>
+            <StyledAuthorContainer>
+                <ProfilePhoto member={item.author} />
+            </StyledAuthorContainer>
         </StyledCard>
     );
 }
