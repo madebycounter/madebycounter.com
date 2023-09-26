@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from "gatsby";
+import { StringLiteral } from "typescript";
 
 import { MetaImage, RichText, TeamMember } from ".";
 import Asset from "./Asset";
@@ -8,6 +9,7 @@ export default interface BlogPost {
     contentful_id: string;
     title: string;
     date: string;
+    dateDotted: string;
     author: TeamMember;
     banner: Asset;
     bannerMiddle: number;
@@ -37,6 +39,7 @@ export const blogPostFragment = graphql`
         contentful_id
         title
         date(formatString: "MMMM D, YYYY")
+        dateDotted: date(formatString: "MM.DD.YYYY")
         author
         banner {
             ...Asset
