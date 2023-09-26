@@ -6,7 +6,7 @@ import HenryPFP from "../images/authors/henry.png";
 import LukePFP from "../images/authors/luke.png";
 import WilliamPFP from "../images/authors/william.png";
 
-import { Direction, TeamMember } from "../types";
+import { HorizontalDirection, TeamMember } from "../types";
 import { Paragraph } from "./Typography";
 
 export function getFullName(author: TeamMember) {
@@ -56,7 +56,7 @@ export function ProfilePhoto({
 }
 
 type StyledAuthorCardProps = {
-    $direction: Direction.LEFT | Direction.RIGHT;
+    $direction: HorizontalDirection;
 };
 
 const StyledAuthorCard = styled.div<StyledAuthorCardProps>`
@@ -67,7 +67,7 @@ const StyledAuthorCard = styled.div<StyledAuthorCardProps>`
     gap: 0.5em;
 
     flex-direction: ${({ $direction }) =>
-        $direction === Direction.LEFT ? "row" : "row-reverse"};
+        $direction === "left" ? "row" : "row-reverse"};
 
     color: ${({ theme }) => theme.color};
 
@@ -78,7 +78,7 @@ const StyledAuthorCard = styled.div<StyledAuthorCardProps>`
     ${Paragraph} {
         font-size: inherit;
         text-align: ${({ $direction }) =>
-            $direction === Direction.LEFT ? "left" : "right"};
+            $direction === "left" ? "left" : "right"};
         font-weight: 300;
         line-height: 1.3em;
         margin: 0;
@@ -89,14 +89,14 @@ type AuthorCardProps = {
     author: TeamMember;
     date: string;
     className?: string;
-    direction?: Direction.LEFT | Direction.RIGHT;
+    direction?: HorizontalDirection;
 };
 
 export function AuthorCard({
     author,
     date,
     className,
-    direction = Direction.LEFT,
+    direction = "left",
 }: AuthorCardProps) {
     return (
         <StyledAuthorCard className={className} $direction={direction}>

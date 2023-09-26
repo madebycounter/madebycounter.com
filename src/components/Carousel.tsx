@@ -7,52 +7,52 @@ import Media, { ResizeMode } from "./media/Media";
 
 function directionToTranslate(direction: Direction, offset: number) {
     switch (direction) {
-        case Direction.UP:
+        case "up":
             return `translateY(${offset}px)`;
-        case Direction.DOWN:
+        case "down":
             return `translateY(${offset}px)`;
-        case Direction.LEFT:
+        case "left":
             return `translateX(${offset}px)`;
-        case Direction.RIGHT:
+        case "right":
             return `translateX(${offset}px)`;
     }
 }
 
 function isReversed(direction: Direction) {
     switch (direction) {
-        case Direction.UP:
+        case "up":
             return true;
-        case Direction.DOWN:
+        case "down":
             return false;
-        case Direction.LEFT:
+        case "left":
             return true;
-        case Direction.RIGHT:
+        case "right":
             return false;
     }
 }
 
 function isHorizontal(direction: Direction) {
     switch (direction) {
-        case Direction.UP:
+        case "up":
             return false;
-        case Direction.DOWN:
+        case "down":
             return false;
-        case Direction.LEFT:
+        case "left":
             return true;
-        case Direction.RIGHT:
+        case "right":
             return true;
     }
 }
 
 function directionToFlex(direction: Direction) {
     switch (direction) {
-        case Direction.UP:
+        case "up":
             return "column";
-        case Direction.DOWN:
+        case "down":
             return "column";
-        case Direction.LEFT:
+        case "left":
             return "row";
-        case Direction.RIGHT:
+        case "right":
             return "row";
     }
 }
@@ -152,7 +152,7 @@ type CarouselProps = {
 
 export default function Carousel({
     images,
-    direction = Direction.DOWN,
+    direction = "down",
     gap = 10,
     speed = 100,
 }: CarouselProps) {

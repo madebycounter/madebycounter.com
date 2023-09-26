@@ -8,12 +8,11 @@ export type MetaImage = {
 
 export type TeamMember = "Luke" | "Henry" | "William" | "Counter";
 
-export enum Direction {
-    LEFT,
-    RIGHT,
-    UP,
-    DOWN,
-}
+export type HorizontalDirection = "left" | "right";
+
+export type VerticalDirection = "up" | "down";
+
+export type Direction = HorizontalDirection | VerticalDirection;
 
 export interface SiteMetadata {
     title: string;

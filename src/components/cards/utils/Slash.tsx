@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components";
 
-import { Direction } from "../../../types";
+import { HorizontalDirection } from "../../../types";
 
 type SlashProps = {
-    direction?: Direction.LEFT | Direction.RIGHT;
+    direction?: HorizontalDirection;
 };
 
 const Slash = styled.div<SlashProps>`
@@ -13,10 +13,7 @@ const Slash = styled.div<SlashProps>`
     z-index: 10;
 
     ${(props) => {
-        if (
-            props.direction === Direction.LEFT ||
-            props.direction === undefined
-        ) {
+        if (props.direction === "left" || props.direction === undefined) {
             return css`
                 clip-path: polygon(0% 0%, 0% 100%, 100% 0%);
             `;

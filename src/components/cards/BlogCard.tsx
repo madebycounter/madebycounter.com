@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Direction } from "../../types";
 import BlogPost from "../../types/BlogPost";
 import { ProfilePhoto, getFullName } from "../Author";
 import { Heading2, Tags } from "../Typography";
 import Media from "../media/Media";
 import LinkDiv from "./utils/LinkDiv";
 import Overlay from "./utils/Overlay";
-import Slash from "./utils/Slash";
 
 type BlogCardProps = {
     item: BlogPost;
