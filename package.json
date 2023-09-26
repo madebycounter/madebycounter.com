@@ -4,8 +4,8 @@
     "description": "madebycounter.com",
     "author": "William Gardner",
     "scripts": {
-        "develop": "gatsby develop",
-        "start": "gatsby develop",
+        "develop": "gatsby develop -H 0.0.0.0",
+        "start": "gatsby develop -H 0.0.0.0",
         "build": "gatsby build",
         "serve": "gatsby serve",
         "clean": "gatsby clean",

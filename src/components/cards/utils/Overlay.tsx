@@ -9,7 +9,6 @@ const Overlay = styled.div`
     top: 0;
     left: 0;
 
-    /* background: linear-gradient(black -20%, transparent 50%, black 120%); */
     background: black;
 `;
 

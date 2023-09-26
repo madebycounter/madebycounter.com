@@ -8,10 +8,14 @@ import { portfolioOptions } from "../global/richTextOptions";
 import { RichText } from "../types";
 import { Paragraph } from "./Typography";
 
+export const StyledDetails = styled.div`
+    font-size: 1.2rem;
+`;
+
 const DetailsParagraph = styled(Paragraph)`
-    margin: 0.5rem;
-    font-size: 1.5rem;
-    line-height: 1.1em;
+    font-size: inherit !important;
+    margin: 0.3em 0.5rem;
+    line-height: 1.3em;
 
     span {
         display: inline-block;
@@ -35,7 +39,7 @@ type DetailsProps = {
 };
 
 const Details = ({ date, tags, description, plainText }: DetailsProps) => (
-    <div>
+    <StyledDetails>
         {date && (
             <DetailsDate>
                 <DetailsTitle>/date&nbsp;</DetailsTitle>
@@ -64,7 +68,7 @@ const Details = ({ date, tags, description, plainText }: DetailsProps) => (
                     : ""}
             </DetailsDescription>
         )}
-    </div>
+    </StyledDetails>
 );
 
 export default Details;

@@ -1,6 +1,9 @@
+import classnames from "classnames";
 import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
+
+import useContainerQuery from "../../global/containerQuery";
 
 import PortfolioItem from "../../types/PortfolioItem";
 import { Heading2, Tags } from "../Typography";
@@ -21,6 +24,8 @@ const StyledCard = styled(Link)`
         bottom: 0.5rem;
         left: 0.5rem;
         z-index: 10;
+        font-size: 3rem;
+        width: calc(100% - 1rem);
 
         text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     }
@@ -32,6 +37,7 @@ const StyledCard = styled(Link)`
         right: 0.5rem;
         text-align: right;
         z-index: 10;
+        font-size: 1.2rem;
 
         text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     }
@@ -44,6 +50,7 @@ const StyledCard = styled(Link)`
     .media-wrapper {
         transform: scale(1);
         transition: transform 0.1s ease-in-out;
+        filter: blur(2px);
     }
 
     &:hover {

@@ -87,7 +87,7 @@ const StyledEmbed = styled.div`
 export function BlogEmbed({ item }: BlogEmbedProps) {
     const [matches, ref] = useContainerQuery<HTMLDivElement>({
         small: {
-            max: 600,
+            max: 500,
         },
     });
 
@@ -98,8 +98,7 @@ export function BlogEmbed({ item }: BlogEmbedProps) {
                     <Heading2>{item.title}</Heading2>
 
                     <Paragraph>
-                        {smartShorten(item.description?.description || "", 350)}
-                        {/* <FadeOutText /> */}
+                        {smartShorten(item.description?.description || "", 100)}
                     </Paragraph>
                 </div>
 

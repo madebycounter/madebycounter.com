@@ -1,12 +1,20 @@
+import { match } from "assert";
 import classnames from "classnames";
 import React from "react";
 import styled from "styled-components";
 
 import useContainerQuery from "../../global/containerQuery";
-import { renderPlainText, smartShorten } from "../../global/textHelpers";
+import {
+    firstSentence,
+    renderPlainText,
+    smartShorten,
+} from "../../global/textHelpers";
 
 import PortfolioItem from "../../types/PortfolioItem";
-import Details, { DetailsDescription } from "../PortfolioDetails";
+import Details, {
+    DetailsDescription,
+    StyledDetails,
+} from "../PortfolioDetails";
 import { Heading2, Paragraph, Tags } from "../Typography";
 import Slideshow from "../media/Slideshow";
 import LinkDiv from "./utils/LinkDiv";
@@ -27,7 +35,6 @@ const StyledEmbedSlideshow = styled(LinkDiv)`
     position: relative;
     height: 100%;
     width: 100%;
-    aspect-ratio: 4 / 3;
 
     ${Slash} {
         position: absolute;
@@ -62,7 +69,7 @@ const StyledEmbed = styled.div`
     }
 
     &.small {
-        grid-template-columns: 1fr 150px;
+        grid-template-columns: 2fr 1fr;
 
         ${DetailsDescription} {
             display: none;
@@ -85,9 +92,14 @@ type PortfolioEmbedProps = {
 export function PortfolioEmbed({ item }: PortfolioEmbedProps) {
     const [matches, ref] = useContainerQuery<HTMLDivElement>({
         small: {
-            max: 500,
+            max: 450,
+        },
+        large: {
+            min: 650,
         },
     });
+
+    console.log(matches);
 
     return (
         <StyledEmbed ref={ref} className={classnames(matches)}>
@@ -97,10 +109,11 @@ export function PortfolioEmbed({ item }: PortfolioEmbedProps) {
                 <Details
                     tags={item.tags}
                     date={item.date}
-                    plainText={smartShorten(
-                        renderPlainText(item.description),
-                        item.title.length > 19 ? 140 : 180,
-                    )}
+                    plainText={
+                        matches.indexOf("large") !== -1
+                            ? renderPlainText(item.description)
+                            : firstSentence(renderPlainText(item.description))
+                    }
                 />
             </StyledEmbedInfo>
 
