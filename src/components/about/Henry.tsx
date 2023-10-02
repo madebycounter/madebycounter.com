@@ -10,6 +10,9 @@ import { BioParagraph, DippedNametag, Nametag } from "./Typography";
 type HenryProps = {
     portfolioItems: PortfolioItem[];
     portrait: Asset;
+    signature: Asset;
+    slideshow1: Asset[];
+    slideshow2: Asset[];
 };
 
 const Bio = styled.div``;

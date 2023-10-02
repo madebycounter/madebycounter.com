@@ -30,6 +30,9 @@ const IndexPage = () => {
         williamPortrait,
         dronePortrait,
         footerPortraits,
+        lukeSignature,
+        henrySignature,
+        williamSignature,
         williamShowcase,
         henryShowcase,
         lukeShowcase,
@@ -41,17 +44,29 @@ const IndexPage = () => {
             <Navbar active={"about"} />
 
             <div>
-                <Luke portfolioItems={lukeShowcase} portrait={lukePortrait} />
+                <Luke
+                    portfolioItems={lukeShowcase}
+                    portrait={lukePortrait}
+                    signature={lukeSignature}
+                    slideshow1={lukeSlideshow1}
+                    slideshow2={lukeSlideshow2}
+                />
 
                 <Henry
                     portfolioItems={henryShowcase}
                     portrait={henryPortrait}
+                    signature={henrySignature}
+                    slideshow1={henrySlideshow1}
+                    slideshow2={henrySlideshow2}
                 />
 
                 <William
                     portfolioItems={williamShowcase}
                     portrait={williamPortrait}
+                    signature={williamSignature}
                     dronePortrait={dronePortrait}
+                    slideshow1={williamSlideshow1}
+                    slideshow2={williamSlideshow2}
                 />
             </div>
 

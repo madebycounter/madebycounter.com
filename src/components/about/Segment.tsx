@@ -12,7 +12,7 @@ const SegmentWrapper = styled.div<AcceptsDirection>`
     display: flex;
     flex-direction: ${({ $direction }) =>
         $direction === "left" ? "row" : "row-reverse"};
-    align-items: flex-start;
+    align-items: center;
     padding: 100px 0;
 `;
 
