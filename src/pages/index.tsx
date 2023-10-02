@@ -4,20 +4,15 @@ import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "../global/globalStyle";
 import { DarkTheme } from "../global/themes";
 
-import Button from "../components/Button";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
-import Pitch from "../components/about/Pitch";
-import Segment from "../components/about/Segment";
+import Henry from "../components/about/Henry";
+import Luke from "../components/about/Luke";
+import William from "../components/about/William";
 
-import { HorizontalDirection } from "../types";
 import { usePortfolioItems } from "../types/PortfolioItem";
 import { useAboutPage } from "../types/pages/AboutPage";
-
-const PitchButton = styled(Button)`
-    font-size: 4rem;
-`;
 
 const IndexPage = () => {
     const footerTrigger = useRef<HTMLDivElement>(null);
@@ -38,58 +33,11 @@ const IndexPage = () => {
             <Navbar active={"about"} />
 
             <div>
-                <Segment>
-                    <Pitch
-                        portfolioItems={portfolioItems.slice(0, 2)}
-                        affirmation={
-                            <>
-                                We make
-                                <br />
-                                business
-                                <br />
-                                happen.
-                            </>
-                        }
-                        button={<PitchButton to="#">Learn More</PitchButton>}
-                    />
-                </Segment>
+                <Luke portfolioItems={portfolioItems.slice(0, 2)} />
 
-                <Segment direction="left">
-                    <Pitch
-                        direction="left"
-                        portfolioItems={portfolioItems.slice(4, 6)}
-                        affirmation={
-                            <>
-                                Our pics
-                                <br />
-                                increase
-                                <br />
-                                sales.
-                            </>
-                        }
-                        button={
-                            <PitchButton to="#" direction="left">
-                                Learn More
-                            </PitchButton>
-                        }
-                    />
-                </Segment>
+                <Henry portfolioItems={portfolioItems.slice(6, 8)} />
 
-                <Segment>
-                    <Pitch
-                        portfolioItems={portfolioItems.slice(6, 8)}
-                        affirmation={
-                            <>
-                                Drones
-                                <br />
-                                make you
-                                <br />
-                                stand out.
-                            </>
-                        }
-                        button={<PitchButton to="#">Learn More</PitchButton>}
-                    />
-                </Segment>
+                <William portfolioItems={portfolioItems.slice(8, 10)} />
             </div>
 
             <Footer />
