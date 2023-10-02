@@ -7,7 +7,6 @@ import { DarkTheme } from "../global/themes";
 
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
-import Jumbotron from "../components/about/Jumbotron";
 
 const StyledSplash = styled.div`
     width: 100%;
@@ -44,15 +43,13 @@ const SuccessPage = () => {
         <ThemeProvider theme={DarkTheme}>
             <GlobalStyle />
 
-            <Jumbotron>
-                <Navbar active="" />
+            <Navbar active="" />
 
-                <StyledSplash>
-                    <h1>thanks! we'll be in touch soon.</h1>
+            <StyledSplash>
+                <h1>thanks! we'll be in touch soon.</h1>
 
-                    <Link to="/">← go back</Link>
-                </StyledSplash>
-            </Jumbotron>
+                <Link to="/">← go back</Link>
+            </StyledSplash>
         </ThemeProvider>
     );
 };

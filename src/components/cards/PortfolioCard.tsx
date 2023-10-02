@@ -4,10 +4,11 @@ import React from "react";
 import styled from "styled-components";
 
 import useContainerQuery from "../../global/containerQuery";
+import { DarkTheme } from "../../global/themes";
 
 import PortfolioItem from "../../types/PortfolioItem";
 import { Heading2, Tags } from "../Typography";
-import Media from "../media/Media";
+import Media, { ResizeMode } from "../media/Media";
 import Overlay from "./utils/Overlay";
 
 type PortfolioCardProps = {
@@ -18,9 +19,12 @@ const StyledCard = styled(Link)`
     position: relative;
     display: block;
 
+    width: 100%;
+    height: 100%;
+
     ${Heading2} {
         position: absolute;
-        color: ${(props) => props.theme.backgroundColor};
+        color: ${DarkTheme.color};
         bottom: 0.5rem;
         left: 0.5rem;
         z-index: 10;
@@ -32,7 +36,7 @@ const StyledCard = styled(Link)`
 
     ${Tags} {
         position: absolute;
-        color: ${(props) => props.theme.backgroundColor};
+        color: ${DarkTheme.color};
         top: 0.5rem;
         right: 0.5rem;
         text-align: right;
@@ -48,6 +52,8 @@ const StyledCard = styled(Link)`
     }
 
     .media-wrapper {
+        width: 100%;
+        height: 100%;
         transform: scale(1);
         transition: transform 0.1s ease-in-out;
         filter: blur(2px);
@@ -67,7 +73,7 @@ const StyledCard = styled(Link)`
 export function PortfolioCard({ item }: PortfolioCardProps) {
     return (
         <StyledCard to={`/portfolio/${item.slug}`}>
-            <Media src={item.thumbnail} aspectRatio={4 / 3} />
+            <Media src={item.thumbnail} resizeMode={ResizeMode.Fill} />
 
             <Overlay />
 
