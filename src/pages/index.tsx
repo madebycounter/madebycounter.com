@@ -16,6 +16,8 @@ import { useAboutPage } from "../types/pages/AboutPage";
 
 const IndexPage = () => {
     const footerTrigger = useRef<HTMLDivElement>(null);
+
+    // boo!
     const {
         lukeSlideshow1,
         lukeSlideshow2,
@@ -23,9 +25,15 @@ const IndexPage = () => {
         henrySlideshow2,
         williamSlideshow1,
         williamSlideshow2,
+        lukePortrait,
+        henryPortrait,
+        williamPortrait,
+        dronePortrait,
+        footerPortraits,
+        williamShowcase,
+        henryShowcase,
+        lukeShowcase,
     } = useAboutPage();
-
-    const portfolioItems = usePortfolioItems();
 
     return (
         <ThemeProvider theme={DarkTheme}>
@@ -33,11 +41,11 @@ const IndexPage = () => {
             <Navbar active={"about"} />
 
             <div>
-                <Luke portfolioItems={portfolioItems.slice(0, 2)} />
+                <Luke portfolioItems={lukeShowcase} />
 
-                <Henry portfolioItems={portfolioItems.slice(6, 8)} />
+                <Henry portfolioItems={henryShowcase} />
 
-                <William portfolioItems={portfolioItems.slice(8, 10)} />
+                <William portfolioItems={williamShowcase} />
             </div>
 
             <Footer />
