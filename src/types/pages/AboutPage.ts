@@ -15,6 +15,9 @@ export interface AboutPage {
     williamPortrait: Asset;
     dronePortrait: Asset;
     footerPortraits: Asset[];
+    lukeSignature: Asset;
+    henrySignature: Asset;
+    williamSignature: Asset;
     lukeShowcase: PortfolioItem[];
     henryShowcase: PortfolioItem[];
     williamShowcase: PortfolioItem[];
@@ -55,6 +58,15 @@ export function useAboutPage(): AboutPage {
                     ...Asset
                 }
                 footerPortraits {
+                    ...Asset
+                }
+                lukeSignature {
+                    ...Asset
+                }
+                henrySignature {
+                    ...Asset
+                }
+                williamSignature {
                     ...Asset
                 }
                 lukeShowcase {
