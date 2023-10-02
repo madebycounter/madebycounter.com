@@ -3,8 +3,13 @@ import { styled } from "styled-components";
 
 import { HorizontalDirection } from "../../types";
 import PortfolioItem from "../../types/PortfolioItem";
+import Button from "../Button";
 import { Heading1 } from "../Typography";
 import { PortfolioCard } from "../cards/PortfolioCard";
+
+export const PitchButton = styled(Button)`
+    font-size: 4rem;
+`;
 
 const PitchWrapper = styled.div`
     background-color: ${({ theme }) => theme.color};
