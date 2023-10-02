@@ -9,16 +9,26 @@ import { PortfolioCard } from "../cards/PortfolioCard";
 
 export const PitchButton = styled(Button)`
     font-size: 4rem;
+
+    @media (max-width: 1660px) {
+        font-size: 2.5rem;
+    }
 `;
 
 const PitchWrapper = styled.div`
     background-color: ${({ theme }) => theme.color};
     color: ${({ theme }) => theme.backgroundColor};
+    width: calc(400px * 2 + 3rem);
+
+    @media (max-width: 1660px) {
+        width: calc(400px + 2rem);
+    }
 `;
 
 const CardContainer = styled.div`
     width: 400px;
     height: 211px;
+    display: block;
 `;
 
 const TopHalf = styled.div`
@@ -31,6 +41,12 @@ const TopHalf = styled.div`
 const PortfolioItems = styled.div`
     display: flex;
     gap: 1rem;
+
+    @media (max-width: 1660px) {
+        > div:not(:first-child) {
+            display: none;
+        }
+    }
 `;
 
 const Affirmation = styled(Heading1)<{ $direction: HorizontalDirection }>`
@@ -39,6 +55,10 @@ const Affirmation = styled(Heading1)<{ $direction: HorizontalDirection }>`
     padding-bottom: 0.1em;
     text-align: ${({ $direction }) =>
         $direction === "left" ? "right" : "left"};
+
+    @media (max-width: 1660px) {
+        font-size: 5.5rem;
+    }
 `;
 
 type PitchProps = {

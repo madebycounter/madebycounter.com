@@ -54,7 +54,11 @@ const Label = styled(Heading2)`
 
 const MediaContainer = styled.div<AcceptsDirection>`
     width: 100%;
+    overflow: hidden;
     display: flex;
+    gap: 0.2em;
+    height: 100%;
+
     justify-content: ${(props) => {
         switch (props.$direction) {
             case "left":
@@ -63,8 +67,6 @@ const MediaContainer = styled.div<AcceptsDirection>`
                 return "flex-start";
         }
     }};
-    overflow: hidden;
-    gap: 0.2em;
 `;
 
 const Arrow = styled.div<AcceptsDirection>`
