@@ -1,7 +1,7 @@
 import React from "react";
 
 import PortfolioItem from "../../types/PortfolioItem";
-import Pitch from "./Pitch";
+import Pitch, { PitchButton } from "./Pitch";
 import Segment from "./Segment";
 
 type WilliamProps = {
