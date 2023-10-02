@@ -1,10 +1,23 @@
-import { Link } from "gatsby";
-import React from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
+
+import { randomTeamColor } from "../global/colorTools";
 
 import { HorizontalDirection } from "../types";
 import { Heading2 } from "./Typography";
 import LinkDiv from "./cards/utils/LinkDiv";
+
+const MediaPlaceholderWrapper = styled.div<{ $color: string | undefined }>`
+    height: 100%;
+    aspect-ratio: 1;
+    background-color: ${(props) => props.$color};
+`;
+
+function MediaPlaceholder() {
+    const [color, _] = useState(randomTeamColor(2));
+
+    return <MediaPlaceholderWrapper $color={color} />;
+}
 
 type AcceptsDirection = {
     $direction: HorizontalDirection;
@@ -39,9 +52,19 @@ const Label = styled(Heading2)`
     background-color: ${(props) => props.theme.color};
 `;
 
-const MediaContainer = styled.div`
+const MediaContainer = styled.div<AcceptsDirection>`
     width: 100%;
-    background-color: lightgray;
+    display: flex;
+    justify-content: ${(props) => {
+        switch (props.$direction) {
+            case "left":
+                return "flex-end";
+            case "right":
+                return "flex-start";
+        }
+    }};
+    overflow: hidden;
+    gap: 0.2em;
 `;
 
 const Arrow = styled.div<AcceptsDirection>`
@@ -99,7 +122,14 @@ export default function ButtonRight({
                 <Arrow $direction={direction} />
             </Label>
 
-            <MediaContainer></MediaContainer>
+            <MediaContainer $direction={direction}>
+                <MediaPlaceholder />
+                <MediaPlaceholder />
+                <MediaPlaceholder />
+                <MediaPlaceholder />
+                <MediaPlaceholder />
+                <MediaPlaceholder />
+            </MediaContainer>
         </ButtonWrapper>
     );
 }
