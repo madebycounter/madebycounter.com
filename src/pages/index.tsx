@@ -41,11 +41,18 @@ const IndexPage = () => {
             <Navbar active={"about"} />
 
             <div>
-                <Luke portfolioItems={lukeShowcase} />
+                <Luke portfolioItems={lukeShowcase} portrait={lukePortrait} />
 
-                <Henry portfolioItems={henryShowcase} />
+                <Henry
+                    portfolioItems={henryShowcase}
+                    portrait={henryPortrait}
+                />
 
-                <William portfolioItems={williamShowcase} />
+                <William
+                    portfolioItems={williamShowcase}
+                    portrait={williamPortrait}
+                    dronePortrait={dronePortrait}
+                />
             </div>
 
             <Footer />

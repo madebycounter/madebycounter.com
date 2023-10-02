@@ -1,0 +1,18 @@
+import styled from "styled-components";
+
+import { Heading1, Paragraph } from "../Typography";
+
+export const Nametag = styled(Heading1)`
+    font-size: 8rem;
+    line-height: 0.8em;
+`;
+
+export const DippedNametag = styled(Nametag)`
+    padding-bottom: 0.1em;
+`;
+
+export const BioParagraph = styled(Paragraph)`
+    font-size: 2rem;
+    /* font-weight: 400; */
+    line-height: 1.3em;
+`;
