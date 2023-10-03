@@ -23,7 +23,7 @@ type AcceptsDirection = {
     $direction: HorizontalDirection;
 };
 
-const ButtonWrapper = styled(LinkDiv)<AcceptsDirection>`
+export const ButtonWrapper = styled(LinkDiv)<AcceptsDirection>`
     font-size: 2rem;
     height: 1.5em;
     display: flex;
@@ -44,7 +44,7 @@ const Label = styled(Heading2)`
     position: relative;
     font-size: inherit;
     text-decoration: none;
-    padding: 0 0.3em;
+    padding: 0 0.4em;
     padding-top: 0.25em;
     white-space: nowrap;
 
@@ -126,11 +126,11 @@ export default function ButtonRight({
 
             <MediaContainer $direction={direction}>
                 <MediaPlaceholder />
+                {/* <MediaPlaceholder />
                 <MediaPlaceholder />
                 <MediaPlaceholder />
                 <MediaPlaceholder />
-                <MediaPlaceholder />
-                <MediaPlaceholder />
+                <MediaPlaceholder /> */}
             </MediaContainer>
         </ButtonWrapper>
     );

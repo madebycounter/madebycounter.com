@@ -14,6 +14,12 @@ const SegmentWrapper = styled.div<AcceptsDirection>`
         $direction === "left" ? "row" : "row-reverse"};
     align-items: center;
     padding: 100px 0;
+
+    @media (max-width: 1250px) {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        gap: 150px;
+    }
 `;
 
 type SegmentProps = {

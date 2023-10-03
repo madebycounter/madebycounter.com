@@ -35,7 +35,7 @@ export default function William({ portfolioItems }: WilliamProps) {
                 button={<PitchButton to="#">Learn More</PitchButton>}
             />
 
-            <Bio>
+            {/* <Bio>
                 <DippedNametag>
                     william
                     <br />
@@ -53,7 +53,7 @@ export default function William({ portfolioItems }: WilliamProps) {
                     <br />
                     for you!
                 </BioParagraph>
-            </Bio>
+            </Bio> */}
         </Segment>
     );
 }

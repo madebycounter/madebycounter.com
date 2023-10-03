@@ -22,6 +22,16 @@ const StyledCard = styled(Link)`
     width: 100%;
     height: 100%;
 
+    &.small {
+        ${Heading2} {
+            font-size: 2rem;
+        }
+
+        ${Tags} {
+            font-size: 1rem;
+        }
+    }
+
     ${Heading2} {
         position: absolute;
         color: ${DarkTheme.color};
@@ -71,11 +81,21 @@ const StyledCard = styled(Link)`
 `;
 
 export function PortfolioCard({ item }: PortfolioCardProps) {
+    const [matches, ref] = useContainerQuery<HTMLDivElement>({
+        small: {
+            max: 350,
+        },
+    });
+
     return (
-        <StyledCard to={`/portfolio/${item.slug}`}>
+        <StyledCard
+            to={`/portfolio/${item.slug}`}
+            className={classnames(matches)}
+        >
             <Media src={item.thumbnail} aspectRatio={null} />
 
-            <Overlay />
+            {/* stupid typescript weirdness with putting ref on styledcard. overlay is always the same width though */}
+            <Overlay ref={ref} />
 
             <Heading2>{item.title}</Heading2>
 

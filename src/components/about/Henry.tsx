@@ -78,7 +78,7 @@ export default function Henry({
                 }
             />
 
-            <Bio>
+            {/* <Bio>
                 <SlideshowContainer>
                     <Slideshow src={slideshow2} aspectRatio={3 / 4} />
                     <Slideshow src={slideshow1} aspectRatio={16 / 9} />
@@ -115,7 +115,7 @@ export default function Henry({
                 <Portrait>
                     <Media src={portrait} />
                 </Portrait>
-            </Bio>
+            </Bio> */}
         </Segment>
     );
 }

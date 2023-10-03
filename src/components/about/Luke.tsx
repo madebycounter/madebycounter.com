@@ -70,7 +70,7 @@ export default function Luke({
                 button={<PitchButton to="#">Learn More</PitchButton>}
             />
 
-            <Bio>
+            {/* <Bio>
                 <Nametag>
                     luke a.
                     <br />
@@ -101,7 +101,7 @@ export default function Luke({
                 <Portrait>
                     <Media src={portrait} />
                 </Portrait>
-            </Bio>
+            </Bio> */}
         </Segment>
     );
 }
