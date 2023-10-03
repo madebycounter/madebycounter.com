@@ -19,12 +19,26 @@ type HenryProps = {
 };
 
 const Bio = styled.div`
+    position: relative;
     display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-left: 140px;
 `;
 
 const Signature = styled.div`
     width: 335px;
     filter: ${({ theme }) => theme.imageFilter};
+`;
+
+const Portrait = styled.div`
+    position: absolute;
+    transform: scaleX(-1);
+    width: 280px;
+
+    top: 0px;
+    left: -160px;
+    z-index: 1000;
 `;
 
 const SlideshowContainer = styled.div`
@@ -66,7 +80,7 @@ export default function Henry({
 
             <Bio>
                 <SlideshowContainer>
-                    <Slideshow src={slideshow2} aspectRatio={2 / 3} />
+                    <Slideshow src={slideshow2} aspectRatio={3 / 4} />
                     <Slideshow src={slideshow1} aspectRatio={16 / 9} />
                 </SlideshowContainer>
 
@@ -97,6 +111,10 @@ export default function Henry({
                         <Media src={signature} />
                     </Signature>
                 </InfoContainer>
+
+                <Portrait>
+                    <Media src={portrait} />
+                </Portrait>
             </Bio>
         </Segment>
     );
