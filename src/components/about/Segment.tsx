@@ -15,6 +15,7 @@ const SegmentWrapper = styled.div<AcceptsDirection>`
     align-items: center;
     padding: 100px 0;
 
+    // Tablet
     @media (max-width: 1250px) {
         flex-direction: column-reverse;
         align-items: stretch;

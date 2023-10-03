@@ -10,6 +10,7 @@ import { PortfolioCard } from "../cards/PortfolioCard";
 export const PitchButton = styled(Button)`
     font-size: 4rem;
 
+    // Desktop reduced
     @media (max-width: 1660px) {
         font-size: 2.5rem;
     }
@@ -24,10 +25,12 @@ const PitchWrapper = styled.div<{ $direction: HorizontalDirection }>`
     grid-template-rows: auto 1fr auto;
     grid-template-areas: "portfolio" "affirmation" "button";
 
+    // Desktop reduced
     @media (max-width: 1660px) {
         width: calc(400px + 2rem);
     }
 
+    // Tablet
     @media (max-width: 1250px) {
         width: 100%;
 
@@ -49,6 +52,7 @@ const PitchWrapper = styled.div<{ $direction: HorizontalDirection }>`
         }}
     }
 
+    // Mobile
     @media (max-width: 600px) {
         grid-template-rows: auto auto auto;
         grid-template-columns: auto;
@@ -62,14 +66,13 @@ const CardContainer = styled.div`
 
     display: block;
 
+    // Tablet
     @media (max-width: 1250px) {
         width: 100%;
-    }
-
-    @media (max-width: 1250px) {
         width: 40vw;
     }
 
+    // Mobile
     @media (max-width: 600px) {
         width: 100%;
     }
@@ -81,12 +84,14 @@ const PortfolioItems = styled.div`
     display: flex;
     gap: 1rem;
 
+    // Desktop reduced
     @media (max-width: 1660px) {
         > div:not(:first-child) {
             display: none;
         }
     }
 
+    // Tablet
     @media (max-width: 1250px) {
         flex-direction: column;
 
@@ -95,6 +100,7 @@ const PortfolioItems = styled.div`
         }
     }
 
+    // Mobile
     @media (max-width: 600px) {
         > div:not(:first-child) {
             display: none;
@@ -111,23 +117,27 @@ const Affirmation = styled(Heading1)<{ $direction: HorizontalDirection }>`
     text-align: ${({ $direction }) =>
         $direction === "left" ? "right" : "left"};
 
+    // Desktop reduced
     @media (max-width: 1660px) {
         font-size: 5.5rem;
         margin-top: 0;
     }
 
+    // Tablet
     @media (max-width: 1250px) {
         margin: 1rem 0;
         font-size: 12vw;
         margin-top: 1rem;
     }
 
+    // Mobile
     @media (max-width: 600px) {
         margin: 1rem;
         font-size: 5.5rem;
         margin-top: 0;
     }
 
+    // Mobile reduced
     @media (max-width: 400px) {
         font-size: 4rem;
     }
@@ -136,10 +146,12 @@ const Affirmation = styled(Heading1)<{ $direction: HorizontalDirection }>`
 const ButtonArea = styled.div`
     grid-area: button;
 
+    // Tablet
     @media (max-width: 1250px) {
         margin-bottom: 1rem;
     }
 
+    // Mobile
     @media (max-width: 600px) {
         margin-bottom: 0;
     }
