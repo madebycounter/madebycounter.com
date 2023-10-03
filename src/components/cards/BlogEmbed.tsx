@@ -8,7 +8,7 @@ import { firstSentence, smartShorten } from "../../global/textHelpers";
 import BlogPost from "../../types/BlogPost";
 import { AuthorCard } from "../Author";
 import { Heading2, Heading3, Paragraph, Tags } from "../Typography";
-import Media, { ResizeMode } from "../media/Media";
+import Media from "../media/Media";
 import LinkDiv from "./utils/LinkDiv";
 import Slash from "./utils/Slash";
 
@@ -108,7 +108,7 @@ export function BlogEmbed({ item }: BlogEmbedProps) {
             </StyledEmbedInfo>
 
             <StyledEmbedImage to={`/blog/${item.slug}`}>
-                <Media src={item.banner} resizeMode={ResizeMode.Fill} />
+                <Media src={item.banner} aspectRatio={null} />
 
                 <Slash />
             </StyledEmbedImage>

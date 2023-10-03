@@ -20,23 +20,17 @@ export function isGif(mimeType: string): boolean {
     return mimeType === "image/gif";
 }
 
-export enum ResizeMode {
-    Width,
-    Height,
-    Fill,
-    Contain,
-}
+export type AspectRatio = number | "original" | null;
 
-type StyledMediaProps = ThemedProps & {
-    $aspectRatio: number;
-    $center: number;
-    $resizeMode: ResizeMode;
+type MediaWrapperProps = ThemedProps & {
+    $aspectRatio: number | null;
     $hasClickEvent: boolean;
+    $center: number;
 };
 
-const StyledMedia = styled.div<StyledMediaProps>`
-    aspect-ratio: ${({ $aspectRatio }) => $aspectRatio};
+const MediaWrapper = styled.div<MediaWrapperProps>`
     overflow: hidden;
+    aspect-ratio: ${(props) => props.$aspectRatio};
 
     ${({ $hasClickEvent }) =>
         $hasClickEvent &&
@@ -44,55 +38,46 @@ const StyledMedia = styled.div<StyledMediaProps>`
             cursor: pointer;
         `}
 
-    ${({ $resizeMode }) => {
-        switch ($resizeMode) {
-            case ResizeMode.Width:
-                return css`
+    ${(props) => {
+        if (props.$aspectRatio !== null) {
+            return css`
+                max-width: 100%;
+                max-height: 100%;
+                margin: auto;
+
+                .media-wrapper {
                     width: 100%;
-                `;
-            case ResizeMode.Height:
-                return css`
-                    height: 100%;
-                `;
-            case ResizeMode.Fill:
-                return css`
+                    aspect-ratio: ${props.$aspectRatio};
+                }
+            `;
+        } else {
+            return css`
+                width: 100%;
+                height: 100%;
+
+                .media-wrapper {
                     width: 100%;
                     height: 100%;
-                `;
-            case ResizeMode.Contain:
-                return css`
-                    max-width: 100%;
-                    max-height: 100%;
-                    margin: auto;
-                `;
+                }
+            `;
         }
     }}
 
-    > div {
-        width: 100%;
-        height: 100%;
-
-        > img,
-        > video {
+    .media-wrapper {
+        img,
+        video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: 50% ${({ $center }) => $center}%;
-        }
-    }
-
-    .gatsby-image-wrapper {
-        [data-main-image] {
-            object-position: 50% ${({ $center }) => $center}%;
+            object-position: 50% ${(props) => props.$center}%;
         }
     }
 `;
 
 export type MediaProps = {
     src: Asset;
-    aspectRatio?: number | null;
+    aspectRatio?: AspectRatio;
     center?: number;
-    resizeMode?: ResizeMode;
     className?: string;
     videoPlaying?: boolean;
     videoLoop?: boolean;
@@ -103,10 +88,9 @@ export type MediaProps = {
 
 export default function Media({
     src,
-    aspectRatio,
+    aspectRatio = "original",
     className,
     center = 50,
-    resizeMode = ResizeMode.Contain,
     videoPlaying = true,
     videoLoop = true,
     onVideoEnd = () => {},
@@ -134,16 +118,21 @@ export default function Media({
         }
     }, [videoPlaying]);
 
-    if (aspectRatio === null || aspectRatio === undefined) {
-        aspectRatio = dimensions.width / dimensions.height;
+    var trueAspectRatio;
+
+    if (aspectRatio === "original") {
+        trueAspectRatio = dimensions.width / dimensions.height;
+    } else if (aspectRatio !== null) {
+        trueAspectRatio = aspectRatio;
+    } else {
+        trueAspectRatio = null;
     }
 
     return (
-        <StyledMedia
-            $aspectRatio={aspectRatio}
-            $center={center}
-            $resizeMode={resizeMode}
+        <MediaWrapper
+            $aspectRatio={trueAspectRatio}
             $hasClickEvent={!!onClick}
+            $center={center}
             onClick={() => onClick && onClick(src.contentful_id)}
             className={className}
         >
@@ -182,7 +171,7 @@ export default function Media({
                     </video>
                 </div>
             )}
-        </StyledMedia>
+        </MediaWrapper>
     );
 }
 

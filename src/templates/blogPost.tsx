@@ -16,7 +16,7 @@ import { LayoutNarrow } from "../components/Layout";
 import Navbar from "../components/Navbar";
 import { Heading1 } from "../components/Typography";
 import Lightbox from "../components/media/Lightbox";
-import Media, { ResizeMode } from "../components/media/Media";
+import Media from "../components/media/Media";
 
 import defaultImage from "../images/meta.png";
 
@@ -81,8 +81,7 @@ const BlogPostPage = ({ data }: BlogPostProps) => {
                 <Media
                     src={banner}
                     center={bannerMiddle}
-                    resizeMode={ResizeMode.Fill}
-                    aspectRatio={0}
+                    aspectRatio={null}
                     onClick={openLightbox}
                 />
             </StyledBlogBanner>

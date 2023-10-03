@@ -11,7 +11,6 @@ import Henry from "../components/about/Henry";
 import Luke from "../components/about/Luke";
 import William from "../components/about/William";
 
-import { usePortfolioItems } from "../types/PortfolioItem";
 import { useAboutPage } from "../types/pages/AboutPage";
 
 const IndexPage = () => {

@@ -6,7 +6,7 @@ import "yet-another-react-lightbox/plugins/counter.css";
 import "yet-another-react-lightbox/styles.css";
 
 import Asset from "../../types/Asset";
-import Media, { ResizeMode } from "./Media";
+import Media from "./Media";
 
 declare module "yet-another-react-lightbox" {
     export interface MediaSlide {
@@ -19,30 +19,9 @@ declare module "yet-another-react-lightbox" {
     }
 }
 
-const StyledViewer = styled.div`
-    position: fixed;
-    z-index: 5;
-    left: 0;
-    top: 0;
+const MediaContainer = styled.div`
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.8);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    > div {
-        width: 80%;
-    }
-
-    img,
-    video {
-        max-width: 100%;
-        max-height: 80%;
-    }
 `;
 
 type LightboxProps = {
@@ -72,10 +51,7 @@ const Lightbox = ({ media, open, close, current }: LightboxProps) => {
             render={{
                 slide: ({ slide }) =>
                     slide.type === "media-slide" ? (
-                        <Media
-                            src={slide.data}
-                            resizeMode={ResizeMode.Contain}
-                        />
+                        <Media src={slide.data} />
                     ) : undefined,
             }}
         />

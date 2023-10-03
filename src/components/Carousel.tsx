@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 
 import { Direction } from "../types";
 import Asset from "../types/Asset";
-import Media, { ResizeMode } from "./media/Media";
+import Media from "./media/Media";
 
 function directionToTranslate(direction: Direction, offset: number) {
     switch (direction) {
@@ -194,26 +194,12 @@ export default function Carousel({
             >
                 <CarouselBlock $gap={gap} $direction={direction} ref={blockRef}>
                     {images.map((image) => (
-                        <Media
-                            src={image}
-                            resizeMode={
-                                isHorizontal(direction)
-                                    ? ResizeMode.Height
-                                    : ResizeMode.Width
-                            }
-                        />
+                        <Media src={image} />
                     ))}
                 </CarouselBlock>
                 <CarouselBlock $gap={gap} $direction={direction}>
                     {images.map((image) => (
-                        <Media
-                            src={image}
-                            resizeMode={
-                                isHorizontal(direction)
-                                    ? ResizeMode.Height
-                                    : ResizeMode.Width
-                            }
-                        />
+                        <Media src={image} />
                     ))}
                 </CarouselBlock>
             </CarouselArticle>

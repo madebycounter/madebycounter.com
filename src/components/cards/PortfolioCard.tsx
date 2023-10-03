@@ -8,7 +8,7 @@ import { DarkTheme } from "../../global/themes";
 
 import PortfolioItem from "../../types/PortfolioItem";
 import { Heading2, Tags } from "../Typography";
-import Media, { ResizeMode } from "../media/Media";
+import Media from "../media/Media";
 import Overlay from "./utils/Overlay";
 
 type PortfolioCardProps = {
@@ -73,7 +73,7 @@ const StyledCard = styled(Link)`
 export function PortfolioCard({ item }: PortfolioCardProps) {
     return (
         <StyledCard to={`/portfolio/${item.slug}`}>
-            <Media src={item.thumbnail} resizeMode={ResizeMode.Fill} />
+            <Media src={item.thumbnail} aspectRatio={null} />
 
             <Overlay />
 
