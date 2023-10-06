@@ -7,7 +7,26 @@ type AcceptsDirection = {
     $direction: HorizontalDirection;
 };
 
-const SegmentWrapper = styled.div<AcceptsDirection>`
+export const Bio = styled.div`
+    position: relative;
+    display: flex;
+
+    // Tablet
+    @media (max-width: 1250px) {
+        margin: auto;
+    }
+
+    // Mobile
+    @media (max-width: 850px) {
+        margin: 4vw;
+    }
+`;
+
+export const Spacer = styled.div<{ $width: number }>`
+    width: ${(props) => props.$width}px;
+`;
+
+export const SegmentWrapper = styled.div<AcceptsDirection>`
     width: 100%;
     display: flex;
     flex-direction: ${({ $direction }) =>
@@ -20,6 +39,11 @@ const SegmentWrapper = styled.div<AcceptsDirection>`
         flex-direction: column-reverse;
         align-items: stretch;
         gap: 150px;
+    }
+
+    @media (max-width: 850px) {
+        gap: 20vw;
+        padding: 20vw 0;
     }
 `;
 
