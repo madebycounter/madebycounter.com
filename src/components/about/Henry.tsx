@@ -26,7 +26,7 @@ type HenryProps = {
 
 const HenryBio = styled(Bio)`
     align-items: flex-end;
-    gap: 0.5rem;
+    gap: 1rem;
 
     @media (max-width: 850px) {
         flex-direction: column-reverse;
@@ -66,7 +66,7 @@ const SlideshowContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 250px;
-    gap: 1rem;
+    gap: 0.5rem;
 
     @media (max-width: 850px) {
         /* 4vw margin, 2vw gap */
