@@ -58,6 +58,12 @@ exports.createPages = async ({ graphql, actions }) => {
                     contentful_id
                 }
             }
+            pitchPages: allContentfulPitchPage {
+                nodes {
+                    slug
+                    contentful_id
+                }
+            }
         }
     `);
 
@@ -75,6 +81,16 @@ exports.createPages = async ({ graphql, actions }) => {
         actions.createPage({
             path: "/portfolio/" + node.slug,
             component: path.resolve("./src/templates/portfolioItem.tsx"),
+            context: {
+                contentful_id: node.contentful_id,
+            },
+        });
+    });
+
+    data.pitchPages.nodes.forEach((node) => {
+        actions.createPage({
+            path: "/services/" + node.slug,
+            component: path.resolve("./src/templates/pitchPage.tsx"),
             context: {
                 contentful_id: node.contentful_id,
             },
