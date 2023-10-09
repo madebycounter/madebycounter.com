@@ -65,7 +65,7 @@ const Portrait = styled.div`
     @media (max-width: 850px) {
         width: 40vw;
         top: -6vw;
-        left: 54vw;
+        left: 52vw;
     }
 `;
 
