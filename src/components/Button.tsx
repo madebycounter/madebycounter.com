@@ -25,7 +25,7 @@ type AcceptsDirection = {
 
 export const ButtonWrapper = styled(LinkDiv)<AcceptsDirection>`
     font-size: 2rem;
-    height: 1.5em;
+    height: 1.3em;
     display: flex;
     align-items: stretch;
     width: 100%;
@@ -44,8 +44,8 @@ const Label = styled(Heading2)`
     position: relative;
     font-size: inherit;
     text-decoration: none;
-    padding: 0 0.4em;
-    padding-top: 0.25em;
+    padding: 0 0.2em;
+    padding-top: 0.18em;
     white-space: nowrap;
 
     color: ${(props) => props.theme.backgroundColor};
@@ -73,8 +73,8 @@ const Arrow = styled.div<AcceptsDirection>`
     position: absolute;
     top: 0;
     background-color: ${(props) => props.theme.color};
-    width: calc(1.5em * 0.4);
     height: 100%;
+    aspect-ratio: 16 / 46;
 
     ${(props) => {
         switch (props.$direction) {
@@ -125,7 +125,7 @@ export default function ButtonRight({
             </Label>
 
             <MediaContainer $direction={direction}>
-                <MediaPlaceholder />
+                {/* <MediaPlaceholder /> */}
                 {/* <MediaPlaceholder />
                 <MediaPlaceholder />
                 <MediaPlaceholder />
