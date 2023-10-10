@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-import HenrySignature from "../images/about/henry-signature.webp";
-import LukeSignature from "../images/about/luke-signature.webp";
-import WilliamSignature from "../images/about/william-signature.webp";
+import HenrySignature from "../images/signatures/henry.webp";
+import LukeSignature from "../images/signatures/luke.webp";
+import WilliamSignature from "../images/signatures/william.webp";
 
 import { TeamMember } from "../types";
 
