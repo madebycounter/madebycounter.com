@@ -21,7 +21,10 @@ module.exports = {
         "gatsby-plugin-sharp",
         "gatsby-transformer-sharp",
         "gatsby-plugin-styled-components",
-        "gatsby-plugin-sitemap",
+        {
+            resolve: "gatsby-plugin-sitemap",
+            options: {},
+        },
         {
             resolve: "gatsby-plugin-manifest",
             options: {
