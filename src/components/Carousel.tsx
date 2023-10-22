@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
+import useSafeId from "../global/useSafeId";
 import useSize from "../global/useSize";
 
 import { Direction } from "../types";
@@ -50,19 +51,23 @@ function ImageBlock({
 }
 
 const CarouselWrapper = styled.div`
-    resize: both;
     overflow: hidden;
 `;
 
-const CarouselSlider = styled.div<{ $width: number; $speed: number }>`
+const CarouselSlider = styled.div<{
+    $width: number;
+    $speed: number;
+    $id: string;
+}>`
     display: flex;
-    animation: move ${(props) => props.$speed}s linear infinite;
+    animation: ${(props) => "btn-" + props.$id} ${(props) => props.$speed}s
+        linear infinite;
 
     > * {
         flex-shrink: 0;
     }
 
-    @keyframes move {
+    @keyframes ${(props) => "btn-" + props.$id} {
         0% {
             transform: translateX(0);
         }
@@ -75,7 +80,6 @@ const CarouselSlider = styled.div<{ $width: number; $speed: number }>`
 
 type CarouselProps = {
     images: Asset[];
-    direction?: Direction;
     size?: number;
     gap?: number;
     speed?: number;
@@ -84,12 +88,12 @@ type CarouselProps = {
 
 export default function Carousel({
     images,
-    direction = "right",
     size = 100,
     gap = 10,
     speed = 50,
     aspectRatio = "original",
 }: CarouselProps) {
+    const id = useSafeId();
     const [wrapperRef, wrapperSize] = useSize<HTMLDivElement>();
     const [state, setState] = useState({
         size: 0,
@@ -128,8 +132,9 @@ export default function Carousel({
     return (
         <CarouselWrapper ref={wrapperRef}>
             <CarouselSlider
+                $id={id}
                 $width={imageWidths}
-                $speed={imageWidths / quantity / speed}
+                $speed={imageWidths / speed}
             >
                 {[...Array(quantity)].map((_, i) => (
                     <ImageBlock

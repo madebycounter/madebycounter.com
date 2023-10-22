@@ -1,66 +1,79 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import styled, { css } from "styled-components";
 
-import { randomTeamColor } from "../global/colorTools";
+import useSize from "../global/useSize";
 
-import { HorizontalDirection } from "../types";
+import Asset from "../types/Asset";
+import Carousel from "./Carousel";
 import { Heading2 } from "./Typography";
 import LinkDiv from "./cards/utils/LinkDiv";
 
-const MediaPlaceholderWrapper = styled.div<{ $color: string | undefined }>`
-    height: 100%;
-    aspect-ratio: 1;
-    background-color: ${(props) => props.$color};
-`;
+export type ButtonType = "left" | "right" | "left-fill" | "right-fill";
 
-function MediaPlaceholder() {
-    const [color, _] = useState(randomTeamColor(2));
-
-    return <MediaPlaceholderWrapper $color={color} />;
-}
-
-type AcceptsDirection = {
-    $direction: HorizontalDirection;
+type AcceptsButtonType = {
+    $buttonType: ButtonType;
 };
 
-export const ButtonWrapper = styled(LinkDiv)<AcceptsDirection>`
-    font-size: 2rem;
-    height: 1.3em;
-    display: flex;
-    align-items: stretch;
+export const ButtonWrapper = styled(LinkDiv)<AcceptsButtonType>`
+    font-size: 3rem;
+    display: grid;
     width: 100%;
 
-    flex-direction: ${(props) => {
-        switch (props.$direction) {
+    ${(props) => {
+        switch (props.$buttonType) {
             case "left":
-                return "row-reverse";
+                return css`
+                    grid-template-columns: 1fr auto;
+                    grid-template-areas: "media label";
+                `;
             case "right":
-                return "row";
+                return css`
+                    grid-template-columns: auto 1fr;
+                    grid-template-areas: "label media";
+                `;
         }
-    }};
+    }}
 `;
 
-const Label = styled(Heading2)`
+const LabelContainer = styled.div`
     position: relative;
+`;
+
+const Label = styled(Heading2)<{ $inverted: boolean }>`
     font-size: inherit;
     text-decoration: none;
-    padding: 0 0.2em;
-    padding-top: 0.18em;
     white-space: nowrap;
 
-    color: ${(props) => props.theme.backgroundColor};
-    background-color: ${(props) => props.theme.color};
+    grid-area: label;
+
+    padding: 0 0.1em;
+
+    ${(props) => {
+        if (props.$inverted) {
+            return css`
+                color: ${(props) => props.theme.color};
+                background-color: ${(props) => props.theme.backgroundColor};
+            `;
+        } else {
+            return css`
+                color: ${(props) => props.theme.backgroundColor};
+                background-color: ${(props) => props.theme.color};
+            `;
+        }
+    }}
 `;
 
-const MediaContainer = styled.div<AcceptsDirection>`
+const MediaContainer = styled.div<AcceptsButtonType>`
     width: 100%;
     overflow: hidden;
     display: flex;
     gap: 0.2em;
     height: 100%;
 
+    grid-area: media;
+
     justify-content: ${(props) => {
-        switch (props.$direction) {
+        switch (props.$buttonType) {
             case "left":
                 return "flex-end";
             case "right":
@@ -69,15 +82,29 @@ const MediaContainer = styled.div<AcceptsDirection>`
     }};
 `;
 
-const Arrow = styled.div<AcceptsDirection>`
+type ArrowProps = { $inverted: boolean; $size: number };
+
+const Arrow = styled.div<AcceptsButtonType & ArrowProps>`
     position: absolute;
     top: 0;
-    background-color: ${(props) => props.theme.color};
-    height: 100%;
+    height: ${(props) => props.$size}px;
     aspect-ratio: 16 / 46;
+    z-index: 10;
 
     ${(props) => {
-        switch (props.$direction) {
+        if (props.$inverted) {
+            return css`
+                background-color: ${(props) => props.theme.backgroundColor};
+            `;
+        } else {
+            return css`
+                background-color: ${(props) => props.theme.color};
+            `;
+        }
+    }}
+
+    ${(props) => {
+        switch (props.$buttonType) {
             case "right":
                 return css`
                     left: 100%;
@@ -107,30 +134,45 @@ const Arrow = styled.div<AcceptsDirection>`
 type ButtonProps = {
     children: React.ReactNode;
     to: string;
-    direction?: HorizontalDirection;
+    type?: ButtonType;
     className?: string;
+    images?: Asset[];
+    inverted?: boolean;
 };
 
-export default function ButtonRight({
+export default function Button({
     children,
     to,
     className,
-    direction = "right",
+    type = "right",
+    images = [],
+    inverted = false,
 }: ButtonProps) {
-    return (
-        <ButtonWrapper $direction={direction} to={to} className={className}>
-            <Label>
-                {children}
-                <Arrow $direction={direction} />
-            </Label>
+    const [ref, size] = useSize<HTMLAnchorElement>();
 
-            <MediaContainer $direction={direction}>
-                {/* <MediaPlaceholder /> */}
-                {/* <MediaPlaceholder />
-                <MediaPlaceholder />
-                <MediaPlaceholder />
-                <MediaPlaceholder />
-                <MediaPlaceholder /> */}
+    return (
+        <ButtonWrapper
+            ref={ref}
+            $buttonType={type}
+            to={to}
+            className={className}
+        >
+            <LabelContainer>
+                <Label $inverted={inverted}>{children}</Label>
+                <Arrow
+                    $buttonType={type}
+                    $inverted={inverted}
+                    $size={size.height}
+                />
+            </LabelContainer>
+
+            <MediaContainer $buttonType={type}>
+                <Carousel
+                    images={images}
+                    aspectRatio={1}
+                    size={size.height}
+                    gap={5}
+                />
             </MediaContainer>
         </ButtonWrapper>
     );
