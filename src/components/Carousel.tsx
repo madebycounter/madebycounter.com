@@ -1,13 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
+import useSize from "../global/useSize";
+
 import { Direction } from "../types";
 import Asset from "../types/Asset";
 import Media, { AspectRatio } from "./media/Media";
 
-const ImageBlockWrapper = styled.div<{ $width: number; $size: number }>`
+const ImageBlockWrapper = styled.div<{
+    $width: number;
+    $size: number;
+    $gap: number;
+}>`
     display: flex;
-    gap: 10px;
+    gap: ${(props) => props.$gap}px;
     width: ${(props) => props.$width}px;
 
     > div {
@@ -22,11 +28,18 @@ type ImageBlockProps = {
     width: number;
     size: number;
     aspectRatio: AspectRatio;
+    gap: number;
 };
 
-function ImageBlock({ images, width, size, aspectRatio }: ImageBlockProps) {
+function ImageBlock({
+    images,
+    width,
+    size,
+    aspectRatio,
+    gap,
+}: ImageBlockProps) {
     return (
-        <ImageBlockWrapper $width={width} $size={size}>
+        <ImageBlockWrapper $width={width} $size={size} $gap={gap}>
             {images.map((image, i) => (
                 <div>
                     <Media src={image} key={i} aspectRatio={aspectRatio} />
@@ -77,33 +90,18 @@ export default function Carousel({
     speed = 50,
     aspectRatio = "original",
 }: CarouselProps) {
-    const wrapperRef = useRef<HTMLDivElement>(null);
+    const [wrapperRef, wrapperSize] = useSize<HTMLDivElement>();
     const [state, setState] = useState({
         size: 0,
         imageSize: 1,
     });
 
-    function onResize() {
-        if (!wrapperRef.current) return;
-
-        const { width, height } = wrapperRef.current.getBoundingClientRect();
-
+    useEffect(() => {
         setState({
             ...state,
-            size: width,
+            size: wrapperSize.width,
         });
-    }
-
-    useEffect(() => {
-        const wrapperObserver = new ResizeObserver(onResize);
-        wrapperObserver.observe(wrapperRef.current as HTMLDivElement);
-
-        return () => {
-            wrapperRef.current && wrapperObserver.unobserve(wrapperRef.current);
-        };
-    }, []);
-
-    useEffect(onResize, [wrapperRef.current, state.imageSize]);
+    }, [wrapperSize]);
 
     if (aspectRatio === null) {
         aspectRatio = "original";
@@ -123,6 +121,10 @@ export default function Carousel({
 
     var quantity = Math.ceil(state.size / imageWidths) + 1;
 
+    if (isNaN(quantity)) {
+        quantity = 0;
+    }
+
     return (
         <CarouselWrapper ref={wrapperRef}>
             <CarouselSlider
@@ -135,6 +137,7 @@ export default function Carousel({
                         width={imageWidths}
                         images={images}
                         size={size}
+                        gap={gap}
                         aspectRatio={aspectRatio}
                     />
                 ))}
