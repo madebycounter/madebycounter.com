@@ -16,6 +16,7 @@ type LukeProps = {
     signature: Asset;
     slideshow1: Asset[];
     slideshow2: Asset[];
+    buttonCarousel: Asset[];
 };
 
 const LukeBio = styled(Bio)``;
@@ -70,6 +71,7 @@ export default function Luke({
     signature,
     slideshow1,
     slideshow2,
+    buttonCarousel,
 }: LukeProps) {
     return (
         <Segment>
@@ -84,7 +86,11 @@ export default function Luke({
                         happen.
                     </>
                 }
-                button={<PitchButton to="#">Learn More</PitchButton>}
+                button={
+                    <PitchButton to="#" images={buttonCarousel}>
+                        Learn More
+                    </PitchButton>
+                }
             />
 
             <LukeBio>

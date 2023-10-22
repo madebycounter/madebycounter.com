@@ -30,4 +30,24 @@ export const assetFragment = graphql`
             height
         }
     }
+
+    fragment CarouselAsset on ContentfulAsset {
+        __typename
+        contentful_id
+        title
+        description
+        mimeType
+        publicUrl
+        gatsbyImageData(
+            width: 100
+            height: 100
+            resizingBehavior: THUMB
+            placeholder: DOMINANT_COLOR
+            quality: 40
+        )
+        dimensions {
+            width
+            height
+        }
+    }
 `;

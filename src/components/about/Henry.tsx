@@ -22,6 +22,7 @@ type HenryProps = {
     signature: Asset;
     slideshow1: Asset[];
     slideshow2: Asset[];
+    buttonCarousel: Asset[];
 };
 
 const HenryBio = styled(Bio)`
@@ -98,6 +99,7 @@ export default function Henry({
     signature,
     slideshow1,
     slideshow2,
+    buttonCarousel,
 }: HenryProps) {
     return (
         <Segment direction="left">
@@ -114,7 +116,7 @@ export default function Henry({
                     </>
                 }
                 button={
-                    <PitchButton to="#" direction="left">
+                    <PitchButton to="#" type="left" images={buttonCarousel}>
                         Learn More
                     </PitchButton>
                 }

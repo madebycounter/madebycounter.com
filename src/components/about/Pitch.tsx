@@ -12,7 +12,7 @@ export const PitchButton = styled(Button)`
 
     // Desktop reduced
     @media (max-width: 1660px) {
-        font-size: 2.5rem;
+        font-size: 3rem;
     }
 `;
 

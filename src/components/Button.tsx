@@ -15,7 +15,7 @@ type AcceptsButtonType = {
 };
 
 export const ButtonWrapper = styled(LinkDiv)<AcceptsButtonType>`
-    font-size: 3rem;
+    font-size: 1em;
     display: grid;
     width: 100%;
 
@@ -148,17 +148,14 @@ export default function Button({
     images = [],
     inverted = false,
 }: ButtonProps) {
-    const [ref, size] = useSize<HTMLAnchorElement>();
+    const [ref, size] = useSize<HTMLHeadingElement>();
 
     return (
-        <ButtonWrapper
-            ref={ref}
-            $buttonType={type}
-            to={to}
-            className={className}
-        >
+        <ButtonWrapper $buttonType={type} to={to} className={className}>
             <LabelContainer>
-                <Label $inverted={inverted}>{children}</Label>
+                <Label ref={ref} $inverted={inverted}>
+                    {children}
+                </Label>
                 <Arrow
                     $buttonType={type}
                     $inverted={inverted}

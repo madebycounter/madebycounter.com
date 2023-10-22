@@ -22,6 +22,7 @@ type WilliamProps = {
     signature: Asset;
     slideshow1: Asset[];
     slideshow2: Asset[];
+    buttonCarousel: Asset[];
 };
 
 const WilliamBio = styled(Bio)``;
@@ -91,6 +92,7 @@ export default function William({
     signature,
     slideshow1,
     slideshow2,
+    buttonCarousel,
 }: WilliamProps) {
     return (
         <Segment>
@@ -105,7 +107,11 @@ export default function William({
                         stand out.
                     </>
                 }
-                button={<PitchButton to="#">Learn More</PitchButton>}
+                button={
+                    <PitchButton to="#" images={buttonCarousel}>
+                        Learn More
+                    </PitchButton>
+                }
             />
 
             <WilliamBio>

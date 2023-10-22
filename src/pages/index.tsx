@@ -35,6 +35,9 @@ const IndexPage = () => {
         williamShowcase,
         henryShowcase,
         lukeShowcase,
+        lukeButtonCarousel,
+        henryButtonCarousel,
+        williamButtonCarousel,
     } = useAboutPage();
 
     return (
@@ -49,6 +52,7 @@ const IndexPage = () => {
                     signature={lukeSignature}
                     slideshow1={lukeSlideshow1}
                     slideshow2={lukeSlideshow2}
+                    buttonCarousel={lukeButtonCarousel}
                 />
 
                 <Henry
@@ -57,6 +61,7 @@ const IndexPage = () => {
                     signature={henrySignature}
                     slideshow1={henrySlideshow1}
                     slideshow2={henrySlideshow2}
+                    buttonCarousel={henryButtonCarousel}
                 />
 
                 <William
@@ -66,6 +71,7 @@ const IndexPage = () => {
                     dronePortrait={dronePortrait}
                     slideshow1={williamSlideshow1}
                     slideshow2={williamSlideshow2}
+                    buttonCarousel={williamButtonCarousel}
                 />
             </div>
 

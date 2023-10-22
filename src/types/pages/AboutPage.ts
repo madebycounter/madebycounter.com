@@ -21,6 +21,9 @@ export interface AboutPage {
     lukeShowcase: PortfolioItem[];
     henryShowcase: PortfolioItem[];
     williamShowcase: PortfolioItem[];
+    lukeButtonCarousel: Asset[];
+    henryButtonCarousel: Asset[];
+    williamButtonCarousel: Asset[];
 }
 
 export function useAboutPage(): AboutPage {
@@ -77,6 +80,15 @@ export function useAboutPage(): AboutPage {
                 }
                 williamShowcase {
                     ...PortfolioItem
+                }
+                lukeButtonCarousel {
+                    ...CarouselAsset
+                }
+                henryButtonCarousel {
+                    ...CarouselAsset
+                }
+                williamButtonCarousel {
+                    ...CarouselAsset
                 }
             }
         }
