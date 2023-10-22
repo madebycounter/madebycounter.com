@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Direction } from "../types";
 import Asset from "../types/Asset";
-import Media from "./media/Media";
+import Media, { AspectRatio } from "./media/Media";
 
 const ImageBlockWrapper = styled.div<{ $width: number; $size: number }>`
     display: flex;
@@ -21,14 +21,15 @@ type ImageBlockProps = {
     images: Asset[];
     width: number;
     size: number;
+    aspectRatio: AspectRatio;
 };
 
-function ImageBlock({ images, width, size }: ImageBlockProps) {
+function ImageBlock({ images, width, size, aspectRatio }: ImageBlockProps) {
     return (
         <ImageBlockWrapper $width={width} $size={size}>
             {images.map((image, i) => (
                 <div>
-                    <Media src={image} key={i} aspectRatio={"original"} />
+                    <Media src={image} key={i} aspectRatio={aspectRatio} />
                 </div>
             ))}
         </ImageBlockWrapper>
@@ -65,6 +66,7 @@ type CarouselProps = {
     size?: number;
     gap?: number;
     speed?: number;
+    aspectRatio?: AspectRatio;
 };
 
 export default function Carousel({
@@ -72,7 +74,8 @@ export default function Carousel({
     direction = "right",
     size = 100,
     gap = 10,
-    speed = 100,
+    speed = 50,
+    aspectRatio = "original",
 }: CarouselProps) {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const [state, setState] = useState({
@@ -102,24 +105,37 @@ export default function Carousel({
 
     useEffect(onResize, [wrapperRef.current, state.imageSize]);
 
+    if (aspectRatio === null) {
+        aspectRatio = "original";
+    }
+
     var imageWidths = gap * images.length;
 
     for (var i = 0; i < images.length; i++) {
         var dimensions = images[i].dimensions;
-        imageWidths += (dimensions.width / dimensions.height) * size;
+
+        if (aspectRatio === "original") {
+            imageWidths += (dimensions.width / dimensions.height) * size;
+        } else {
+            imageWidths += aspectRatio * size;
+        }
     }
 
     var quantity = Math.ceil(state.size / imageWidths) + 1;
 
     return (
         <CarouselWrapper ref={wrapperRef}>
-            <CarouselSlider $width={imageWidths} $speed={imageWidths / speed}>
+            <CarouselSlider
+                $width={imageWidths}
+                $speed={imageWidths / quantity / speed}
+            >
                 {[...Array(quantity)].map((_, i) => (
                     <ImageBlock
                         key={i}
                         width={imageWidths}
                         images={images}
                         size={size}
+                        aspectRatio={aspectRatio}
                     />
                 ))}
             </CarouselSlider>
