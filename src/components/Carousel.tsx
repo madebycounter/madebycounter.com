@@ -125,7 +125,7 @@ export default function Carousel({
 
     var quantity = Math.ceil(state.size / imageWidths) + 1;
 
-    if (isNaN(quantity)) {
+    if (isNaN(quantity) || quantity === Infinity) {
         quantity = 0;
     }
 

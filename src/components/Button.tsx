@@ -26,22 +26,22 @@ export const ButtonWrapper = styled(LinkDiv)<ButtonWrapperProps>`
             case "left":
                 return css`
                     grid-template-columns: 1fr auto;
-                    grid-template-areas: "media label";
+                    grid-template-areas: "spacer label";
                 `;
             case "right":
                 return css`
                     grid-template-columns: auto 1fr;
-                    grid-template-areas: "label media";
+                    grid-template-areas: "label spacer";
                 `;
             case "left-fill":
                 return css`
                     grid-template-columns: 1fr auto;
-                    grid-template-areas: "media label";
+                    grid-template-areas: "label spacer";
                 `;
             case "right-fill":
                 return css`
-                    grid-template-columns: 1fr auto auto;
-                    grid-template-areas: "empty label";
+                    grid-template-columns: 1fr auto;
+                    grid-template-areas: "spacer label";
                 `;
         }
     }}
@@ -51,25 +51,9 @@ const LabelContainer = styled.div`
     position: relative;
 `;
 
-const Empty = styled.div<{ $inverted: boolean }>`
-    width: 100%;
-    height: 100%;
-    grid-area: empty;
+type LabelProps = AcceptsButtonType & { $inverted: boolean; $gap: number };
 
-    ${(props) => {
-        if (props.$inverted) {
-            return css`
-                background-color: ${(props) => props.theme.backgroundColor};
-            `;
-        } else {
-            return css`
-                background-color: ${(props) => props.theme.color};
-            `;
-        }
-    }}
-`;
-
-const Label = styled(Heading2)<{ $inverted: boolean }>`
+const Label = styled(Heading2)<LabelProps>`
     font-size: inherit;
     text-decoration: none;
     white-space: nowrap;
@@ -77,6 +61,18 @@ const Label = styled(Heading2)<{ $inverted: boolean }>`
     grid-area: label;
 
     padding: 0.1em;
+
+    ${(props) => {
+        if (props.$buttonType === "left-fill") {
+            return css`
+                margin-left: ${props.$gap}px;
+            `;
+        } else if (props.$buttonType === "right-fill") {
+            return css`
+                margin-right: ${props.$gap}px;
+            `;
+        }
+    }}
 
     ${(props) => {
         if (props.$inverted) {
@@ -93,23 +89,28 @@ const Label = styled(Heading2)<{ $inverted: boolean }>`
     }}
 `;
 
-const MediaContainer = styled.div<AcceptsButtonType>`
+const MediaContainer = styled.div<AcceptsButtonType & { $inverted: boolean }>`
     width: 100%;
-    overflow: hidden;
-    display: flex;
-    gap: 0.2em;
     height: 100%;
+    overflow: hidden;
+    grid-area: spacer;
 
-    grid-area: media;
-
-    justify-content: ${(props) => {
-        switch (props.$buttonType) {
-            case "left":
-                return "flex-end";
-            case "right":
-                return "flex-start";
+    ${(props) => {
+        if (
+            props.$buttonType === "left-fill" ||
+            props.$buttonType === "right-fill"
+        ) {
+            if (props.$inverted) {
+                return css`
+                    background-color: ${(props) => props.theme.backgroundColor};
+                `;
+            } else {
+                return css`
+                    background-color: ${(props) => props.theme.color};
+                `;
+            }
         }
-    }};
+    }}
 `;
 
 type ArrowProps = { $inverted: boolean; $size: number };
@@ -117,7 +118,7 @@ type ArrowProps = { $inverted: boolean; $size: number };
 const Arrow = styled.div<AcceptsButtonType & ArrowProps>`
     position: absolute;
     top: 0;
-    height: ${(props) => props.$size}px;
+    height: 100%;
     aspect-ratio: 16 / 46;
     z-index: 10;
 
@@ -135,7 +136,8 @@ const Arrow = styled.div<AcceptsButtonType & ArrowProps>`
 
     ${(props) => {
         switch (props.$buttonType) {
-            case "right" || "right-fill":
+            case "right":
+            case "right-fill":
                 return css`
                     clip-path: polygon(
                         -5% 0%,
@@ -145,7 +147,8 @@ const Arrow = styled.div<AcceptsButtonType & ArrowProps>`
                         -5% 100%
                     );
                 `;
-            case "left" || "left-fill":
+            case "left":
+            case "left-fill":
                 return css`
                     clip-path: polygon(
                         105% 0%,
@@ -160,13 +163,21 @@ const Arrow = styled.div<AcceptsButtonType & ArrowProps>`
 
     ${(props) => {
         switch (props.$buttonType) {
-            case "right" || "right-fill":
+            case "right":
                 return css`
                     left: 100%;
                 `;
-            case "left" || "left-fill":
+            case "left":
                 return css`
                     right: 100%;
+                `;
+            case "right-fill":
+                return css`
+                    left: calc(100% - ${(props.$size * 16) / 46}px);
+                `;
+            case "left-fill":
+                return css`
+                    right: calc(100% - ${(props.$size * 16) / 46}px);
                 `;
         }
     }}
@@ -198,10 +209,13 @@ export default function Button({
             to={to}
             className={className}
         >
-            <Empty $inverted={inverted} />
-
             <LabelContainer>
-                <Label ref={ref} $inverted={inverted}>
+                <Label
+                    ref={ref}
+                    $inverted={inverted}
+                    $buttonType={type}
+                    $gap={(size.height * 16) / 46}
+                >
                     {children}
                 </Label>
                 <Arrow
@@ -211,13 +225,15 @@ export default function Button({
                 />
             </LabelContainer>
 
-            <MediaContainer $buttonType={type}>
-                <Carousel
-                    images={images}
-                    aspectRatio={1}
-                    size={size.height}
-                    gap={5}
-                />
+            <MediaContainer $buttonType={type} $inverted={inverted}>
+                {(type === "left" || type === "right") && (
+                    <Carousel
+                        images={images}
+                        aspectRatio={1}
+                        size={size.height}
+                        gap={size.height * 0.1}
+                    />
+                )}
             </MediaContainer>
         </ButtonWrapper>
     );
