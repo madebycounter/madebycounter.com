@@ -143,18 +143,27 @@ const Affirmation = styled(Heading1)<{ $direction: HorizontalDirection }>`
     }
 `;
 
-const ButtonArea = styled.div`
-    grid-area: button;
+const ButtonArea = styled.div<{ $direction: HorizontalDirection }>`
+    margin: 1rem;
 
-    // Tablet
+    ${(props) => {
+        if (props.$direction === "left") {
+            return css`
+                margin-left: 0;
+            `;
+        } else {
+            return css`
+                margin-right: 0;
+            `;
+        }
+    }}
+
+    //tablet and mobile
     @media (max-width: 1250px) {
-        margin-bottom: 1rem;
+        margin: 1rem 0;
     }
 
-    // Mobile
-    @media (max-width: 600px) {
-        margin-bottom: 0;
-    }
+    grid-area: button;
 `;
 
 type PitchProps = {
@@ -182,7 +191,7 @@ export default function Pitch({
 
             <Affirmation $direction={direction}>{affirmation}</Affirmation>
 
-            <ButtonArea>{button}</ButtonArea>
+            <ButtonArea $direction={direction}>{button}</ButtonArea>
         </PitchWrapper>
     );
 }
