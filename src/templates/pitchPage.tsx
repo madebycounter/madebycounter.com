@@ -6,16 +6,26 @@ import GlobalStyle from "../global/globalStyle";
 import { LightTheme } from "../global/themes";
 
 import ButtonRight from "../components/Button";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { Layout } from "../components/Layout";
+import { Layout, LayoutNarrow } from "../components/Layout";
 import MarkupSwap from "../components/MobileSwap";
 import Navbar from "../components/Navbar";
-import Signature from "../components/Signature";
-import { Heading1, Paragraph } from "../components/Typography";
-import Media from "../components/media/Media";
+import { Heading1, Heading2, Paragraph } from "../components/Typography";
 import Slideshow from "../components/media/Slideshow";
+import DetailedService from "../components/pitch/DetailedService";
 
 import { PitchPage } from "../types/pages/PitchPage";
+
+const Columns = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    > div {
+        flex: 1 1 250px;
+    }
+`;
 
 const HeroHeading = styled(Heading1)`
     font-size: 6vw;
@@ -38,7 +48,11 @@ const HeroSlideshow = styled.div`
 `;
 
 const HeroButton = styled(ButtonRight)`
-    font-size: 2rem;
+    font-size: 2.5rem;
+
+    ${Heading2} {
+        padding: 0.1em;
+    }
 `;
 
 const Hero = styled.div`
@@ -101,6 +115,36 @@ export default function ServicePage({ data }: PitchPageProps) {
                     </HeroSlideshow>
                 </Hero>
             </Layout>
+
+            <br />
+            <br />
+
+            <LayoutNarrow>
+                <Columns>
+                    <DetailedService
+                        image={pageData.slideshow[0]}
+                        title="Virtual Tours"
+                        description="High dynamic range photography captures interior settings in their."
+                        to="#"
+                    />
+
+                    <DetailedService
+                        image={pageData.slideshow[0]}
+                        title="Virtual Tours"
+                        description="High dynamic range photography captures interior settings in their."
+                        to="#"
+                    />
+
+                    <DetailedService
+                        image={pageData.slideshow[0]}
+                        title="Virtual Tours"
+                        description="High dynamic range photography captures interior settings in their."
+                        to="#"
+                    />
+                </Columns>
+            </LayoutNarrow>
+
+            <Footer />
         </ThemeProvider>
     );
 }

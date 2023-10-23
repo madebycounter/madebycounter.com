@@ -14,7 +14,9 @@ type AcceptsButtonType = {
     $buttonType: ButtonType;
 };
 
-export const ButtonWrapper = styled(LinkDiv)<AcceptsButtonType>`
+type ButtonWrapperProps = AcceptsButtonType & { $size: number };
+
+export const ButtonWrapper = styled(LinkDiv)<ButtonWrapperProps>`
     font-size: 1em;
     display: grid;
     width: 100%;
@@ -31,12 +33,40 @@ export const ButtonWrapper = styled(LinkDiv)<AcceptsButtonType>`
                     grid-template-columns: auto 1fr;
                     grid-template-areas: "label media";
                 `;
+            case "left-fill":
+                return css`
+                    grid-template-columns: 1fr auto;
+                    grid-template-areas: "media label";
+                `;
+            case "right-fill":
+                return css`
+                    grid-template-columns: 1fr auto auto;
+                    grid-template-areas: "empty label";
+                `;
         }
     }}
 `;
 
 const LabelContainer = styled.div`
     position: relative;
+`;
+
+const Empty = styled.div<{ $inverted: boolean }>`
+    width: 100%;
+    height: 100%;
+    grid-area: empty;
+
+    ${(props) => {
+        if (props.$inverted) {
+            return css`
+                background-color: ${(props) => props.theme.backgroundColor};
+            `;
+        } else {
+            return css`
+                background-color: ${(props) => props.theme.color};
+            `;
+        }
+    }}
 `;
 
 const Label = styled(Heading2)<{ $inverted: boolean }>`
@@ -46,7 +76,7 @@ const Label = styled(Heading2)<{ $inverted: boolean }>`
 
     grid-area: label;
 
-    padding: 0 0.1em;
+    padding: 0.1em;
 
     ${(props) => {
         if (props.$inverted) {
@@ -105,9 +135,8 @@ const Arrow = styled.div<AcceptsButtonType & ArrowProps>`
 
     ${(props) => {
         switch (props.$buttonType) {
-            case "right":
+            case "right" || "right-fill":
                 return css`
-                    left: 100%;
                     clip-path: polygon(
                         -5% 0%,
                         0% 0%,
@@ -116,9 +145,8 @@ const Arrow = styled.div<AcceptsButtonType & ArrowProps>`
                         -5% 100%
                     );
                 `;
-            case "left":
+            case "left" || "left-fill":
                 return css`
-                    right: 100%;
                     clip-path: polygon(
                         105% 0%,
                         100% 0%,
@@ -126,6 +154,19 @@ const Arrow = styled.div<AcceptsButtonType & ArrowProps>`
                         100% 100%,
                         105% 100%
                     );
+                `;
+        }
+    }}
+
+    ${(props) => {
+        switch (props.$buttonType) {
+            case "right" || "right-fill":
+                return css`
+                    left: 100%;
+                `;
+            case "left" || "left-fill":
+                return css`
+                    right: 100%;
                 `;
         }
     }}
@@ -151,7 +192,14 @@ export default function Button({
     const [ref, size] = useSize<HTMLHeadingElement>();
 
     return (
-        <ButtonWrapper $buttonType={type} to={to} className={className}>
+        <ButtonWrapper
+            $buttonType={type}
+            $size={size.height}
+            to={to}
+            className={className}
+        >
+            <Empty $inverted={inverted} />
+
             <LabelContainer>
                 <Label ref={ref} $inverted={inverted}>
                     {children}
