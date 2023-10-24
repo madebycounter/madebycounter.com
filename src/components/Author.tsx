@@ -2,8 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 import CounterPFP from "../images/authors/counter.png";
+import HenryPFPCropped from "../images/authors/henry-crop.png";
 import HenryPFP from "../images/authors/henry.png";
+import LukePFPCropped from "../images/authors/luke-crop.png";
 import LukePFP from "../images/authors/luke.png";
+import WilliamPFPCropped from "../images/authors/william-crop.png";
 import WilliamPFP from "../images/authors/william.png";
 
 import { HorizontalDirection, TeamMember } from "../types";
@@ -22,34 +25,49 @@ export function getFullName(author: TeamMember) {
     }
 }
 
-function getProfilePhoto(author: TeamMember) {
-    switch (author) {
-        case "Counter":
-            return CounterPFP;
-        case "Henry":
-            return HenryPFP;
-        case "Luke":
-            return LukePFP;
-        case "William":
-            return WilliamPFP;
+function getProfilePhoto(author: TeamMember, cropped: boolean = false) {
+    if (cropped) {
+        switch (author) {
+            case "Counter":
+                return CounterPFP;
+            case "Henry":
+                return HenryPFPCropped;
+            case "Luke":
+                return LukePFPCropped;
+            case "William":
+                return WilliamPFPCropped;
+        }
+    } else {
+        switch (author) {
+            case "Counter":
+                return CounterPFP;
+            case "Henry":
+                return HenryPFP;
+            case "Luke":
+                return LukePFP;
+            case "William":
+                return WilliamPFP;
+        }
     }
 }
 
 const StyledImage = styled.img`
-    aspect-ratio: 1;
+    width: 100%;
 `;
 
 export function ProfilePhoto({
     member,
     className,
+    cropped = false,
 }: {
     member: TeamMember;
     className?: string;
+    cropped?: boolean;
 }) {
     return (
         <StyledImage
             className={className}
-            src={getProfilePhoto(member)}
+            src={getProfilePhoto(member, cropped)}
             alt={`Photo of ${member}`}
         />
     );

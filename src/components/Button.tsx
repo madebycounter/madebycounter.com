@@ -113,6 +113,7 @@ const MediaContainer = styled.div<AcceptsButtonType & { $inverted: boolean }>`
     }}
 `;
 
+// TODO: refactor to use arrow component from Arrow.tsx
 type ArrowProps = { $inverted: boolean; $size: number };
 
 const Arrow = styled.div<AcceptsButtonType & ArrowProps>`
