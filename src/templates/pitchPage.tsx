@@ -14,6 +14,7 @@ import Navbar from "../components/Navbar";
 import { Heading1, Heading2, Paragraph } from "../components/Typography";
 import Slideshow from "../components/media/Slideshow";
 import DetailedService from "../components/pitch/DetailedService";
+import FunFact from "../components/pitch/FunFact";
 
 import { PitchPage } from "../types/pages/PitchPage";
 
@@ -143,6 +144,16 @@ export default function ServicePage({ data }: PitchPageProps) {
                     />
                 </Columns>
             </LayoutNarrow>
+
+            <br />
+            <br />
+
+            <FunFact
+                author="Henry"
+                fact="Did you know, 70% of businesses report an increase in sales after updating their Instagram and social media platforms?"
+                carousel={pageData.slideshow}
+                cta="Learn More"
+            />
 
             <Footer />
         </ThemeProvider>

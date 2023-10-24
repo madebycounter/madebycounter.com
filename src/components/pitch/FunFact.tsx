@@ -91,7 +91,7 @@ const FactWrapper = styled.div`
         padding: 0.5rem 0rem;
 
         ${Paragraph} {
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
     }
 `;
