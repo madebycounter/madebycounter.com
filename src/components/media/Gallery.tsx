@@ -1,15 +1,13 @@
-import React from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import styled from "styled-components";
+
+import useSize from "../../global/useSize";
 
 import Asset from "../../types/Asset";
 import Media from "./Media";
 
-const StyledGallery = styled.div`
-    --gap: 1rem;
-
-    @media (max-width: 700px) {
-        --gap: 0.5rem;
-    }
+const StyledGallery = styled.div<{ $gap: number }>`
+    --gap: ${(props) => props.$gap}px;
 
     display: flex;
     flex-wrap: wrap;
@@ -37,57 +35,65 @@ const StyledGallery = styled.div`
     }
 `;
 
+type FixedGalleryProps = {
+    images: Asset[];
+    columns: number;
+    gap?: number;
+    onClick?: (src: string) => void;
+};
+
+const FixedGallery = forwardRef(
+    (
+        { images, columns, gap = 8, onClick }: FixedGalleryProps,
+        ref: React.Ref<HTMLDivElement>,
+    ) => {
+        var cols: Asset[][] = [];
+        for (let i = 0; i < columns; i++) cols.push([]);
+
+        if (images) {
+            for (let i = 0; i < images.length; i++)
+                cols[i % columns].push(images[i]);
+        }
+
+        return (
+            <StyledGallery $gap={gap} ref={ref}>
+                {cols.map((col, i) => (
+                    <div key={i}>
+                        {col.map((img, j) => (
+                            <div key={j}>
+                                <Media src={img} onClick={onClick} />
+                            </div>
+                        ))}
+                    </div>
+                ))}
+            </StyledGallery>
+        );
+    },
+);
+
 type GalleryProps = {
     images: Asset[];
-    onClick: (src: string) => void;
+    gap?: number;
+    onClick?: (src: string) => void;
 };
 
-const Gallery = ({ images, onClick }: GalleryProps) => {
-    var col1 = [];
-    var col2 = [];
+export default function Gallery({ images, gap, onClick }: GalleryProps) {
+    const [ref, size] = useSize<HTMLDivElement>();
+    const [columns, setColums] = useState(2);
 
-    // if (images) {
-    //     for (let i = 0; i < images.length; i += 2) col1.push(images[i]);
-    //     for (let i = 1; i < images.length; i += 2) col2.push(images[i]);
-    // }
-
-    var col3 = [];
-
-    if (images) {
-        for (let i = 0; i < images.length; i += 3) col1.push(images[i]);
-        for (let i = 1; i < images.length; i += 3) col2.push(images[i]);
-        for (let i = 2; i < images.length; i += 3) col3.push(images[i]);
-    }
+    useEffect(() => {
+        if (size.width < 700) setColums(1);
+        else if (size.width < 1200) setColums(2);
+        else setColums(3);
+    }, [size]);
 
     return (
-        <StyledGallery>
-            <div>
-                {col1.map((img, idx) => (
-                    <>
-                        <div key={idx}>
-                            <Media src={img} onClick={onClick} />
-                        </div>
-                    </>
-                ))}
-            </div>
-
-            <div>
-                {col2.map((img, idx) => (
-                    <div key={idx}>
-                        <Media src={img} onClick={onClick} />
-                    </div>
-                ))}
-            </div>
-
-            <div>
-                {col3.map((img, idx) => (
-                    <div key={idx}>
-                        <Media src={img} onClick={onClick} />
-                    </div>
-                ))}
-            </div>
-        </StyledGallery>
+        <FixedGallery
+            columns={columns}
+            images={images}
+            gap={gap}
+            onClick={onClick}
+            ref={ref}
+        />
     );
-};
-
-export default Gallery;
+}
