@@ -108,7 +108,7 @@ export default function Slideshow({
                         <Media
                             key={idx}
                             src={slide}
-                            aspectRatio={aspectRatio}
+                            aspectRatio={null}
                             videoPlaying={visible}
                             videoLoop={src.length == 1}
                             onVideoEnd={() => navigate(1)}

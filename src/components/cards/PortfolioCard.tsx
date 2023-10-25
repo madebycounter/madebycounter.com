@@ -92,7 +92,7 @@ export function PortfolioCard({ item }: PortfolioCardProps) {
             to={`/portfolio/${item.slug}`}
             className={classnames(matches)}
         >
-            <Media src={item.thumbnail} aspectRatio={null} />
+            <Media src={item.thumbnail} />
 
             {/* stupid typescript weirdness with putting ref on styledcard. overlay is always the same width though */}
             <Overlay ref={ref} />
