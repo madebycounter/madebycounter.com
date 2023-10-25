@@ -24,8 +24,14 @@ const StyledGallery = styled.div`
         flex: 1;
     }
 
-    > div > div {
-        margin: var(--gap) 0;
+    > div {
+        > div {
+            margin: var(--gap) 0;
+        }
+
+        > :first-child {
+            margin-top: 0;
+        }
     }
 `;
 
