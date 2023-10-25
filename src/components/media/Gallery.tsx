@@ -46,9 +46,17 @@ const Gallery = ({ images, onClick }: GalleryProps) => {
     var col1 = [];
     var col2 = [];
 
+    // if (images) {
+    //     for (let i = 0; i < images.length; i += 2) col1.push(images[i]);
+    //     for (let i = 1; i < images.length; i += 2) col2.push(images[i]);
+    // }
+
+    var col3 = [];
+
     if (images) {
-        for (let i = 0; i < images.length; i += 2) col1.push(images[i]);
-        for (let i = 1; i < images.length; i += 2) col2.push(images[i]);
+        for (let i = 0; i < images.length; i += 3) col1.push(images[i]);
+        for (let i = 1; i < images.length; i += 3) col2.push(images[i]);
+        for (let i = 2; i < images.length; i += 3) col3.push(images[i]);
     }
 
     return (
@@ -65,6 +73,14 @@ const Gallery = ({ images, onClick }: GalleryProps) => {
 
             <div>
                 {col2.map((img, idx) => (
+                    <div key={idx}>
+                        <Media src={img} onClick={onClick} />
+                    </div>
+                ))}
+            </div>
+
+            <div>
+                {col3.map((img, idx) => (
                     <div key={idx}>
                         <Media src={img} onClick={onClick} />
                     </div>

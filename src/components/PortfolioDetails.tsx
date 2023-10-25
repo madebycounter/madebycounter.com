@@ -15,7 +15,7 @@ export const StyledDetails = styled.div`
 const DetailsParagraph = styled(Paragraph)`
     font-size: inherit !important;
     margin: 0.3em 0.5rem;
-    line-height: 1.3em;
+    line-height: 1.2em;
 
     span {
         display: inline-block;
@@ -36,10 +36,17 @@ type DetailsProps = {
     tags?: string[] | ReadonlyArray<string | null>;
     description?: RichText;
     plainText?: string;
+    className?: string;
 };
 
-const Details = ({ date, tags, description, plainText }: DetailsProps) => (
-    <StyledDetails>
+const Details = ({
+    date,
+    tags,
+    description,
+    plainText,
+    className,
+}: DetailsProps) => (
+    <StyledDetails className={className}>
         {date && (
             <DetailsDate>
                 <DetailsTitle>/date&nbsp;</DetailsTitle>
