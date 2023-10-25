@@ -18,6 +18,7 @@ type PortfolioCardProps = {
 const StyledCard = styled(Link)`
     position: relative;
     display: block;
+    aspect-ratio: 4 / 3;
 
     width: 100%;
     height: 100%;
@@ -92,7 +93,7 @@ export function PortfolioCard({ item }: PortfolioCardProps) {
             to={`/portfolio/${item.slug}`}
             className={classnames(matches)}
         >
-            <Media src={item.thumbnail} />
+            <Media src={item.thumbnail} aspectRatio={null} />
 
             {/* stupid typescript weirdness with putting ref on styledcard. overlay is always the same width though */}
             <Overlay ref={ref} />
