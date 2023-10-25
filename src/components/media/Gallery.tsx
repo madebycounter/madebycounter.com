@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 import Asset from "../../types/Asset";
-import { usePortfolioItems } from "../../types/PortfolioItem";
-import { PortfolioEmbed } from "../cards/PortfolioEmbed";
 import Media from "./Media";
 
 const StyledGallery = styled.div`
@@ -31,6 +29,10 @@ const StyledGallery = styled.div`
 
         > :first-child {
             margin-top: 0;
+        }
+
+        > :last-child {
+            margin-bottom: 0;
         }
     }
 `;
