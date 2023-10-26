@@ -2,9 +2,9 @@ import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
 import styled from "styled-components";
 
-import HenryPointing from "../../images/authors/henry-point.png";
-import LukePointing from "../../images/authors/luke-point.png";
-import WilliamPointing from "../../images/authors/william-point.png";
+import HenryPointing from "../../images/authors/henry-point.webp";
+import LukePointing from "../../images/authors/luke-point.webp";
+import WilliamPointing from "../../images/authors/william-point.webp";
 
 import { TeamMember } from "../../types";
 import Asset from "../../types/Asset";

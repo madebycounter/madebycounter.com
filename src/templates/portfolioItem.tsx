@@ -10,10 +10,13 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { Layout, LayoutNarrow } from "../components/Layout";
 import Navbar from "../components/Navbar";
-import SplitScroll from "../components/Parallax";
-import Parallax from "../components/Parallax";
+import Parallax, { ParallaxDriver } from "../components/Parallax";
 import Details from "../components/PortfolioDetails";
 import { Heading1, Heading2, Paragraph } from "../components/Typography";
+import { BlogCard } from "../components/cards/BlogCard";
+import { BlogEmbed } from "../components/cards/BlogEmbed";
+import { PortfolioCard } from "../components/cards/PortfolioCard";
+import { PortfolioEmbed } from "../components/cards/PortfolioEmbed";
 import Gallery from "../components/media/Gallery";
 import Lightbox from "../components/media/Lightbox";
 import { isVideo } from "../components/media/Media";
@@ -22,7 +25,8 @@ import YouTube from "../components/media/YouTube";
 
 import defaultImage from "../images/meta.png";
 
-import PortfolioItem from "../types/PortfolioItem";
+import { useBlogPosts } from "../types/BlogPost";
+import PortfolioItem, { usePortfolioItems } from "../types/PortfolioItem";
 
 export const query = graphql`
     query PortfolioItemData($contentful_id: String) {
@@ -64,20 +68,30 @@ const HeroMedia = styled.div`
     }
 `;
 
-const StyledParallax = styled(Parallax)`
-    gap: 4rem;
+const ParallaxWrapper = styled.div`
+    display: flex;
+    gap: 2rem;
     max-width: 1800px;
     margin: auto;
     padding: 1rem;
+    padding-top: 2rem;
+    align-items: flex-start;
 `;
 
-const PitchWrapper = styled.div`
-    padding: 0.5rem;
+const PitchWrapper = styled(Parallax)`
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
     flex: 1;
     min-width: 350px;
+
+    > div {
+        margin: 0;
+    }
 `;
 
-const GalleryWrapper = styled.div`
+const GalleryWrapper = styled(ParallaxDriver)`
     flex: 3;
 `;
 
@@ -88,6 +102,7 @@ type PortfolioItemProps = {
 };
 
 const PortfolioItemPage = ({ data }: PortfolioItemProps) => {
+    const driverRef = useRef<HTMLDivElement>(null);
     const [state, setState] = useState({
         lightbox: false,
         lightboxCurrent: "",
@@ -122,6 +137,9 @@ const PortfolioItemPage = ({ data }: PortfolioItemProps) => {
         });
     };
 
+    const portfolioItems = usePortfolioItems();
+    const blogPosts = useBlogPosts();
+
     return (
         <ThemeProvider theme={LightTheme}>
             <GlobalStyle />
@@ -155,68 +173,23 @@ const PortfolioItemPage = ({ data }: PortfolioItemProps) => {
                 </HeroMedia>
             </Hero>
 
-            <StyledParallax>
-                <PitchWrapper>
-                    <Heading2>Section 1</Heading2>
+            <ParallaxWrapper>
+                <PitchWrapper driverRef={driverRef}>
+                    <PortfolioCard item={portfolioItems[0]} />
 
-                    <Paragraph>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Molestiae impedit laboriosam illo dolor, laborum iusto
-                        voluptate iure corporis voluptatibus sit, voluptas
-                        mollitia expedita ex reprehenderit neque consequuntur
-                        rem doloremque a. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Molestiae impedit laboriosam illo
-                        dolor, laborum iusto voluptate iure corporis
-                        voluptatibus sit, voluptas mollitia expedita ex
-                        reprehenderit neque consequuntur rem doloremque a.
-                    </Paragraph>
+                    <BlogCard item={blogPosts[0]} />
 
-                    <Heading2>Section 2</Heading2>
+                    <PortfolioCard item={portfolioItems[1]} />
 
-                    <Paragraph>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Molestiae impedit laboriosam illo dolor, laborum iusto
-                        voluptate iure corporis voluptatibus sit, voluptas
-                        mollitia expedita ex reprehenderit neque consequuntur
-                        rem doloremque a. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Molestiae impedit laboriosam illo
-                        dolor, laborum iusto voluptate iure corporis
-                        voluptatibus sit, voluptas mollitia expedita ex
-                        reprehenderit neque consequuntur rem doloremque a.
-                    </Paragraph>
+                    <BlogCard item={blogPosts[5]} />
 
-                    <Heading2>Section 3</Heading2>
-
-                    <Paragraph>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Molestiae impedit laboriosam illo dolor, laborum iusto
-                        voluptate iure corporis voluptatibus sit, voluptas
-                        mollitia expedita ex reprehenderit neque consequuntur
-                        rem doloremque a. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Molestiae impedit laboriosam illo
-                        dolor, laborum iusto voluptate iure corporis
-                        voluptatibus sit, voluptas mollitia expedita ex
-                        reprehenderit neque consequuntur rem doloremque a.
-                    </Paragraph>
-
-                    <Heading2>Section 4</Heading2>
-
-                    <Paragraph>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Molestiae impedit laboriosam illo dolor, laborum iusto
-                        voluptate iure corporis voluptatibus sit, voluptas
-                        mollitia expedita ex reprehenderit neque consequuntur
-                        rem doloremque a. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Molestiae impedit laboriosam illo
-                        dolor, laborum iusto voluptate iure corporis
-                        voluptatibus sit, voluptas mollitia expedita ex
-                        reprehenderit neque consequuntur rem doloremque a.
-                    </Paragraph>
+                    <PortfolioCard item={portfolioItems[2]} />
                 </PitchWrapper>
-                <GalleryWrapper>
+
+                <GalleryWrapper ref={driverRef}>
                     <Gallery images={gallery} onClick={openLightbox} />
                 </GalleryWrapper>
-            </StyledParallax>
+            </ParallaxWrapper>
 
             <LayoutNarrow></LayoutNarrow>
 

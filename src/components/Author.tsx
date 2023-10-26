@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-import CounterPFP from "../images/authors/counter.png";
-import HenryPFPCropped from "../images/authors/henry-crop.png";
-import HenryPFP from "../images/authors/henry.png";
-import LukePFPCropped from "../images/authors/luke-crop.png";
-import LukePFP from "../images/authors/luke.png";
-import WilliamPFPCropped from "../images/authors/william-crop.png";
-import WilliamPFP from "../images/authors/william.png";
+import CounterPFP from "../images/authors/counter.webp";
+import HenryPFPCropped from "../images/authors/henry-crop.webp";
+import HenryPFP from "../images/authors/henry.webp";
+import LukePFPCropped from "../images/authors/luke-crop.webp";
+import LukePFP from "../images/authors/luke.webp";
+import WilliamPFPCropped from "../images/authors/william-crop.webp";
+import WilliamPFP from "../images/authors/william.webp";
 
 import { HorizontalDirection, TeamMember } from "../types";
 import { Paragraph } from "./Typography";
