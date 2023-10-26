@@ -99,8 +99,6 @@ export function PortfolioEmbed({ item }: PortfolioEmbedProps) {
         },
     });
 
-    console.log(matches);
-
     return (
         <StyledEmbed ref={ref} className={classnames(matches)}>
             <StyledEmbedInfo to={`/portfolio/${item.slug}`}>
