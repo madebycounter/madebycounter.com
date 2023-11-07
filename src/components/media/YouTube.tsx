@@ -23,6 +23,7 @@ type StyledEmbedProps = {
 const StyledEmbed = styled.div<StyledEmbedProps>`
     aspect-ratio: ${(props) => props.$aspectRatio};
     width: 100%;
+    overflow: hidden;
 
     iframe {
         border: none;
