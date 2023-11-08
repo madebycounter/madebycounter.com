@@ -58,7 +58,7 @@ exports.createPages = async ({ graphql, actions }) => {
                     contentful_id
                 }
             }
-            pitchPages: allContentfulPitchPage {
+            services: allContentfulService {
                 nodes {
                     slug
                     contentful_id
@@ -87,7 +87,7 @@ exports.createPages = async ({ graphql, actions }) => {
         });
     });
 
-    data.pitchPages.nodes.forEach((node) => {
+    data.services.nodes.forEach((node) => {
         actions.createPage({
             path: "/services/" + node.slug,
             component: path.resolve("./src/templates/pitchPage.tsx"),

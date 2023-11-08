@@ -86,8 +86,8 @@ type ServiceBlockProps = {
     title: string;
     slug: string;
     offerings: string[];
+    slideshow: Asset[];
     align?: HorizontalDirection;
-    slideshow?: Asset[];
     youtube?: string;
 };
 
@@ -120,9 +120,7 @@ const ServiceBlock = ({
             </DetailsArea>
 
             <MediaArea>
-                {slideshow && (
-                    <Slideshow src={slideshow} aspectRatio={16 / 9} />
-                )}
+                {!youtube && <Slideshow src={slideshow} aspectRatio={16 / 9} />}
 
                 {youtube && <YouTube url={youtube} aspectRatio={16 / 9} />}
             </MediaArea>

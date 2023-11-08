@@ -6,7 +6,7 @@ export default interface Service {
     contentful_id: string;
     title: string;
     offerings: string[];
-    slideshow?: Asset[];
+    slideshow: Asset[];
     youTube?: string;
     slug: string;
 }

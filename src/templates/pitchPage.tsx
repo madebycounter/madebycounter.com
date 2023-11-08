@@ -16,7 +16,7 @@ import Slideshow from "../components/media/Slideshow";
 import DetailedService from "../components/pitch/DetailedService";
 import FunFact from "../components/pitch/FunFact";
 
-import { PitchPage } from "../types/pages/PitchPage";
+import Service from "../types/Service";
 
 const Columns = styled.div`
     display: flex;
@@ -67,12 +67,13 @@ const Hero = styled.div`
 
 type PitchPageProps = {
     data: {
-        contentfulPitchPage: PitchPage;
+        contentfulService: Service;
     };
 };
 
 export default function ServicePage({ data }: PitchPageProps) {
-    const pageData = data.contentfulPitchPage;
+    const pageData = data.contentfulService;
+    console.log(data);
 
     return (
         <ThemeProvider theme={LightTheme}>
@@ -162,14 +163,14 @@ export default function ServicePage({ data }: PitchPageProps) {
 
 export const query = graphql`
     query ($contentful_id: String!) {
-        contentfulPitchPage(contentful_id: { eq: $contentful_id }) {
-            ...PitchPage
+        contentfulService(contentful_id: { eq: $contentful_id }) {
+            ...Service
         }
     }
 `;
 
 export const Head = ({ data }: PitchPageProps) => {
-    const pageData = data.contentfulPitchPage;
+    const pageData = data.contentfulService;
 
     return (
         <Header
