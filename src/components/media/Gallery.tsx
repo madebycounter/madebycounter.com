@@ -54,9 +54,9 @@ export function Gallery({
     onClick,
 }: GalleryProps) {
     const [ref, size] = useSize<HTMLDivElement>();
-    const adjusted = adjustLayout(layout, size.width, gap);
     const autoColumnWidth =
-        (size.width - gap * (adjusted.length - 1)) / adjusted.length;
+        (size.width - gap * (layout.length - 1)) / layout.length;
+    const adjusted = adjustLayout(layout, columnWidth || autoColumnWidth, gap);
 
     return (
         <StyledGallery
@@ -229,8 +229,7 @@ function createLayoutFixedHeight(images: Asset[], maxHeight: number): Layout {
     return layout;
 }
 
-function adjustLayout(layout: Layout, width: number, gap: number) {
-    var columnWidth = (width - gap * (layout.length - 1)) / layout.length;
+function adjustLayout(layout: Layout, columnWidth: number, gap: number) {
     var adjusted: Layout = [];
 
     // Adjust image sizes to fit column width
