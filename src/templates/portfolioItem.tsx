@@ -17,7 +17,7 @@ import { BlogCard } from "../components/cards/BlogCard";
 import { BlogEmbed } from "../components/cards/BlogEmbed";
 import { PortfolioCard } from "../components/cards/PortfolioCard";
 import { PortfolioEmbed } from "../components/cards/PortfolioEmbed";
-import Gallery from "../components/media/Gallery";
+import { ResponsiveGallery } from "../components/media/Gallery";
 import Lightbox from "../components/media/Lightbox";
 import { isVideo } from "../components/media/Media";
 import Slideshow from "../components/media/Slideshow";
@@ -187,7 +187,10 @@ const PortfolioItemPage = ({ data }: PortfolioItemProps) => {
                 </PitchWrapper>
 
                 <GalleryWrapper ref={driverRef}>
-                    <Gallery images={gallery} onClick={openLightbox} />
+                    <ResponsiveGallery
+                        images={gallery}
+                        onClick={openLightbox}
+                    />
                 </GalleryWrapper>
             </ParallaxWrapper>
 
