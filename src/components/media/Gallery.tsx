@@ -84,12 +84,14 @@ export function Gallery({
 type ResponsiveGalleryProps = {
     images: Asset[];
     gap?: number;
+    columnWidth?: number;
     onClick?: (src: string) => void;
 };
 
 export function ResponsiveGallery({
     images,
     gap,
+    columnWidth,
     onClick,
 }: ResponsiveGalleryProps) {
     const [ref, size] = useSize<HTMLDivElement>();
@@ -113,6 +115,7 @@ export function ResponsiveGallery({
                 images={images}
                 layout={layouts[columns - 1]}
                 gap={gap}
+                columnWidth={columnWidth}
                 onClick={onClick}
             />
         </div>
@@ -123,6 +126,7 @@ type FixedHeightGalleryProps = {
     images: Asset[];
     targetHeight: number;
     gap?: number;
+    columnWidth?: number;
     onClick?: (src: string) => void;
 };
 
@@ -130,6 +134,7 @@ export function FixedHeightGallery({
     images,
     targetHeight,
     gap,
+    columnWidth,
     onClick,
 }: FixedHeightGalleryProps) {
     const layout = createLayoutFixedHeight(images, targetHeight);
@@ -140,6 +145,7 @@ export function FixedHeightGallery({
                 images={images}
                 layout={layout}
                 gap={gap}
+                columnWidth={columnWidth}
                 onClick={onClick}
             />
         </div>
