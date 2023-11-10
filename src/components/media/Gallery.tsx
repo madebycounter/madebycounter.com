@@ -1,18 +1,23 @@
-import React, { forwardRef, useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
+import setRef from "../../global/setRef";
 import useSize from "../../global/useSize";
 
 import Asset from "../../types/Asset";
 import Media from "./Media";
 
-const StyledGallery = styled.div<{
+type StyledGalleryProps = {
     $gap: number;
     $columnWidth: number;
-}>`
+    $width: number;
+};
+
+const StyledGallery = styled.div<StyledGalleryProps>`
     --gap: ${(props) => props.$gap}px;
 
     display: flex;
+    width: ${(props) => props.$width}px;
 
     gap: var(--gap);
 
@@ -41,116 +46,146 @@ const StyledGallery = styled.div<{
 type GalleryProps = {
     images: Asset[];
     layout: Layout;
-    columnWidth?: number;
+    columnWidth: number;
     gap?: number;
     onClick?: (src: string) => void;
 };
 
-export function Gallery({
-    images,
-    layout,
-    gap = 8,
-    columnWidth,
-    onClick,
-}: GalleryProps) {
-    const [ref, size] = useSize<HTMLDivElement>();
-    const autoColumnWidth =
-        (size.width - gap * (layout.length - 1)) / layout.length;
-    const adjusted = adjustLayout(layout, columnWidth || autoColumnWidth, gap);
+export const Gallery = forwardRef(
+    (
+        { images, layout, columnWidth, gap = 8, onClick }: GalleryProps,
+        parentRef,
+    ) => {
+        const [ref, size] = useSize<HTMLDivElement>();
+        const adjusted = adjustLayout(layout, columnWidth, gap);
+        const width = layout.length * columnWidth + gap * (layout.length - 1);
 
-    return (
-        <StyledGallery
-            $gap={gap}
-            $columnWidth={columnWidth || autoColumnWidth}
-            ref={ref}
-        >
-            {adjusted.map((col, i) => (
-                <div key={i}>
-                    {col.images.map((img, j) => (
-                        <div key={j}>
-                            <Media
-                                src={images[img.id]}
-                                aspectRatio={img.nd.width / img.nd.height}
-                                onClick={onClick}
-                            />
-                        </div>
-                    ))}
-                </div>
-            ))}
-        </StyledGallery>
-    );
-}
+        return (
+            <StyledGallery
+                $gap={gap}
+                $columnWidth={columnWidth}
+                $width={width}
+                ref={(node) => {
+                    setRef(parentRef, node);
+                    setRef(ref, node);
+                }}
+            >
+                {adjusted.map((col, i) => (
+                    <div key={i}>
+                        {col.images.map((img, j) => (
+                            <div key={j}>
+                                <Media
+                                    src={images[img.id]}
+                                    aspectRatio={img.nd.width / img.nd.height}
+                                    onClick={onClick}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                ))}
+            </StyledGallery>
+        );
+    },
+);
+
+const ResponsiveGalleryWrapper = styled.div<{ $height: number }>`
+    width: 100%;
+    height: ${({ $height }) => $height}px;
+    position: relative;
+
+    > div {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+`;
 
 type ResponsiveGalleryProps = {
     images: Asset[];
     gap?: number;
-    columnWidth?: number;
     onClick?: (src: string) => void;
 };
 
-export function ResponsiveGallery({
-    images,
-    gap,
-    columnWidth,
-    onClick,
-}: ResponsiveGalleryProps) {
-    const [ref, size] = useSize<HTMLDivElement>();
-    const [columns, setColums] = useState(2);
+export const ResponsiveGallery = forwardRef(
+    ({ images, gap = 8, onClick }: ResponsiveGalleryProps, parentRef) => {
+        const [ref, size] = useSize<HTMLDivElement>();
+        const [galRef, galSize] = useSize<HTMLDivElement>();
+        const [columns, setColums] = useState(2);
+        const columnWidth = (size.width - (columns - 1) * gap) / columns;
 
-    const layouts = [
-        createLayout(images, 1),
-        createLayout(images, 2),
-        createLayout(images, 3),
-    ];
+        const layouts = [
+            createLayout(images, 1),
+            createLayout(images, 2),
+            createLayout(images, 3),
+        ];
 
-    useEffect(() => {
-        if (size.width < 700) setColums(1);
-        else if (size.width < 1200) setColums(2);
-        else setColums(3);
-    }, [size]);
+        useEffect(() => {
+            if (size.width < 700) setColums(1);
+            else if (size.width < 1200) setColums(2);
+            else setColums(3);
+        }, [size]);
 
-    return (
-        <div ref={ref}>
-            <Gallery
-                images={images}
-                layout={layouts[columns - 1]}
-                gap={gap}
-                columnWidth={columnWidth}
-                onClick={onClick}
-            />
-        </div>
-    );
-}
+        return (
+            <ResponsiveGalleryWrapper
+                $height={galSize.height}
+                ref={(node) => {
+                    setRef(parentRef, node);
+                    setRef(ref, node);
+                }}
+            >
+                <Gallery
+                    images={images}
+                    layout={layouts[columns - 1]}
+                    gap={gap}
+                    columnWidth={columnWidth}
+                    onClick={onClick}
+                    ref={galRef}
+                />
+            </ResponsiveGalleryWrapper>
+        );
+    },
+);
 
 type FixedHeightGalleryProps = {
     images: Asset[];
     targetHeight: number;
+    columnWidth: number;
     gap?: number;
-    columnWidth?: number;
     onClick?: (src: string) => void;
+    setColumns?: (columns: number) => void;
 };
 
-export function FixedHeightGallery({
-    images,
-    targetHeight,
-    gap,
-    columnWidth,
-    onClick,
-}: FixedHeightGalleryProps) {
-    const layout = createLayoutFixedHeight(images, targetHeight);
+export const FixedHeightGallery = forwardRef(
+    (
+        {
+            images,
+            targetHeight,
+            gap,
+            columnWidth,
+            onClick,
+            setColumns,
+        }: FixedHeightGalleryProps,
+        parentRef,
+    ) => {
+        const layout = createLayoutFixedHeight(images, targetHeight);
 
-    return (
-        <div>
+        useEffect(() => {
+            if (!setColumns) return;
+            setColumns(layout.length);
+        }, [layout.length]);
+
+        return (
             <Gallery
                 images={images}
                 layout={layout}
                 gap={gap}
                 columnWidth={columnWidth}
                 onClick={onClick}
+                ref={parentRef}
             />
-        </div>
-    );
-}
+        );
+    },
+);
 
 type Image = {
     id: number;

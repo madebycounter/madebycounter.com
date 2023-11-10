@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import useSize from "../global/useSize";
 
 import Asset from "../types/Asset";
-import Carousel from "./Carousel";
+import { ImageCarousel } from "./Carousel";
 import { Heading2 } from "./Typography";
 import LinkDiv from "./cards/utils/LinkDiv";
 
@@ -228,7 +228,7 @@ export default function Button({
 
             <MediaContainer $buttonType={type} $inverted={inverted}>
                 {(type === "left" || type === "right") && (
-                    <Carousel
+                    <ImageCarousel
                         images={images}
                         aspectRatio={1}
                         size={size.height}
