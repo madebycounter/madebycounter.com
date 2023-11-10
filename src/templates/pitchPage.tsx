@@ -6,6 +6,7 @@ import GlobalStyle from "../global/globalStyle";
 import { LightTheme } from "../global/themes";
 
 import ButtonRight from "../components/Button";
+import { GalleryCarousel } from "../components/Carousel";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { Layout, LayoutNarrow } from "../components/Layout";
@@ -73,7 +74,6 @@ type PitchPageProps = {
 
 export default function ServicePage({ data }: PitchPageProps) {
     const pageData = data.contentfulService;
-    console.log(data);
 
     return (
         <ThemeProvider theme={LightTheme}>
@@ -106,7 +106,9 @@ export default function ServicePage({ data }: PitchPageProps) {
                             </Paragraph>
                         </MarkupSwap>
 
-                        <HeroButton to="#">Book Now</HeroButton>
+                        <HeroButton to="#" type="normal" direction="right">
+                            Book Now
+                        </HeroButton>
                     </HeroDetails>
 
                     <HeroSlideshow>
@@ -155,6 +157,8 @@ export default function ServicePage({ data }: PitchPageProps) {
                 carousel={pageData.slideshow}
                 cta="Learn More"
             />
+
+            <GalleryCarousel images={pageData.slideshow} targetHeight={1} />
 
             <Footer />
         </ThemeProvider>

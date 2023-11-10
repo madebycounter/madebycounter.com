@@ -87,7 +87,12 @@ export default function Luke({
                     </>
                 }
                 button={
-                    <PitchButton to="#" images={buttonCarousel}>
+                    <PitchButton
+                        to="#"
+                        images={buttonCarousel}
+                        type="carousel"
+                        direction="right"
+                    >
                         Learn More
                     </PitchButton>
                 }

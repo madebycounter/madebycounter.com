@@ -1,39 +1,92 @@
-import React, { useRef, useState } from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
 
 import useSafeId from "../global/useSafeId";
 import useSize from "../global/useSize";
 
 import Asset from "../types/Asset";
-import { FixedHeightGallery } from "./media/Gallery";
+import {
+    Direction,
+    HorizontalDirection,
+    isHorizontal,
+} from "../types/directions";
+import { HorizontalGallery } from "./media/Gallery";
 import Media, { AspectRatio } from "./media/Media";
+
+function getAnimationName(direction: Direction, id: string) {
+    switch (direction) {
+        case "left":
+            return "c-l-" + id;
+        case "right":
+            return "c-r-" + id;
+        case "up":
+            return "c-u-" + id;
+        case "down":
+            return "c-d-" + id;
+    }
+}
 
 const CarouselWrapper = styled.div`
     overflow: hidden;
+    width: 100%;
+    height: 100%;
 `;
 
 type CarouselSliderProps = {
-    $width: number;
     $speed: number;
+    $length: number;
+    $direction: Direction;
     $id: string;
 };
 
 const CarouselSlider = styled.div<CarouselSliderProps>`
     display: flex;
-    animation: ${(props) => "carousel-" + props.$id} ${(props) => props.$speed}s
-        linear infinite;
+    flex-direction: ${(props) =>
+        isHorizontal(props.$direction) ? "row" : "column"};
+    animation: ${(props) => getAnimationName(props.$direction, props.$id)}
+        ${(props) => props.$speed}s linear infinite;
 
     > * {
         flex-shrink: 0;
     }
 
-    @keyframes ${(props) => "carousel-" + props.$id} {
+    @keyframes ${(props) => "c-l-" + props.$id} {
         0% {
             transform: translateX(0);
         }
 
         100% {
-            transform: translateX(-${(props) => props.$width}px);
+            transform: translateX(-${(props) => props.$length}px);
+        }
+    }
+
+    @keyframes ${(props) => "c-r-" + props.$id} {
+        0% {
+            transform: translateX(-${(props) => props.$length}px);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes ${(props) => "c-u-" + props.$id} {
+        0% {
+            transform: translateY(0);
+        }
+
+        100% {
+            transform: translateY(-${(props) => props.$length}px);
+        }
+    }
+
+    @keyframes ${(props) => "c-d-" + props.$id} {
+        0% {
+            transform: translateY(-${(props) => props.$length}px);
+        }
+
+        100% {
+            transform: translateY(0);
         }
     }
 `;
@@ -44,22 +97,25 @@ const CarouselItem = styled.div<{ $gap: number }>`
 
 type CarouselProps = {
     child: React.ReactNode;
-    childSize: number;
+    childLength: number;
     gap: number;
     speed: number;
+    direction: Direction;
 };
 
 export default function Carousel({
     child,
-    childSize,
+    childLength,
     gap,
     speed,
+    direction,
 }: CarouselProps) {
     const id = useSafeId();
     const [ref, size] = useSize<HTMLDivElement>();
-    const trueChildSize = childSize + gap;
+    const trueChildLength = childLength + gap;
 
-    var quantity = Math.ceil(size.width / trueChildSize) + 1;
+    var length = isHorizontal(direction) ? size.width : size.height;
+    var quantity = Math.ceil(length / trueChildLength) + 1;
 
     if (isNaN(quantity) || quantity === Infinity) {
         quantity = 0;
@@ -69,8 +125,9 @@ export default function Carousel({
         <CarouselWrapper ref={ref}>
             <CarouselSlider
                 $id={id}
-                $width={trueChildSize}
-                $speed={trueChildSize / speed}
+                $length={trueChildLength}
+                $direction={direction}
+                $speed={trueChildLength / speed}
             >
                 {[...Array(quantity)].map((_, i) => (
                     <CarouselItem key={i} $gap={gap}>
@@ -82,82 +139,74 @@ export default function Carousel({
     );
 }
 
-type FixedGalleryCarouselProps = {
-    images: Asset[];
-    targetHeight: number;
-    speed?: number;
-    gap?: number;
-    columnWidth?: number;
-    onClick?: (src: string) => void;
-};
-
-export function FixedGalleryCarousel({
-    images,
-    targetHeight,
-    speed = 100,
-    gap = 8,
-    columnWidth = 300,
-    onClick,
-}: FixedGalleryCarouselProps) {
-    const [columns, setColumns] = useState(1);
-    const size = columns * (columnWidth + gap) - gap;
-
-    return (
-        <>
-            <Carousel
-                child={
-                    <FixedHeightGallery
-                        images={images}
-                        targetHeight={targetHeight}
-                        gap={gap}
-                        columnWidth={columnWidth}
-                        onClick={onClick}
-                        setColumns={setColumns}
-                    />
-                }
-                childSize={size}
-                gap={gap}
-                speed={speed}
-            />
-        </>
-    );
-}
-
 type ImageBlockWrapperProps = {
-    $width: number;
+    $length: number;
     $size: number;
     $gap: number;
+    $direction: Direction;
 };
 
 const ImageBlockWrapper = styled.div<ImageBlockWrapperProps>`
     display: flex;
     gap: ${(props) => props.$gap}px;
-    width: ${(props) => props.$width}px;
+
+    ${(props) => {
+        if (isHorizontal(props.$direction)) {
+            return css`
+                width: ${props.$length}px;
+            `;
+        } else {
+            return css`
+                height: ${props.$length}px;
+            `;
+        }
+    }}
+
+    flex-direction: ${(props) =>
+        isHorizontal(props.$direction) ? "row" : "column"};
 
     > div {
         flex-shrink: 0;
         flex-grow: 0;
-        height: ${(props) => props.$size}px;
+
+        ${(props) => {
+            if (isHorizontal(props.$direction)) {
+                return css`
+                    height: ${props.$size}px;
+                `;
+            } else {
+                return css`
+                    width: ${props.$size}px;
+                `;
+            }
+        }}
     }
 `;
 
 type ImageBlockProps = {
     images: Asset[];
-    width: number;
-    size: number;
+    length: number;
+    height: number;
     aspectRatio: AspectRatio;
     gap: number;
+    direction: Direction;
 };
 
 function ImageBlock({
     images,
-    width,
-    size,
+    length,
+    height,
     aspectRatio,
     gap,
+    direction,
 }: ImageBlockProps) {
     return (
-        <ImageBlockWrapper $width={width} $size={size} $gap={gap}>
+        <ImageBlockWrapper
+            $length={length}
+            $size={height}
+            $gap={gap}
+            $direction={direction}
+        >
             {images.map((image, i) => (
                 <div>
                     <Media src={image} key={i} aspectRatio={aspectRatio} />
@@ -167,51 +216,108 @@ function ImageBlock({
     );
 }
 
+const ImageCarouselWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+`;
+
 type ImageCarouselProps = {
     images: Asset[];
-    size?: number;
     gap?: number;
     speed?: number;
     aspectRatio?: AspectRatio;
+    direction?: Direction;
 };
 
 export function ImageCarousel({
     images,
-    size = 100,
     gap = 10,
     speed = 50,
     aspectRatio = "original",
+    direction = "left",
 }: ImageCarouselProps) {
+    const [ref, size] = useSize<HTMLDivElement>();
+    const height = isHorizontal(direction) ? size.height : size.width;
+
     if (aspectRatio === null) {
         aspectRatio = "original";
     }
 
-    var imageWidths = gap * images.length;
+    var childLength = gap * images.length;
 
     for (var i = 0; i < images.length; i++) {
-        var dimensions = images[i].dimensions;
+        var imgSize = images[i].dimensions;
+        var trueAspect =
+            aspectRatio === "original"
+                ? imgSize.width / imgSize.height
+                : aspectRatio;
 
-        if (aspectRatio === "original") {
-            imageWidths += (dimensions.width / dimensions.height) * size;
-        } else {
-            imageWidths += aspectRatio * size;
-        }
+        if (isHorizontal(direction)) childLength += trueAspect * height;
+        else childLength += 1 / (trueAspect / height);
     }
 
     return (
-        <Carousel
-            child={
-                <ImageBlock
-                    width={imageWidths}
-                    images={images}
-                    size={size}
-                    gap={gap}
-                    aspectRatio={aspectRatio}
-                />
-            }
-            childSize={imageWidths}
-            gap={0}
-            speed={speed}
-        />
+        <ImageCarouselWrapper ref={ref}>
+            <Carousel
+                child={
+                    <ImageBlock
+                        length={childLength}
+                        height={height}
+                        images={images}
+                        gap={gap}
+                        aspectRatio={aspectRatio}
+                        direction={direction}
+                    />
+                }
+                childLength={childLength}
+                gap={0}
+                speed={speed}
+                direction={direction}
+            />
+        </ImageCarouselWrapper>
+    );
+}
+
+type GalleryCarouselProps = {
+    images: Asset[];
+    targetHeight: number;
+    speed?: number;
+    gap?: number;
+    columnWidth?: number;
+    onClick?: (src: string) => void;
+    direction?: HorizontalDirection;
+};
+
+export function GalleryCarousel({
+    images,
+    targetHeight,
+    speed = 100,
+    gap = 8,
+    columnWidth = 300,
+    onClick,
+    direction = "left",
+}: GalleryCarouselProps) {
+    const [columns, setColumns] = useState(1);
+    const size = columns * (columnWidth + gap) - gap;
+
+    return (
+        <>
+            <Carousel
+                child={
+                    <HorizontalGallery
+                        images={images}
+                        targetHeight={targetHeight}
+                        gap={gap}
+                        columnWidth={columnWidth}
+                        onClick={onClick}
+                        setColumns={setColumns}
+                    />
+                }
+                childLength={size}
+                gap={gap}
+                speed={speed}
+                direction={direction}
+            />
+        </>
     );
 }

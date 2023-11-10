@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { HorizontalDirection } from "../types";
+import { HorizontalDirection } from "../types/directions";
 
 type ArrowProps = { $inverted?: boolean; $direction: HorizontalDirection };
 

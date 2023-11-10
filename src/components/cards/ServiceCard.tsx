@@ -53,7 +53,9 @@ export default function ServiceCard({ service }: ServiceCardProps) {
             <StyledServiceCardInfo>
                 <Heading1>Photos are cool right?</Heading1>
 
-                <StyledButton to="#">Learn More</StyledButton>
+                <StyledButton to="#" type="normal" direction="right">
+                    Learn More
+                </StyledButton>
             </StyledServiceCardInfo>
 
             <StyledServiceCardMedia>

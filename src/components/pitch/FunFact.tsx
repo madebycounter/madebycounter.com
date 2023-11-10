@@ -141,7 +141,13 @@ export default function FunFact({ fact, author, cta, carousel }: FunFactProps) {
             </FactWrapper>
 
             <ButtonWrapper>
-                <FunFactButton to="#" inverted={true} images={carousel}>
+                <FunFactButton
+                    to="#"
+                    inverted={true}
+                    images={carousel}
+                    direction="right"
+                    type="carousel"
+                >
                     {cta}
                 </FunFactButton>
             </ButtonWrapper>

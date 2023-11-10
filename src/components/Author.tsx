@@ -9,7 +9,8 @@ import LukePFP from "../images/authors/luke.webp";
 import WilliamPFPCropped from "../images/authors/william-crop.webp";
 import WilliamPFP from "../images/authors/william.webp";
 
-import { HorizontalDirection, TeamMember } from "../types";
+import { TeamMember } from "../types";
+import { HorizontalDirection } from "../types/directions";
 import { Paragraph } from "./Typography";
 
 export function getFullName(author: TeamMember) {

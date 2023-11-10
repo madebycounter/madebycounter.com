@@ -13,18 +13,13 @@ import Title from "../components/Title";
 import Slideshow from "../components/media/Slideshow";
 import YouTube from "../components/media/YouTube";
 
-import { HorizontalDirection } from "../types";
 import Asset from "../types/Asset";
+import {
+    HorizontalDirection,
+    invertDirection,
+    invertHorizontal,
+} from "../types/directions";
 import { useServicesPage } from "../types/pages/ServicesPage";
-
-function directionToButtonType(direction: HorizontalDirection): ButtonType {
-    switch (direction) {
-        case "left":
-            return "right";
-        case "right":
-            return "left";
-    }
-}
 
 const ServiceWrapper = styled.div<{ $align: HorizontalDirection }>`
     display: grid;
@@ -128,7 +123,8 @@ const ServiceBlock = ({
             <ButtonArea>
                 <ServicesButton
                     to={slug}
-                    type={directionToButtonType(align)}
+                    type="carousel"
+                    direction={invertHorizontal(align)}
                     inverted={false}
                     images={buttonImages}
                 >

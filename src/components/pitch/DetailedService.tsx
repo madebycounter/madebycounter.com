@@ -38,7 +38,7 @@ export default function DetailedService({
             <Media src={image} aspectRatio={1.5} />
             <DetailedServiceHeader>{title}</DetailedServiceHeader>
             <DetailedServiceParagraph>{description}</DetailedServiceParagraph>
-            <DetailedServiceButton type="right-fill" to={to}>
+            <DetailedServiceButton type="fill" direction="right" to={to}>
                 Learn More
             </DetailedServiceButton>
         </DetailedServiceWrapper>

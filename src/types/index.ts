@@ -8,12 +8,6 @@ export type MetaImage = {
 
 export type TeamMember = "Luke" | "Henry" | "William" | "Counter";
 
-export type HorizontalDirection = "left" | "right";
-
-export type VerticalDirection = "up" | "down";
-
-export type Direction = HorizontalDirection | VerticalDirection;
-
 export interface SiteMetadata {
     title: string;
     siteUrl: string;

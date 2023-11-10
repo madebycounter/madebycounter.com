@@ -116,7 +116,12 @@ export default function Henry({
                     </>
                 }
                 button={
-                    <PitchButton to="#" type="left" images={buttonCarousel}>
+                    <PitchButton
+                        to="#"
+                        type="carousel"
+                        direction="left"
+                        images={buttonCarousel}
+                    >
                         Learn More
                     </PitchButton>
                 }

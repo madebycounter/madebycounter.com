@@ -5,6 +5,7 @@ import setRef from "../../global/setRef";
 import useSize from "../../global/useSize";
 
 import Asset from "../../types/Asset";
+import Carousel from "../Carousel";
 import Media from "./Media";
 
 type StyledGalleryProps = {
@@ -146,7 +147,7 @@ export const ResponsiveGallery = forwardRef(
     },
 );
 
-type FixedHeightGalleryProps = {
+type HorizontalGalleryProps = {
     images: Asset[];
     targetHeight: number;
     columnWidth: number;
@@ -155,7 +156,7 @@ type FixedHeightGalleryProps = {
     setColumns?: (columns: number) => void;
 };
 
-export const FixedHeightGallery = forwardRef(
+export const HorizontalGallery = forwardRef(
     (
         {
             images,
@@ -164,10 +165,10 @@ export const FixedHeightGallery = forwardRef(
             columnWidth,
             onClick,
             setColumns,
-        }: FixedHeightGalleryProps,
+        }: HorizontalGalleryProps,
         parentRef,
     ) => {
-        const layout = createLayoutFixedHeight(images, targetHeight);
+        const layout = createLayoutHorizontal(images, targetHeight);
 
         useEffect(() => {
             if (!setColumns) return;
@@ -229,7 +230,7 @@ function createLayout(images: Asset[], columns: number): Layout {
     return layout;
 }
 
-function createLayoutFixedHeight(images: Asset[], maxHeight: number): Layout {
+function createLayoutHorizontal(images: Asset[], maxHeight: number): Layout {
     var imageData = getImageData(images);
     var layout: Layout = [{ images: [], height: 0 }];
 
