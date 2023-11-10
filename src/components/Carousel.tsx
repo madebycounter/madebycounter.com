@@ -61,8 +61,6 @@ export default function Carousel({
 
     var quantity = Math.ceil(size.width / trueChildSize) + 1;
 
-    console.log(quantity, trueChildSize);
-
     if (isNaN(quantity) || quantity === Infinity) {
         quantity = 0;
     }
@@ -103,8 +101,6 @@ export function FixedGalleryCarousel({
 }: FixedGalleryCarouselProps) {
     const [columns, setColumns] = useState(1);
     const size = columns * (columnWidth + gap) - gap;
-
-    console.log(columns, size);
 
     return (
         <>
