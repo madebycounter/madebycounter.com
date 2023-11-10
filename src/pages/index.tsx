@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import Henry from "../components/about/Henry";
+import { Hero } from "../components/about/Hero";
 import Luke from "../components/about/Luke";
 import William from "../components/about/William";
 
@@ -43,7 +44,10 @@ const IndexPage = () => {
     return (
         <ThemeProvider theme={DarkTheme}>
             <GlobalStyle />
+
             <Navbar active={"about"} />
+
+            <Hero />
 
             <div>
                 <Luke
