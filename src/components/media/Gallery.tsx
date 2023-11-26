@@ -50,11 +50,19 @@ type GalleryProps = {
     columnWidth: number;
     gap?: number;
     onClick?: (src: string) => void;
+    videoPlaying?: boolean;
 };
 
 export const Gallery = forwardRef(
     (
-        { images, layout, columnWidth, gap = 8, onClick }: GalleryProps,
+        {
+            images,
+            layout,
+            columnWidth,
+            gap = 8,
+            onClick,
+            videoPlaying,
+        }: GalleryProps,
         parentRef,
     ) => {
         const [ref, size] = useSize<HTMLDivElement>();
@@ -79,6 +87,7 @@ export const Gallery = forwardRef(
                                     src={images[img.id]}
                                     aspectRatio={img.nd.width / img.nd.height}
                                     onClick={onClick}
+                                    videoPlaying={videoPlaying}
                                 />
                             </div>
                         ))}
@@ -154,6 +163,7 @@ type HorizontalGalleryProps = {
     gap?: number;
     onClick?: (src: string) => void;
     setColumns?: (columns: number) => void;
+    videoPlaying?: boolean;
 };
 
 export const HorizontalGallery = forwardRef(
@@ -165,6 +175,7 @@ export const HorizontalGallery = forwardRef(
             columnWidth,
             onClick,
             setColumns,
+            videoPlaying,
         }: HorizontalGalleryProps,
         parentRef,
     ) => {
@@ -183,6 +194,7 @@ export const HorizontalGallery = forwardRef(
                 columnWidth={columnWidth}
                 onClick={onClick}
                 ref={parentRef}
+                videoPlaying={videoPlaying}
             />
         );
     },

@@ -311,6 +311,7 @@ export function GalleryCarousel({
                         columnWidth={columnWidth}
                         onClick={onClick}
                         setColumns={setColumns}
+                        videoPlaying={false}
                     />
                 }
                 childLength={size}
