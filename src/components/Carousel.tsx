@@ -209,7 +209,12 @@ function ImageBlock({
         >
             {images.map((image, i) => (
                 <div>
-                    <Media src={image} key={i} aspectRatio={aspectRatio} />
+                    <Media
+                        src={image}
+                        key={i}
+                        aspectRatio={aspectRatio}
+                        videoPlaying={false}
+                    />
                 </div>
             ))}
         </ImageBlockWrapper>
