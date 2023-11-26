@@ -8,7 +8,7 @@ import { Heading1, Paragraph } from "../Typography";
 import ImageGrid from "./ImageGrid";
 
 const StyledHeading = styled(Heading1)`
-    font-size: 8rem;
+    font-size: 7vw;
 `;
 
 const StyledParagraph = styled(Paragraph)`

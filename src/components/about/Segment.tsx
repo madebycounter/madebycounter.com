@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { HorizontalDirection } from "../../types";
+import { HorizontalDirection } from "../../types/directions";
 
 type AcceptsDirection = {
     $direction: HorizontalDirection;

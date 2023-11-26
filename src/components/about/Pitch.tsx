@@ -1,9 +1,9 @@
 import React from "react";
 import { css, styled } from "styled-components";
 
-import { HorizontalDirection } from "../../types";
 import PortfolioItem from "../../types/PortfolioItem";
-import Button, { ButtonWrapper } from "../Button";
+import { HorizontalDirection } from "../../types/directions";
+import Button from "../Button";
 import { Heading1 } from "../Typography";
 import { PortfolioCard } from "../cards/PortfolioCard";
 
