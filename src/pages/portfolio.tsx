@@ -70,10 +70,10 @@ const Item = ({ image, title, tags, href }: ItemProps) => {
 
                     <Tags>
                         {tags.map((tag, idx) => (
-                            <>
-                                <span key={idx}>{tag}</span>
+                            <span key={idx}>
+                                {tag}
                                 <br />
-                            </>
+                            </span>
                         ))}
                     </Tags>
                 </div>

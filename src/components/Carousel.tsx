@@ -208,10 +208,9 @@ function ImageBlock({
             $direction={direction}
         >
             {images.map((image, i) => (
-                <div>
+                <div key={i}>
                     <Media
                         src={image}
-                        key={i}
                         aspectRatio={aspectRatio}
                         videoPlaying={false}
                     />

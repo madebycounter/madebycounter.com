@@ -102,10 +102,10 @@ export function PortfolioCard({ item }: PortfolioCardProps) {
 
             <Tags>
                 {item.tags.map((tag, idx) => (
-                    <>
-                        <span key={idx}>{tag}</span>
+                    <span key={idx}>
+                        {tag}
                         <br />
-                    </>
+                    </span>
                 ))}
             </Tags>
         </StyledCard>
