@@ -13,7 +13,7 @@ export function isVideo(mimeType: string): boolean {
 }
 
 export function isImage(mimeType: string): boolean {
-    return ["image/jpeg", "image/png"].includes(mimeType);
+    return ["image/jpeg", "image/png", "image/webp"].includes(mimeType);
 }
 
 export function isGif(mimeType: string): boolean {

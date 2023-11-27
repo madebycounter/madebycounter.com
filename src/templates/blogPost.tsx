@@ -108,9 +108,9 @@ const BlogPostPage = ({ data }: BlogPostProps) => {
                                 .filter(
                                     (ref: any) =>
                                         ref.__typename ===
-                                        "ContentfulMultiImageBlock",
+                                        "ContentfulMediaCollection",
                                 )
-                                .map((ref: any) => ref.images)
+                                .map((ref: any) => ref.media)
                                 .flat(),
                         ),
                 )}

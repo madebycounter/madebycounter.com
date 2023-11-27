@@ -4,17 +4,10 @@ import React from "react";
 import styled from "styled-components";
 
 import useContainerQuery from "../../global/containerQuery";
-import {
-    firstSentence,
-    renderPlainText,
-    smartShorten,
-} from "../../global/textHelpers";
+import { firstSentence, renderPlainText } from "../../global/textHelpers";
 
 import PortfolioItem from "../../types/PortfolioItem";
-import Details, {
-    DetailsDescription,
-    StyledDetails,
-} from "../PortfolioDetails";
+import Details, { DetailsDescription } from "../PortfolioDetails";
 import { Heading2, Paragraph, Tags } from "../Typography";
 import Slideshow from "../media/Slideshow";
 import LinkDiv from "./utils/LinkDiv";

@@ -1,7 +1,8 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { StringLiteral } from "typescript";
 
-import { MetaImage, RichText, TeamMember } from ".";
+import TeamMember from "./components/TeamMember";
+
+import { MetaImage, RichText } from ".";
 import Asset from "./Asset";
 
 export default interface BlogPost {
@@ -40,7 +41,9 @@ export const blogPostFragment = graphql`
         title
         date(formatString: "MMMM D, YYYY")
         dateDotted: date(formatString: "MM.DD.YYYY")
-        author
+        author {
+            ...TeamMember
+        }
         banner {
             ...Asset
         }
@@ -58,7 +61,7 @@ export const blogPostFragment = graphql`
             references {
                 ...Asset
                 ...SocialMediaEmbed
-                ...MultiImageBlock
+                ...MediaCollection
             }
         }
         slug

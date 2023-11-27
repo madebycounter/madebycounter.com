@@ -1,6 +1,8 @@
 import React from "react";
 import { styled } from "styled-components";
 
+import MediaCollection from "../../types/components/MediaCollection";
+
 import { usePortfolioItems } from "../../types/PortfolioItem";
 import Button from "../Button";
 import Highlight from "../Highlight";
@@ -57,10 +59,11 @@ const HeroWrapper = styled.div`
     width: 100%;
 `;
 
-export function Hero() {
-    const portfolioItems = usePortfolioItems();
-    const images = portfolioItems.map((item) => item.gallery || []);
+type HeroProps = {
+    media: MediaCollection[];
+};
 
+export function Hero({ media }: HeroProps) {
     return (
         <HeroWrapper>
             <InfoBox>
@@ -83,10 +86,10 @@ export function Hero() {
 
             <GridBox>
                 <ImageGrid
-                    column1={images[0]}
-                    column2={images[4]}
-                    column3={images[2]}
-                    row={images[5]}
+                    column1={media[0].media}
+                    column2={media[1].media}
+                    column3={media[2].media}
+                    row={media[3].media}
                 />
             </GridBox>
         </HeroWrapper>

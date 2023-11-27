@@ -1,77 +1,29 @@
 import { graphql, useStaticQuery } from "gatsby";
 
-import Asset from "../Asset";
+import MediaCollection from "../components/MediaCollection";
+
 import PortfolioItem from "../PortfolioItem";
+import Service from "../Service";
 
 export interface AboutPage {
-    lukeSlideshow1: Asset[];
-    lukeSlideshow2: Asset[];
-    williamSlideshow1: Asset[];
-    williamSlideshow2: Asset[];
-    henrySlideshow1: Asset[];
-    henrySlideshow2: Asset[];
-    lukePortrait: Asset;
-    henryPortrait: Asset;
-    williamPortrait: Asset;
-    dronePortrait: Asset;
-    footerPortraits: Asset[];
-    lukeSignature: Asset;
-    henrySignature: Asset;
-    williamSignature: Asset;
+    __typename: "ContentfulAsset";
+    contentful_id: string;
     lukeShowcase: PortfolioItem[];
     henryShowcase: PortfolioItem[];
     williamShowcase: PortfolioItem[];
-    lukeButtonCarousel: Asset[];
-    henryButtonCarousel: Asset[];
-    williamButtonCarousel: Asset[];
+    lukeSlideshows: MediaCollection[];
+    henrySlideshows: MediaCollection[];
+    williamSlideshows: MediaCollection[];
+    lukeService: Service;
+    henryService: Service;
+    williamService: Service;
+    heroMedia: MediaCollection[];
 }
 
 export function useAboutPage(): AboutPage {
     return useStaticQuery(graphql`
         {
             contentfulAboutPage {
-                lukeSlideshow1 {
-                    ...Asset
-                }
-                lukeSlideshow2 {
-                    ...Asset
-                }
-                williamSlideshow1 {
-                    ...Asset
-                }
-                williamSlideshow2 {
-                    ...Asset
-                }
-                henrySlideshow1 {
-                    ...Asset
-                }
-                henrySlideshow2 {
-                    ...Asset
-                }
-                lukePortrait {
-                    ...Asset
-                }
-                henryPortrait {
-                    ...Asset
-                }
-                williamPortrait {
-                    ...Asset
-                }
-                dronePortrait {
-                    ...Asset
-                }
-                footerPortraits {
-                    ...Asset
-                }
-                lukeSignature {
-                    ...Asset
-                }
-                henrySignature {
-                    ...Asset
-                }
-                williamSignature {
-                    ...Asset
-                }
                 lukeShowcase {
                     ...PortfolioItem
                 }
@@ -81,14 +33,26 @@ export function useAboutPage(): AboutPage {
                 williamShowcase {
                     ...PortfolioItem
                 }
-                lukeButtonCarousel {
-                    ...CarouselAsset
+                lukeSlideshows {
+                    ...MediaCollection
                 }
-                henryButtonCarousel {
-                    ...CarouselAsset
+                henrySlideshows {
+                    ...MediaCollection
                 }
-                williamButtonCarousel {
-                    ...CarouselAsset
+                williamSlideshows {
+                    ...MediaCollection
+                }
+                lukeService {
+                    ...Service
+                }
+                henryService {
+                    ...Service
+                }
+                williamService {
+                    ...Service
+                }
+                heroMedia {
+                    ...MediaCollection
                 }
             }
         }

@@ -105,6 +105,8 @@ exports.createSchemaCustomization = ({ actions }) => {
             width: Int!
             height: Int!
         }
+
+
     `);
 };
 

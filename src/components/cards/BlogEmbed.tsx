@@ -3,11 +3,11 @@ import React from "react";
 import styled from "styled-components";
 
 import useContainerQuery from "../../global/containerQuery";
-import { firstSentence, smartShorten } from "../../global/textHelpers";
+import { firstSentence } from "../../global/textHelpers";
 
 import BlogPost from "../../types/BlogPost";
 import { AuthorCard } from "../Author";
-import { Heading2, Heading3, Paragraph, Tags } from "../Typography";
+import { Heading2, Paragraph, Tags } from "../Typography";
 import Media from "../media/Media";
 import LinkDiv from "./utils/LinkDiv";
 import Slash from "./utils/Slash";

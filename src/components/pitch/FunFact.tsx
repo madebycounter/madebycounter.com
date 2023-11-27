@@ -2,32 +2,19 @@ import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
 import styled from "styled-components";
 
+import TeamMember from "../../types/components/TeamMember";
+
 import HenryPointing from "../../images/authors/henry-point.webp";
 import LukePointing from "../../images/authors/luke-point.webp";
 import WilliamPointing from "../../images/authors/william-point.webp";
 
-import { TeamMember } from "../../types";
 import Asset from "../../types/Asset";
 import Arrow from "../Arrow";
 import { ProfilePhoto } from "../Author";
 import Button from "../Button";
 import MarkupSwap from "../MobileSwap";
 import { Paragraph } from "../Typography";
-
-const PointingImage = styled.img`
-    width: 100%;
-`;
-
-function getPointingImage(author: TeamMember) {
-    switch (author) {
-        case "Henry":
-            return HenryPointing;
-        case "Luke":
-            return LukePointing;
-        case "William":
-            return WilliamPointing;
-    }
-}
+import Media from "../media/Media";
 
 const FunFactWrapper = styled.div`
     display: grid;
@@ -128,9 +115,9 @@ export default function FunFact({ fact, author, cta, carousel }: FunFactProps) {
         <FunFactWrapper>
             <PortraitWrapper>
                 <MarkupSwap width={600}>
-                    <ProfilePhoto member={author} cropped={true} />
+                    <ProfilePhoto teamMember={author} />
 
-                    <PointingImage src={getPointingImage(author)} alt="" />
+                    <Media src={author.pointingPhoto} />
                 </MarkupSwap>
             </PortraitWrapper>
 

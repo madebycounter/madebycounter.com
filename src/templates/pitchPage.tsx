@@ -152,7 +152,7 @@ export default function ServicePage({ data }: PitchPageProps) {
             <br />
 
             <FunFact
-                author="Henry"
+                author={pageData.teamMember}
                 fact="Did you know, 70% of businesses report an increase in sales after updating their Instagram and social media platforms?"
                 carousel={pageData.slideshow}
                 cta="Learn More"

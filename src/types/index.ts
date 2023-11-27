@@ -6,8 +6,6 @@ export type MetaImage = {
     gatsbyImageData?: IGatsbyImageData;
 };
 
-export type TeamMember = "Luke" | "Henry" | "William" | "Counter";
-
 export interface SiteMetadata {
     title: string;
     siteUrl: string;

@@ -51,10 +51,10 @@ function renderEntry(onClick?: (cfid: string) => void) {
                 return <p>Portfolio items not supported</p>;
             case "ContentfulSocialMediaEmbed":
                 return renderSocialEmbed(node, children);
-            case "ContentfulMultiImageBlock":
+            case "ContentfulMediaCollection":
                 return (
                     <MultiImageBlock
-                        images={node.data.target.images}
+                        images={node.data.target.media}
                         onClick={onClick}
                     />
                 );

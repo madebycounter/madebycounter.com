@@ -84,6 +84,7 @@ type ServiceBlockProps = {
     slideshow: Asset[];
     align?: HorizontalDirection;
     youtube?: string;
+    buttonImages: Asset[];
 };
 
 const ServiceBlock = ({
@@ -92,13 +93,9 @@ const ServiceBlock = ({
     offerings,
     align = "left",
     slideshow,
+    buttonImages,
     youtube,
 }: ServiceBlockProps) => {
-    var buttonImages: Asset[] = [];
-    if (slideshow && slideshow.length > 0) {
-        buttonImages = slideshow;
-    }
-
     return (
         <ServiceWrapper $align={align}>
             <TitleArea>
@@ -151,6 +148,7 @@ const ServicesPage = () => {
                         title={service.title}
                         slug={service.slug}
                         slideshow={service.slideshow}
+                        buttonImages={service.buttonImages.media}
                         offerings={service.offerings}
                         youtube={service.youTube}
                         align={idx % 2 === 0 ? "right" : "left"}

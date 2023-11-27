@@ -11,34 +11,25 @@ import Henry from "../components/about/Henry";
 import { Hero } from "../components/about/Hero";
 import Luke from "../components/about/Luke";
 import William from "../components/about/William";
+import { useTeamMembers } from "../types/components/TeamMember";
 
 import { useAboutPage } from "../types/pages/AboutPage";
 
 const IndexPage = () => {
     const footerTrigger = useRef<HTMLDivElement>(null);
 
-    // boo!
+    const teamMembers = useTeamMembers();
     const {
-        lukeSlideshow1,
-        lukeSlideshow2,
-        henrySlideshow1,
-        henrySlideshow2,
-        williamSlideshow1,
-        williamSlideshow2,
-        lukePortrait,
-        henryPortrait,
-        williamPortrait,
-        dronePortrait,
-        footerPortraits,
-        lukeSignature,
-        henrySignature,
-        williamSignature,
+        lukeShowcase,
         williamShowcase,
         henryShowcase,
-        lukeShowcase,
-        lukeButtonCarousel,
-        henryButtonCarousel,
-        williamButtonCarousel,
+        lukeSlideshows,
+        williamSlideshows,
+        henrySlideshows,
+        lukeService,
+        williamService,
+        henryService,
+        heroMedia,
     } = useAboutPage();
 
     return (
@@ -47,35 +38,35 @@ const IndexPage = () => {
 
             <Navbar active={"about"} />
 
-            <Hero />
+            <Hero media={heroMedia} />
 
             <div>
                 <Luke
                     portfolioItems={lukeShowcase}
-                    portrait={lukePortrait}
-                    signature={lukeSignature}
-                    slideshow1={lukeSlideshow1}
-                    slideshow2={lukeSlideshow2}
-                    buttonCarousel={lukeButtonCarousel}
+                    portrait={teamMembers.luke.fullBody}
+                    signature={teamMembers.luke.signature}
+                    slideshow1={lukeSlideshows[0]}
+                    slideshow2={lukeSlideshows[1]}
+                    buttonCarousel={lukeService.buttonImages.media}
                 />
 
                 <Henry
                     portfolioItems={henryShowcase}
-                    portrait={henryPortrait}
-                    signature={henrySignature}
-                    slideshow1={henrySlideshow1}
-                    slideshow2={henrySlideshow2}
-                    buttonCarousel={henryButtonCarousel}
+                    portrait={teamMembers.henry.fullBody}
+                    signature={teamMembers.henry.signature}
+                    slideshow1={henrySlideshows[0]}
+                    slideshow2={henrySlideshows[1]}
+                    buttonCarousel={henryService.buttonImages.media}
                 />
 
                 <William
                     portfolioItems={williamShowcase}
-                    portrait={williamPortrait}
-                    signature={williamSignature}
-                    dronePortrait={dronePortrait}
-                    slideshow1={williamSlideshow1}
-                    slideshow2={williamSlideshow2}
-                    buttonCarousel={williamButtonCarousel}
+                    portrait={teamMembers.william.fullBody}
+                    signature={teamMembers.william.signature}
+                    dronePortrait={teamMembers.william.fullBodyExtra}
+                    slideshow1={williamSlideshows[0]}
+                    slideshow2={williamSlideshows[1]}
+                    buttonCarousel={williamService.buttonImages.media}
                 />
             </div>
 

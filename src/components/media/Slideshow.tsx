@@ -120,15 +120,3 @@ export default function Slideshow({
         </StyledSlideshow>
     );
 }
-
-export const query = graphql`
-    fragment Slideshow on ContentfulSlideshow {
-        contentful_id
-        autoplayDelay
-        autoplayOffset
-        autoplay
-        content {
-            ...Media
-        }
-    }
-`;

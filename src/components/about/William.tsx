@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import MediaCollection from "../../types/components/MediaCollection";
+
 import Asset from "../../types/Asset";
 import PortfolioItem from "../../types/PortfolioItem";
 import MarkupSwap from "../MobileSwap";
@@ -20,8 +22,8 @@ type WilliamProps = {
     portrait: Asset;
     dronePortrait: Asset;
     signature: Asset;
-    slideshow1: Asset[];
-    slideshow2: Asset[];
+    slideshow1: MediaCollection;
+    slideshow2: MediaCollection;
     buttonCarousel: Asset[];
 };
 
@@ -168,8 +170,14 @@ export default function William({
                     </MarkupSwap>
 
                     <SlideshowContainer>
-                        <Slideshow src={slideshow1} aspectRatio={16 / 9} />
-                        <Slideshow src={slideshow2} aspectRatio={16 / 9} />
+                        <Slideshow
+                            src={slideshow1.media}
+                            aspectRatio={16 / 9}
+                        />
+                        <Slideshow
+                            src={slideshow2.media}
+                            aspectRatio={16 / 9}
+                        />
                     </SlideshowContainer>
                 </div>
 
