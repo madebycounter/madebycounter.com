@@ -9,11 +9,23 @@ import ImageGrid from "./ImageGrid";
 
 const StyledHeading = styled(Heading1)`
     font-size: 7vw;
+
+    @media (max-width: 1000px) {
+        font-size: 12vw;
+    }
 `;
 
 const StyledParagraph = styled(Paragraph)`
     font-size: 1.8rem;
     max-width: 70%;
+
+    @media (max-width: 1500px) {
+        max-width: 100%;
+    }
+
+    @media (max-width: 1000px) {
+        font-size: 5.2vw;
+    }
 `;
 
 const StyledButton = styled(Button)`
@@ -21,17 +33,28 @@ const StyledButton = styled(Button)`
 `;
 
 const InfoBox = styled.div`
+    --p: 2rem;
     flex: 1;
-    padding: 2rem;
+    padding: var(--p);
+    width: calc(100% - (var(--p) * 2));
+
+    @media (max-width: 1000px) {
+        --p: 1rem;
+    }
 `;
 
 const GridBox = styled.div`
     flex: 1;
-    height: 800px;
 `;
 
 const HeroWrapper = styled.div`
     display: flex;
+
+    @media (max-width: 1000px) {
+        flex-direction: column-reverse;
+    }
+
+    width: 100%;
 `;
 
 export function Hero() {

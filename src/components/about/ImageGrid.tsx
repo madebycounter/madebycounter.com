@@ -12,7 +12,17 @@ const ImageGridWrapper = styled.div`
     gap: 8px;
 
     width: 100%;
-    height: 100%;
+    height: 800px;
+
+    @media (max-width: 1500px) {
+        grid-template-rows: auto 200px;
+        height: 600px;
+    }
+
+    @media (max-width: 600px) {
+        grid-template-rows: auto 120px;
+        height: 400px;
+    }
 `;
 
 type GridAreaProps = {
