@@ -101,7 +101,7 @@ export function BlogEmbed({ item }: BlogEmbedProps) {
                 <Heading2>{item.title}</Heading2>
 
                 <Paragraph>
-                    {firstSentence(item.description?.description || "")}
+                    {firstSentence(item.summary?.summary || "")}
                 </Paragraph>
 
                 <StyledEmbedAuthor author={item.author} date={item.date} />

@@ -15,6 +15,8 @@ import {
     Paragraph,
     UnorderedList,
 } from "../components/Typography";
+import { BlogEmbed } from "../components/cards/BlogEmbed";
+import { PortfolioEmbed } from "../components/cards/PortfolioEmbed";
 import Media from "../components/media/Media";
 import SocialMediaEmbed from "../types/components/SocialMediaEmbed";
 
@@ -44,11 +46,12 @@ function renderSocialEmbed(node: Block | Inline, children: ReactNode) {
 
 function renderEntry(onClick?: (cfid: string) => void) {
     return (node: Block | Inline, children: ReactNode) => {
+        console.log(node);
         switch (node.data.target.__typename) {
             case "ContentfulBlogPost":
-                return <p>Blog posts not supported</p>;
+                return <BlogEmbed item={node.data.target} />;
             case "ContentfulPortfolioItem":
-                return <p>Portfolio items not supported</p>;
+                return <PortfolioEmbed item={node.data.target} />;
             case "ContentfulSocialMediaEmbed":
                 return renderSocialEmbed(node, children);
             case "ContentfulMediaCollection":

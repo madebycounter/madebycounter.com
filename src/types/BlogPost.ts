@@ -2,8 +2,9 @@ import { graphql, useStaticQuery } from "gatsby";
 
 import TeamMember from "./components/TeamMember";
 
-import { MetaImage, RichText } from ".";
+import { MetaImage } from ".";
 import Asset from "./Asset";
+import { RichTextResponse } from "./RichText";
 
 export default interface BlogPost {
     __typename: "ContentfulBlogPost";
@@ -15,10 +16,10 @@ export default interface BlogPost {
     banner: Asset;
     bannerMiddle: number;
     metaImage: MetaImage;
-    content: RichText;
+    content: RichTextResponse;
     slug: string;
-    description: {
-        description: string;
+    summary: {
+        summary: string;
     };
 }
 
@@ -58,15 +59,55 @@ export const blogPostFragment = graphql`
         bannerMiddle
         content {
             raw
-            references {
+            assetReferences: references {
                 ...Asset
+            }
+            socialMediaEmbedReferences: references {
                 ...SocialMediaEmbed
+            }
+            mediaCollectionReferences: references {
                 ...MediaCollection
+            }
+            portfolioItemReferences: references {
+                ...PortfolioItem
+            }
+            blogPostReferences: references {
+                ...BlogPostSimple
             }
         }
         slug
-        description {
-            description
+        summary {
+            summary
+        }
+    }
+
+    fragment BlogPostSimple on ContentfulBlogPost {
+        __typename
+        contentful_id
+        title
+        date(formatString: "MMMM D, YYYY")
+        dateDotted: date(formatString: "MM.DD.YYYY")
+        author {
+            ...TeamMember
+        }
+        banner {
+            ...Asset
+        }
+        metaImage: banner {
+            gatsbyImageData(
+                height: 627
+                width: 1200
+                breakpoints: 1200
+                resizingBehavior: FILL
+            )
+        }
+        bannerMiddle
+        slug
+        content {
+            raw
+        }
+        summary {
+            summary
         }
     }
 `;

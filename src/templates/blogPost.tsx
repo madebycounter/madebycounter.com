@@ -1,4 +1,3 @@
-import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { graphql } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import React, { useState } from "react";
@@ -17,10 +16,13 @@ import Navbar from "../components/Navbar";
 import { Heading1 } from "../components/Typography";
 import Lightbox from "../components/media/Lightbox";
 import Media from "../components/media/Media";
+import MediaCollection from "../types/components/MediaCollection";
 
 import defaultImage from "../images/meta.png";
 
+import Asset from "../types/Asset";
 import BlogPost from "../types/BlogPost";
+import { isRef, packRichText } from "../types/RichText";
 
 const StyledBlogBanner = styled.div`
     width: 100%;
@@ -71,6 +73,17 @@ const BlogPostPage = ({ data }: BlogPostProps) => {
     const { title, author, date, content, banner, bannerMiddle } =
         data.contentfulBlogPost;
 
+    const richText = packRichText(content);
+    const richTextAssets = richText.references.filter(
+        (obj): obj is Asset => obj.__typename === "ContentfulAsset",
+    );
+    const richTextMediaCollections = richText.references.filter(
+        (obj): obj is MediaCollection =>
+            obj.__typename === "ContentfulMediaCollection",
+    );
+
+    console.log(richText);
+
     return (
         <ThemeProvider theme={LightTheme}>
             <GlobalStyle />
@@ -92,27 +105,15 @@ const BlogPostPage = ({ data }: BlogPostProps) => {
                 <AuthorCard author={author} date={date} />
 
                 <div>
-                    {renderRichText(content, blogPostOptions(openLightbox))}
+                    {renderRichText(richText, blogPostOptions(openLightbox))}
                 </div>
             </LayoutNarrow>
 
             <Lightbox
                 // merge banner with images from contentful references
                 media={[banner].concat(
-                    content.references
-                        .filter(
-                            (ref: any) => ref.__typename === "ContentfulAsset",
-                        )
-                        .concat(
-                            content.references
-                                .filter(
-                                    (ref: any) =>
-                                        ref.__typename ===
-                                        "ContentfulMediaCollection",
-                                )
-                                .map((ref: any) => ref.media)
-                                .flat(),
-                        ),
+                    richTextAssets,
+                    richTextMediaCollections.map((obj) => obj.media).flat(),
                 )}
                 open={state.lightbox}
                 current={state.lightboxCurrent}
