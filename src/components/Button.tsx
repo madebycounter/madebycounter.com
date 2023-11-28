@@ -18,9 +18,9 @@ type ButtonWrapperProps = {
 };
 
 export const ButtonWrapper = styled(LinkDiv)<ButtonWrapperProps>`
-    font-size: 1em;
     display: grid;
     width: 100%;
+    height: ${(props) => props.$size}px;
 
     ${(props) => {
         if (
@@ -64,9 +64,9 @@ type LabelProps = {
 };
 
 const Label = styled(Heading2)<LabelProps>`
-    font-size: inherit;
     text-decoration: none;
     white-space: nowrap;
+    font-size: 100%;
 
     grid-area: label;
 
