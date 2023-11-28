@@ -15,6 +15,7 @@ export default interface PortfolioItem {
     slideshow?: Asset[];
     gallery?: Asset[];
     youTube?: string;
+    hidden: boolean;
     slug: string;
 }
 
@@ -58,6 +59,7 @@ export const portfolioEntryFragment = graphql`
             ...Asset
         }
         youTube
+        hidden
         slug
     }
 `;
