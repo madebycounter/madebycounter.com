@@ -16,11 +16,11 @@ export type RichTextReference =
 
 export type RichTextResponse = {
     raw: string;
-    assetReferences: (Asset | {})[];
-    socialMediaEmbedReferences: (SocialMediaEmbed | {})[];
-    mediaCollectionReferences: (MediaCollection | {})[];
-    portfolioItemReferences: (PortfolioItem | {})[];
-    blogPostReferences: (BlogPost | {})[];
+    assetReferences?: (Asset | {})[];
+    socialMediaEmbedReferences?: (SocialMediaEmbed | {})[];
+    mediaCollectionReferences?: (MediaCollection | {})[];
+    portfolioItemReferences?: (PortfolioItem | {})[];
+    blogPostReferences?: (BlogPost | {})[];
 };
 
 export type RichText = {
@@ -29,7 +29,6 @@ export type RichText = {
 };
 
 export function isRef(obj: RichTextReference | {}): obj is RichTextReference {
-    console.log(obj, obj.hasOwnProperty("__typename"));
     return obj.hasOwnProperty("__typename");
 }
 
@@ -37,11 +36,11 @@ export function packRichText(content: RichTextResponse): RichText {
     return {
         raw: content.raw,
         references: [
-            ...content.assetReferences,
-            ...content.socialMediaEmbedReferences,
-            ...content.mediaCollectionReferences,
-            ...content.portfolioItemReferences,
-            ...content.blogPostReferences,
+            ...(content.assetReferences || []),
+            ...(content.socialMediaEmbedReferences || []),
+            ...(content.mediaCollectionReferences || []),
+            ...(content.portfolioItemReferences || []),
+            ...(content.blogPostReferences || []),
         ].filter(isRef),
     };
 }

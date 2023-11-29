@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { portfolioOptions } from "../global/richTextOptions";
 
-import { RichText } from "../types";
+import { RichTextResponse, packRichText } from "../types/RichText";
 import { Paragraph } from "./Typography";
 
 export const StyledDetails = styled.div`
@@ -29,12 +29,12 @@ const DetailsTitle = styled.span`
 
 export const DetailsDate = styled(DetailsParagraph)``;
 export const DetailsTags = styled(DetailsParagraph)``;
-export const DetailsDescription = styled(DetailsParagraph)``;
+// export const DetailsDescription = styled(DetailsParagraph)``;
 
 type DetailsProps = {
     date?: string;
     tags?: string[] | ReadonlyArray<string | null>;
-    description?: RichText;
+    description?: RichTextResponse;
     plainText?: string;
     className?: string;
 };
@@ -67,13 +67,16 @@ const Details = ({
         )}
 
         {(description || plainText) && (
-            <DetailsDescription>
+            <div>
                 <DetailsTitle>/description&nbsp;</DetailsTitle>
                 {plainText ? plainText : ""}
                 {description
-                    ? renderRichText(description, portfolioOptions)
+                    ? renderRichText(
+                          packRichText(description),
+                          portfolioOptions,
+                      )
                     : ""}
-            </DetailsDescription>
+            </div>
         )}
     </StyledDetails>
 );

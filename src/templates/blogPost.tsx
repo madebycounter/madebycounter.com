@@ -82,8 +82,6 @@ const BlogPostPage = ({ data }: BlogPostProps) => {
             obj.__typename === "ContentfulMediaCollection",
     );
 
-    console.log(richText);
-
     return (
         <ThemeProvider theme={LightTheme}>
             <GlobalStyle />

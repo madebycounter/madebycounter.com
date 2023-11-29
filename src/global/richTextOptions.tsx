@@ -46,7 +46,6 @@ function renderSocialEmbed(node: Block | Inline, children: ReactNode) {
 
 function renderEntry(onClick?: (cfid: string) => void) {
     return (node: Block | Inline, children: ReactNode) => {
-        console.log(node);
         switch (node.data.target.__typename) {
             case "ContentfulBlogPost":
                 return <BlogEmbed item={node.data.target} />;

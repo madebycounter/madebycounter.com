@@ -7,12 +7,12 @@ import { ImageCarousel } from "../Carousel";
 const ImageGridWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto 300px;
+    grid-template-rows: auto 200px;
     grid-template-areas: "column1 column2 column3" "row row row";
     gap: 8px;
 
     width: 100%;
-    height: 800px;
+    height: 700px;
 
     @media (max-width: 1500px) {
         grid-template-rows: auto 200px;

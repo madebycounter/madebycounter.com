@@ -69,6 +69,9 @@ export const Gallery = forwardRef(
         const adjusted = adjustLayout(layout, columnWidth, gap);
         const width = layout.length * columnWidth + gap * (layout.length - 1);
 
+        console.log(images);
+        console.log(layout);
+
         return (
             <StyledGallery
                 $gap={gap}
@@ -80,9 +83,9 @@ export const Gallery = forwardRef(
                 }}
             >
                 {adjusted.map((col, i) => (
-                    <div key={i}>
+                    <div key={`i_${i}`}>
                         {col.images.map((img, j) => (
-                            <div key={j}>
+                            <div key={`j_${j}`}>
                                 <Media
                                     src={images[img.id]}
                                     aspectRatio={img.nd.width / img.nd.height}
