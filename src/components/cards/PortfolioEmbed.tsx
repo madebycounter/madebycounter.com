@@ -7,7 +7,7 @@ import useContainerQuery from "../../global/containerQuery";
 import { firstSentence, renderPlainText } from "../../global/textHelpers";
 
 import PortfolioItem from "../../types/PortfolioItem";
-import Details, { DetailsDescription } from "../PortfolioDetails";
+import Details from "../PortfolioDetails";
 import { Heading2, Paragraph, Tags } from "../Typography";
 import Slideshow from "../media/Slideshow";
 import LinkDiv from "./utils/LinkDiv";
@@ -64,10 +64,6 @@ const StyledEmbed = styled.div`
     &.small {
         grid-template-columns: 2fr 1fr;
 
-        ${DetailsDescription} {
-            display: none;
-        }
-
         ${Heading2} {
             font-size: 1.6rem;
         }
@@ -105,6 +101,7 @@ export function PortfolioEmbed({ item }: PortfolioEmbedProps) {
                             ? renderPlainText(item.description)
                             : firstSentence(renderPlainText(item.description))
                     }
+                    showDescription={matches.indexOf("small") === -1}
                 />
             </StyledEmbedInfo>
 

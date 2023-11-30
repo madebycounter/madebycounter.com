@@ -27,16 +27,13 @@ const DetailsTitle = styled.span`
     font-weight: 400;
 `;
 
-export const DetailsDate = styled(DetailsParagraph)``;
-export const DetailsTags = styled(DetailsParagraph)``;
-export const DetailsDescription = styled(DetailsParagraph)``;
-
 type DetailsProps = {
     date?: string;
     tags?: string[] | ReadonlyArray<string | null>;
     description?: RichTextResponse;
     plainText?: string;
     className?: string;
+    showDescription?: boolean;
 };
 
 const Details = ({
@@ -45,40 +42,43 @@ const Details = ({
     description,
     plainText,
     className,
-}: DetailsProps) => (
-    <StyledDetails className={className}>
-        {date && (
-            <DetailsDate>
-                <DetailsTitle>/date&nbsp;</DetailsTitle>
-                <span>{date}</span>
-            </DetailsDate>
-        )}
+    showDescription = true,
+}: DetailsProps) => {
+    return (
+        <StyledDetails className={className}>
+            {date && (
+                <DetailsParagraph>
+                    <DetailsTitle>/date&nbsp;</DetailsTitle>
+                    <span>{date}</span>
+                </DetailsParagraph>
+            )}
 
-        {tags && tags.length > 0 && (
-            <DetailsTags>
-                <DetailsTitle>/tags&nbsp;</DetailsTitle>
-                {tags.map((tag, idx) => (
-                    <span key={idx}>
-                        <Link to="#">{tag}</Link>
-                        {idx !== tags.length - 1 ? <>,&nbsp;</> : ""}
-                    </span>
-                ))}
-            </DetailsTags>
-        )}
+            {tags && tags.length > 0 && (
+                <DetailsParagraph>
+                    <DetailsTitle>/tags&nbsp;</DetailsTitle>
+                    {tags.map((tag, idx) => (
+                        <span key={idx}>
+                            <Link to="#">{tag}</Link>
+                            {idx !== tags.length - 1 ? <>,&nbsp;</> : ""}
+                        </span>
+                    ))}
+                </DetailsParagraph>
+            )}
 
-        {(description || plainText) && (
-            <DetailsDescription>
-                <DetailsTitle>/description&nbsp;</DetailsTitle>
-                {plainText ? plainText : ""}
-                {description
-                    ? renderRichText(
-                          packRichText(description),
-                          portfolioOptions,
-                      )
-                    : ""}
-            </DetailsDescription>
-        )}
-    </StyledDetails>
-);
+            {(description || plainText) && showDescription && (
+                <DetailsParagraph>
+                    <DetailsTitle>/description&nbsp;</DetailsTitle>
+                    {plainText ? plainText : ""}
+                    {description
+                        ? renderRichText(
+                              packRichText(description),
+                              portfolioOptions,
+                          )
+                        : ""}
+                </DetailsParagraph>
+            )}
+        </StyledDetails>
+    );
+};
 
 export default Details;
