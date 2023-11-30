@@ -29,7 +29,7 @@ const DetailsTitle = styled.span`
 
 export const DetailsDate = styled(DetailsParagraph)``;
 export const DetailsTags = styled(DetailsParagraph)``;
-// export const DetailsDescription = styled(DetailsParagraph)``;
+export const DetailsDescription = styled(DetailsParagraph)``;
 
 type DetailsProps = {
     date?: string;
@@ -67,7 +67,7 @@ const Details = ({
         )}
 
         {(description || plainText) && (
-            <div>
+            <DetailsDescription>
                 <DetailsTitle>/description&nbsp;</DetailsTitle>
                 {plainText ? plainText : ""}
                 {description
@@ -76,7 +76,7 @@ const Details = ({
                           portfolioOptions,
                       )
                     : ""}
-            </div>
+            </DetailsDescription>
         )}
     </StyledDetails>
 );
