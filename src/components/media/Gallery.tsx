@@ -5,7 +5,6 @@ import setRef from "../../global/setRef";
 import useSize from "../../global/useSize";
 
 import Asset from "../../types/Asset";
-import Carousel from "../Carousel";
 import Media from "./Media";
 
 type StyledGalleryProps = {
@@ -63,24 +62,19 @@ export const Gallery = forwardRef(
             onClick,
             videoPlaying,
         }: GalleryProps,
-        parentRef,
+        parentRef: React.Ref<HTMLDivElement>,
     ) => {
-        const [ref, size] = useSize<HTMLDivElement>();
         const adjusted = adjustLayout(layout, columnWidth, gap);
         const width = layout.length * columnWidth + gap * (layout.length - 1);
 
-        console.log(images);
-        console.log(layout);
+        console.log("drawn", columnWidth, gap, width, layout);
 
         return (
             <StyledGallery
                 $gap={gap}
                 $columnWidth={columnWidth}
                 $width={width}
-                ref={(node) => {
-                    setRef(parentRef, node);
-                    setRef(ref, node);
-                }}
+                ref={parentRef}
             >
                 {adjusted.map((col, i) => (
                     <div key={`i_${i}`}>
@@ -138,6 +132,8 @@ export const ResponsiveGallery = forwardRef(
             else setColums(3);
         }, [size]);
 
+        console.log("RG Drawn", layouts);
+
         return (
             <ResponsiveGalleryWrapper
                 $height={galSize.height}
@@ -180,7 +176,7 @@ export const HorizontalGallery = forwardRef(
             setColumns,
             videoPlaying,
         }: HorizontalGalleryProps,
-        parentRef,
+        parentRef: React.Ref<HTMLDivElement>,
     ) => {
         const layout = createLayoutHorizontal(images, targetHeight);
 
