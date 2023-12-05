@@ -1,10 +1,10 @@
-import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
 import styled from "styled-components";
 
 import Service from "../../types/Service";
 import Button from "../Button";
 import { Heading1 } from "../Typography";
+import Media from "../media/Media";
 import Slideshow from "../media/Slideshow";
 import LinkDiv from "./utils/LinkDiv";
 
@@ -51,10 +51,10 @@ export default function ServiceCard({ service }: ServiceCardProps) {
     return (
         <StyledServiceCard to={`/services/${service.slug}`}>
             <StyledServiceCardInfo>
-                <Heading1>Photos are cool right?</Heading1>
+                <Heading1>{service.pitchTitle}</Heading1>
 
                 <StyledButton to="#" type="normal" direction="right">
-                    Learn More
+                    {service.callToAction}
                 </StyledButton>
             </StyledServiceCardInfo>
 
@@ -63,11 +63,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
             </StyledServiceCardMedia>
 
             <StyledServiceCardPortrait>
-                <StaticImage
-                    src="../../images/about/henry.webp"
-                    placeholder="none"
-                    alt=""
-                />
+                <Media src={service.teamMember.fullBody} />
             </StyledServiceCardPortrait>
         </StyledServiceCard>
     );
