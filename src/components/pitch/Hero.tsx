@@ -21,10 +21,6 @@ const HeroHeading = styled(Heading1)`
 
 const HeroDetails = styled.div`
     flex: 1;
-
-    ${Paragraph} {
-        max-width: 70%;
-    }
 `;
 
 const HeroSlideshow = styled.div`
