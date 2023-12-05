@@ -7,6 +7,7 @@ export default interface Testimonial {
     __typename: "ContentfulTestimonial";
     contentful_id: string;
     name: string;
+    jobTitle: string[];
     content: RichText;
     headshot: Asset;
     rating: number;
@@ -17,6 +18,7 @@ export const testimonialFragment = graphql`
         __typename
         contentful_id
         name
+        jobTitle
         content {
             raw
         }
