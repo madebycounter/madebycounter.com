@@ -138,12 +138,12 @@ export function getPitch(service: Service): PitchElement[] {
         service.pitchFunFact.length,
     ).fill({});
 
-    insertPitchElems(pitchElements, service.pitchFunFact);
-    insertPitchElems(pitchElements, service.pitchTestimonial);
-    insertPitchElems(pitchElements, service.pitchMediaCollection);
-    insertPitchElems(pitchElements, service.pitchMiniServiceCollection);
-    insertPitchElems(pitchElements, service.pitchPortfolioItemCollection);
-    insertPitchElems(pitchElements, service.pitchBlogPostCollection);
+    insertPitchElems(pitchElements, service.pitchFunFact || []);
+    insertPitchElems(pitchElements, service.pitchTestimonial || []);
+    insertPitchElems(pitchElements, service.pitchMediaCollection || []);
+    insertPitchElems(pitchElements, service.pitchMiniServiceCollection || []);
+    insertPitchElems(pitchElements, service.pitchPortfolioItemCollection || []);
+    insertPitchElems(pitchElements, service.pitchBlogPostCollection || []);
 
     console.log("pe", pitchElements);
 

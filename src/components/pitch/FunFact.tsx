@@ -22,12 +22,13 @@ const FunFactWrapper = styled.div`
     grid-template-columns: auto 1fr;
     grid-template-rows: 1fr auto;
     grid-template-areas: "portrait fact" "portrait button";
-    max-width: 900px;
-    margin: auto;
-    padding: 1rem 1rem;
+
+    @media (max-width: calc(900px + 2rem)) {
+        margin: 1rem;
+    }
 
     @media (max-width: 600px) {
-        padding: 1rem 0;
+        margin: 0;
     }
 `;
 

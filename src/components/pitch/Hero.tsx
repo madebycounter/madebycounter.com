@@ -37,10 +37,11 @@ const HeroButton = styled(Button)`
 
 const HeroWrapper = styled.div`
     display: flex;
-    gap: 1rem;
+    gap: 4rem;
 
     @media (max-width: 850px) {
         flex-direction: column-reverse;
+        gap: 1rem;
     }
 `;
 

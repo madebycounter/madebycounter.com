@@ -9,7 +9,7 @@ import { LightTheme } from "../global/themes";
 import { GalleryCarousel } from "../components/Carousel";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { Layout, LayoutNarrow } from "../components/Layout";
+import { Layout, LayoutNarrow, LayoutNarrowNoEdge } from "../components/Layout";
 import Navbar from "../components/Navbar";
 import { BlogCard } from "../components/cards/BlogCard";
 import { PortfolioCard } from "../components/cards/PortfolioCard";
@@ -33,37 +33,31 @@ const PitchColumns = styled.div`
     }
 `;
 
-const PitchElementWrapper = styled(LayoutNarrow)`
-    margin: 2rem auto;
+const PitchElementWrapper = styled.div`
+    margin: 8rem 0;
 `;
 
 function renderPitchElement(
     element: PitchElement,
-    key: number,
     buttonImages: MediaCollection,
 ) {
     switch (element.__typename) {
         case "ContentfulFunFact":
             return (
-                <FunFact
-                    key={key}
-                    author={element.teamMember}
-                    fact={renderPlainText(element.content)}
-                    carousel={buttonImages.items}
-                    cta={element.buttonText}
-                />
+                <LayoutNarrowNoEdge>
+                    <FunFact
+                        author={element.teamMember}
+                        fact={renderPlainText(element.content)}
+                        carousel={buttonImages.items}
+                        cta={element.buttonText}
+                    />
+                </LayoutNarrowNoEdge>
             );
         case "ContentfulMediaCollection":
-            return (
-                <GalleryCarousel
-                    key={key}
-                    images={element.items}
-                    targetHeight={1}
-                />
-            );
+            return <GalleryCarousel images={element.items} targetHeight={1} />;
         case "ContentfulMiniServiceCollection":
             return (
-                <PitchElementWrapper key={key}>
+                <LayoutNarrow>
                     <PitchColumns>
                         {element.items.map((item, idx) => (
                             <MiniServiceCard
@@ -73,33 +67,33 @@ function renderPitchElement(
                             />
                         ))}
                     </PitchColumns>
-                </PitchElementWrapper>
+                </LayoutNarrow>
             );
         case "ContentfulPortfolioItemCollection":
             return (
-                <PitchElementWrapper key={key}>
+                <LayoutNarrow>
                     <PitchColumns>
                         {element.items.map((item, idx) => (
                             <PortfolioCard item={item} key={idx} />
                         ))}
                     </PitchColumns>
-                </PitchElementWrapper>
+                </LayoutNarrow>
             );
         case "ContentfulBlogPostCollection":
             return (
-                <PitchElementWrapper key={key}>
+                <LayoutNarrow>
                     <PitchColumns>
                         {element.items.map((item, idx) => (
                             <BlogCard item={item} key={idx} />
                         ))}
                     </PitchColumns>
-                </PitchElementWrapper>
+                </LayoutNarrow>
             );
         default:
             return (
-                <PitchElementWrapper key={key}>
+                <LayoutNarrow>
                     <p>Renderer not implemented for {element.__typename}</p>
-                </PitchElementWrapper>
+                </LayoutNarrow>
             );
     }
 }
@@ -124,9 +118,11 @@ export default function ServicePage({ data }: PitchPageProps) {
                 <Hero service={pageData} />
             </Layout>
 
-            {pitchData.map((element, idx) =>
-                renderPitchElement(element, idx, pageData.buttonImages),
-            )}
+            {pitchData.map((element, idx) => (
+                <PitchElementWrapper key={idx}>
+                    {renderPitchElement(element, pageData.buttonImages)}
+                </PitchElementWrapper>
+            ))}
 
             <Footer />
         </ThemeProvider>

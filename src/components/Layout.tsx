@@ -42,6 +42,12 @@ export const LayoutNarrow = styled.div`
     max-width: 900px;
 `;
 
+export const LayoutNarrowNoEdge = styled.div`
+    margin: 0 auto;
+    width: calc(100%);
+    max-width: 900px;
+`;
+
 export const LayoutMini = styled.div`
     margin: 0 auto;
     padding: 0 1rem;
