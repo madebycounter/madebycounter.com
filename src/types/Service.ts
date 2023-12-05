@@ -92,6 +92,29 @@ export const serviceFragment = graphql`
         callToAction
         slug
     }
+
+    fragment ServiceRef on ContentfulService {
+        __typename
+        contentful_id
+        title
+        slideshow {
+            ...MediaCollection
+        }
+        youTube
+        pitchTitle
+        description {
+            raw
+        }
+        teamMember {
+            ...TeamMember
+        }
+        buttonImages {
+            ...CarouselMediaCollection
+        }
+        offerings
+        callToAction
+        slug
+    }
 `;
 
 function isPitchElem(obj: PitchElement | {}): obj is PitchElement {

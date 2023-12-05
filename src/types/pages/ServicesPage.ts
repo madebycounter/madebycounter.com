@@ -15,7 +15,7 @@ export function useServicesPage(): ServicesPage {
                 __typename
                 contentful_id
                 services {
-                    ...Service
+                    ...ServiceRef
                 }
             }
         }
