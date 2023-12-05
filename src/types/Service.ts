@@ -121,13 +121,31 @@ function isPitchElem(obj: PitchElement | {}): obj is PitchElement {
     return obj.hasOwnProperty("__typename");
 }
 
+function insertPitchElems<T extends PitchElement | {}>(
+    elemArray: (PitchElement | {})[],
+    items: T[],
+) {
+    for (let i = 0; i < items.length; i++) {
+        var item = items[i];
+        if (isPitchElem(item)) {
+            elemArray[i] = item;
+        }
+    }
+}
+
 export function getPitch(service: Service): PitchElement[] {
-    return [
-        ...(service.pitchFunFact || []),
-        ...(service.pitchTestimonial || []),
-        ...(service.pitchMediaCollection || []),
-        ...(service.pitchMiniServiceCollection || []),
-        ...(service.pitchPortfolioItemCollection || []),
-        ...(service.pitchBlogPostCollection || []),
-    ].filter(isPitchElem);
+    var pitchElements: (PitchElement | {})[] = Array(
+        service.pitchFunFact.length,
+    ).fill({});
+
+    insertPitchElems(pitchElements, service.pitchFunFact);
+    insertPitchElems(pitchElements, service.pitchTestimonial);
+    insertPitchElems(pitchElements, service.pitchMediaCollection);
+    insertPitchElems(pitchElements, service.pitchMiniServiceCollection);
+    insertPitchElems(pitchElements, service.pitchPortfolioItemCollection);
+    insertPitchElems(pitchElements, service.pitchBlogPostCollection);
+
+    console.log("pe", pitchElements);
+
+    return pitchElements.filter(isPitchElem);
 }
