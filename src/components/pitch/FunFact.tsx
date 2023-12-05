@@ -16,6 +16,10 @@ import MarkupSwap from "../MobileSwap";
 import { Paragraph } from "../Typography";
 import Media from "../media/Media";
 
+const FunFactMarkupSwap = styled(MarkupSwap)`
+    width: 100%;
+`;
+
 const FunFactWrapper = styled.div`
     display: grid;
     grid-row-gap: 0.5rem;
@@ -114,11 +118,11 @@ export default function FunFact({ fact, author, cta, carousel }: FunFactProps) {
     return (
         <FunFactWrapper>
             <PortraitWrapper>
-                <MarkupSwap width={600}>
+                <FunFactMarkupSwap width={600}>
                     <ProfilePhoto teamMember={author} />
 
                     <Media src={author.pointingPhoto} />
-                </MarkupSwap>
+                </FunFactMarkupSwap>
             </PortraitWrapper>
 
             <FactWrapper>

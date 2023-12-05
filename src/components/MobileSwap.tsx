@@ -29,15 +29,21 @@ type MarkupSwapProps = {
     children: React.ReactNode;
     width: number;
     display?: DisplayMode;
+    className?: string;
 };
 
 export default function MarkupSwap({
     children,
     width,
     display = "block",
+    className,
 }: MarkupSwapProps) {
     return (
-        <MarkupSwapWrapper $width={width} $display={display}>
+        <MarkupSwapWrapper
+            $width={width}
+            $display={display}
+            className={className}
+        >
             {children}
         </MarkupSwapWrapper>
     );

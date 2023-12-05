@@ -45,14 +45,13 @@ function renderPitchElement(
     switch (element.__typename) {
         case "ContentfulFunFact":
             return (
-                <PitchElementWrapper key={key}>
-                    <FunFact
-                        author={element.teamMember}
-                        fact={renderPlainText(element.content)}
-                        carousel={buttonImages.items}
-                        cta={element.buttonText}
-                    />
-                </PitchElementWrapper>
+                <FunFact
+                    key={key}
+                    author={element.teamMember}
+                    fact={renderPlainText(element.content)}
+                    carousel={buttonImages.items}
+                    cta={element.buttonText}
+                />
             );
         case "ContentfulMediaCollection":
             return (
