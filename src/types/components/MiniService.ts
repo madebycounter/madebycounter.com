@@ -9,6 +9,8 @@ export default interface MiniService {
     title: string;
     image: Asset;
     description: RichText;
+    buttonText: string;
+    slug: string;
 }
 
 export const miniServiceFragment = graphql`

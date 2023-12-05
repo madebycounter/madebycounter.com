@@ -1,8 +1,11 @@
 import { graphql } from "gatsby";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
+import { portfolioOptions } from "../global/richTextOptions";
+import { renderPlainText } from "../global/textHelpers";
 import { LightTheme } from "../global/themes";
 
 import ButtonRight from "../components/Button";
@@ -13,20 +16,32 @@ import { Layout, LayoutNarrow } from "../components/Layout";
 import MarkupSwap from "../components/MobileSwap";
 import Navbar from "../components/Navbar";
 import { Heading1, Heading2, Paragraph } from "../components/Typography";
+import { BlogCard } from "../components/cards/BlogCard";
+import { PortfolioCard } from "../components/cards/PortfolioCard";
 import Slideshow from "../components/media/Slideshow";
-import DetailedService from "../components/pitch/DetailedService";
+import YouTube from "../components/media/YouTube";
 import FunFact from "../components/pitch/FunFact";
+import MiniService from "../components/pitch/MiniServiceCard";
 
-import Service, { getPitch } from "../types/Service";
+import { packRichText } from "../types/RichText";
+import Service, { PitchElement, getPitch } from "../types/Service";
+import MediaCollection from "../types/collections/MediaCollection";
 
 const Columns = styled.div`
     display: flex;
-    flex-wrap: wrap;
     gap: 1rem;
 
-    > div {
-        flex: 1 1 250px;
+    > * {
+        flex: 1;
     }
+
+    @media (max-width: 700px) {
+        flex-direction: column;
+    }
+`;
+
+const PitchElementWrapper = styled(LayoutNarrow)`
+    margin: 2rem auto;
 `;
 
 const HeroHeading = styled(Heading1)`
@@ -72,10 +87,77 @@ type PitchPageProps = {
     };
 };
 
+function renderPitchElement(
+    element: PitchElement,
+    key: number,
+    buttonImages: MediaCollection,
+) {
+    switch (element.__typename) {
+        case "ContentfulFunFact":
+            return (
+                <PitchElementWrapper key={key}>
+                    <FunFact
+                        author={element.teamMember}
+                        fact={renderPlainText(element.content)}
+                        carousel={buttonImages.items}
+                        cta={element.buttonText}
+                    />
+                </PitchElementWrapper>
+            );
+        case "ContentfulMediaCollection":
+            return (
+                <GalleryCarousel
+                    key={key}
+                    images={element.items}
+                    targetHeight={1}
+                />
+            );
+        case "ContentfulMiniServiceCollection":
+            return (
+                <PitchElementWrapper key={key}>
+                    <Columns>
+                        {element.items.map((item, idx) => (
+                            <MiniService
+                                key={idx}
+                                src={item}
+                                to={`/cta/${item.slug}`}
+                            />
+                        ))}
+                    </Columns>
+                </PitchElementWrapper>
+            );
+        case "ContentfulPortfolioItemCollection":
+            return (
+                <PitchElementWrapper key={key}>
+                    <Columns>
+                        {element.items.map((item, idx) => (
+                            <PortfolioCard item={item} key={idx} />
+                        ))}
+                    </Columns>
+                </PitchElementWrapper>
+            );
+        case "ContentfulBlogPostCollection":
+            return (
+                <PitchElementWrapper key={key}>
+                    <Columns>
+                        {element.items.map((item, idx) => (
+                            <BlogCard item={item} key={idx} />
+                        ))}
+                    </Columns>
+                </PitchElementWrapper>
+            );
+        default:
+            return (
+                <PitchElementWrapper key={key}>
+                    <p>Renderer not implemented for {element.__typename}</p>
+                </PitchElementWrapper>
+            );
+    }
+}
+
 export default function ServicePage({ data }: PitchPageProps) {
     const pageData = data.contentfulService;
-
-    console.log(getPitch(pageData));
+    const pitchData = getPitch(pageData);
 
     return (
         <ThemeProvider theme={LightTheme}>
@@ -86,73 +168,43 @@ export default function ServicePage({ data }: PitchPageProps) {
             <Layout>
                 <Hero>
                     <HeroDetails>
-                        <HeroHeading>
-                            Photos are
-                            <br />
-                            cool, right?
-                        </HeroHeading>
+                        <HeroHeading>{pageData.pitchTitle}</HeroHeading>
 
-                        <MarkupSwap width={1400}>
-                            <Paragraph>
-                                Lorem ipsum, dolor sit amet consectetur
-                                adipisicing elit. Nesciunt nostrum, vero sequi
-                                atque dolore tenetur porro consectetur rerum
-                                quas cum esse illum omnis excepturi nihil
-                                laborum voluptates maiores provident
-                                praesentium?
-                            </Paragraph>
-
-                            <Paragraph>
-                                Lorem ipsum, dolor sit amet consectetur
-                                adipisicing elit. Nesciunt nostrum, vero sequi?
-                            </Paragraph>
-                        </MarkupSwap>
+                        <Paragraph>
+                            {renderRichText(
+                                packRichText(pageData.description),
+                                portfolioOptions,
+                            )}
+                        </Paragraph>
 
                         <HeroButton to="#" type="normal" direction="right">
-                            Book Now
+                            {pageData.callToAction}
                         </HeroButton>
                     </HeroDetails>
 
                     <HeroSlideshow>
-                        <Slideshow
-                            src={pageData.slideshow.items}
-                            aspectRatio="original"
-                        />
+                        {!pageData.youTube && (
+                            <Slideshow
+                                src={pageData.slideshow.items}
+                                aspectRatio={16 / 9}
+                            />
+                        )}
+
+                        {pageData.youTube && (
+                            <YouTube
+                                url={pageData.youTube}
+                                aspectRatio={16 / 9}
+                            />
+                        )}
                     </HeroSlideshow>
                 </Hero>
             </Layout>
 
-            <br />
-            <br />
+            {pitchData.map((element, idx) =>
+                renderPitchElement(element, idx, pageData.buttonImages),
+            )}
 
-            <LayoutNarrow>
-                <Columns>
-                    <DetailedService
-                        image={pageData.slideshow.items[0]}
-                        title="Virtual Tours"
-                        description="High dynamic range photography captures interior settings in their."
-                        to="#"
-                    />
-
-                    <DetailedService
-                        image={pageData.slideshow.items[0]}
-                        title="Virtual Tours"
-                        description="High dynamic range photography captures interior settings in their."
-                        to="#"
-                    />
-
-                    <DetailedService
-                        image={pageData.slideshow.items[0]}
-                        title="Virtual Tours"
-                        description="High dynamic range photography captures interior settings in their."
-                        to="#"
-                    />
-                </Columns>
-            </LayoutNarrow>
-
-            <br />
-            <br />
-
+            {/* 
             <FunFact
                 author={pageData.teamMember}
                 fact="Did you know, 70% of businesses report an increase in sales after updating their Instagram and social media platforms?"
@@ -164,7 +216,7 @@ export default function ServicePage({ data }: PitchPageProps) {
                 images={pageData.slideshow.items}
                 targetHeight={1}
             />
-
+ */}
             <Footer />
         </ThemeProvider>
     );
