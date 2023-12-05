@@ -27,21 +27,7 @@ import MediaCollection from "../types/collections/MediaCollection";
 const StyledBlogBanner = styled.div`
     width: 100%;
     margin-bottom: 1rem;
-
-    .gatsby-image-wrapper {
-        max-height: 500px;
-        div {
-            max-height: 500px;
-        }
-    }
-
-    .gif-wrapper,
-    .video-wrapper {
-        img,
-        video {
-            max-height: 500px;
-        }
-    }
+    max-height: 500px;
 `;
 
 type BlogPostProps = {
@@ -92,7 +78,7 @@ const BlogPostPage = ({ data }: BlogPostProps) => {
                 <Media
                     src={banner}
                     center={bannerMiddle}
-                    aspectRatio={null}
+                    resizeMode="cover"
                     onClick={openLightbox}
                 />
             </StyledBlogBanner>

@@ -20,10 +20,13 @@ export function isGif(mimeType: string): boolean {
     return mimeType === "image/gif";
 }
 
-export type AspectRatio = number | "original" | "fill";
+export type AspectRatio = number | "original";
+
+export type ResizeMode = "width" | "height" | "cover" | "contain";
 
 type MediaWrapperProps = ThemedProps & {
-    $aspectRatio: number | "fill";
+    $aspectRatio: number;
+    $resizeMode: ResizeMode;
     $hasClickEvent: boolean;
     $center: number;
 };
@@ -31,44 +34,53 @@ type MediaWrapperProps = ThemedProps & {
 const MediaWrapper = styled.div<MediaWrapperProps>`
     overflow: hidden;
 
-    ${({ $hasClickEvent }) =>
-        $hasClickEvent &&
-        css`
-            cursor: pointer;
-        `}
-
     ${(props) => {
-        if (props.$aspectRatio === "fill") {
-            return css`
-                width: 100%;
-                height: 100%;
+        switch (props.$resizeMode) {
+            case "width":
+                return css`
+                    width: 100%;
 
-                .media-wrapper {
+                    aspect-ratio: ${props.$aspectRatio};
+
+                    max-width: inherit;
+                    max-height: inherit;
+                `;
+            case "height":
+                return css`
+                    height: 100%;
+
+                    aspect-ratio: ${props.$aspectRatio};
+
+                    max-width: inherit;
+                    max-height: inherit;
+                `;
+            case "cover":
+                return css`
                     width: 100%;
                     height: 100%;
-                }
-            `;
-        } else {
-            return css`
-                aspect-ratio: ${props.$aspectRatio};
 
-                max-width: 100%;
-                max-height: 100%;
-                margin: auto;
-
-                .media-wrapper {
-                    width: 100%;
+                    max-width: inherit;
+                    max-height: inherit;
+                `;
+            case "contain":
+                return css`
                     aspect-ratio: ${props.$aspectRatio};
-                }
-            `;
+
+                    max-width: 100%;
+                    max-height: 100%;
+                `;
         }
     }}
 
     .media-wrapper {
+        width: 100%;
+        height: 100%;
+
         img,
         video {
             width: 100%;
             height: 100%;
+
             object-fit: cover;
             object-position: 50% ${(props) => props.$center}%;
         }
@@ -77,11 +89,12 @@ const MediaWrapper = styled.div<MediaWrapperProps>`
 
 export type MediaProps = {
     src: Asset;
-    aspectRatio?: AspectRatio;
     center?: number;
     className?: string;
     videoPlaying?: boolean;
     videoLoop?: boolean;
+    aspectRatio?: AspectRatio;
+    resizeMode?: ResizeMode;
     onVideoEnd?: () => void;
     onClick?: (id: string) => void;
     onReady?: () => void;
@@ -89,11 +102,12 @@ export type MediaProps = {
 
 export default function Media({
     src,
-    aspectRatio = "original",
     className,
     center = 50,
     videoPlaying = true,
     videoLoop = true,
+    aspectRatio = "original",
+    resizeMode = "width",
     onVideoEnd = () => {},
     onClick,
     onReady = () => {},
@@ -119,19 +133,14 @@ export default function Media({
         }
     }, [videoPlaying]);
 
-    var trueAspectRatio: number | "fill";
-
-    if (aspectRatio === "original") {
-        trueAspectRatio = dimensions.width / dimensions.height;
-    } else if (aspectRatio === "fill") {
-        trueAspectRatio = "fill";
-    } else {
-        trueAspectRatio = aspectRatio;
-    }
-
     return (
         <MediaWrapper
-            $aspectRatio={trueAspectRatio}
+            $aspectRatio={
+                aspectRatio === "original"
+                    ? dimensions.width / dimensions.height
+                    : aspectRatio
+            }
+            $resizeMode={resizeMode}
             $hasClickEvent={!!onClick}
             $center={center}
             onClick={() => onClick && onClick(src.contentful_id)}

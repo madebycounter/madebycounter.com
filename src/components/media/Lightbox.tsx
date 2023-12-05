@@ -19,11 +19,6 @@ declare module "yet-another-react-lightbox" {
     }
 }
 
-const MediaContainer = styled.div`
-    width: 100%;
-    height: 100%;
-`;
-
 type LightboxProps = {
     media: Asset[];
     open: boolean;
@@ -51,7 +46,7 @@ const Lightbox = ({ media, open, close, current }: LightboxProps) => {
             render={{
                 slide: ({ slide }) =>
                     slide.type === "media-slide" ? (
-                        <Media src={slide.data} />
+                        <Media src={slide.data} resizeMode="contain" />
                     ) : undefined,
             }}
         />

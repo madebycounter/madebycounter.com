@@ -67,6 +67,7 @@ const DetailsArea = styled.div`
 `;
 
 const MediaArea = styled.div`
+    aspect-ratio: 16 / 9;
     grid-area: media;
 `;
 

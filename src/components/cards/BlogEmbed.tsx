@@ -108,7 +108,7 @@ export function BlogEmbed({ item }: BlogEmbedProps) {
             </StyledEmbedInfo>
 
             <StyledEmbedImage to={`/blog/${item.slug}`}>
-                <Media src={item.banner} aspectRatio={null} />
+                <Media src={item.banner} resizeMode="cover" />
 
                 <Slash />
             </StyledEmbedImage>

@@ -213,6 +213,7 @@ function ImageBlock({
                         src={image}
                         aspectRatio={aspectRatio}
                         videoPlaying={false}
+                        resizeMode="height"
                     />
                 </div>
             ))}
@@ -242,10 +243,6 @@ export function ImageCarousel({
 }: ImageCarouselProps) {
     const [ref, size] = useSize<HTMLDivElement>();
     const height = isHorizontal(direction) ? size.height : size.width;
-
-    if (aspectRatio === null) {
-        aspectRatio = "original";
-    }
 
     var childLength = gap * images.length;
 

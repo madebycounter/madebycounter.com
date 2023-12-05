@@ -111,7 +111,7 @@ export function PortfolioEmbed({ item }: PortfolioEmbedProps) {
                 <Slideshow
                     src={item.gallery || [item.thumbnail]}
                     autoplayDelay={2000}
-                    aspectRatio={"original"}
+                    resizeMode="cover"
                 />
             </StyledEmbedSlideshow>
         </StyledEmbed>

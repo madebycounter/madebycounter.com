@@ -34,6 +34,8 @@ const StyledCard = styled(LinkDiv)`
     position: relative;
     overflow: hidden;
 
+    aspect-ratio: 4 / 3;
+
     ${Heading2} {
         position: absolute;
         color: ${(props) => props.theme.backgroundColor};
@@ -87,7 +89,7 @@ const StyledCard = styled(LinkDiv)`
 export function BlogCard({ item }: BlogCardProps) {
     return (
         <StyledCard to={`/blog/${item.slug}`}>
-            <StyledBackgroundMedia src={item.banner} aspectRatio={4 / 3} />
+            <StyledBackgroundMedia src={item.banner} resizeMode="cover" />
 
             <Overlay />
 

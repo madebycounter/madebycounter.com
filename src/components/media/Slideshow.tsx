@@ -3,14 +3,20 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import Asset from "../../types/Asset";
-import Media, { AspectRatio } from "./Media";
+import Media, { AspectRatio, ResizeMode } from "./Media";
 
 function mod(n: number, m: number) {
     return ((n % m) + m) % m;
 }
 
-const StyledSlideshow = styled.div`
+type StyledSlideshowProps = {
+    $aspectRatio?: number;
+};
+
+const StyledSlideshow = styled.div<StyledSlideshowProps>`
     position: relative;
+
+    aspect-ratio: ${(props) => props.$aspectRatio};
 
     width: 100%;
     height: 100%;
@@ -38,6 +44,8 @@ type SlideshowProps = {
     autoplayOffset?: number;
     autoplay?: boolean;
     aspectRatio?: AspectRatio;
+    resizeMode?: ResizeMode;
+    center?: number;
     onClick?: (cfid: string) => void;
 };
 
@@ -47,6 +55,8 @@ export default function Slideshow({
     autoplayOffset = 0,
     autoplay = true,
     aspectRatio = "original",
+    resizeMode,
+    center,
     className,
     onClick,
 }: SlideshowProps) {
@@ -80,8 +90,13 @@ export default function Slideshow({
         };
     }, [state.index]);
 
+    var trueAspectRatio =
+        aspectRatio === "original"
+            ? src[0].dimensions.width / src[0].dimensions.height
+            : aspectRatio;
+
     return (
-        <StyledSlideshow className={className}>
+        <StyledSlideshow className={className} $aspectRatio={trueAspectRatio}>
             {src.map((slide, idx) => {
                 const visible = state.index === idx;
                 var divClassName = visible ? "active" : "";
@@ -91,7 +106,9 @@ export default function Slideshow({
                         <Media
                             key={idx}
                             src={slide}
-                            aspectRatio={aspectRatio}
+                            aspectRatio={trueAspectRatio}
+                            resizeMode={resizeMode}
+                            center={center}
                             videoPlaying={visible}
                             videoLoop={src.length == 1}
                             onVideoEnd={() => navigate(1)}
