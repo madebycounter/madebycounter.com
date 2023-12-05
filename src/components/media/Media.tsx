@@ -20,17 +20,16 @@ export function isGif(mimeType: string): boolean {
     return mimeType === "image/gif";
 }
 
-export type AspectRatio = number | "original" | null;
+export type AspectRatio = number | "original" | "fill";
 
 type MediaWrapperProps = ThemedProps & {
-    $aspectRatio: number | null;
+    $aspectRatio: number | "fill";
     $hasClickEvent: boolean;
     $center: number;
 };
 
 const MediaWrapper = styled.div<MediaWrapperProps>`
     overflow: hidden;
-    aspect-ratio: ${(props) => props.$aspectRatio};
 
     ${({ $hasClickEvent }) =>
         $hasClickEvent &&
@@ -39,18 +38,7 @@ const MediaWrapper = styled.div<MediaWrapperProps>`
         `}
 
     ${(props) => {
-        if (props.$aspectRatio !== null) {
-            return css`
-                max-width: 100%;
-                max-height: 100%;
-                margin: auto;
-
-                .media-wrapper {
-                    width: 100%;
-                    aspect-ratio: ${props.$aspectRatio};
-                }
-            `;
-        } else {
+        if (props.$aspectRatio === "fill") {
             return css`
                 width: 100%;
                 height: 100%;
@@ -58,6 +46,19 @@ const MediaWrapper = styled.div<MediaWrapperProps>`
                 .media-wrapper {
                     width: 100%;
                     height: 100%;
+                }
+            `;
+        } else {
+            return css`
+                aspect-ratio: ${props.$aspectRatio};
+
+                max-width: 100%;
+                max-height: 100%;
+                margin: auto;
+
+                .media-wrapper {
+                    width: 100%;
+                    aspect-ratio: ${props.$aspectRatio};
                 }
             `;
         }
@@ -118,14 +119,14 @@ export default function Media({
         }
     }, [videoPlaying]);
 
-    var trueAspectRatio;
+    var trueAspectRatio: number | "fill";
 
     if (aspectRatio === "original") {
         trueAspectRatio = dimensions.width / dimensions.height;
-    } else if (aspectRatio !== null) {
-        trueAspectRatio = aspectRatio;
+    } else if (aspectRatio === "fill") {
+        trueAspectRatio = "fill";
     } else {
-        trueAspectRatio = null;
+        trueAspectRatio = aspectRatio;
     }
 
     return (

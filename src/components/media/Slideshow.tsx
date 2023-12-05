@@ -9,14 +9,9 @@ function mod(n: number, m: number) {
     return ((n % m) + m) % m;
 }
 
-type StyledSlideshowProps = {
-    $aspectRatio: number;
-};
-
-const StyledSlideshow = styled.div<StyledSlideshowProps>`
+const StyledSlideshow = styled.div`
     position: relative;
 
-    aspect-ratio: ${(props) => props.$aspectRatio};
     width: 100%;
     height: 100%;
 
@@ -51,7 +46,7 @@ export default function Slideshow({
     autoplayDelay = 5000,
     autoplayOffset = 0,
     autoplay = true,
-    aspectRatio,
+    aspectRatio = "original",
     className,
     onClick,
 }: SlideshowProps) {
@@ -85,20 +80,8 @@ export default function Slideshow({
         };
     }, [state.index]);
 
-    if (aspectRatio === null) {
-        return <p>Fluid aspect ratios not supported</p>;
-    }
-
-    var trueAspectRatio: number;
-
-    if (aspectRatio === "original") {
-        trueAspectRatio = src[0].dimensions.width / src[0].dimensions.height;
-    } else {
-        trueAspectRatio = aspectRatio as number;
-    }
-
     return (
-        <StyledSlideshow $aspectRatio={trueAspectRatio} className={className}>
+        <StyledSlideshow className={className}>
             {src.map((slide, idx) => {
                 const visible = state.index === idx;
                 var divClassName = visible ? "active" : "";
@@ -108,7 +91,7 @@ export default function Slideshow({
                         <Media
                             key={idx}
                             src={slide}
-                            aspectRatio={trueAspectRatio}
+                            aspectRatio={aspectRatio}
                             videoPlaying={visible}
                             videoLoop={src.length == 1}
                             onVideoEnd={() => navigate(1)}
