@@ -14,6 +14,7 @@ import Slideshow from "../components/media/Slideshow";
 import YouTube from "../components/media/YouTube";
 
 import Asset from "../types/Asset";
+import MediaCollection from "../types/collections/MediaCollection";
 import {
     HorizontalDirection,
     invertDirection,
@@ -81,10 +82,10 @@ type ServiceBlockProps = {
     title: string;
     slug: string;
     offerings: string[];
-    slideshow: Asset[];
+    slideshow: MediaCollection;
     align?: HorizontalDirection;
     youtube?: string;
-    buttonImages: Asset[];
+    buttonImages: MediaCollection;
 };
 
 const ServiceBlock = ({
@@ -112,7 +113,9 @@ const ServiceBlock = ({
             </DetailsArea>
 
             <MediaArea>
-                {!youtube && <Slideshow src={slideshow} aspectRatio={16 / 9} />}
+                {!youtube && (
+                    <Slideshow src={slideshow.items} aspectRatio={16 / 9} />
+                )}
 
                 {youtube && <YouTube url={youtube} aspectRatio={16 / 9} />}
             </MediaArea>
@@ -123,7 +126,7 @@ const ServiceBlock = ({
                     type="carousel"
                     direction={invertHorizontal(align)}
                     inverted={false}
-                    images={buttonImages}
+                    images={buttonImages.items}
                 >
                     Learn More
                 </ServicesButton>
@@ -148,7 +151,7 @@ const ServicesPage = () => {
                         title={service.title}
                         slug={service.slug}
                         slideshow={service.slideshow}
-                        buttonImages={service.buttonImages.media}
+                        buttonImages={service.buttonImages}
                         offerings={service.offerings}
                         youtube={service.youTube}
                         align={idx % 2 === 0 ? "right" : "left"}

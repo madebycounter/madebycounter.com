@@ -62,4 +62,24 @@ export const portfolioEntryFragment = graphql`
         hidden
         slug
     }
+
+    fragment PortfolioItemRef on ContentfulPortfolioItem {
+        __typename
+        contentful_id
+        title
+        date(formatString: "MM.DD.YYYY")
+        tags
+        description {
+            raw
+        }
+        thumbnail {
+            ...Asset
+        }
+        slideshow {
+            ...Asset
+        }
+        youTube
+        hidden
+        slug
+    }
 `;

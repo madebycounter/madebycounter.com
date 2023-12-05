@@ -69,10 +69,10 @@ export const blogPostFragment = graphql`
                 ...MediaCollection
             }
             portfolioItemReferences: references {
-                ...PortfolioItem
+                ...PortfolioItemRef
             }
             blogPostReferences: references {
-                ...BlogPostSimple
+                ...BlogPostRef
             }
         }
         slug
@@ -81,7 +81,7 @@ export const blogPostFragment = graphql`
         }
     }
 
-    fragment BlogPostSimple on ContentfulBlogPost {
+    fragment BlogPostRef on ContentfulBlogPost {
         __typename
         contentful_id
         title
@@ -92,14 +92,6 @@ export const blogPostFragment = graphql`
         }
         banner {
             ...Asset
-        }
-        metaImage: banner {
-            gatsbyImageData(
-                height: 627
-                width: 1200
-                breakpoints: 1200
-                resizingBehavior: FILL
-            )
         }
         bannerMiddle
         slug

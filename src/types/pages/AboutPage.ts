@@ -1,9 +1,8 @@
 import { graphql, useStaticQuery } from "gatsby";
 
-import MediaCollection from "../components/MediaCollection";
-
 import PortfolioItem from "../PortfolioItem";
 import Service from "../Service";
+import MediaCollection from "../collections/MediaCollection";
 
 export interface AboutPage {
     __typename: "ContentfulAsset";

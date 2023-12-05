@@ -2,10 +2,9 @@ import { sign } from "crypto";
 import React from "react";
 import styled from "styled-components";
 
-import MediaCollection from "../../types/components/MediaCollection";
-
 import Asset from "../../types/Asset";
 import PortfolioItem from "../../types/PortfolioItem";
+import MediaCollection from "../../types/collections/MediaCollection";
 import MarkupSwap from "../MobileSwap";
 import Media from "../media/Media";
 import Slideshow from "../media/Slideshow";
@@ -135,9 +134,9 @@ export default function Henry({
                 </MarkupSwap>
 
                 <SlideshowContainer>
-                    <Slideshow src={slideshow2.media} aspectRatio={3 / 4} />
+                    <Slideshow src={slideshow2.items} aspectRatio={3 / 4} />
                     <Slideshow
-                        src={slideshow1.media}
+                        src={slideshow1.items}
                         aspectRatio={4096 / 2160}
                         autoplayOffset={2500}
                     />

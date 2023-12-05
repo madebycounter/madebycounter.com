@@ -47,7 +47,7 @@ const IndexPage = () => {
                     signature={teamMembers.luke.signature}
                     slideshow1={lukeSlideshows[0]}
                     slideshow2={lukeSlideshows[1]}
-                    buttonCarousel={lukeService.buttonImages.media}
+                    buttonCarousel={lukeService.buttonImages.items}
                 />
 
                 <Henry
@@ -56,7 +56,7 @@ const IndexPage = () => {
                     signature={teamMembers.henry.signature}
                     slideshow1={henrySlideshows[0]}
                     slideshow2={henrySlideshows[1]}
-                    buttonCarousel={henryService.buttonImages.media}
+                    buttonCarousel={henryService.buttonImages.items}
                 />
 
                 <William
@@ -66,7 +66,7 @@ const IndexPage = () => {
                     dronePortrait={teamMembers.william.fullBodyExtra}
                     slideshow1={williamSlideshows[0]}
                     slideshow2={williamSlideshows[1]}
-                    buttonCarousel={williamService.buttonImages.media}
+                    buttonCarousel={williamService.buttonImages.items}
                 />
             </div>
 

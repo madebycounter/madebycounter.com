@@ -1,5 +1,3 @@
-import { HorizontalGallery } from "../components/media/Gallery";
-
 export type HorizontalDirection = "left" | "right";
 
 export type VerticalDirection = "up" | "down";

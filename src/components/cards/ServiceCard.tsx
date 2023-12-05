@@ -59,7 +59,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
             </StyledServiceCardInfo>
 
             <StyledServiceCardMedia>
-                <Slideshow src={service.slideshow || []} />
+                <Slideshow src={service.slideshow.items} />
             </StyledServiceCardMedia>
 
             <StyledServiceCardPortrait>

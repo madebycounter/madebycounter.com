@@ -6,8 +6,7 @@ export default interface MediaCollection {
     __typename: "ContentfulMediaCollection";
     contentful_id: string;
     title: string;
-    media: Asset[];
-    slug: string;
+    items: Asset[];
 }
 
 export const mediaCollectionFragment = graphql`
@@ -15,19 +14,17 @@ export const mediaCollectionFragment = graphql`
         __typename
         contentful_id
         title
-        media {
+        items {
             ...Asset
         }
-        slug
     }
 
     fragment CarouselMediaCollection on ContentfulMediaCollection {
         __typename
         contentful_id
         title
-        media {
+        items {
             ...CarouselAsset
         }
-        slug
     }
 `;

@@ -56,7 +56,7 @@ function renderEntry(onClick?: (cfid: string) => void) {
             case "ContentfulMediaCollection":
                 return (
                     <MultiImageBlock
-                        images={node.data.target.media}
+                        images={node.data.target.items}
                         onClick={onClick}
                     />
                 );

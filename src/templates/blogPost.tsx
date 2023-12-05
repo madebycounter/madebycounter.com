@@ -16,13 +16,13 @@ import Navbar from "../components/Navbar";
 import { Heading1 } from "../components/Typography";
 import Lightbox from "../components/media/Lightbox";
 import Media from "../components/media/Media";
-import MediaCollection from "../types/components/MediaCollection";
 
 import defaultImage from "../images/meta.png";
 
 import Asset from "../types/Asset";
 import BlogPost from "../types/BlogPost";
-import { isRef, packRichText } from "../types/RichText";
+import { packRichText } from "../types/RichText";
+import MediaCollection from "../types/collections/MediaCollection";
 
 const StyledBlogBanner = styled.div`
     width: 100%;
@@ -111,7 +111,7 @@ const BlogPostPage = ({ data }: BlogPostProps) => {
                 // merge banner with images from contentful references
                 media={[banner].concat(
                     richTextAssets,
-                    richTextMediaCollections.map((obj) => obj.media).flat(),
+                    richTextMediaCollections.map((obj) => obj.items).flat(),
                 )}
                 open={state.lightbox}
                 current={state.lightboxCurrent}

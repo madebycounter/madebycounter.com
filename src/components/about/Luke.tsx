@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-import MediaCollection from "../../types/components/MediaCollection";
-
 import Asset from "../../types/Asset";
 import PortfolioItem from "../../types/PortfolioItem";
+import MediaCollection from "../../types/collections/MediaCollection";
 import MarkupSwap from "../MobileSwap";
 import Media from "../media/Media";
 import Slideshow from "../media/Slideshow";
@@ -140,11 +139,11 @@ export default function Luke({
 
                     <SlideshowContainer>
                         <Slideshow
-                            src={slideshow1.media}
+                            src={slideshow1.items}
                             aspectRatio={16 / 9}
                         />
                         <Slideshow
-                            src={slideshow2.media}
+                            src={slideshow2.items}
                             aspectRatio={16 / 9}
                         />
                     </SlideshowContainer>

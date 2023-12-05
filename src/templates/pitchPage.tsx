@@ -17,7 +17,7 @@ import Slideshow from "../components/media/Slideshow";
 import DetailedService from "../components/pitch/DetailedService";
 import FunFact from "../components/pitch/FunFact";
 
-import Service from "../types/Service";
+import Service, { getPitch } from "../types/Service";
 
 const Columns = styled.div`
     display: flex;
@@ -75,6 +75,8 @@ type PitchPageProps = {
 export default function ServicePage({ data }: PitchPageProps) {
     const pageData = data.contentfulService;
 
+    console.log(getPitch(pageData));
+
     return (
         <ThemeProvider theme={LightTheme}>
             <GlobalStyle />
@@ -113,7 +115,7 @@ export default function ServicePage({ data }: PitchPageProps) {
 
                     <HeroSlideshow>
                         <Slideshow
-                            src={pageData.slideshow}
+                            src={pageData.slideshow.items}
                             aspectRatio="original"
                         />
                     </HeroSlideshow>
@@ -126,21 +128,21 @@ export default function ServicePage({ data }: PitchPageProps) {
             <LayoutNarrow>
                 <Columns>
                     <DetailedService
-                        image={pageData.slideshow[0]}
+                        image={pageData.slideshow.items[0]}
                         title="Virtual Tours"
                         description="High dynamic range photography captures interior settings in their."
                         to="#"
                     />
 
                     <DetailedService
-                        image={pageData.slideshow[0]}
+                        image={pageData.slideshow.items[0]}
                         title="Virtual Tours"
                         description="High dynamic range photography captures interior settings in their."
                         to="#"
                     />
 
                     <DetailedService
-                        image={pageData.slideshow[0]}
+                        image={pageData.slideshow.items[0]}
                         title="Virtual Tours"
                         description="High dynamic range photography captures interior settings in their."
                         to="#"
@@ -154,11 +156,14 @@ export default function ServicePage({ data }: PitchPageProps) {
             <FunFact
                 author={pageData.teamMember}
                 fact="Did you know, 70% of businesses report an increase in sales after updating their Instagram and social media platforms?"
-                carousel={pageData.slideshow}
+                carousel={pageData.slideshow.items}
                 cta="Learn More"
             />
 
-            <GalleryCarousel images={pageData.slideshow} targetHeight={1} />
+            <GalleryCarousel
+                images={pageData.slideshow.items}
+                targetHeight={1}
+            />
 
             <Footer />
         </ThemeProvider>

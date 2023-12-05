@@ -1,9 +1,8 @@
 import React from "react";
 import { styled } from "styled-components";
 
-import MediaCollection from "../../types/components/MediaCollection";
-
 import { usePortfolioItems } from "../../types/PortfolioItem";
+import MediaCollection from "../../types/collections/MediaCollection";
 import Button from "../Button";
 import Highlight from "../Highlight";
 import { Heading1, Paragraph } from "../Typography";
@@ -86,10 +85,10 @@ export function Hero({ media }: HeroProps) {
 
             <GridBox>
                 <ImageGrid
-                    column1={media[0].media}
-                    column2={media[1].media}
-                    column3={media[2].media}
-                    row={media[3].media}
+                    column1={media[0].items}
+                    column2={media[1].items}
+                    column3={media[2].items}
+                    row={media[3].items}
                 />
             </GridBox>
         </HeroWrapper>

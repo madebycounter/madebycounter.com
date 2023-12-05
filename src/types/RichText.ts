@@ -1,11 +1,11 @@
 import { graphql } from "gatsby";
 
-import MediaCollection from "./components/MediaCollection";
 import SocialMediaEmbed from "./components/SocialMediaEmbed";
 
 import Asset from "./Asset";
 import BlogPost from "./BlogPost";
 import PortfolioItem from "./PortfolioItem";
+import MediaCollection from "./collections/MediaCollection";
 
 export type RichTextReference =
     | Asset
@@ -28,7 +28,7 @@ export type RichText = {
     references: RichTextReference[];
 };
 
-export function isRef(obj: RichTextReference | {}): obj is RichTextReference {
+function isRef(obj: RichTextReference | {}): obj is RichTextReference {
     return obj.hasOwnProperty("__typename");
 }
 
