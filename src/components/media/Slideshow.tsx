@@ -89,7 +89,7 @@ export default function Slideshow({
         return <p>Fluid aspect ratios not supported</p>;
     }
 
-    var trueAspectRatio;
+    var trueAspectRatio: number;
 
     if (aspectRatio === "original") {
         trueAspectRatio = src[0].dimensions.width / src[0].dimensions.height;
@@ -108,7 +108,7 @@ export default function Slideshow({
                         <Media
                             key={idx}
                             src={slide}
-                            aspectRatio={null}
+                            aspectRatio={trueAspectRatio}
                             videoPlaying={visible}
                             videoLoop={src.length == 1}
                             onVideoEnd={() => navigate(1)}
