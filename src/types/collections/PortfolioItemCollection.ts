@@ -15,7 +15,7 @@ export const portfolioItemCollectionFragment = graphql`
         contentful_id
         title
         items {
-            ...PortfolioItem
+            ...PortfolioItemRef
         }
     }
 `;

@@ -15,7 +15,7 @@ export const blogPostCollectionFragment = graphql`
         contentful_id
         title
         items {
-            ...BlogPost
+            ...BlogPostRef
         }
     }
 `;
