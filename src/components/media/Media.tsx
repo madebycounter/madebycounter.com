@@ -1,4 +1,3 @@
-import classnames from "classnames";
 import { graphql } from "gatsby";
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import React, { useEffect, useRef } from "react";
@@ -89,28 +88,28 @@ const MediaWrapper = styled.div<MediaWrapperProps>`
 
 export type MediaProps = {
     src: Asset;
-    center?: number;
-    className?: string;
-    videoPlaying?: boolean;
-    videoLoop?: boolean;
     aspectRatio?: AspectRatio;
     resizeMode?: ResizeMode;
+    center?: number;
+    videoPlaying?: boolean;
+    videoLoop?: boolean;
     onVideoEnd?: () => void;
     onClick?: (id: string) => void;
     onReady?: () => void;
+    className?: string;
 };
 
 export default function Media({
     src,
-    className,
+    aspectRatio = "original",
+    resizeMode = "width",
     center = 50,
     videoPlaying = true,
     videoLoop = true,
-    aspectRatio = "original",
-    resizeMode = "width",
     onVideoEnd = () => {},
     onClick,
     onReady = () => {},
+    className,
 }: MediaProps) {
     if (!src) {
         return <span>No source</span>;
@@ -184,19 +183,3 @@ export default function Media({
         </MediaWrapper>
     );
 }
-
-export const query = graphql`
-    fragment Media on ContentfulAsset {
-        __typename
-        contentful_id
-        title
-        description
-        mimeType
-        publicUrl
-        gatsbyImageData(breakpoints: [750, 1080, 1366, 1920])
-        dimensions {
-            width
-            height
-        }
-    }
-`;
