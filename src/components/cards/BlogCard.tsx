@@ -100,7 +100,9 @@ export function BlogCard({ item }: BlogCardProps) {
             </Tags>
 
             <StyledAuthorContainer>
-                <ProfilePhoto teamMember={item.author} />
+                {item.author.fullName !== "Counter" && (
+                    <ProfilePhoto teamMember={item.author} />
+                )}
             </StyledAuthorContainer>
         </StyledCard>
     );
