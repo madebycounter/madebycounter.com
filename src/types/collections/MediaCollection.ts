@@ -19,6 +19,15 @@ export const mediaCollectionFragment = graphql`
         }
     }
 
+    fragment MediaCollectionSmall on ContentfulMediaCollection {
+        __typename
+        contentful_id
+        title
+        items {
+            ...AssetSmall
+        }
+    }
+
     fragment CarouselMediaCollection on ContentfulMediaCollection {
         __typename
         contentful_id

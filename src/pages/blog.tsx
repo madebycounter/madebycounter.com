@@ -41,7 +41,7 @@ const BlogPage = () => {
         {
             allContentfulBlogPost(sort: { date: DESC }) {
                 nodes {
-                    ...BlogPost
+                    ...BlogPostRef
                 }
             }
         }

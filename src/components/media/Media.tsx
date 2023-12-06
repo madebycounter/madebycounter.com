@@ -75,10 +75,16 @@ const MediaWrapper = styled.div<MediaWrapperProps>`
         width: 100%;
         height: 100%;
 
+        max-width: inherit;
+        max-height: inherit;
+
         img,
         video {
             width: 100%;
             height: 100%;
+
+            max-width: inherit;
+            max-height: inherit;
 
             object-fit: cover;
             object-position: 50% ${(props) => props.$center}%;

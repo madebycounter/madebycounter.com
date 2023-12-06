@@ -91,7 +91,7 @@ export const blogPostFragment = graphql`
             ...TeamMember
         }
         banner {
-            ...Asset
+            ...AssetSmall
         }
         bannerMiddle
         slug

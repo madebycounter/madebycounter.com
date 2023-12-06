@@ -33,13 +33,13 @@ export function useAboutPage(): AboutPage {
                     ...PortfolioItem
                 }
                 lukeSlideshows {
-                    ...MediaCollection
+                    ...MediaCollectionSmall
                 }
                 henrySlideshows {
-                    ...MediaCollection
+                    ...MediaCollectionSmall
                 }
                 williamSlideshows {
-                    ...MediaCollection
+                    ...MediaCollectionSmall
                 }
                 lukeService {
                     ...Service
@@ -51,7 +51,7 @@ export function useAboutPage(): AboutPage {
                     ...Service
                 }
                 heroMedia {
-                    ...MediaCollection
+                    ...MediaCollectionSmall
                 }
             }
         }

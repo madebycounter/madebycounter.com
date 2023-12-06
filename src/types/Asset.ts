@@ -20,11 +20,21 @@ export const assetFragment = graphql`
         description
         mimeType
         publicUrl
-        gatsbyImageData(
-            breakpoints: [500, 750, 1080, 1366, 1920]
-            placeholder: DOMINANT_COLOR
-            quality: 40
-        )
+        gatsbyImageData(width: 1500, placeholder: DOMINANT_COLOR, quality: 40)
+        dimensions {
+            width
+            height
+        }
+    }
+
+    fragment AssetSmall on ContentfulAsset {
+        __typename
+        contentful_id
+        title
+        description
+        mimeType
+        publicUrl
+        gatsbyImageData(width: 700, placeholder: DOMINANT_COLOR, quality: 20)
         dimensions {
             width
             height
@@ -43,7 +53,7 @@ export const assetFragment = graphql`
             height: 100
             resizingBehavior: THUMB
             placeholder: DOMINANT_COLOR
-            quality: 40
+            quality: 20
         )
         dimensions {
             width

@@ -20,22 +20,22 @@ export const teamMemberFragment = graphql`
         contentful_id
         fullName
         profilePicture {
-            ...Asset
+            ...AssetSmall
         }
         fullBody {
-            ...Asset
+            ...AssetSmall
         }
         fullBodyExtra {
-            ...Asset
+            ...AssetSmall
         }
         footerBust {
-            ...Asset
+            ...AssetSmall
         }
         signature {
-            ...Asset
+            ...AssetSmall
         }
         pointingPhoto {
-            ...Asset
+            ...AssetSmall
         }
     }
 `;

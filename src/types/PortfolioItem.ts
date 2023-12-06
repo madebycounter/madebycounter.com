@@ -42,7 +42,7 @@ export const portfolioEntryFragment = graphql`
             raw
         }
         thumbnail {
-            ...Asset
+            ...AssetSmall
         }
         metaImage: thumbnail {
             gatsbyImageData(
@@ -73,7 +73,7 @@ export const portfolioEntryFragment = graphql`
             raw
         }
         thumbnail {
-            ...Asset
+            ...AssetSmall
         }
         slideshow {
             ...Asset

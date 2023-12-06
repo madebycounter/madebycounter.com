@@ -71,7 +71,7 @@ export const serviceFragment = graphql`
             ...Testimonial
         }
         pitchMediaCollection: pitch {
-            ...MediaCollection
+            ...MediaCollectionSmall
         }
         pitchMiniServiceCollection: pitch {
             ...MiniServiceCollection
