@@ -79,9 +79,6 @@ export const serviceFragment = graphql`
         pitchPortfolioItemCollection: pitch {
             ...PortfolioItemCollection
         }
-        pitchBlogPostCollection: pitch {
-            ...BlogPostCollection
-        }
         teamMember {
             ...TeamMember
         }

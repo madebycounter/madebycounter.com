@@ -16,6 +16,7 @@ import { PortfolioCard } from "../components/cards/PortfolioCard";
 import FunFact from "../components/pitch/FunFact";
 import Hero from "../components/pitch/Hero";
 import MiniServiceCard from "../components/pitch/MiniServiceCard";
+import { teamMemberFragment } from "../types/components/TeamMember";
 
 import Service, { PitchElement, getPitch } from "../types/Service";
 import MediaCollection from "../types/collections/MediaCollection";
@@ -114,9 +115,7 @@ export default function ServicePage({ data }: PitchPageProps) {
 
             <Navbar active="services" />
 
-            <Layout>
-                <Hero service={pageData} />
-            </Layout>
+            <Hero service={pageData} teamMember={pageData.teamMember} />
 
             {pitchData.map((element, idx) => (
                 <PitchElementWrapper key={idx}>
