@@ -20,7 +20,7 @@ const FunFactWrapper = styled.div`
     grid-row-gap: 0.5rem;
     grid-column-gap: 2rem;
     grid-template-columns: auto 1fr;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: auto auto;
     grid-template-areas: "portrait fact" "portrait button";
 
     @media (max-width: calc(900px + 2rem)) {
@@ -78,7 +78,7 @@ const FactWrapper = styled.div`
         padding: 0.5rem 0rem;
 
         ${Paragraph} {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
     }
 `;
