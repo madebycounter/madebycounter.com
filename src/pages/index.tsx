@@ -6,11 +6,15 @@ import { DarkTheme } from "../global/themes";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { LayoutNarrow } from "../components/Layout";
 import Navbar from "../components/Navbar";
 import Henry from "../components/about/Henry";
 import { Hero } from "../components/about/Hero";
 import Luke from "../components/about/Luke";
+import { Nametag } from "../components/about/Typography";
 import William from "../components/about/William";
+import ContactForm from "../components/forms/ContactForm";
+import { FormSplit } from "../components/forms/Forms";
 import { useTeamMembers } from "../types/components/TeamMember";
 
 import { useAboutPage } from "../types/pages/AboutPage";
@@ -69,6 +73,16 @@ const IndexPage = () => {
                     buttonCarousel={williamService.buttonImages.items}
                 />
             </div>
+
+            <LayoutNarrow>
+                <FormSplit>
+                    <div>
+                        <Nametag>Pretty cool, right?</Nametag>
+                    </div>
+
+                    <ContactForm />
+                </FormSplit>
+            </LayoutNarrow>
 
             <Footer />
         </ThemeProvider>

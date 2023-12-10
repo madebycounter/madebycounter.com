@@ -70,7 +70,7 @@ const Label = styled(Heading2)<LabelProps>`
 
     grid-area: label;
 
-    padding: 0.1em;
+    padding: 0.15em;
 
     ${(props) => {
         if (props.$buttonType === "fill") {
@@ -206,7 +206,8 @@ const Arrow = styled.div<ArrowProps>`
 
 type ButtonProps = {
     children: React.ReactNode;
-    to: string;
+    to?: string;
+    onClick?: () => void;
     type?: ButtonType;
     direction?: HorizontalDirection;
     className?: string;
@@ -217,6 +218,7 @@ type ButtonProps = {
 export default function Button({
     children,
     to,
+    onClick,
     className,
     type = "normal",
     direction = "right",
@@ -230,7 +232,12 @@ export default function Button({
             $buttonType={type}
             $direction={direction}
             $size={size.height}
-            to={to}
+            to={to || ""}
+            onClick={(e) => {
+                if (!onClick) return;
+                e.preventDefault();
+                onClick();
+            }}
             className={className}
         >
             <LabelContainer>

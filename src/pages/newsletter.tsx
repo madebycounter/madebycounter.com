@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
@@ -10,8 +10,11 @@ import { LayoutMini } from "../components/Layout";
 import Navbar from "../components/Navbar";
 import { Heading1, Paragraph } from "../components/Typography";
 
+import { useSiteMetadata } from "../types/SiteMetadata";
+
 export default function Newsletter() {
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const siteMetadata = useSiteMetadata();
 
     return (
         <ThemeProvider theme={LightTheme}>
@@ -28,8 +31,8 @@ export default function Newsletter() {
 
                 {!isSubmitted ? (
                     <HubspotForm
-                        portalId="41260229"
-                        formId="ee2cfa04-73fc-4629-a018-b9a22af7f9b0"
+                        portalId={siteMetadata.hubspot.portalId}
+                        formId={siteMetadata.hubspot.forms.newsletter}
                         onFormSubmit={(form: any) => {
                             setIsSubmitted(true);
                         }}

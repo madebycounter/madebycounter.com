@@ -61,7 +61,7 @@ const Header = ({
                 id="hs-script-loader"
                 async
                 defer
-                src={siteMetadata.hubspot}
+                src={siteMetadata.hubspot.trackingScript}
             ></script>
 
             {children}

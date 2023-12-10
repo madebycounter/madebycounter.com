@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Paragraph = styled.p`
+    color: ${({ theme }) => theme.color};
     font-family: ${(props) => props.theme.fonts.body};
     font-weight: 300;
     font-size: 1.3rem;
@@ -10,6 +11,7 @@ export const Paragraph = styled.p`
 `;
 
 export const Tags = styled.p`
+    color: ${({ theme }) => theme.color};
     font-size: 1rem;
     line-height: 1em;
     font-weight: 300;
@@ -20,6 +22,7 @@ export const Tags = styled.p`
 `;
 
 export const Heading1 = styled.h1`
+    color: ${({ theme }) => theme.color};
     font-family: ${(props) => props.theme.fonts.heading};
     font-weight: 400;
     font-size: min(4rem, 12vw);
@@ -29,6 +32,7 @@ export const Heading1 = styled.h1`
 `;
 
 export const Heading2 = styled.h2`
+    color: ${({ theme }) => theme.color};
     font-family: ${(props) => props.theme.fonts.heading};
     font-weight: 400;
     font-size: 2rem;
@@ -38,6 +42,7 @@ export const Heading2 = styled.h2`
 `;
 
 export const Heading3 = styled.h3`
+    color: ${({ theme }) => theme.color};
     font-family: ${(props) => props.theme.fonts.heading};
     font-weight: 400;
     font-size: 1.6rem;
@@ -48,6 +53,7 @@ export const Heading3 = styled.h3`
 `;
 
 export const Heading4 = styled.h4`
+    color: ${({ theme }) => theme.color};
     font-family: ${(props) => props.theme.fonts.heading};
     font-weight: 400;
     font-size: 1.3rem;
@@ -58,6 +64,7 @@ export const Heading4 = styled.h4`
 `;
 
 export const OrderedList = styled.ol`
+    color: ${({ theme }) => theme.color};
     padding-left: 20px;
     margin: 0.5rem;
 
@@ -67,6 +74,7 @@ export const OrderedList = styled.ol`
 `;
 
 export const UnorderedList = styled.ul`
+    color: ${({ theme }) => theme.color};
     padding-left: 20px;
     margin: 0.5rem;
 
@@ -76,6 +84,8 @@ export const UnorderedList = styled.ul`
 `;
 
 export const ListItem = styled.li`
+    color: ${({ theme }) => theme.color};
+
     ${Paragraph} {
         margin: 0;
     }

@@ -3,8 +3,14 @@ import { graphql, useStaticQuery } from "gatsby";
 export interface SiteMetadata {
     title: string;
     siteUrl: string;
-    web3forms: string;
-    hubspot: string;
+    hubspot: {
+        trackingScript: string;
+        portalId: string;
+        forms: {
+            contact: string;
+            newsletter: string;
+        };
+    };
 }
 
 export function useSiteMetadata(): SiteMetadata {
@@ -14,8 +20,14 @@ export function useSiteMetadata(): SiteMetadata {
                 siteMetadata {
                     title
                     siteUrl
-                    web3forms
-                    hubspot
+                    hubspot {
+                        trackingScript
+                        portalId
+                        forms {
+                            contact
+                            newsletter
+                        }
+                    }
                 }
             }
         }
