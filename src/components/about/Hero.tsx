@@ -5,6 +5,7 @@ import { usePortfolioItems } from "../../types/PortfolioItem";
 import MediaCollection from "../../types/collections/MediaCollection";
 import Button from "../Button";
 import Highlight from "../Highlight";
+import MobileSwap from "../MobileSwap";
 import { Heading1, Paragraph } from "../Typography";
 import ImageGrid from "./ImageGrid";
 
@@ -12,7 +13,7 @@ const StyledHeading = styled(Heading1)`
     font-size: 7vw;
 
     @media (max-width: 1000px) {
-        font-size: 12vw;
+        font-size: 19vw;
     }
 `;
 
@@ -31,6 +32,10 @@ const StyledParagraph = styled(Paragraph)`
 
 const StyledButton = styled(Button)`
     font-size: 3rem;
+
+    @media (max-width: 1000px) {
+        display: none;
+    }
 `;
 
 const InfoBox = styled.div`
@@ -66,11 +71,19 @@ export function Hero({ media }: HeroProps) {
     return (
         <HeroWrapper>
             <InfoBox>
-                <StyledHeading>
-                    We make cool
-                    <br />
-                    stuff, <Highlight>see?</Highlight>
-                </StyledHeading>
+                <MobileSwap width={1000}>
+                    <StyledHeading>
+                        We make cool
+                        <br />
+                        stuff, <Highlight>see?</Highlight>
+                    </StyledHeading>
+
+                    <StyledHeading>
+                        We make
+                        <br />
+                        cool stuff, <Highlight>see?</Highlight>
+                    </StyledHeading>
+                </MobileSwap>
 
                 <StyledParagraph>
                     Counter, your local media production company from San Jose,
