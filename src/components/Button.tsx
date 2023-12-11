@@ -158,21 +158,21 @@ const Arrow = styled.div<ArrowProps>`
             case "right":
                 return css`
                     clip-path: polygon(
-                        -5% 0%,
+                        -20% 0%,
                         0% 0%,
                         100% 50%,
                         0% 100%,
-                        -5% 100%
+                        -20% 100%
                     );
                 `;
             case "left":
                 return css`
                     clip-path: polygon(
-                        105% 0%,
+                        120% 0%,
                         100% 0%,
                         0% 50%,
                         100% 100%,
-                        105% 100%
+                        120% 100%
                     );
                 `;
         }
