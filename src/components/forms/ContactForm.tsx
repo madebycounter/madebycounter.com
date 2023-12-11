@@ -15,15 +15,35 @@ import {
     FormButton,
 } from "./Forms";
 
+const ModalContent = styled.div`
+    background-color: ${(props) => props.theme.backgroundColor};
+    color: ${(props) => props.theme.color};
+    max-width: 100%;
+    width: 400px;
+    padding: 1rem;
+    box-sizing: border-box;
+`;
+
 const ContactFormWrapper = styled(Form)`
     grid-template-rows: auto auto 1fr auto;
 `;
 
-type ContactFormProps = {
-    formContext: HubspotFormContext;
+type ContactFormData = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    message: string;
 };
 
-export default function ContactForm({ formContext }: ContactFormProps) {
+type ContactFormProps = {
+    formContext: HubspotFormContext;
+    onSubmitted?: (data: ContactFormData) => void;
+};
+
+export default function ContactForm({
+    formContext,
+    onSubmitted,
+}: ContactFormProps) {
     const siteMetadata = useSiteMetadata();
 
     const [modalOpen, setModalOpen] = useState(false);
@@ -63,18 +83,28 @@ export default function ContactForm({ formContext }: ContactFormProps) {
             console.log(data);
             setModalOpen(true);
             setIsLoading(false);
+
+            if (onSubmitted)
+                onSubmitted({
+                    firstName,
+                    lastName,
+                    email,
+                    message,
+                });
         });
     }
 
     return (
         <>
-            <Modal open={modalOpen}>
-                <Heading1>Form Submitted</Heading1>
-                <Paragraph>Thanks, we'll be in touch soon!</Paragraph>
+            <Modal open={modalOpen} setOpen={setModalOpen}>
+                <ModalContent>
+                    <Heading1>Form Submitted</Heading1>
+                    <Paragraph>Thanks, we'll be in touch soon!</Paragraph>
 
-                <FormButton onClick={() => setModalOpen(false)}>
-                    Close
-                </FormButton>
+                    <FormButton onClick={() => setModalOpen(false)}>
+                        Close
+                    </FormButton>
+                </ModalContent>
             </Modal>
 
             <ContactFormWrapper onSubmit={submit}>

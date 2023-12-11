@@ -1,6 +1,6 @@
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { graphql } from "gatsby";
-import React, { useState } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
@@ -8,15 +8,13 @@ import { LightTheme } from "../global/themes";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { Layout, LayoutNarrow } from "../components/Layout";
+import { Layout } from "../components/Layout";
 import Navbar from "../components/Navbar";
-import Details from "../components/PortfolioDetails";
 import { Heading1 } from "../components/Typography";
-import { Gallery, ResponsiveGallery } from "../components/media/Gallery";
-import Lightbox from "../components/media/Lightbox";
-import { isVideo } from "../components/media/Media";
-import Slideshow from "../components/media/Slideshow";
-import YouTube from "../components/media/YouTube";
+import { Nametag } from "../components/about/Typography";
+import Slash from "../components/cards/utils/Slash";
+import ContactForm from "../components/forms/ContactForm";
+import Media from "../components/media/Media";
 import MiniService from "../types/components/MiniService";
 
 import defaultImage from "../images/meta.png";
@@ -29,6 +27,25 @@ export const query = graphql`
     }
 `;
 
+const CallToAction = styled.div`
+    display: flex;
+    gap: 2rem;
+    height: calc(100vh);
+`;
+
+const FormBox = styled.div`
+    position: relative;
+    padding-top: 2rem;
+    padding-left: 2rem;
+`;
+
+const CtaSlash = styled(Slash)`
+    position: absolute;
+    height: 100%;
+    left: calc(100% + 2rem);
+    top: 0;
+`;
+
 type CallToActionProps = {
     data: {
         contentfulMiniService: MiniService;
@@ -36,17 +53,32 @@ type CallToActionProps = {
 };
 
 const CallToActionPage = ({ data }: CallToActionProps) => {
+    const cta = data.contentfulMiniService;
+
     return (
         <ThemeProvider theme={LightTheme}>
             <GlobalStyle />
 
-            <Navbar active="portfolio" />
+            {/* <Navbar active="services" /> */}
 
-            <Layout>
-                <h1>{data.contentfulMiniService.title}</h1>
-            </Layout>
+            <CallToAction>
+                <FormBox>
+                    <Nametag>Get in touch:</Nametag>
 
-            <Footer />
+                    <br />
+
+                    <ContactForm
+                        formContext={{
+                            pageUri: `madebycounter.com/contact/${cta.slug}`,
+                            pageName: `Counter | ${cta.title}`,
+                        }}
+                    />
+
+                    <CtaSlash />
+                </FormBox>
+
+                <Media src={cta.image} resizeMode="cover" />
+            </CallToAction>
         </ThemeProvider>
     );
 };
