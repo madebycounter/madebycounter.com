@@ -73,11 +73,11 @@ export function Hero({ media }: HeroProps) {
                 </StyledHeading>
 
                 <StyledParagraph>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Accusantium assumenda voluptate est nemo nulla aliquam.
-                    Maxime neque dolore fugiat illo amet, natus blanditiis
-                    ratione nisi unde provident voluptatum reiciendis
-                    accusantium!
+                    Counter, your local media production company from San Jose,
+                    CA, is a team of skilled professionals across numerous
+                    creative disciplines. Hailed as a “one-stop shop”, we pride
+                    ourselves on providing everything necessary for your
+                    project's success.
                 </StyledParagraph>
 
                 <StyledButton to="">Learn More</StyledButton>
