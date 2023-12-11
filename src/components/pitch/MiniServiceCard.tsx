@@ -17,6 +17,7 @@ import Media from "../media/Media";
 
 const ModalContent = styled.div`
     display: flex;
+    align-items: stretch;
     background-color: ${(props) => props.theme.backgroundColor};
     color: ${(props) => props.theme.color};
     width: 100%;
@@ -37,7 +38,7 @@ const MediaBox = styled.div`
 const CtaSlash = styled(Slash)`
     position: absolute;
     height: 100%;
-    left: calc(100%);
+    left: calc(100% - 1px);
     top: 0;
 
     @media (max-width: 850px) {
