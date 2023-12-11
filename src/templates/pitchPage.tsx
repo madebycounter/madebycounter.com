@@ -11,8 +11,11 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { Layout, LayoutNarrow, LayoutNarrowNoEdge } from "../components/Layout";
 import Navbar from "../components/Navbar";
+import { Nametag } from "../components/about/Typography";
 import { BlogCard } from "../components/cards/BlogCard";
 import { PortfolioCard } from "../components/cards/PortfolioCard";
+import ContactForm from "../components/forms/ContactForm";
+import { FormSplit } from "../components/forms/Forms";
 import FunFact from "../components/pitch/FunFact";
 import Hero from "../components/pitch/Hero";
 import MiniServiceCard from "../components/pitch/MiniServiceCard";
@@ -122,6 +125,21 @@ export default function ServicePage({ data }: PitchPageProps) {
                     {renderPitchElement(element, pageData.buttonImages)}
                 </PitchElementWrapper>
             ))}
+
+            <LayoutNarrow>
+                <FormSplit>
+                    <div>
+                        <Nametag>Pretty cool, right?</Nametag>
+                    </div>
+
+                    <ContactForm
+                        formContext={{
+                            pageUri: `madebycounter.com/services/${pageData.slug}`,
+                            pageName: `Counter | ${pageData.title}`,
+                        }}
+                    />
+                </FormSplit>
+            </LayoutNarrow>
 
             <Footer />
         </ThemeProvider>

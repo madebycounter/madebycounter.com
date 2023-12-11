@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 
-import { submitHubspotForm } from "../../global/hubspot";
+import { HubspotFormContext, submitHubspotForm } from "../../global/hubspot";
 
 import { useSiteMetadata } from "../../types/SiteMetadata";
 import Modal from "../Modal";
@@ -19,10 +19,14 @@ const ContactFormWrapper = styled(Form)`
     grid-template-rows: auto auto 1fr auto;
 `;
 
-export default function ContactForm() {
+type ContactFormProps = {
+    formContext: HubspotFormContext;
+};
+
+export default function ContactForm({ formContext }: ContactFormProps) {
     const siteMetadata = useSiteMetadata();
 
-    const [modalOpen, setModalOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
 
     const [firstName, setFirstName] = useState("");
@@ -54,10 +58,7 @@ export default function ContactForm() {
                     value: message,
                 },
             ],
-            {
-                pageUri: "madebycounter.com/testing",
-                pageName: "Counter | Test Page",
-            },
+            formContext,
         ).then((data) => {
             console.log(data);
             setModalOpen(true);

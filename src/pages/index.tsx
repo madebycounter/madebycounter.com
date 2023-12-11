@@ -80,7 +80,12 @@ const IndexPage = () => {
                         <Nametag>Pretty cool, right?</Nametag>
                     </div>
 
-                    <ContactForm />
+                    <ContactForm
+                        formContext={{
+                            pageUri: `madebycounter.com/`,
+                            pageName: `Counter | About`,
+                        }}
+                    />
                 </FormSplit>
             </LayoutNarrow>
 

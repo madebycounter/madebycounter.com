@@ -22,7 +22,9 @@ const ModalWrapper = styled.div<ModalWrapperProps>`
 const ModalContent = styled.div`
     background-color: ${(props) => props.theme.backgroundColor};
     color: ${(props) => props.theme.color};
-    min-width: 400px;
+    max-width: 100%;
+    width: 400px;
+    margin: 1rem;
     padding: 1rem;
     box-sizing: border-box;
 `;
