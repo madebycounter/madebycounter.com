@@ -7,6 +7,7 @@ import { DarkTheme } from "../global/themes";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { LayoutNarrow } from "../components/Layout";
+import { MobileSplit } from "../components/MobileSwap";
 import Navbar from "../components/Navbar";
 import Henry from "../components/about/Henry";
 import { Hero } from "../components/about/Hero";
@@ -75,7 +76,7 @@ const IndexPage = () => {
             </div>
 
             <LayoutNarrow>
-                <FormSplit>
+                <MobileSplit>
                     <div>
                         <Nametag>Pretty cool, right?</Nametag>
                     </div>
@@ -86,7 +87,7 @@ const IndexPage = () => {
                             pageName: `Counter | About`,
                         }}
                     />
-                </FormSplit>
+                </MobileSplit>
             </LayoutNarrow>
 
             <Footer />

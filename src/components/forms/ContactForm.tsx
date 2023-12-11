@@ -26,7 +26,7 @@ type ContactFormProps = {
 export default function ContactForm({ formContext }: ContactFormProps) {
     const siteMetadata = useSiteMetadata();
 
-    const [modalOpen, setModalOpen] = useState(true);
+    const [modalOpen, setModalOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     const [firstName, setFirstName] = useState("");

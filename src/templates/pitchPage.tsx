@@ -10,6 +10,7 @@ import { GalleryCarousel } from "../components/Carousel";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { Layout, LayoutNarrow, LayoutNarrowNoEdge } from "../components/Layout";
+import { MobileSplit } from "../components/MobileSwap";
 import Navbar from "../components/Navbar";
 import { Nametag } from "../components/about/Typography";
 import { BlogCard } from "../components/cards/BlogCard";
@@ -127,7 +128,7 @@ export default function ServicePage({ data }: PitchPageProps) {
             ))}
 
             <LayoutNarrow>
-                <FormSplit>
+                <MobileSplit>
                     <div>
                         <Nametag>Pretty cool, right?</Nametag>
                     </div>
@@ -138,7 +139,7 @@ export default function ServicePage({ data }: PitchPageProps) {
                             pageName: `Counter | ${pageData.title}`,
                         }}
                     />
-                </FormSplit>
+                </MobileSplit>
             </LayoutNarrow>
 
             <Footer />

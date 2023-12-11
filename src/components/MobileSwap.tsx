@@ -48,3 +48,17 @@ export default function MarkupSwap({
         </MarkupSwapWrapper>
     );
 }
+
+export const MobileSplit = styled.div`
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+
+    > * {
+        flex: 1;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+`;
