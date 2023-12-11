@@ -1,6 +1,6 @@
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { graphql } from "gatsby";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
@@ -10,14 +10,9 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { Layout, LayoutNarrow } from "../components/Layout";
 import Navbar from "../components/Navbar";
-import Parallax, { ParallaxDriver } from "../components/Parallax";
 import Details from "../components/PortfolioDetails";
-import { Heading1, Heading2, Paragraph } from "../components/Typography";
-import { BlogCard } from "../components/cards/BlogCard";
-import { BlogEmbed } from "../components/cards/BlogEmbed";
-import { PortfolioCard } from "../components/cards/PortfolioCard";
-import { PortfolioEmbed } from "../components/cards/PortfolioEmbed";
-import { ResponsiveGallery } from "../components/media/Gallery";
+import { Heading1 } from "../components/Typography";
+import { Gallery, ResponsiveGallery } from "../components/media/Gallery";
 import Lightbox from "../components/media/Lightbox";
 import { isVideo } from "../components/media/Media";
 import Slideshow from "../components/media/Slideshow";
@@ -25,8 +20,7 @@ import YouTube from "../components/media/YouTube";
 
 import defaultImage from "../images/meta.png";
 
-import { useBlogPosts } from "../types/BlogPost";
-import PortfolioItem, { usePortfolioItems } from "../types/PortfolioItem";
+import PortfolioItem from "../types/PortfolioItem";
 
 export const query = graphql`
     query PortfolioItemData($contentful_id: String) {
@@ -36,63 +30,30 @@ export const query = graphql`
     }
 `;
 
-const Hero = styled.div`
+const StyledHeader = styled.div`
     display: flex;
-    align-items: flex-start;
-    gap: 4rem;
-    max-width: 1800px;
+    max-width: 1200px;
     margin: auto;
-    padding: 1rem;
-    flex-wrap: wrap-reverse;
-`;
+    margin-bottom: 3rem;
+    gap: 1rem;
 
-const HeroInfo = styled.div`
-    flex: 2;
-    min-width: 450px;
-`;
+    .info {
+        flex: 4;
 
-const HeroInfoTitle = styled(Heading1)`
-    font-size: 5rem;
-`;
-
-const HeroInfoDetails = styled(Details)`
-    font-size: 1.6rem;
-`;
-
-const HeroMedia = styled.div`
-    flex: 3;
-    min-width: 800px;
-
-    @media (max-width: 900px) {
-        min-width: 100%;
+        ${Heading1} {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
     }
-`;
 
-const ParallaxWrapper = styled.div`
-    display: flex;
-    gap: 2rem;
-    max-width: 1800px;
-    margin: auto;
-    padding: 1rem;
-    padding-top: 2rem;
-    align-items: flex-start;
-`;
-
-const PitchWrapper = styled(Parallax)`
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-
-    flex: 1;
-    min-width: 350px;
-
-    > div {
-        margin: 0;
+    .cover {
+        flex: 6;
     }
-`;
 
-const GalleryWrapper = styled(ParallaxDriver)`
-    flex: 3;
+    @media (max-width: calc(1200px - 4rem)) {
+        flex-direction: column-reverse;
+        margin-bottom: 1rem;
+    }
 `;
 
 type PortfolioItemProps = {
@@ -102,7 +63,6 @@ type PortfolioItemProps = {
 };
 
 const PortfolioItemPage = ({ data }: PortfolioItemProps) => {
-    const driverRef = useRef<HTMLDivElement>(null);
     const [state, setState] = useState({
         lightbox: false,
         lightboxCurrent: "",
@@ -114,7 +74,6 @@ const PortfolioItemPage = ({ data }: PortfolioItemProps) => {
     const slideshow = data.contentfulPortfolioItem.slideshow || [];
     const gallery = data.contentfulPortfolioItem.gallery || [];
 
-    // Do not autoplay if slideshow is a series of video clips
     var videoOnly = slideshow.length != 0 && isVideo(slideshow[0].mimeType);
 
     for (let i = 1; i < slideshow.length; i++) {
@@ -137,64 +96,43 @@ const PortfolioItemPage = ({ data }: PortfolioItemProps) => {
         });
     };
 
-    const portfolioItems = usePortfolioItems();
-    const blogPosts = useBlogPosts();
-
     return (
         <ThemeProvider theme={LightTheme}>
             <GlobalStyle />
 
             <Navbar active="portfolio" />
 
-            <Hero>
-                <HeroInfo>
-                    <HeroInfoTitle>{title}</HeroInfoTitle>
-
-                    <HeroInfoDetails
-                        date={date}
-                        tags={tags}
-                        description={description}
-                    />
-                </HeroInfo>
-
-                <HeroMedia>
-                    {!youTube && (
-                        <Slideshow
-                            src={slideshow}
-                            autoplayDelay={5000}
-                            autoplayOffset={0}
-                            autoplay={!videoOnly}
-                            aspectRatio={16 / 9}
-                            onClick={openLightbox}
+            <Layout>
+                <StyledHeader>
+                    <div className="info">
+                        <Heading1>{title}</Heading1>
+                        <Details
+                            date={date}
+                            tags={tags}
+                            description={description}
                         />
-                    )}
+                    </div>
 
-                    {youTube && <YouTube url={youTube} />}
-                </HeroMedia>
-            </Hero>
+                    <div className="cover">
+                        {!youTube && (
+                            <Slideshow
+                                src={slideshow}
+                                autoplayDelay={5000}
+                                autoplayOffset={0}
+                                autoplay={!videoOnly}
+                                aspectRatio={16 / 9}
+                                onClick={openLightbox}
+                            />
+                        )}
 
-            <ParallaxWrapper>
-                <PitchWrapper driverRef={driverRef}>
-                    <PortfolioCard item={portfolioItems[0]} />
+                        {youTube && <YouTube url={youTube} />}
+                    </div>
+                </StyledHeader>
+            </Layout>
 
-                    <BlogCard item={blogPosts[0]} />
-
-                    <PortfolioCard item={portfolioItems[1]} />
-
-                    <BlogCard item={blogPosts[5]} />
-
-                    <PortfolioCard item={portfolioItems[2]} />
-                </PitchWrapper>
-
-                <GalleryWrapper ref={driverRef}>
-                    <ResponsiveGallery
-                        images={gallery}
-                        onClick={openLightbox}
-                    />
-                </GalleryWrapper>
-            </ParallaxWrapper>
-
-            <LayoutNarrow></LayoutNarrow>
+            <LayoutNarrow>
+                <ResponsiveGallery images={gallery} onClick={openLightbox} />
+            </LayoutNarrow>
 
             <Lightbox
                 media={slideshow.concat(gallery)}
