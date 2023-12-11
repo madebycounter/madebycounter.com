@@ -33,6 +33,12 @@ type MediaWrapperProps = ThemedProps & {
 const MediaWrapper = styled.div<MediaWrapperProps>`
     overflow: hidden;
 
+    ${(props) =>
+        props.$hasClickEvent &&
+        css`
+            cursor: pointer;
+        `}
+
     ${(props) => {
         switch (props.$resizeMode) {
             case "width":
