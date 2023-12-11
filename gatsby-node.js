@@ -102,16 +102,6 @@ exports.createPages = async ({ graphql, actions }) => {
             },
         });
     });
-
-    data.callToAction.nodes.forEach((node) => {
-        actions.createPage({
-            path: "/contact/" + node.slug,
-            component: path.resolve("./src/templates/callToAction.tsx"),
-            context: {
-                contentful_id: node.contentful_id,
-            },
-        });
-    });
 };
 
 exports.createSchemaCustomization = ({ actions }) => {
