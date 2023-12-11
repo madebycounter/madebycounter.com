@@ -3,8 +3,6 @@ import styled, { ThemeProvider } from "styled-components";
 
 import { LightTheme } from "../global/themes";
 
-import { Heading1, Paragraph } from "./Typography";
-
 type ModalWrapperProps = { $open: boolean };
 
 const ModalWrapper = styled.div<ModalWrapperProps>`
@@ -23,6 +21,7 @@ const ModalWrapper = styled.div<ModalWrapperProps>`
 
 const ModalContent = styled.div`
     background-color: ${(props) => props.theme.backgroundColor};
+    color: ${(props) => props.theme.color};
     min-width: 400px;
     padding: 1rem;
     box-sizing: border-box;
@@ -35,10 +34,10 @@ type ModalProps = {
 
 export default function Modal({ children, open }: ModalProps) {
     return (
-        <ModalWrapper $open={open}>
-            <ThemeProvider theme={LightTheme}>
+        <ThemeProvider theme={LightTheme}>
+            <ModalWrapper $open={open}>
                 <ModalContent>{children}</ModalContent>
-            </ThemeProvider>
-        </ModalWrapper>
+            </ModalWrapper>
+        </ThemeProvider>
     );
 }
