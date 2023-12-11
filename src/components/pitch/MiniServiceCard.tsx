@@ -27,10 +27,9 @@ const MiniServiceWrapper = styled.div``;
 
 type MiniServiceProps = {
     src: MiniService;
-    to: string;
 };
 
-export default function MiniServiceCard({ src, to }: MiniServiceProps) {
+export default function MiniServiceCard({ src }: MiniServiceProps) {
     return (
         <MiniServiceWrapper>
             <Media src={src.image} aspectRatio={1.5} />
@@ -41,7 +40,11 @@ export default function MiniServiceCard({ src, to }: MiniServiceProps) {
                     portfolioOptions,
                 )}
             </MiniServiceParagraph>
-            <MiniServiceButton type="fill" direction="right" to={to}>
+            <MiniServiceButton
+                type="fill"
+                direction="right"
+                to={`/contact/${src.slug}`}
+            >
                 {src.buttonText}
             </MiniServiceButton>
         </MiniServiceWrapper>

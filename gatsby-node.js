@@ -64,6 +64,12 @@ exports.createPages = async ({ graphql, actions }) => {
                     contentful_id
                 }
             }
+            callToAction: allContentfulMiniService {
+                nodes {
+                    slug
+                    contentful_id
+                }
+            }
         }
     `);
 
@@ -91,6 +97,16 @@ exports.createPages = async ({ graphql, actions }) => {
         actions.createPage({
             path: "/services/" + node.slug,
             component: path.resolve("./src/templates/pitchPage.tsx"),
+            context: {
+                contentful_id: node.contentful_id,
+            },
+        });
+    });
+
+    data.callToAction.nodes.forEach((node) => {
+        actions.createPage({
+            path: "/contact/" + node.slug,
+            component: path.resolve("./src/templates/callToAction.tsx"),
             context: {
                 contentful_id: node.contentful_id,
             },

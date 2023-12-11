@@ -65,11 +65,7 @@ function renderPitchElement(
                 <LayoutNarrow>
                     <PitchColumns>
                         {element.items.map((item, idx) => (
-                            <MiniServiceCard
-                                key={idx}
-                                src={item}
-                                to={`/cta/${item.slug}`}
-                            />
+                            <MiniServiceCard key={idx} src={item} />
                         ))}
                     </PitchColumns>
                 </LayoutNarrow>

@@ -8,6 +8,7 @@ export default interface MiniService {
     contentful_id: string;
     title: string;
     image: Asset;
+    metaImage: Asset;
     description: RichText;
     buttonText: string;
     slug: string;
@@ -20,6 +21,14 @@ export const miniServiceFragment = graphql`
         title
         image {
             ...Asset
+        }
+        metaImage: image {
+            gatsbyImageData(
+                height: 627
+                width: 1200
+                breakpoints: 1200
+                resizingBehavior: FILL
+            )
         }
         description {
             raw
