@@ -1,9 +1,12 @@
+import { renderRichText } from "gatsby-source-contentful/rich-text";
 import React from "react";
 import styled from "styled-components";
 
-import TeamMember from "../../types/components/TeamMember";
+import { portfolioOptions } from "../../global/richTextOptions";
 
-import Asset from "../../types/Asset";
+import FunFact from "../../types/components/FunFact";
+
+import { packRichText } from "../../types/RichText";
 import Arrow from "../Arrow";
 import { ProfilePhoto } from "../Author";
 import Button from "../Button";
@@ -104,25 +107,29 @@ const FunFactButton = styled(Button)`
 `;
 
 type FunFactProps = {
-    fact: string;
-    author: TeamMember;
-    cta: string;
-    carousel: Asset[];
+    fact: FunFact;
 };
 
-export default function FunFact({ fact, author, cta, carousel }: FunFactProps) {
+export default function FunFactCard({ fact }: FunFactProps) {
     return (
         <FunFactWrapper>
             <PortraitWrapper>
                 <FunFactMarkupSwap width={600}>
-                    <ProfilePhoto teamMember={author} />
+                    <ProfilePhoto teamMember={fact.teamMember} />
 
-                    <Media src={author.pointingPhoto} />
+                    <Media src={fact.teamMember.pointingPhoto} />
                 </FunFactMarkupSwap>
             </PortraitWrapper>
 
             <FactWrapper>
-                <Paragraph>“{fact}”</Paragraph>
+                <Paragraph>
+                    "
+                    {renderRichText(
+                        packRichText(fact.content),
+                        portfolioOptions,
+                    )}
+                    "
+                </Paragraph>
 
                 <FunFactArrow $direction="left" />
             </FactWrapper>
@@ -131,11 +138,11 @@ export default function FunFact({ fact, author, cta, carousel }: FunFactProps) {
                 <FunFactButton
                     to="#"
                     inverted={true}
-                    images={carousel}
+                    images={fact.buttonImages.items}
                     direction="right"
                     type="carousel"
                 >
-                    {cta}
+                    {fact.buttonText}
                 </FunFactButton>
             </ButtonWrapper>
         </FunFactWrapper>

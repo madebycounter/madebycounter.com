@@ -3,25 +3,22 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
-import { renderPlainText } from "../global/textHelpers";
 import { LightTheme } from "../global/themes";
 
 import { GalleryCarousel } from "../components/Carousel";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { Layout, LayoutNarrow, LayoutNarrowNoEdge } from "../components/Layout";
+import { LayoutNarrow, LayoutNarrowNoEdge } from "../components/Layout";
 import { MobileSplit } from "../components/MobileSwap";
 import Navbar from "../components/Navbar";
 import { Nametag } from "../components/about/Typography";
 import { BlogCard } from "../components/cards/BlogCard";
 import { PortfolioCard } from "../components/cards/PortfolioCard";
 import ContactForm from "../components/forms/ContactForm";
-import { FormSplit } from "../components/forms/Forms";
-import FunFact from "../components/pitch/FunFact";
+import FunFactCard from "../components/pitch/FunFactCard";
 import Hero from "../components/pitch/Hero";
 import MiniServiceCard from "../components/pitch/MiniServiceCard";
 import TestimonialCard from "../components/pitch/Testimonial";
-import { teamMemberFragment } from "../types/components/TeamMember";
 
 import Service, { PitchElement, getPitch } from "../types/Service";
 import MediaCollection from "../types/collections/MediaCollection";
@@ -43,20 +40,12 @@ const PitchElementWrapper = styled.div`
     margin: 8rem 0;
 `;
 
-function renderPitchElement(
-    element: PitchElement,
-    buttonImages: MediaCollection,
-) {
+function renderPitchElement(element: PitchElement) {
     switch (element.__typename) {
         case "ContentfulFunFact":
             return (
                 <LayoutNarrowNoEdge>
-                    <FunFact
-                        author={element.teamMember}
-                        fact={renderPlainText(element.content)}
-                        carousel={buttonImages.items}
-                        cta={element.buttonText}
-                    />
+                    <FunFactCard fact={element} />
                 </LayoutNarrowNoEdge>
             );
         case "ContentfulMediaCollection":
@@ -122,7 +111,7 @@ export default function ServicePage({ data }: PitchPageProps) {
 
             {pitchData.map((element, idx) => (
                 <PitchElementWrapper key={idx}>
-                    {renderPitchElement(element, pageData.buttonImages)}
+                    {renderPitchElement(element)}
                 </PitchElementWrapper>
             ))}
 

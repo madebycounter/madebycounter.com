@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby";
 
 import { RichText } from "..";
+import MediaCollection from "../collections/MediaCollection";
 import TeamMember from "./TeamMember";
 
 export default interface FunFact {
@@ -10,6 +11,7 @@ export default interface FunFact {
     content: RichText;
     teamMember: TeamMember;
     buttonText: string;
+    buttonImages: MediaCollection;
 }
 
 export function useFunFacts(): FunFact[] {
@@ -36,5 +38,8 @@ export const funFactFragment = graphql`
             ...TeamMember
         }
         buttonText
+        buttonImages {
+            ...CarouselMediaCollection
+        }
     }
 `;
