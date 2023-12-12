@@ -37,7 +37,7 @@ const PitchColumns = styled.div`
 `;
 
 const PitchElementWrapper = styled.div`
-    margin: 8rem 0;
+    margin: 4rem 0;
 `;
 
 function renderPitchElement(element: PitchElement) {
@@ -49,7 +49,13 @@ function renderPitchElement(element: PitchElement) {
                 </LayoutNarrowNoEdge>
             );
         case "ContentfulMediaCollection":
-            return <GalleryCarousel images={element.items} targetHeight={1} />;
+            return (
+                <GalleryCarousel
+                    images={element.items}
+                    targetHeight={1}
+                    columnWidth={300}
+                />
+            );
         case "ContentfulMiniServiceCollection":
             return (
                 <LayoutNarrow>

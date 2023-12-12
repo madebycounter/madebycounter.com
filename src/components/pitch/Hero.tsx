@@ -107,12 +107,6 @@ export default function Hero({ service, teamMember }: HeroProps) {
                 <HeroButton to="#" type="normal" direction="right">
                     {service.callToAction}
                 </HeroButton>
-
-                <Media
-                    src={teamMember.signature}
-                    aspectRatio="original"
-                    resizeMode="contain"
-                />
             </CallToAction>
 
             <HeroSlideshow>
