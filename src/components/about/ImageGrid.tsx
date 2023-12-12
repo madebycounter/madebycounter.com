@@ -1,15 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 
+import { useWindowSize } from "../../global/useSize";
+
 import Asset from "../../types/Asset";
 import { ImageCarousel } from "../Carousel";
 
-const ImageGridWrapper = styled.div`
+type ImageGridWrapperProps = {
+    $gap: number;
+};
+
+const ImageGridWrapper = styled.div<ImageGridWrapperProps>`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto 200px;
     grid-template-areas: "column1 column2 column3" "row row row";
-    gap: 8px;
+    gap: ${(props) => props.$gap}px;
 
     width: 100%;
     height: 700px;
@@ -50,22 +56,25 @@ export default function ImageGrid({
     column3,
     row,
 }: ImageGridProps) {
+    const size = useWindowSize();
+    const gap = size.width > 1000 ? 8 : 6;
+
     return (
-        <ImageGridWrapper>
+        <ImageGridWrapper $gap={gap}>
             <GridArea $area="column1">
-                <ImageCarousel images={column1} direction="up" />
+                <ImageCarousel images={column1} direction="up" gap={gap} />
             </GridArea>
 
             <GridArea $area="column2">
-                <ImageCarousel images={column2} direction="down" />
+                <ImageCarousel images={column2} direction="down" gap={gap} />
             </GridArea>
 
             <GridArea $area="column3">
-                <ImageCarousel images={column3} direction="up" />
+                <ImageCarousel images={column3} direction="up" gap={gap} />
             </GridArea>
 
             <GridArea $area="row">
-                <ImageCarousel images={row} direction="right" />
+                <ImageCarousel images={row} direction="right" gap={gap} />
             </GridArea>
         </ImageGridWrapper>
     );

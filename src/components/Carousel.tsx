@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 
 import useSafeId from "../global/useSafeId";
-import useSize from "../global/useSize";
+import useSize, { useWindowSize } from "../global/useSize";
 
 import Asset from "../types/Asset";
 import {
@@ -349,27 +349,16 @@ export function DynamicGalleryCarousel({
     onClick,
     direction = "left",
 }: DynamicGalleryCarouselProps) {
-    const [isLarge, setIsLarge] = useState(window.innerWidth > breakpoint);
-
-    function onResize() {
-        setIsLarge(window.innerWidth > breakpoint);
-    }
-
-    useEffect(() => {
-        window.addEventListener("resize", onResize);
-
-        return () => {
-            window.removeEventListener("resize", onResize);
-        };
-    });
+    const size = useWindowSize();
+    const large = size.width > breakpoint;
 
     return (
         <GalleryCarousel
             images={images}
             targetHeight={targetHeight}
             speed={speed}
-            gap={isLarge ? gapLarge : gapSmall}
-            columnWidth={isLarge ? columnWidthLarge : columnWidthSmall}
+            gap={large ? gapLarge : gapSmall}
+            columnWidth={large ? columnWidthLarge : columnWidthSmall}
             onClick={onClick}
             direction={direction}
         />

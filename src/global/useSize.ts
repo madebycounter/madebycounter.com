@@ -34,3 +34,28 @@ export default function useSize<T extends HTMLElement>(): [
 
     return [ref, state];
 }
+
+export function useWindowSize() {
+    const [size, setSize] = useState({
+        width: 0,
+        height: 0,
+    });
+
+    useEffect(() => {
+        const onResize = () => {
+            setSize({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            });
+        };
+
+        window.addEventListener("resize", onResize);
+        onResize();
+
+        return () => {
+            window.removeEventListener("resize", onResize);
+        };
+    }, []);
+
+    return size;
+}
