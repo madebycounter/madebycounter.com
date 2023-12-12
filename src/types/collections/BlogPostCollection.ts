@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 
 import BlogPost from "../BlogPost";
 
@@ -7,6 +7,18 @@ export default interface BlogPostCollection {
     contentful_id: string;
     title: string;
     items: BlogPost[];
+}
+
+export function useBlogPostCollections(): BlogPostCollection[] {
+    return useStaticQuery(graphql`
+        query BlogPostCollections {
+            allContentfulBlogPostCollection {
+                nodes {
+                    ...BlogPostCollection
+                }
+            }
+        }
+    `).allContentfulBlogPostCollection.nodes;
 }
 
 export const blogPostCollectionFragment = graphql`

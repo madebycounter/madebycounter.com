@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 
 import MiniService from "../components/MiniService";
 
@@ -7,6 +7,18 @@ export default interface MiniServiceCollection {
     contentful_id: string;
     title: string;
     items: MiniService[];
+}
+
+export function useMiniServiceCollections(): MiniServiceCollection[] {
+    return useStaticQuery(graphql`
+        query MiniServiceCollections {
+            allContentfulMiniServiceCollection {
+                nodes {
+                    ...MiniServiceCollection
+                }
+            }
+        }
+    `).allContentfulMiniServiceCollection.nodes;
 }
 
 export const miniServiceCollectionFragment = graphql`

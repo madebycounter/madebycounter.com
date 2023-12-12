@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 
 import { RichText } from "..";
 import Asset from "../Asset";
@@ -11,6 +11,18 @@ export default interface MiniService {
     description: RichText;
     buttonText: string;
     slug: string;
+}
+
+export function useMiniServices(): MiniService[] {
+    return useStaticQuery(graphql`
+        query MiniServices {
+            allContentfulMiniService {
+                nodes {
+                    ...MiniService
+                }
+            }
+        }
+    `).allContentfulMiniService.nodes;
 }
 
 export const miniServiceFragment = graphql`

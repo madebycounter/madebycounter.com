@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 
 export default interface Asset {
@@ -10,6 +10,22 @@ export default interface Asset {
     publicUrl: string;
     dimensions: { width: number; height: number };
     gatsbyImageData?: IGatsbyImageData;
+}
+
+export function useAssets(): Asset[] {
+    console.warn(
+        "useAssets loads ALL assets into page data, not recommended for use in production.",
+    );
+
+    return useStaticQuery(graphql`
+        query Assets {
+            allContentfulAsset {
+                nodes {
+                    ...Asset
+                }
+            }
+        }
+    `).allContentfulAsset.nodes;
 }
 
 export const assetFragment = graphql`

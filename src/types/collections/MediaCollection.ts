@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 
 import Asset from "../Asset";
 
@@ -7,6 +7,18 @@ export default interface MediaCollection {
     contentful_id: string;
     title: string;
     items: Asset[];
+}
+
+export function useMediaCollections(): MediaCollection[] {
+    return useStaticQuery(graphql`
+        query MediaCollections {
+            allContentfulMediaCollection {
+                nodes {
+                    ...MediaCollection
+                }
+            }
+        }
+    `).allContentfulMediaCollection.nodes;
 }
 
 export const mediaCollectionFragment = graphql`
