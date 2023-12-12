@@ -23,6 +23,8 @@ const StyledCard = styled(Link)`
     width: 100%;
     height: 100%;
 
+    min-width: 280px;
+
     &.small {
         ${Heading2} {
             font-size: 2rem;

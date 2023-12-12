@@ -8,8 +8,9 @@ import { LightTheme } from "../global/themes";
 import { GalleryCarousel } from "../components/Carousel";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import HorizontalCollection from "../components/HorizontalCollection";
 import { LayoutNarrow, LayoutNarrowNoEdge } from "../components/Layout";
-import { MobileSplit } from "../components/MobileSwap";
+import MobileSwap, { MobileSplit } from "../components/MobileSwap";
 import Navbar from "../components/Navbar";
 import { Nametag } from "../components/about/Typography";
 import { BlogCard } from "../components/cards/BlogCard";
@@ -53,28 +54,28 @@ function renderPitchElement(element: PitchElement) {
                 <GalleryCarousel
                     images={element.items}
                     targetHeight={1}
-                    columnWidth={300}
+                    columnWidth={200}
                 />
             );
         case "ContentfulMiniServiceCollection":
             return (
-                <LayoutNarrow>
-                    <PitchColumns>
+                <LayoutNarrowNoEdge>
+                    <HorizontalCollection>
                         {element.items.map((item, idx) => (
                             <MiniServiceCard key={idx} src={item} />
                         ))}
-                    </PitchColumns>
-                </LayoutNarrow>
+                    </HorizontalCollection>
+                </LayoutNarrowNoEdge>
             );
         case "ContentfulPortfolioItemCollection":
             return (
-                <LayoutNarrow>
-                    <PitchColumns>
+                <LayoutNarrowNoEdge>
+                    <HorizontalCollection>
                         {element.items.map((item, idx) => (
                             <PortfolioCard item={item} key={idx} />
                         ))}
-                    </PitchColumns>
-                </LayoutNarrow>
+                    </HorizontalCollection>
+                </LayoutNarrowNoEdge>
             );
         case "ContentfulBlogPostCollection":
             return (
@@ -88,11 +89,11 @@ function renderPitchElement(element: PitchElement) {
             );
         default:
             return (
-                <LayoutNarrow>
+                <LayoutNarrowNoEdge>
                     <PitchColumns>
                         <TestimonialCard testimonial={element} />
                     </PitchColumns>
-                </LayoutNarrow>
+                </LayoutNarrowNoEdge>
             );
     }
 }

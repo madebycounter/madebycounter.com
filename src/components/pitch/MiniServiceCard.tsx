@@ -91,7 +91,9 @@ const MiniServiceButton = styled(ButtonRight)`
     font-size: 1.5rem;
 `;
 
-const MiniServiceWrapper = styled.div``;
+const MiniServiceWrapper = styled.div`
+    min-width: 280px;
+`;
 
 type MiniServiceProps = {
     src: MiniService;
