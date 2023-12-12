@@ -93,7 +93,7 @@ export function Hero({ media }: HeroProps) {
                     project's success.
                 </StyledParagraph>
 
-                <StyledButton to="">Learn More</StyledButton>
+                <StyledButton to="/services">Learn More</StyledButton>
             </InfoBox>
 
             <GridBox>
