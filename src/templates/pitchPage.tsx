@@ -5,7 +5,10 @@ import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "../global/globalStyle";
 import { LightTheme } from "../global/themes";
 
-import { GalleryCarousel } from "../components/Carousel";
+import {
+    DynamicGalleryCarousel,
+    GalleryCarousel,
+} from "../components/Carousel";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import HorizontalCollection from "../components/HorizontalCollection";
@@ -51,10 +54,9 @@ function renderPitchElement(element: PitchElement) {
             );
         case "ContentfulMediaCollection":
             return (
-                <GalleryCarousel
+                <DynamicGalleryCarousel
                     images={element.items}
                     targetHeight={1}
-                    columnWidth={200}
                 />
             );
         case "ContentfulMiniServiceCollection":

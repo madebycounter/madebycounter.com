@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 
 import useSafeId from "../global/useSafeId";
@@ -321,5 +321,57 @@ export function GalleryCarousel({
                 direction={direction}
             />
         </>
+    );
+}
+
+type DynamicGalleryCarouselProps = {
+    images: Asset[];
+    targetHeight: number;
+    speed?: number;
+    gapLarge?: number;
+    gapSmall?: number;
+    columnWidthLarge?: number;
+    columnWidthSmall?: number;
+    breakpoint?: number;
+    onClick?: (src: string) => void;
+    direction?: HorizontalDirection;
+};
+
+export function DynamicGalleryCarousel({
+    images,
+    targetHeight,
+    speed = 100,
+    gapLarge = 8,
+    gapSmall = 6,
+    columnWidthLarge = 300,
+    columnWidthSmall = 200,
+    breakpoint = 800,
+    onClick,
+    direction = "left",
+}: DynamicGalleryCarouselProps) {
+    const [isLarge, setIsLarge] = useState(window.innerWidth > breakpoint);
+
+    function onResize() {
+        setIsLarge(window.innerWidth > breakpoint);
+    }
+
+    useEffect(() => {
+        window.addEventListener("resize", onResize);
+
+        return () => {
+            window.removeEventListener("resize", onResize);
+        };
+    });
+
+    return (
+        <GalleryCarousel
+            images={images}
+            targetHeight={targetHeight}
+            speed={speed}
+            gap={isLarge ? gapLarge : gapSmall}
+            columnWidth={isLarge ? columnWidthLarge : columnWidthSmall}
+            onClick={onClick}
+            direction={direction}
+        />
     );
 }
