@@ -43,6 +43,8 @@ const PortraitWrapper = styled.div`
     align-items: flex-end;
     padding-bottom: 0.1rem;
 
+    z-index: 10;
+
     // Mobile view
     @media (max-width: 600px) {
         width: 80px;
