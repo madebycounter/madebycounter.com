@@ -26,11 +26,15 @@ const StyledTitle = styled.h1<StyledTitleProps>`
 
 type TitleProps = {
     content: string;
+    className?: string;
 };
 
-export default function Title({ content }: TitleProps) {
+export default function Title({ content, className }: TitleProps) {
     return (
-        <StyledTitle $dip={letter_in_array(content, DIP_LETTERS)}>
+        <StyledTitle
+            $dip={letter_in_array(content, DIP_LETTERS)}
+            className={className}
+        >
             {content}
         </StyledTitle>
     );

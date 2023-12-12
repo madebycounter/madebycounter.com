@@ -27,6 +27,12 @@ const ServiceWrapper = styled.div<{ $align: HorizontalDirection }>`
     grid-template-rows: auto 1fr auto;
     column-gap: 1rem;
 
+    @media (max-width: 900px) {
+        column-gap: 0.5rem;
+        row-gap: 0.5rem;
+        margin: 2rem 0;
+    }
+
     ${(props) => {
         switch (props.$align) {
             case "left":
@@ -34,12 +40,20 @@ const ServiceWrapper = styled.div<{ $align: HorizontalDirection }>`
                     grid-template-areas: "title title" "media details" "media button";
                     grid-template-columns: 2fr 1fr;
                     text-align: left;
+
+                    @media (max-width: 900px) {
+                        grid-template-areas: "title title" "media details" "button button";
+                    }
                 `;
             case "right":
                 return css`
                     grid-template-areas: "title title" "details media" "button media";
                     grid-template-columns: 1fr 2fr;
                     text-align: right;
+
+                    @media (max-width: 900px) {
+                        grid-template-areas: "title title" "details media" "button button";
+                    }
                 `;
         }
     }}
@@ -47,6 +61,12 @@ const ServiceWrapper = styled.div<{ $align: HorizontalDirection }>`
 
 const TitleArea = styled.div`
     grid-area: title;
+`;
+
+const ServiceTitle = styled(Title)`
+    @media (max-width: 900px) {
+        margin: 0;
+    }
 `;
 
 const DetailsArea = styled.div`
@@ -63,12 +83,25 @@ const DetailsArea = styled.div`
             font-family: var(--heading-font);
             font-weight: 400;
         }
+
+        /* @media (max-width: 900px) {
+            --size: 1.2rem;
+        } */
+
+        @media (max-width: 550px) {
+            --size: 1rem;
+        }
     }
 `;
 
 const MediaArea = styled.div`
     aspect-ratio: 16 / 9;
     grid-area: media;
+
+    @media (max-width: 900px) {
+        aspect-ratio: 0;
+        height: 100%;
+    }
 `;
 
 const ButtonArea = styled.div`
@@ -77,6 +110,10 @@ const ButtonArea = styled.div`
 
 const ServicesButton = styled(Button)`
     font-size: 2rem;
+
+    @media (max-width: 550px) {
+        font-size: 1.5rem;
+    }
 `;
 
 type ServiceBlockProps = {
@@ -101,7 +138,7 @@ const ServiceBlock = ({
     return (
         <ServiceWrapper $align={align}>
             <TitleArea>
-                <Title content={title.toLowerCase()} />
+                <ServiceTitle content={title.toLowerCase()} />
             </TitleArea>
 
             <DetailsArea>
@@ -115,7 +152,7 @@ const ServiceBlock = ({
 
             <MediaArea>
                 {!youtube && (
-                    <Slideshow src={slideshow.items} aspectRatio={16 / 9} />
+                    <Slideshow src={slideshow.items} resizeMode="cover" />
                 )}
 
                 {youtube && <YouTube url={youtube} aspectRatio={16 / 9} />}
