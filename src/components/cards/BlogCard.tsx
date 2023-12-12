@@ -36,6 +36,8 @@ const StyledCard = styled(LinkDiv)`
 
     aspect-ratio: 4 / 3;
 
+    min-width: 280px;
+
     ${Heading2} {
         position: absolute;
         color: ${(props) => props.theme.backgroundColor};
