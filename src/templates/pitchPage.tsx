@@ -20,6 +20,7 @@ import { FormSplit } from "../components/forms/Forms";
 import FunFact from "../components/pitch/FunFact";
 import Hero from "../components/pitch/Hero";
 import MiniServiceCard from "../components/pitch/MiniServiceCard";
+import TestimonialCard from "../components/pitch/Testimonial";
 import { teamMemberFragment } from "../types/components/TeamMember";
 
 import Service, { PitchElement, getPitch } from "../types/Service";
@@ -93,7 +94,9 @@ function renderPitchElement(
         default:
             return (
                 <LayoutNarrow>
-                    <p>Renderer not implemented for {element.__typename}</p>
+                    <PitchColumns>
+                        <TestimonialCard testimonial={element} />
+                    </PitchColumns>
                 </LayoutNarrow>
             );
     }

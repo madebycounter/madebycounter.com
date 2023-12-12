@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 
 import { RichText } from "..";
 import TeamMember from "./TeamMember";
@@ -10,6 +10,18 @@ export default interface FunFact {
     content: RichText;
     teamMember: TeamMember;
     buttonText: string;
+}
+
+export function useFunFacts(): FunFact[] {
+    return useStaticQuery(graphql`
+        query FunFacts {
+            allContentfulFunFact {
+                nodes {
+                    ...FunFact
+                }
+            }
+        }
+    `).allContentfulFunFact.nodes;
 }
 
 export const funFactFragment = graphql`

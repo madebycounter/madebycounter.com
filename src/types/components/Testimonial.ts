@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 
 import { RichText } from "..";
 import Asset from "../Asset";
@@ -11,6 +11,18 @@ export default interface Testimonial {
     content: RichText;
     headshot: Asset;
     rating: number;
+}
+
+export function useTestimonials(): Testimonial[] {
+    return useStaticQuery(graphql`
+        query Testimonials {
+            allContentfulTestimonial {
+                nodes {
+                    ...Testimonial
+                }
+            }
+        }
+    `).allContentfulTestimonial.nodes;
 }
 
 export const testimonialFragment = graphql`
