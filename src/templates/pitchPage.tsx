@@ -116,7 +116,7 @@ export default function ServicePage({ data }: PitchPageProps) {
 
             <Navbar active="services" />
 
-            <Hero service={pageData} teamMember={pageData.teamMember} />
+            <Hero service={pageData} />
 
             {pitchData.map((element, idx) => (
                 <PitchElementWrapper key={idx}>

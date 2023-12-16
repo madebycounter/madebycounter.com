@@ -24,8 +24,7 @@ export default interface Service {
     title: string;
     slideshow: MediaCollection;
     youTube?: string;
-    pitchTitle: string;
-    description: RichText;
+    pitchHero: RichText;
     pitchFunFact: (FunFact | {})[];
     pitchTestimonial: (Testimonial | {})[];
     pitchMediaCollection: (MediaCollection | {})[];
@@ -60,8 +59,7 @@ export const serviceFragment = graphql`
             ...MediaCollection
         }
         youTube
-        pitchTitle
-        description {
+        pitchHero {
             raw
         }
         pitchFunFact: pitch {
@@ -98,8 +96,7 @@ export const serviceFragment = graphql`
             ...MediaCollection
         }
         youTube
-        pitchTitle
-        description {
+        pitchHero {
             raw
         }
         teamMember {

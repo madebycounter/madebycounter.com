@@ -1,126 +1,161 @@
+import { BLOCKS, Block, Inline } from "@contentful/rich-text-types";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import React from "react";
 import styled from "styled-components";
 
 import { portfolioOptions } from "../../global/richTextOptions";
-
-import TeamMember from "../../types/components/TeamMember";
+import useSize from "../../global/useSize";
 
 import { packRichText } from "../../types/RichText";
 import Service from "../../types/Service";
 import Button from "../Button";
-import { Heading1, Heading2, Paragraph } from "../Typography";
+import { Heading1, Paragraph } from "../Typography";
 import Media from "../media/Media";
 import Slideshow from "../media/Slideshow";
 import YouTube from "../media/YouTube";
 
-const TeamMemberWrapper = styled.div`
-    position: absolute;
-    width: 230px;
-    z-index: 10;
-
-    top: -10%;
-    left: 41%;
+const CtaButton = styled(Button)`
+    font-size: 2rem;
+    grid-area: cta;
 `;
 
-function TeamMemberPhoto({ teamMember }: { teamMember: TeamMember }) {
+const FullBodyImage = styled.div<{ $width: number }>`
+    grid-area: image;
+    height: 120%;
+    transform: translateY(-10%);
+    z-index: 10;
+
+    width: ${(props) => props.$width}px;
+
+    @media (max-width: 1200px) {
+        height: 100%;
+        transform: translateY(0);
+    }
+`;
+
+const DetailsWrapper = styled.div<{ $cw: number }>`
+    --cw: ${(props) => props.$cw}px;
+
+    grid-area: details;
+    aspect-ratio: 4096 / 2160;
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: auto 130px;
+    grid-template-areas: "heading image" "paragraph image" "cta image";
+
+    @media (max-width: 1200px) {
+        grid-template-columns: auto 1fr;
+    }
+
+    ${Heading1} {
+        font-size: calc(var(--cw) * 12);
+        grid-area: heading;
+    }
+
+    ${Paragraph} {
+        grid-area: paragraph;
+
+        @media (max-width: 470px) {
+            font-size: 1rem;
+        }
+    }
+`;
+
+export const pitchHeroOptions: any = {
+    renderNode: {
+        [BLOCKS.PARAGRAPH]: (
+            node: Block | Inline,
+            children: React.ReactNode,
+        ) => {
+            return <Paragraph>{children}</Paragraph>;
+        },
+        [BLOCKS.HEADING_1]: (
+            node: Block | Inline,
+            children: React.ReactNode,
+        ) => {
+            return <Heading1>{children}</Heading1>;
+        },
+    },
+    renderText: (text: string): React.ReactNode => {
+        return text.split("\n").map((text, i) => (
+            <React.Fragment key={i}>
+                {text}
+                <br />
+            </React.Fragment>
+        ));
+    },
+};
+
+function Details({ service }: { service: Service }) {
+    const [ref, size] = useSize<HTMLDivElement>();
+
     return (
-        <TeamMemberWrapper>
-            <Media src={teamMember.fullBody} />
-        </TeamMemberWrapper>
+        <DetailsWrapper ref={ref} $cw={size.width / 100}>
+            {renderRichText(packRichText(service.pitchHero), pitchHeroOptions)}
+
+            <CtaButton>{service.callToAction}</CtaButton>
+
+            <FullBodyImage
+                $width={
+                    (service.teamMember.fullBody.dimensions.width /
+                        service.teamMember.fullBody.dimensions.height) *
+                    size.height
+                }
+            >
+                <Media src={service.teamMember.fullBody} resizeMode="height" />
+            </FullBodyImage>
+        </DetailsWrapper>
     );
 }
 
-const HeroHeading = styled(Heading1)`
-    font-size: 6vw;
-
-    @media (max-width: 1200px) {
-        font-size: 4rem;
-    }
-`;
-
-const HeroDetails = styled.div`
-    grid-area: details;
-
-    ${Paragraph} {
-        max-width: 80%;
-    }
-`;
-
-const HeroSlideshow = styled.div`
-    grid-area: slideshow;
-
-    flex: 1;
-`;
-
-const HeroButton = styled(Button)`
-    font-size: 2.5rem;
-
-    ${Heading2} {
-        padding: 0.1em;
-    }
-`;
-
-const CallToAction = styled.div`
-    grid-area: cta;
-
-    display: flex;
-    align-items: flex-start;
-    height: 48px;
-
-    > :last-child {
-    }
-`;
-
 const HeroWrapper = styled.div`
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr auto;
-    grid-template-areas: "details slideshow" "cta slideshow";
-    grid-column-gap: 5rem;
+    grid-template-areas: "details media";
 
-    max-width: 1700px;
-    margin: auto;
-    padding: 0 1rem;
+    @media (max-width: 1200px) {
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
+        grid-template-areas: "media" "details";
+        max-width: 900px;
+        gap: 1rem;
+    }
+`;
+
+const MediaWrapper = styled.div`
+    grid-area: media;
+
+    @media (max-width: 1200px) {
+        aspect-ratio: 4096 / 2160;
+    }
 `;
 
 type HeroProps = {
     service: Service;
-    teamMember: TeamMember;
 };
 
-export default function Hero({ service, teamMember }: HeroProps) {
+export default function Hero({ service }: HeroProps) {
     return (
         <HeroWrapper>
-            <HeroDetails>
-                <HeroHeading>{service.pitchTitle}</HeroHeading>
+            <Details service={service} />
 
-                <Paragraph>
-                    {renderRichText(
-                        packRichText(service.description),
-                        portfolioOptions,
-                    )}
-                </Paragraph>
-            </HeroDetails>
-
-            <CallToAction>
-                <HeroButton to="#" type="normal" direction="right">
-                    {service.callToAction}
-                </HeroButton>
-            </CallToAction>
-
-            <HeroSlideshow>
+            <MediaWrapper>
                 {!service.youTube && (
                     <Slideshow
                         src={service.slideshow.items}
-                        aspectRatio={16 / 9}
+                        aspectRatio={4096 / 2160}
+                        resizeMode="cover"
                     />
                 )}
 
                 {service.youTube && (
-                    <YouTube url={service.youTube} aspectRatio={16 / 9} />
+                    <YouTube url={service.youTube} aspectRatio={4096 / 2160} />
                 )}
-            </HeroSlideshow>
+            </MediaWrapper>
         </HeroWrapper>
     );
 }
