@@ -86,14 +86,20 @@ export const pitchHeroOptions: any = {
     },
 };
 
-function Details({ service }: { service: Service }) {
+function Details({
+    service,
+    onCtaClick,
+}: {
+    service: Service;
+    onCtaClick?: () => void;
+}) {
     const [ref, size] = useSize<HTMLDivElement>();
 
     return (
         <DetailsWrapper ref={ref} $cw={size.width / 100}>
             {renderRichText(packRichText(service.pitchHero), pitchHeroOptions)}
 
-            <CtaButton>{service.callToAction}</CtaButton>
+            <CtaButton onClick={onCtaClick}>{service.callToAction}</CtaButton>
 
             <FullBodyImage
                 $width={
@@ -135,12 +141,13 @@ const MediaWrapper = styled.div`
 
 type HeroProps = {
     service: Service;
+    onCtaClick?: () => void;
 };
 
-export default function Hero({ service }: HeroProps) {
+export default function Hero({ service, onCtaClick }: HeroProps) {
     return (
         <HeroWrapper>
-            <Details service={service} />
+            <Details onCtaClick={onCtaClick} service={service} />
 
             <MediaWrapper>
                 {!service.youTube && (

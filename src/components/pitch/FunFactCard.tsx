@@ -110,9 +110,10 @@ const FunFactButton = styled(Button)`
 
 type FunFactProps = {
     fact: FunFact;
+    onCtaClick: () => void;
 };
 
-export default function FunFactCard({ fact }: FunFactProps) {
+export default function FunFactCard({ fact, onCtaClick }: FunFactProps) {
     return (
         <FunFactWrapper>
             <PortraitWrapper>
@@ -138,11 +139,11 @@ export default function FunFactCard({ fact }: FunFactProps) {
 
             <ButtonWrapper>
                 <FunFactButton
-                    to="#"
                     inverted={true}
                     images={fact.buttonImages.items}
                     direction="right"
                     type="carousel"
+                    onClick={onCtaClick}
                 >
                     {fact.buttonText}
                 </FunFactButton>

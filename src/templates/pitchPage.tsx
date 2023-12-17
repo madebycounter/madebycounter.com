@@ -1,5 +1,5 @@
 import { graphql } from "gatsby";
-import React from "react";
+import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
@@ -20,6 +20,7 @@ import { Nametag } from "../components/about/Typography";
 import { BlogCard } from "../components/cards/BlogCard";
 import { PortfolioCard } from "../components/cards/PortfolioCard";
 import ContactForm from "../components/forms/ContactForm";
+import CallToAction from "../components/pitch/CallToAction";
 import FunFactCard from "../components/pitch/FunFactCard";
 import Hero from "../components/pitch/Hero";
 import MiniServiceCard from "../components/pitch/MiniServiceCard";
@@ -48,12 +49,13 @@ const PitchElementWrapper = styled.div`
 function renderPitchElement(
     element: PitchElement,
     context: HubspotFormContext,
+    onCtaClick: () => void,
 ) {
     switch (element.__typename) {
         case "ContentfulFunFact":
             return (
                 <LayoutNarrowNoEdge>
-                    <FunFactCard fact={element} />
+                    <FunFactCard fact={element} onCtaClick={onCtaClick} />
                 </LayoutNarrowNoEdge>
             );
         case "ContentfulMediaCollection":
@@ -115,8 +117,13 @@ type PitchPageProps = {
 };
 
 export default function ServicePage({ data }: PitchPageProps) {
+    const [modalOpen, setModalOpen] = useState(false);
     const pageData = data.contentfulService;
     const pitchData = getPitch(pageData);
+    const formContext = {
+        pageUri: `madebycounter.com/services/${pageData.slug}`,
+        pageName: `Counter | ${pageData.title}`,
+    };
 
     return (
         <ThemeProvider theme={LightTheme}>
@@ -124,13 +131,17 @@ export default function ServicePage({ data }: PitchPageProps) {
 
             <Navbar active="services" />
 
-            <Hero service={pageData} />
+            <Hero
+                service={pageData}
+                onCtaClick={() => {
+                    setModalOpen(true);
+                }}
+            />
 
             {pitchData.map((element, idx) => (
                 <PitchElementWrapper key={idx}>
-                    {renderPitchElement(element, {
-                        pageUri: `madebycounter.com/services/${pageData.slug}`,
-                        pageName: `Counter | ${pageData.title}`,
+                    {renderPitchElement(element, formContext, () => {
+                        setModalOpen(true);
                     })}
                 </PitchElementWrapper>
             ))}
@@ -141,14 +152,16 @@ export default function ServicePage({ data }: PitchPageProps) {
                         <Nametag>Pretty cool, right?</Nametag>
                     </div>
 
-                    <ContactForm
-                        formContext={{
-                            pageUri: `madebycounter.com/services/${pageData.slug}`,
-                            pageName: `Counter | ${pageData.title}`,
-                        }}
-                    />
+                    <ContactForm formContext={formContext} />
                 </MobileSplit>
             </LayoutNarrow>
+
+            <CallToAction
+                image={pageData.slideshow.items[0]}
+                context={formContext}
+                open={modalOpen}
+                setOpen={setModalOpen}
+            />
 
             <Footer />
         </ThemeProvider>
