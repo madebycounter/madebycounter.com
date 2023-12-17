@@ -3,6 +3,7 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../global/globalStyle";
+import { HubspotFormContext } from "../global/hubspot";
 import { LightTheme } from "../global/themes";
 
 import {
@@ -44,7 +45,10 @@ const PitchElementWrapper = styled.div`
     margin: 4rem 0;
 `;
 
-function renderPitchElement(element: PitchElement) {
+function renderPitchElement(
+    element: PitchElement,
+    context: HubspotFormContext,
+) {
     switch (element.__typename) {
         case "ContentfulFunFact":
             return (
@@ -64,7 +68,11 @@ function renderPitchElement(element: PitchElement) {
                 <LayoutNarrowNoEdge>
                     <HorizontalCollection>
                         {element.items.map((item, idx) => (
-                            <MiniServiceCard key={idx} src={item} />
+                            <MiniServiceCard
+                                key={idx}
+                                src={item}
+                                context={context}
+                            />
                         ))}
                     </HorizontalCollection>
                 </LayoutNarrowNoEdge>
@@ -120,7 +128,10 @@ export default function ServicePage({ data }: PitchPageProps) {
 
             {pitchData.map((element, idx) => (
                 <PitchElementWrapper key={idx}>
-                    {renderPitchElement(element)}
+                    {renderPitchElement(element, {
+                        pageUri: `madebycounter.com/services/${pageData.slug}`,
+                        pageName: `Counter | ${pageData.title}`,
+                    })}
                 </PitchElementWrapper>
             ))}
 

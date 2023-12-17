@@ -2,6 +2,7 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 import React, { useState } from "react";
 import { styled } from "styled-components";
 
+import { HubspotFormContext } from "../../global/hubspot";
 import { portfolioOptions } from "../../global/richTextOptions";
 
 import MiniService from "../../types/components/MiniService";
@@ -14,71 +15,7 @@ import { Nametag } from "../about/Typography";
 import Slash from "../cards/utils/Slash";
 import ContactForm from "../forms/ContactForm";
 import Media from "../media/Media";
-
-const ModalContent = styled.div`
-    display: flex;
-    align-items: stretch;
-    background-color: ${(props) => props.theme.backgroundColor};
-    color: ${(props) => props.theme.color};
-    width: 100%;
-    max-width: 1150px;
-    max-height: 500px;
-`;
-
-const FormBox = styled.div`
-    position: relative;
-    padding: 2rem;
-`;
-
-const MediaBox = styled.div`
-    @media (max-width: 850px) {
-        display: none;
-    }
-`;
-
-const CtaSlash = styled(Slash)`
-    position: absolute;
-    height: 100%;
-    left: calc(100% - 1px);
-    top: 0;
-
-    @media (max-width: 850px) {
-        display: none;
-    }
-`;
-
-type CallToActionProps = {
-    open: boolean;
-    setOpen: (open: boolean) => void;
-    miniService: MiniService;
-};
-
-function CallToAction({ open, setOpen, miniService }: CallToActionProps) {
-    return (
-        <Modal open={open} setOpen={setOpen}>
-            <ModalContent>
-                <FormBox>
-                    <Nametag>Get in touch:</Nametag>
-
-                    <br />
-
-                    <ContactForm
-                        formContext={{
-                            pageUri: `madebycounter.com/contact/${miniService.slug}`,
-                            pageName: `Counter | ${miniService.title}`,
-                        }}
-                    />
-
-                    <CtaSlash />
-                </FormBox>
-
-                <MediaBox>
-                    <Media src={miniService.image} resizeMode="cover" />
-                </MediaBox>
-            </ModalContent>
-        </Modal>
-    );
-}
+import CallToAction from "./CallToAction";
 
 const MiniServiceHeader = styled(Heading2)`
     margin: 0.5rem 0 0 0;
@@ -98,14 +35,20 @@ const MiniServiceWrapper = styled.div`
 
 type MiniServiceProps = {
     src: MiniService;
+    context: HubspotFormContext;
 };
 
-export default function MiniServiceCard({ src }: MiniServiceProps) {
+export default function MiniServiceCard({ src, context }: MiniServiceProps) {
     const [open, setOpen] = useState(false);
 
     return (
         <>
-            <CallToAction open={open} setOpen={setOpen} miniService={src} />
+            <CallToAction
+                open={open}
+                setOpen={setOpen}
+                image={src.image}
+                context={context}
+            />
 
             <MiniServiceWrapper>
                 <Media src={src.image} aspectRatio={1.5} />
