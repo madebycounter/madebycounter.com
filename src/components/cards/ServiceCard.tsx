@@ -44,27 +44,27 @@ const StyledServiceCardInfo = styled.div`
 const StyledServiceCardMedia = styled.div``;
 
 type ServiceCardProps = {
-    service: Service;
+    item: Service;
 };
 
-export default function ServiceCard({ service }: ServiceCardProps) {
+export default function ServiceCard({ item }: ServiceCardProps) {
     return (
-        <StyledServiceCard to={`/services/${service.slug}`}>
+        <StyledServiceCard to={`/services/${item.slug}`}>
             <StyledServiceCardInfo>
-                <Heading1>{service.pitchTitle}</Heading1>
+                <Heading1>{item.title}</Heading1>
 
-                <StyledButton to="#" type="normal" direction="right">
-                    {service.callToAction}
+                <StyledButton
+                    to={`/services/${item.slug}`}
+                    type="normal"
+                    direction="right"
+                >
+                    Learn More
                 </StyledButton>
             </StyledServiceCardInfo>
 
             <StyledServiceCardMedia>
-                <Slideshow src={service.slideshow.items} />
+                <Slideshow src={item.slideshow.items} />
             </StyledServiceCardMedia>
-
-            <StyledServiceCardPortrait>
-                <Media src={service.teamMember.fullBody} />
-            </StyledServiceCardPortrait>
         </StyledServiceCard>
     );
 }

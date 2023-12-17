@@ -46,11 +46,11 @@ export const query = graphql`
 function renderSidebarItem(item: SidebarElement) {
     switch (item.__typename) {
         case "ContentfulBlogPost":
-            return <BlogCard item={item} />;
+            return <BlogEmbed item={item} />;
         case "ContentfulPortfolioItem":
             return <PortfolioEmbed item={item} />;
-        default:
-            return <p>Renderer for {item.__typename} not implemented.</p>;
+        case "ContentfulService":
+            return <ServiceCard item={item} />;
     }
 }
 
