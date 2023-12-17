@@ -10,11 +10,12 @@ import { Paragraph } from "./Typography";
 
 export const StyledDetails = styled.div`
     font-size: 1.2rem;
+    margin: 0.5rem;
 `;
 
 const DetailsParagraph = styled(Paragraph)`
     font-size: inherit !important;
-    margin: 0.3em 0.5rem;
+    margin: 0.3em 0;
     line-height: 1.2em;
 
     span {

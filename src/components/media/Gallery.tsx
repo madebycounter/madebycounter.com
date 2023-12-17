@@ -127,9 +127,9 @@ export const ResponsiveGallery = forwardRef(
         ];
 
         useEffect(() => {
-            if (size.width < 700) setColums(1);
+            if (size.width < 700) setColums(2);
             else if (size.width < 1200) setColums(2);
-            else setColums(3);
+            else setColums(2);
         }, [size]);
 
         console.log("RG Drawn", layouts);

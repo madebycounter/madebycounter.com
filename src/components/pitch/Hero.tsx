@@ -3,7 +3,6 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 import React from "react";
 import styled from "styled-components";
 
-import { portfolioOptions } from "../../global/richTextOptions";
 import useSize from "../../global/useSize";
 
 import { packRichText } from "../../types/RichText";

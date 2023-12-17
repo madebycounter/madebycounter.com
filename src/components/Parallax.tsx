@@ -8,40 +8,46 @@ const ParallaxWrapper = styled.div`
 
 type ParallaxProps = {
     children: React.ReactNode;
-    className?: string;
     driverRef: React.RefObject<HTMLDivElement>;
+    offset?: number;
+    className?: string;
 };
 
 export default function Parallax({
     children,
-    className,
     driverRef,
+    offset = 0,
+    className,
 }: ParallaxProps) {
     const drivenRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const onScroll = () => {
+            // The treatment of offset here isn't quite right, but it works for now.
+
             if (!driverRef.current) return;
             if (!drivenRef.current) return;
 
             var progress =
-                (window.scrollY - driverRef.current.offsetTop) /
+                (window.scrollY - (driverRef.current.offsetTop + offset)) /
                 (driverRef.current.offsetHeight - window.innerHeight);
 
-            var offset =
+            var mainOffset =
                 (drivenRef.current.offsetHeight - window.innerHeight) *
                 progress;
 
-            if (drivenRef.current.offsetHeight < window.innerHeight) {
-                offset = 0;
+            console.log(progress);
+
+            if (drivenRef.current.offsetHeight - offset < window.innerHeight) {
+                mainOffset = 0;
             }
 
-            drivenRef.current.style.top = `-${offset}px`;
+            drivenRef.current.style.top = `-${mainOffset + offset}px`;
         };
         window.addEventListener("scroll", onScroll);
 
         return () => window.removeEventListener("scroll", onScroll);
-    }, []);
+    }, [offset]);
 
     return (
         <ParallaxWrapper className={className} ref={drivenRef}>
