@@ -22,6 +22,7 @@ const ModalContent = styled.div`
     color: ${(props) => props.theme.color};
     width: 100%;
     max-width: 1150px;
+    max-height: 500px;
 `;
 
 const FormBox = styled.div`
