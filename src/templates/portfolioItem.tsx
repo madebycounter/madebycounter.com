@@ -18,6 +18,7 @@ import { BlogCard } from "../components/cards/BlogCard";
 import { BlogEmbed } from "../components/cards/BlogEmbed";
 import { PortfolioCard } from "../components/cards/PortfolioCard";
 import { PortfolioEmbed } from "../components/cards/PortfolioEmbed";
+import ServiceCard from "../components/cards/ServiceCard";
 import ContactForm from "../components/forms/ContactForm";
 import { ResponsiveGallery } from "../components/media/Gallery";
 import Lightbox from "../components/media/Lightbox";
@@ -28,7 +29,11 @@ import YouTube from "../components/media/YouTube";
 import defaultImage from "../images/meta.png";
 
 import { useBlogPosts } from "../types/BlogPost";
-import PortfolioItem, { usePortfolioItems } from "../types/PortfolioItem";
+import PortfolioItem, {
+    SidebarElement,
+    getSidebar,
+    usePortfolioItems,
+} from "../types/PortfolioItem";
 
 export const query = graphql`
     query PortfolioItemData($contentful_id: String) {
@@ -37,6 +42,17 @@ export const query = graphql`
         }
     }
 `;
+
+function renderSidebarItem(item: SidebarElement) {
+    switch (item.__typename) {
+        case "ContentfulBlogPost":
+            return <BlogCard item={item} />;
+        case "ContentfulPortfolioItem":
+            return <PortfolioEmbed item={item} />;
+        default:
+            return <p>Renderer for {item.__typename} not implemented.</p>;
+    }
+}
 
 const HeroInfoWrapper = styled.div<{ $height: number }>`
     display: flex;
@@ -187,10 +203,11 @@ const PortfolioItemPage = ({ data }: PortfolioItemProps) => {
                         </HeroInfo>
                     </HeroInfoWrapper>
 
-                    <BlogEmbed item={blogPosts[0]} />
-                    <BlogEmbed item={blogPosts[0]} />
-                    <BlogEmbed item={blogPosts[0]} />
-                    <BlogEmbed item={blogPosts[0]} />
+                    {getSidebar(data.contentfulPortfolioItem).map(
+                        (item, idx) => (
+                            <div key={idx}>{renderSidebarItem(item)}</div>
+                        ),
+                    )}
 
                     <ContactWrapper>
                         <Heading1>

@@ -84,7 +84,7 @@ const ReviewBox = styled.div`
 const ReviewContent = styled(Paragraph)`
     margin: 0.5rem 0;
 
-    font-size: 1.5rem;
+    font-size: 1.5em;
     line-height: 1.2em;
 
     @media (max-width: 670px) {
