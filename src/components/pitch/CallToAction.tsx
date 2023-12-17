@@ -18,6 +18,10 @@ const ModalContent = styled.div`
     width: 100%;
     max-width: 1150px;
     max-height: 500px;
+
+    @media (max-width: 850px) {
+        max-height: none;
+    }
 `;
 
 const FormBox = styled.div`
