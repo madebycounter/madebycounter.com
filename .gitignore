@@ -7,5 +7,6 @@ public/
 src/gatsby-types.d.ts
 testing.tsx
 .env
+sync.sh
 
 *Zone.Identifier
