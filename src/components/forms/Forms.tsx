@@ -26,6 +26,7 @@ export const FormInput = styled.input`
     font-family: ${(props) => props.theme.fonts.body};
 
     border: 2px solid ${(props) => props.theme.color};
+    border-radius: 0;
 `;
 
 export const FormTextArea = styled.textarea`
@@ -38,6 +39,7 @@ export const FormTextArea = styled.textarea`
     font-family: ${(props) => props.theme.fonts.body};
 
     border: 2px solid ${(props) => props.theme.color};
+    border-radius: 0;
 
     resize: none;
 `;
