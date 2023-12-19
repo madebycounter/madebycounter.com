@@ -44,8 +44,5 @@
     },
     "devDependencies": {
         "prettier": "^3.0.3"
-    },
-    "resolutions": {
-        "gatsby-plugin-sharp/probe-image-size": "^7.0.0"
     }
 }

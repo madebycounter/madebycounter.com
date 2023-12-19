@@ -12,22 +12,19 @@ const StyledButton = styled(Button)`
     font-size: 2rem;
 `;
 
-const StyledServiceCardPortrait = styled.div`
-    .gatsby-image-wrapper {
-        position: absolute;
-        top: 0;
-        left: 31%;
-        width: 32%;
-        z-index: 10;
-    }
-`;
+const StyledSlideshow = styled(Slideshow)``;
 
 const StyledServiceCard = styled(LinkDiv)`
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 270px;
+
     position: relative;
     overflow: hidden;
     padding-top: 0.5rem;
+
+    height: 145px;
+
+    gap: 1rem;
 
     ${Heading1} {
         font-size: 3rem;
@@ -35,23 +32,29 @@ const StyledServiceCard = styled(LinkDiv)`
     }
 `;
 
-const StyledServiceCardInfo = styled.div`
-    ${Heading1} {
-        width: 180px;
-    }
+const SlideshowBox = styled.div`
+    aspect-ratio: 16 / 9;
 `;
-
-const StyledServiceCardMedia = styled.div``;
 
 type ServiceCardProps = {
     item: Service;
 };
 
 export default function ServiceCard({ item }: ServiceCardProps) {
+    var realTitle = item.title;
+
+    if (item.title === "Videography") {
+        realTitle = "Video Services";
+    }
+
+    if (item.title === "Photography") {
+        realTitle = "Photo Services";
+    }
+
     return (
         <StyledServiceCard to={`/services/${item.slug}`}>
-            <StyledServiceCardInfo>
-                <Heading1>{item.title}</Heading1>
+            <div>
+                <Heading1>{realTitle}</Heading1>
 
                 <StyledButton
                     to={`/services/${item.slug}`}
@@ -60,11 +63,14 @@ export default function ServiceCard({ item }: ServiceCardProps) {
                 >
                     Learn More
                 </StyledButton>
-            </StyledServiceCardInfo>
+            </div>
 
-            <StyledServiceCardMedia>
-                <Slideshow src={item.slideshow.items} />
-            </StyledServiceCardMedia>
+            <SlideshowBox>
+                <StyledSlideshow
+                    src={item.slideshow.items}
+                    aspectRatio={16 / 9}
+                />
+            </SlideshowBox>
         </StyledServiceCard>
     );
 }
