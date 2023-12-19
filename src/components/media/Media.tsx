@@ -28,6 +28,8 @@ type MediaWrapperProps = ThemedProps & {
     $resizeMode: ResizeMode;
     $hasClickEvent: boolean;
     $center: number;
+    $height?: number;
+    $width?: number;
 };
 
 const MediaWrapper = styled.div<MediaWrapperProps>`
@@ -40,40 +42,53 @@ const MediaWrapper = styled.div<MediaWrapperProps>`
         `}
 
     ${(props) => {
-        switch (props.$resizeMode) {
-            case "width":
-                return css`
-                    width: 100%;
+        if (props.$height) {
+            return css`
+                height: ${props.$height}px;
+                width: ${props.$height * props.$aspectRatio}px;
+            `;
+        }
+        if (props.$width) {
+            return css`
+                width: ${props.$width}px;
+                height: ${props.$width / props.$aspectRatio}px;
+            `;
+        } else {
+            switch (props.$resizeMode) {
+                case "width":
+                    return css`
+                        width: 100%;
 
-                    aspect-ratio: ${props.$aspectRatio};
+                        aspect-ratio: ${props.$aspectRatio};
 
-                    max-width: inherit;
-                    max-height: inherit;
-                `;
-            case "height":
-                return css`
-                    height: 100%;
+                        max-width: inherit;
+                        max-height: inherit;
+                    `;
+                case "height":
+                    return css`
+                        height: 100%;
 
-                    aspect-ratio: ${props.$aspectRatio};
+                        aspect-ratio: ${props.$aspectRatio};
 
-                    max-width: inherit;
-                    max-height: inherit;
-                `;
-            case "cover":
-                return css`
-                    width: 100%;
-                    height: 100%;
+                        max-width: inherit;
+                        max-height: inherit;
+                    `;
+                case "cover":
+                    return css`
+                        width: 100%;
+                        height: 100%;
 
-                    max-width: inherit;
-                    max-height: inherit;
-                `;
-            case "contain":
-                return css`
-                    aspect-ratio: ${props.$aspectRatio};
+                        max-width: inherit;
+                        max-height: inherit;
+                    `;
+                case "contain":
+                    return css`
+                        aspect-ratio: ${props.$aspectRatio};
 
-                    max-width: 100%;
-                    max-height: 100%;
-                `;
+                        max-width: 100%;
+                        max-height: 100%;
+                    `;
+            }
         }
     }}
 
@@ -109,6 +124,8 @@ export type MediaProps = {
     onClick?: (id: string) => void;
     onReady?: () => void;
     className?: string;
+    height?: number;
+    width?: number;
 };
 
 export default function Media({
@@ -122,6 +139,8 @@ export default function Media({
     onClick,
     onReady = () => {},
     className,
+    height,
+    width,
 }: MediaProps) {
     if (!src) {
         return <span>No source</span>;
@@ -154,6 +173,8 @@ export default function Media({
             $resizeMode={resizeMode}
             $hasClickEvent={!!onClick}
             $center={center}
+            $height={height}
+            $width={width}
             onClick={() => onClick && onClick(src.contentful_id)}
             className={className}
         >

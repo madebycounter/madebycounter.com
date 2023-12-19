@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-type DisplayMode = "block" | "inline-block" | "unset";
+type DisplayMode = "block" | "inline-block" | "unset" | "flex" | "grid";
 
 const MarkupSwapWrapper = styled.div<{ $width: number; $display: DisplayMode }>`
     @media (min-width: ${(props) => props.$width}px) {

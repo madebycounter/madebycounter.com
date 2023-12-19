@@ -36,6 +36,10 @@ const SlideshowBox = styled.div`
     aspect-ratio: 16 / 9;
 `;
 
+const InfoBox = styled.div`
+    min-width: 180px;
+`;
+
 type ServiceCardProps = {
     item: Service;
 };
@@ -53,7 +57,7 @@ export default function ServiceCard({ item }: ServiceCardProps) {
 
     return (
         <StyledServiceCard to={`/services/${item.slug}`}>
-            <div>
+            <InfoBox>
                 <Heading1>{realTitle}</Heading1>
 
                 <StyledButton
@@ -63,7 +67,7 @@ export default function ServiceCard({ item }: ServiceCardProps) {
                 >
                     Learn More
                 </StyledButton>
-            </div>
+            </InfoBox>
 
             <SlideshowBox>
                 <StyledSlideshow

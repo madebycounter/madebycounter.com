@@ -50,6 +50,7 @@ type GalleryProps = {
     gap?: number;
     onClick?: (src: string) => void;
     videoPlaying?: boolean;
+    className?: string;
 };
 
 export const Gallery = forwardRef(
@@ -61,6 +62,7 @@ export const Gallery = forwardRef(
             gap = 8,
             onClick,
             videoPlaying,
+            className,
         }: GalleryProps,
         parentRef: React.Ref<HTMLDivElement>,
     ) => {
@@ -75,6 +77,7 @@ export const Gallery = forwardRef(
                 $columnWidth={columnWidth}
                 $width={width}
                 ref={parentRef}
+                className={className}
             >
                 {adjusted.map((col, i) => (
                     <div key={`i_${i}`}>
@@ -111,10 +114,14 @@ type ResponsiveGalleryProps = {
     images: Asset[];
     gap?: number;
     onClick?: (src: string) => void;
+    className?: string;
 };
 
 export const ResponsiveGallery = forwardRef(
-    ({ images, gap = 8, onClick }: ResponsiveGalleryProps, parentRef) => {
+    (
+        { images, gap = 8, onClick, className }: ResponsiveGalleryProps,
+        parentRef,
+    ) => {
         const [ref, size] = useSize<HTMLDivElement>();
         const [galRef, galSize] = useSize<HTMLDivElement>();
         const [columns, setColums] = useState(2);
@@ -141,6 +148,7 @@ export const ResponsiveGallery = forwardRef(
                     setRef(parentRef, node);
                     setRef(ref, node);
                 }}
+                className={className}
             >
                 <Gallery
                     images={images}
@@ -163,6 +171,7 @@ type HorizontalGalleryProps = {
     onClick?: (src: string) => void;
     setColumns?: (columns: number) => void;
     videoPlaying?: boolean;
+    className?: string;
 };
 
 export const HorizontalGallery = forwardRef(
@@ -175,6 +184,7 @@ export const HorizontalGallery = forwardRef(
             onClick,
             setColumns,
             videoPlaying,
+            className,
         }: HorizontalGalleryProps,
         parentRef: React.Ref<HTMLDivElement>,
     ) => {
@@ -194,6 +204,7 @@ export const HorizontalGallery = forwardRef(
                 onClick={onClick}
                 ref={parentRef}
                 videoPlaying={videoPlaying}
+                className={className}
             />
         );
     },

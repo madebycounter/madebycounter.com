@@ -17,8 +17,8 @@ const StyledAuthorContainer = styled.div`
     bottom: 0;
     right: 0.5rem;
 
-    width: 8rem;
-    height: 8rem;
+    width: 5rem;
+    height: 5rem;
 
     z-index: 10;
 
@@ -48,7 +48,7 @@ const StyledCard = styled(LinkDiv)`
         width: calc(100% - 1rem);
         margin: 0.5rem;
 
-        font-size: 2rem;
+        font-size: 1.8rem;
         text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     }
 
