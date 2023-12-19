@@ -27,6 +27,10 @@ const ModalContent = styled.div`
 const FormBox = styled.div`
     position: relative;
     padding: 2rem;
+
+    @media (max-width: 850px) {
+        padding: 1rem;
+    }
 `;
 
 const MediaBox = styled.div`

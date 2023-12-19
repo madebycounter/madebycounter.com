@@ -4,8 +4,9 @@ import styled, { ThemeProvider, css } from "styled-components";
 import { LightTheme } from "../global/themes";
 
 const ModalBackground = styled.div`
-    width: 100%;
-    height: 100%;
+    width: calc(100% - 2rem);
+    height: calc(100% - 2rem);
+    padding: 1rem;
 
     display: flex;
     justify-content: center;
