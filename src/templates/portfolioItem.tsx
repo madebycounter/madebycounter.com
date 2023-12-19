@@ -320,7 +320,7 @@ const PortfolioItemPage = ({ data }: PortfolioItemProps) => {
 
                 <MobileLayout>
                     <div>
-                        <HeroMedia ref={mediaRef}>
+                        <HeroMedia>
                             {!youTube && (
                                 <Slideshow
                                     src={slideshow}
