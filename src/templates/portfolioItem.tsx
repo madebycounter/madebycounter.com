@@ -122,7 +122,7 @@ const PortfolioLayout = styled.div`
 
     max-width: 1800px;
     margin: auto;
-    gap: 1rem;
+    gap: 0rem;
 `;
 
 const GalleryWrapper = styled(ParallaxDriver)`
