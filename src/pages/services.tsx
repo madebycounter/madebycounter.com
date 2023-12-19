@@ -10,6 +10,7 @@ import Header from "../components/Header";
 import { LayoutNarrow } from "../components/Layout";
 import Navbar from "../components/Navbar";
 import Title from "../components/Title";
+import LinkDiv from "../components/cards/utils/LinkDiv";
 import Slideshow from "../components/media/Slideshow";
 import YouTube from "../components/media/YouTube";
 
@@ -59,7 +60,7 @@ const ServiceWrapper = styled.div<{ $align: HorizontalDirection }>`
     }}
 `;
 
-const TitleArea = styled.div`
+const TitleArea = styled(LinkDiv)`
     grid-area: title;
 `;
 
@@ -97,6 +98,11 @@ const DetailsArea = styled.div`
 const MediaArea = styled.div`
     aspect-ratio: 16 / 9;
     grid-area: media;
+
+    > a {
+        width: 100%;
+        height: 100%;
+    }
 
     @media (max-width: 900px) {
         aspect-ratio: 0;
@@ -137,7 +143,7 @@ const ServiceBlock = ({
 }: ServiceBlockProps) => {
     return (
         <ServiceWrapper $align={align}>
-            <TitleArea>
+            <TitleArea to={`/services/${slug}`}>
                 <ServiceTitle content={title.toLowerCase()} />
             </TitleArea>
 
@@ -152,7 +158,9 @@ const ServiceBlock = ({
 
             <MediaArea>
                 {!youtube && (
-                    <Slideshow src={slideshow.items} resizeMode="cover" />
+                    <LinkDiv to={`/services/${slug}`}>
+                        <Slideshow src={slideshow.items} resizeMode="cover" />
+                    </LinkDiv>
                 )}
 
                 {youtube && <YouTube url={youtube} aspectRatio={16 / 9} />}
