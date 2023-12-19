@@ -27,7 +27,6 @@ import MiniServiceCard from "../components/pitch/MiniServiceCard";
 import TestimonialCard from "../components/pitch/Testimonial";
 
 import Service, { PitchElement, getPitch } from "../types/Service";
-import MediaCollection from "../types/collections/MediaCollection";
 
 const PitchColumns = styled.div`
     display: flex;

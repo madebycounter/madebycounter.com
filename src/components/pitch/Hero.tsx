@@ -1,7 +1,7 @@
 import { BLOCKS, Block, Inline } from "@contentful/rich-text-types";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import useSize from "../../global/useSize";
 
@@ -18,13 +18,29 @@ const CtaButton = styled(Button)`
     grid-area: cta;
 `;
 
-const FullBodyImage = styled.div<{ $width: number }>`
+const FullBodyImage = styled.div<{ $width: number; $name: string }>`
     grid-area: image;
     height: 120%;
-    transform: translateY(-10%);
     z-index: 10;
 
     width: ${(props) => props.$width}px;
+
+    ${(props) => {
+        switch (props.$name) {
+            case "Luke A. Makinson":
+                return css`
+                    transform: translate(10%, -10%);
+                `;
+            case "William Gardner":
+                return css`
+                    transform: translate(0, -10%);
+                `;
+            case "Henry Buck":
+                return css`
+                    transform: translate(-20%, -10%);
+                `;
+        }
+    }}
 
     @media (max-width: 1200px) {
         height: 100%;
@@ -107,6 +123,7 @@ function Details({
                         service.teamMember.fullBody.dimensions.height) *
                     size.height
                 }
+                $name={service.teamMember.fullName}
             >
                 <Media src={service.teamMember.fullBody} resizeMode="height" />
             </FullBodyImage>
