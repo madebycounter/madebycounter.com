@@ -3,7 +3,7 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 import React from "react";
 import styled, { css } from "styled-components";
 
-import useSize from "../../global/useSize";
+import useSize, { useWindowSize } from "../../global/useSize";
 
 import { packRichText } from "../../types/RichText";
 import Service from "../../types/Service";
@@ -15,36 +15,56 @@ import YouTube from "../media/YouTube";
 
 const CtaButton = styled(Button)`
     font-size: 2rem;
-    grid-area: cta;
+    grid-area: button;
+
+    @media (max-width: 400px) {
+        font-size: 1.5rem;
+    }
 `;
 
-const FullBodyImage = styled.div<{ $width: number; $name: string }>`
-    grid-area: image;
+const FullBodyImage = styled.div<{ $name: string }>`
+    position: absolute;
     height: 120%;
-    z-index: 10;
 
-    width: ${(props) => props.$width}px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    z-index: 100;
+
+    right: 0;
+    top: 0;
 
     ${(props) => {
         switch (props.$name) {
             case "Luke A. Makinson":
                 return css`
-                    transform: translate(10%, -10%);
+                    transform: translate(8%, -10%);
                 `;
             case "William Gardner":
                 return css`
-                    transform: translate(0, -10%);
+                    transform: translate(6%, -10%);
                 `;
             case "Henry Buck":
                 return css`
-                    transform: translate(-20%, -10%);
+                    transform: translate(4%, -10%);
                 `;
         }
     }}
 
     @media (max-width: 1200px) {
+        position: relative;
         height: 100%;
-        transform: translateY(0);
+        transform: translate(0, 0);
+        grid-area: image;
+    }
+`;
+
+const Ihatewritingcode = styled.div`
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+
+    @media (max-width: 1200px) {
+        display: block;
     }
 `;
 
@@ -53,24 +73,34 @@ const DetailsWrapper = styled.div<{ $cw: number }>`
 
     grid-area: details;
     aspect-ratio: 4096 / 2160;
+    position: relative;
 
     display: grid;
+    grid-template-columns: 1fr 100px;
     grid-template-rows: auto 1fr auto;
-    grid-template-columns: auto 130px;
-    grid-template-areas: "heading image" "paragraph image" "cta image";
+    grid-template-areas: "heading image" "paragraph image" "button image";
 
     @media (max-width: 1200px) {
-        grid-template-columns: auto 1fr;
+        grid-template-columns: 1fr 200px;
+        grid-template-rows: auto auto 1fr;
+    }
+
+    @media (max-width: 600px) {
+        grid-template-columns: 1fr auto;
+        grid-template-areas: "heading heading" "paragraph image" "button image";
     }
 
     ${Heading1} {
-        font-size: calc(var(--cw) * 12);
         grid-area: heading;
+        font-size: calc(var(--cw) * 12);
+
+        @media (max-width: 600px) {
+            font-size: calc(var(--cw) * 13);
+        }
     }
 
     ${Paragraph} {
         grid-area: paragraph;
-
         @media (max-width: 470px) {
             font-size: 1rem;
         }
@@ -110,6 +140,9 @@ function Details({
     onCtaClick?: () => void;
 }) {
     const [ref, size] = useSize<HTMLDivElement>();
+    const pageSize = useWindowSize();
+
+    console.log(pageSize.width > 600);
 
     return (
         <DetailsWrapper ref={ref} $cw={size.width / 100}>
@@ -117,15 +150,12 @@ function Details({
 
             <CtaButton onClick={onCtaClick}>{service.callToAction}</CtaButton>
 
-            <FullBodyImage
-                $width={
-                    (service.teamMember.fullBody.dimensions.width /
-                        service.teamMember.fullBody.dimensions.height) *
-                    size.height
-                }
-                $name={service.teamMember.fullName}
-            >
-                <Media src={service.teamMember.fullBody} resizeMode="height" />
+            <FullBodyImage $name={service.teamMember.fullName}>
+                <Media
+                    src={service.teamMember.fullBody}
+                    resizeMode={"height"}
+                    width={pageSize.width <= 600 ? 120 : undefined}
+                />
             </FullBodyImage>
         </DetailsWrapper>
     );
