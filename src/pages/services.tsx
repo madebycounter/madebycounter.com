@@ -95,7 +95,7 @@ const DetailsArea = styled.div`
     }
 `;
 
-const MediaArea = styled.div`
+const MediaArea = styled(LinkDiv)`
     aspect-ratio: 16 / 9;
     grid-area: media;
 
@@ -156,14 +156,8 @@ const ServiceBlock = ({
                 ))}
             </DetailsArea>
 
-            <MediaArea>
-                {!youtube && (
-                    <LinkDiv to={`/services/${slug}`}>
-                        <Slideshow src={slideshow.items} resizeMode="cover" />
-                    </LinkDiv>
-                )}
-
-                {youtube && <YouTube url={youtube} aspectRatio={16 / 9} />}
+            <MediaArea to={`/services/${slug}`}>
+                <Slideshow src={slideshow.items} resizeMode="cover" />
             </MediaArea>
 
             <ButtonArea>
