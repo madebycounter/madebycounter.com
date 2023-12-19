@@ -57,6 +57,25 @@ const FullBodyImage = styled.div<{ $name: string }>`
         transform: translate(0, 0);
         grid-area: image;
     }
+
+    @media (max-width: 470px) {
+        ${(props) => {
+            switch (props.$name) {
+                case "Luke A. Makinson":
+                    return css`
+                        transform: scale(0.85) translateY(10%);
+                    `;
+                case "William Gardner":
+                    return css`
+                        transform: scale(1);
+                    `;
+                case "Henry Buck":
+                    return css`
+                        transform: scale(1);
+                    `;
+            }
+        }}
+    }
 `;
 
 const Ihatewritingcode = styled.div`
@@ -144,9 +163,14 @@ function Details({
 
     console.log(pageSize.width > 600);
 
+    const rt = renderRichText(
+        packRichText(service.pitchHero),
+        pitchHeroOptions,
+    );
+
     return (
         <DetailsWrapper ref={ref} $cw={size.width / 100}>
-            {renderRichText(packRichText(service.pitchHero), pitchHeroOptions)}
+            {rt}
 
             <CtaButton onClick={onCtaClick}>{service.callToAction}</CtaButton>
 
