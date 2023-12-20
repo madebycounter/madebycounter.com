@@ -37,5 +37,16 @@ module.exports = {
                 icon: "src/images/icon.png",
             },
         },
+        {
+            resolve: `gatsby-plugin-netlify`,
+            options: {
+                headers: {},
+                allPageHeaders: [],
+                mergeSecurityHeaders: false,
+                mergeCachingHeaders: true,
+                transformHeaders: (headers, path) => headers,
+                generateMatchPathRewrites: true,
+            },
+        },
     ],
 };
