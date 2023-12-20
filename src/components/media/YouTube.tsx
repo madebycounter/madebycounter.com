@@ -42,6 +42,7 @@ const YouTube = ({ url, aspectRatio = 16 / 9 }: YouTubeProps) => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 title="YouTube Embed"
+                referrerPolicy="no-referrer-when-downgrade"
             />
         </StyledEmbed>
     );
