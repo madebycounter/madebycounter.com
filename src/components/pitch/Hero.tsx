@@ -192,6 +192,8 @@ const HeroWrapper = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "details media";
 
+    width: calc(100% - 2rem);
+
     @media (max-width: 1200px) {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto;
