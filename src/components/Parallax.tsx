@@ -36,8 +36,6 @@ export default function Parallax({
                 (drivenRef.current.offsetHeight - window.innerHeight) *
                 progress;
 
-            console.log(progress);
-
             if (drivenRef.current.offsetHeight - offset < window.innerHeight) {
                 mainOffset = 0;
             }

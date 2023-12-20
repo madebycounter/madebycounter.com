@@ -33,8 +33,6 @@ function isRef(obj: RichTextReference | {}): obj is RichTextReference {
 }
 
 export function packRichText(content: RichTextResponse): RichText {
-    console.log(content);
-
     return {
         raw: content.raw,
         references: [

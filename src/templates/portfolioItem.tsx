@@ -208,10 +208,6 @@ const PortfolioItemPage = ({ data }: PortfolioItemProps) => {
         lightboxCurrent: "",
     });
 
-    useEffect(() => {
-        console.log(mediaSize.height - detailsSize.height);
-    }, [detailsSize.height]);
-
     const { title, date, tags, description, youTube } =
         data.contentfulPortfolioItem;
 

@@ -139,7 +139,5 @@ export function getPitch(service: Service): PitchElement[] {
     insertPitchElems(pitchElements, service.pitchPortfolioItemCollection || []);
     insertPitchElems(pitchElements, service.pitchBlogPostCollection || []);
 
-    console.log("pe", pitchElements);
-
     return pitchElements.filter(isPitchElem);
 }

@@ -69,8 +69,6 @@ export const Gallery = forwardRef(
         const adjusted = adjustLayout(layout, columnWidth, gap);
         const width = layout.length * columnWidth + gap * (layout.length - 1);
 
-        console.log("drawn", columnWidth, gap, width, layout);
-
         return (
             <StyledGallery
                 $gap={gap}
@@ -138,8 +136,6 @@ export const ResponsiveGallery = forwardRef(
             else if (size.width < 1200) setColums(2);
             else setColums(2);
         }, [size]);
-
-        console.log("RG Drawn", layouts);
 
         return (
             <ResponsiveGalleryWrapper

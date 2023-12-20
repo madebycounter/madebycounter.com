@@ -80,7 +80,6 @@ export default function ContactForm({
             ],
             formContext,
         ).then((data) => {
-            console.log(data);
             setModalOpen(true);
             setIsLoading(false);
 

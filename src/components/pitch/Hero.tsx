@@ -161,8 +161,6 @@ function Details({
     const [ref, size] = useSize<HTMLDivElement>();
     const pageSize = useWindowSize();
 
-    console.log(pageSize.width > 600);
-
     const rt = renderRichText(
         packRichText(service.pitchHero),
         pitchHeroOptions,
