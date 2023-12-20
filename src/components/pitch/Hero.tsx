@@ -87,9 +87,7 @@ const Ihatewritingcode = styled.div`
     }
 `;
 
-const DetailsWrapper = styled.div<{ $cw: number }>`
-    --cw: ${(props) => props.$cw}px;
-
+const DetailsWrapper = styled.div`
     grid-area: details;
     aspect-ratio: 4096 / 2160;
     position: relative;
@@ -111,10 +109,14 @@ const DetailsWrapper = styled.div<{ $cw: number }>`
 
     ${Heading1} {
         grid-area: heading;
-        font-size: calc(var(--cw) * 12);
+        font-size: min(6vw, 6rem);
+
+        @media (max-width: 1200px) {
+            font-size: 9vw;
+        }
 
         @media (max-width: 600px) {
-            font-size: calc(var(--cw) * 13);
+            font-size: 12vw;
         }
     }
 
@@ -158,7 +160,6 @@ function Details({
     service: Service;
     onCtaClick?: () => void;
 }) {
-    const [ref, size] = useSize<HTMLDivElement>();
     const pageSize = useWindowSize();
 
     const rt = renderRichText(
@@ -167,7 +168,7 @@ function Details({
     );
 
     return (
-        <DetailsWrapper ref={ref} $cw={size.width / 100}>
+        <DetailsWrapper>
             {rt}
 
             <CtaButton onClick={onCtaClick}>{service.callToAction}</CtaButton>
