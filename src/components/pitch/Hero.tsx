@@ -23,16 +23,18 @@ const CtaButton = styled(Button)`
 `;
 
 const FullBodyImage = styled.div<{ $name: string }>`
-    position: absolute;
-    height: 120%;
-
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
     z-index: 100;
 
-    right: 0;
-    top: 0;
+    @media (min-width: 1200px) {
+        position: absolute;
+        height: 120%;
+
+        right: 0;
+        top: 0;
+    }
 
     ${(props) => {
         switch (props.$name) {
@@ -191,8 +193,6 @@ const HeroWrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "details media";
-
-    width: calc(100% - 2rem);
 
     @media (max-width: 1200px) {
         grid-template-columns: 1fr;
