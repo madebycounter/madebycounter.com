@@ -53,7 +53,6 @@ const FullBodyImage = styled.div<{ $name: string }>`
 
     @media (max-width: 1200px) {
         position: relative;
-        height: 100%;
         transform: translate(0, 0);
         grid-area: image;
     }
@@ -91,6 +90,7 @@ const DetailsWrapper = styled.div`
     grid-area: details;
     aspect-ratio: 4096 / 2160;
     position: relative;
+    width: 100%;
 
     display: grid;
     grid-template-columns: 1fr 100px;
@@ -193,7 +193,7 @@ const HeroWrapper = styled.div`
     grid-template-areas: "details media";
 
     @media (max-width: 1200px) {
-        grid-template-columns: auto;
+        grid-template-columns: 1fr;
         grid-template-rows: auto auto;
         grid-template-areas: "media" "details";
         max-width: 900px;
