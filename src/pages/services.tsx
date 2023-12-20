@@ -157,7 +157,11 @@ const ServiceBlock = ({
             </DetailsArea>
 
             <MediaArea to={`/services/${slug}`}>
-                <Slideshow src={slideshow.items} resizeMode="cover" />
+                <Slideshow
+                    src={slideshow.items}
+                    resizeMode="cover"
+                    aspectRatio={16 / 9}
+                />
             </MediaArea>
 
             <ButtonArea>
