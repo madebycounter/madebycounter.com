@@ -198,7 +198,7 @@ const HeroWrapper = styled.div`
 
     @media (max-width: 1200px) {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
+        grid-template-rows: auto 1fr;
         grid-template-areas: "media" "details";
         max-width: 900px;
         gap: 1rem;
@@ -208,6 +208,7 @@ const HeroWrapper = styled.div`
 const MediaWrapper = styled.div`
     grid-area: media;
     aspect-ratio: 4096 / 2160;
+    width: 100%;
 `;
 
 type HeroProps = {
