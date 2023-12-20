@@ -59,7 +59,9 @@ const FullBodyImage = styled.div<{ $name: string }>`
         grid-area: image;
     }
 
-    @media (max-width: 470px) {
+    @media (max-width: 600px) {
+        display: none;
+
         ${(props) => {
             switch (props.$name) {
                 case "Luke A. Makinson":
