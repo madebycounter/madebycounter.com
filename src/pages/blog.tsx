@@ -57,19 +57,24 @@ const BlogPage = () => {
 
             <Layout>
                 <BlogList>
-                    {nodes.map(({ author, date, slug, title, banner }, idx) => (
-                        <div key={idx}>
-                            <Link to={`/blog/${slug}`}>
-                                <Media src={banner} aspectRatio={4 / 3} />
-                            </Link>
+                    {nodes
+                        .filter(
+                            (item) =>
+                                item.title !== "Do not delete this blog post.",
+                        )
+                        .map(({ author, date, slug, title, banner }, idx) => (
+                            <div key={idx}>
+                                <Link to={`/blog/${slug}`}>
+                                    <Media src={banner} aspectRatio={4 / 3} />
+                                </Link>
 
-                            <Heading3>
-                                <Link to={`/blog/${slug}`}>{title}</Link>
-                            </Heading3>
+                                <Heading3>
+                                    <Link to={`/blog/${slug}`}>{title}</Link>
+                                </Heading3>
 
-                            <AuthorCard author={author} date={date} />
-                        </div>
-                    ))}
+                                <AuthorCard author={author} date={date} />
+                            </div>
+                        ))}
                 </BlogList>
             </Layout>
 
