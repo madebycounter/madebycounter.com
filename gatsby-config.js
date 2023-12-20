@@ -4,8 +4,14 @@ module.exports = {
     siteMetadata: {
         title: "madebycounter.com",
         siteUrl: "https://madebycounter.com",
-        web3forms: process.env.W3F_ACCESS_TOKEN,
-        hubspot: process.env.HUBSPOT_TRACKING_SCRIPT,
+        hubspot: {
+            trackingScript: process.env.HUBSPOT_TRACKING_SCRIPT,
+            portalId: process.env.HUBSPOT_PORTAL_ID,
+            forms: {
+                contact: process.env.HUBSPOT_CONTACT_FORM,
+                newsletter: process.env.HUBSPOT_NEWSLETTER_FORM,
+            },
+        },
     },
     graphqlTypegen: true,
     plugins: [
@@ -21,7 +27,10 @@ module.exports = {
         "gatsby-plugin-sharp",
         "gatsby-transformer-sharp",
         "gatsby-plugin-styled-components",
-        "gatsby-plugin-sitemap",
+        {
+            resolve: "gatsby-plugin-sitemap",
+            options: {},
+        },
         {
             resolve: "gatsby-plugin-manifest",
             options: {

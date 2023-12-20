@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import HenrySignature from "../images/about/henry-signature.webp";
-import LukeSignature from "../images/about/luke-signature.webp";
-import WilliamSignature from "../images/about/william-signature.webp";
+import TeamMember from "../types/components/TeamMember";
 
-import { TeamMember } from "../types";
+import HenrySignature from "../images/signatures/henry.webp";
+import LukeSignature from "../images/signatures/luke.webp";
+import WilliamSignature from "../images/signatures/william.webp";
 
 const StyledImage = styled.img`
     filter: ${({ theme }) => theme.imageFilter};
@@ -17,13 +17,13 @@ type SignatureProps = {
     className?: string;
 };
 
-function chooseSignature(name: TeamMember) {
-    switch (name) {
-        case "Luke":
+function chooseSignature(teamMember: TeamMember) {
+    switch (teamMember.fullName) {
+        case "Luke A. Makinson":
             return LukeSignature;
-        case "William":
+        case "William Gardner":
             return WilliamSignature;
-        case "Henry":
+        case "Henry Buck":
             return HenrySignature;
     }
 }

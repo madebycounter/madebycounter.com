@@ -1,37 +1,57 @@
 import { graphql, useStaticQuery } from "gatsby";
 
-import Asset from "../Asset";
+import PortfolioItem from "../PortfolioItem";
+import Service from "../Service";
+import MediaCollection from "../collections/MediaCollection";
 
 export interface AboutPage {
-    lukeSlideshow1: Asset[];
-    lukeSlideshow2: Asset[];
-    williamSlideshow1: Asset[];
-    williamSlideshow2: Asset[];
-    henrySlideshow1: Asset[];
-    henrySlideshow2: Asset[];
+    __typename: "ContentfulAsset";
+    contentful_id: string;
+    lukeShowcase: PortfolioItem[];
+    henryShowcase: PortfolioItem[];
+    williamShowcase: PortfolioItem[];
+    lukeSlideshows: MediaCollection[];
+    henrySlideshows: MediaCollection[];
+    williamSlideshows: MediaCollection[];
+    lukeService: Service;
+    henryService: Service;
+    williamService: Service;
+    heroMedia: MediaCollection[];
 }
 
 export function useAboutPage(): AboutPage {
     return useStaticQuery(graphql`
         {
             contentfulAboutPage {
-                lukeSlideshow1 {
-                    ...Asset
+                lukeShowcase {
+                    ...PortfolioItem
                 }
-                lukeSlideshow2 {
-                    ...Asset
+                henryShowcase {
+                    ...PortfolioItem
                 }
-                williamSlideshow1 {
-                    ...Asset
+                williamShowcase {
+                    ...PortfolioItem
                 }
-                williamSlideshow2 {
-                    ...Asset
+                lukeSlideshows {
+                    ...MediaCollectionSmall
                 }
-                henrySlideshow1 {
-                    ...Asset
+                henrySlideshows {
+                    ...MediaCollectionSmall
                 }
-                henrySlideshow2 {
-                    ...Asset
+                williamSlideshows {
+                    ...MediaCollectionSmall
+                }
+                lukeService {
+                    ...Service
+                }
+                henryService {
+                    ...Service
+                }
+                williamService {
+                    ...Service
+                }
+                heroMedia {
+                    ...MediaCollectionSmall
                 }
             }
         }

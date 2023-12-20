@@ -3,12 +3,12 @@ import React from "react";
 import styled from "styled-components";
 
 import useContainerQuery from "../../global/containerQuery";
-import { firstSentence, smartShorten } from "../../global/textHelpers";
+import { firstSentence } from "../../global/textHelpers";
 
 import BlogPost from "../../types/BlogPost";
 import { AuthorCard } from "../Author";
-import { Heading2, Heading3, Paragraph, Tags } from "../Typography";
-import Media, { ResizeMode } from "../media/Media";
+import { Heading2, Paragraph, Tags } from "../Typography";
+import Media from "../media/Media";
 import LinkDiv from "./utils/LinkDiv";
 import Slash from "./utils/Slash";
 
@@ -101,14 +101,14 @@ export function BlogEmbed({ item }: BlogEmbedProps) {
                 <Heading2>{item.title}</Heading2>
 
                 <Paragraph>
-                    {firstSentence(item.description?.description || "")}
+                    {firstSentence(item.summary?.summary || "")}
                 </Paragraph>
 
                 <StyledEmbedAuthor author={item.author} date={item.date} />
             </StyledEmbedInfo>
 
             <StyledEmbedImage to={`/blog/${item.slug}`}>
-                <Media src={item.banner} resizeMode={ResizeMode.Fill} />
+                <Media src={item.banner} resizeMode="cover" />
 
                 <Slash />
             </StyledEmbedImage>

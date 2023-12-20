@@ -58,6 +58,18 @@ exports.createPages = async ({ graphql, actions }) => {
                     contentful_id
                 }
             }
+            services: allContentfulService {
+                nodes {
+                    slug
+                    contentful_id
+                }
+            }
+            callToAction: allContentfulMiniService {
+                nodes {
+                    slug
+                    contentful_id
+                }
+            }
         }
     `);
 
@@ -80,6 +92,16 @@ exports.createPages = async ({ graphql, actions }) => {
             },
         });
     });
+
+    data.services.nodes.forEach((node) => {
+        actions.createPage({
+            path: "/services/" + node.slug,
+            component: path.resolve("./src/templates/pitchPage.tsx"),
+            context: {
+                contentful_id: node.contentful_id,
+            },
+        });
+    });
 };
 
 exports.createSchemaCustomization = ({ actions }) => {
@@ -89,6 +111,8 @@ exports.createSchemaCustomization = ({ actions }) => {
             width: Int!
             height: Int!
         }
+
+
     `);
 };
 

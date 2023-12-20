@@ -15,6 +15,8 @@ import {
     Paragraph,
     UnorderedList,
 } from "../components/Typography";
+import { BlogEmbed } from "../components/cards/BlogEmbed";
+import { PortfolioEmbed } from "../components/cards/PortfolioEmbed";
 import Media from "../components/media/Media";
 import SocialMediaEmbed from "../types/components/SocialMediaEmbed";
 
@@ -46,15 +48,15 @@ function renderEntry(onClick?: (cfid: string) => void) {
     return (node: Block | Inline, children: ReactNode) => {
         switch (node.data.target.__typename) {
             case "ContentfulBlogPost":
-                return <p>Blog posts not supported</p>;
+                return <BlogEmbed item={node.data.target} />;
             case "ContentfulPortfolioItem":
-                return <p>Portfolio items not supported</p>;
+                return <PortfolioEmbed item={node.data.target} />;
             case "ContentfulSocialMediaEmbed":
                 return renderSocialEmbed(node, children);
-            case "ContentfulMultiImageBlock":
+            case "ContentfulMediaCollection":
                 return (
                     <MultiImageBlock
-                        images={node.data.target.images}
+                        images={node.data.target.items}
                         onClick={onClick}
                     />
                 );

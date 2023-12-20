@@ -7,6 +7,25 @@ export const Paragraph = styled.p`
     line-height: 1.5em;
 
     margin: 1rem 0;
+
+    sup {
+        font-size: 0.6em;
+        vertical-align: super;
+        line-height: 1em;
+    }
+
+    a:has(sup) {
+        text-decoration-line: none;
+
+        sup {
+            text-decoration-line: underline;
+            text-decoration-skip-ink: none;
+        }
+    }
+
+    b {
+        font-weight: bold;
+    }
 `;
 
 export const Tags = styled.p`

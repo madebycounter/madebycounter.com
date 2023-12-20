@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import Asset from "../../types/Asset";
-import Media, { ResizeMode } from "./Media";
+import Media, { AspectRatio, ResizeMode } from "./Media";
 
 function mod(n: number, m: number) {
     return ((n % m) + m) % m;
@@ -15,16 +15,18 @@ type StyledSlideshowProps = {
 
 const StyledSlideshow = styled.div<StyledSlideshowProps>`
     position: relative;
-    overflow: hidden;
+
+    aspect-ratio: ${(props) => props.$aspectRatio};
+
     width: 100%;
     height: 100%;
-    aspect-ratio: ${(props) => props.$aspectRatio};
 
     > div {
         position: absolute;
+        z-index: 0;
+
         width: 100%;
         height: 100%;
-        z-index: 0;
 
         background: ${({ theme }) => theme.backgroundColor};
 
@@ -41,7 +43,9 @@ type SlideshowProps = {
     autoplayDelay?: number;
     autoplayOffset?: number;
     autoplay?: boolean;
-    aspectRatio?: number;
+    aspectRatio?: AspectRatio;
+    resizeMode?: ResizeMode;
+    center?: number;
     onClick?: (cfid: string) => void;
 };
 
@@ -50,7 +54,9 @@ export default function Slideshow({
     autoplayDelay = 5000,
     autoplayOffset = 0,
     autoplay = true,
-    aspectRatio,
+    aspectRatio = "original",
+    resizeMode,
+    center,
     className,
     onClick,
 }: SlideshowProps) {
@@ -84,8 +90,13 @@ export default function Slideshow({
         };
     }, [state.index]);
 
+    var trueAspectRatio =
+        aspectRatio === "original"
+            ? src[0].dimensions.width / src[0].dimensions.height
+            : aspectRatio;
+
     return (
-        <StyledSlideshow $aspectRatio={aspectRatio} className={className}>
+        <StyledSlideshow className={className} $aspectRatio={trueAspectRatio}>
             {src.map((slide, idx) => {
                 const visible = state.index === idx;
                 var divClassName = visible ? "active" : "";
@@ -95,12 +106,13 @@ export default function Slideshow({
                         <Media
                             key={idx}
                             src={slide}
-                            aspectRatio={aspectRatio}
+                            aspectRatio={trueAspectRatio}
+                            resizeMode={resizeMode}
+                            center={center}
                             videoPlaying={visible}
                             videoLoop={src.length == 1}
                             onVideoEnd={() => navigate(1)}
                             onClick={onClick}
-                            resizeMode={ResizeMode.Fill}
                         />
                     </div>
                 );
@@ -108,15 +120,3 @@ export default function Slideshow({
         </StyledSlideshow>
     );
 }
-
-export const query = graphql`
-    fragment Slideshow on ContentfulSlideshow {
-        contentful_id
-        autoplayDelay
-        autoplayOffset
-        autoplay
-        content {
-            ...Media
-        }
-    }
-`;

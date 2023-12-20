@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import BlogPost from "../../types/BlogPost";
-import { ProfilePhoto, getFullName } from "../Author";
+import { ProfilePhoto } from "../Author";
 import { Heading2, Tags } from "../Typography";
 import Media from "../media/Media";
 import LinkDiv from "./utils/LinkDiv";
@@ -17,8 +17,8 @@ const StyledAuthorContainer = styled.div`
     bottom: 0;
     right: 0.5rem;
 
-    width: 8rem;
-    height: 8rem;
+    width: 5rem;
+    height: 5rem;
 
     z-index: 10;
 
@@ -28,9 +28,15 @@ const StyledAuthorContainer = styled.div`
     }
 `;
 
+const StyledBackgroundMedia = styled(Media)``;
+
 const StyledCard = styled(LinkDiv)`
     position: relative;
     overflow: hidden;
+
+    aspect-ratio: 4 / 3;
+
+    min-width: 280px;
 
     ${Heading2} {
         position: absolute;
@@ -42,7 +48,7 @@ const StyledCard = styled(LinkDiv)`
         width: calc(100% - 1rem);
         margin: 0.5rem;
 
-        font-size: 2rem;
+        font-size: 1.8rem;
         text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     }
 
@@ -59,7 +65,7 @@ const StyledCard = styled(LinkDiv)`
         text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     }
 
-    .media-wrapper {
+    ${StyledBackgroundMedia} {
         filter: blur(2px);
         transform: scale(1);
         transition: transform 0.1s ease-in-out;
@@ -75,7 +81,7 @@ const StyledCard = styled(LinkDiv)`
             opacity: 0;
         }
 
-        .media-wrapper {
+        ${StyledBackgroundMedia} {
             filter: blur(2px);
             transform: scale(1.05);
         }
@@ -85,20 +91,22 @@ const StyledCard = styled(LinkDiv)`
 export function BlogCard({ item }: BlogCardProps) {
     return (
         <StyledCard to={`/blog/${item.slug}`}>
-            <Media src={item.banner} aspectRatio={4 / 3} />
+            <StyledBackgroundMedia src={item.banner} resizeMode="cover" />
 
             <Overlay />
 
             <Heading2>{item.title}</Heading2>
 
             <Tags>
-                {getFullName(item.author)}
+                {item.author.fullName}
                 <br />
                 {item.dateDotted}
             </Tags>
 
             <StyledAuthorContainer>
-                <ProfilePhoto member={item.author} />
+                {item.author.fullName !== "Counter" && (
+                    <ProfilePhoto teamMember={item.author} />
+                )}
             </StyledAuthorContainer>
         </StyledCard>
     );

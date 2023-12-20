@@ -70,10 +70,10 @@ const Item = ({ image, title, tags, href }: ItemProps) => {
 
                     <Tags>
                         {tags.map((tag, idx) => (
-                            <>
-                                <span key={idx}>{tag}</span>
+                            <span key={idx}>
+                                {tag}
                                 <br />
-                            </>
+                            </span>
                         ))}
                     </Tags>
                 </div>
@@ -93,20 +93,22 @@ const PortfolioPage = () => {
 
             <LayoutNarrow>
                 <ItemBox>
-                    {nodes.map((node, idx) => (
-                        <FadeReveal
-                            className="fade-revealer"
-                            duration={500}
-                            key={idx}
-                        >
-                            <Item
-                                image={node.thumbnail}
-                                title={node.title}
-                                tags={node.tags}
-                                href={`/portfolio/${node.slug}`}
-                            />
-                        </FadeReveal>
-                    ))}
+                    {nodes
+                        .filter((obj) => !obj.hidden)
+                        .map((node, idx) => (
+                            <FadeReveal
+                                className="fade-revealer"
+                                duration={500}
+                                key={idx}
+                            >
+                                <Item
+                                    image={node.thumbnail}
+                                    title={node.title}
+                                    tags={node.tags}
+                                    href={`/portfolio/${node.slug}`}
+                                />
+                            </FadeReveal>
+                        ))}
                 </ItemBox>
             </LayoutNarrow>
             <Footer />

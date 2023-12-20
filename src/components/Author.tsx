@@ -1,57 +1,37 @@
 import React from "react";
 import styled from "styled-components";
 
-import CounterPFP from "../images/authors/counter.png";
-import HenryPFP from "../images/authors/henry.png";
-import LukePFP from "../images/authors/luke.png";
-import WilliamPFP from "../images/authors/william.png";
+import TeamMember from "../types/components/TeamMember";
 
-import { HorizontalDirection, TeamMember } from "../types";
+import { HorizontalDirection } from "../types/directions";
 import { Paragraph } from "./Typography";
+import Media from "./media/Media";
 
-export function getFullName(author: TeamMember) {
-    switch (author) {
-        case "Counter":
-            return "Counter";
-        case "Henry":
-            return "Henry Buck";
-        case "Luke":
-            return "Luke A. Makinson";
-        case "William":
-            return "William Gardner";
-    }
+export function getShortName(author: TeamMember) {
+    return author.fullName.split(" ")[0];
 }
 
-function getProfilePhoto(author: TeamMember) {
-    switch (author) {
-        case "Counter":
-            return CounterPFP;
-        case "Henry":
-            return HenryPFP;
-        case "Luke":
-            return LukePFP;
-        case "William":
-            return WilliamPFP;
-    }
-}
+type ProfilePhotoProps = {
+    teamMember: TeamMember;
+};
 
-const StyledImage = styled.img`
+const ProfilePhotoWrapper = styled.div`
+    width: 100%;
     aspect-ratio: 1;
+    position: relative;
 `;
 
-export function ProfilePhoto({
-    member,
-    className,
-}: {
-    member: TeamMember;
-    className?: string;
-}) {
+const ProfilePhotoMedia = styled(Media)`
+    position: absolute;
+    left: 0;
+    bottom: 0;
+`;
+
+export function ProfilePhoto({ teamMember }: ProfilePhotoProps) {
     return (
-        <StyledImage
-            className={className}
-            src={getProfilePhoto(member)}
-            alt={`Photo of ${member}`}
-        />
+        <ProfilePhotoWrapper>
+            <ProfilePhotoMedia src={teamMember.profilePicture} />
+        </ProfilePhotoWrapper>
     );
 }
 
@@ -71,10 +51,6 @@ const StyledAuthorCard = styled.div<StyledAuthorCardProps>`
 
     color: ${({ theme }) => theme.color};
 
-    img {
-        width: 2.8em;
-    }
-
     ${Paragraph} {
         font-size: inherit;
         text-align: ${({ $direction }) =>
@@ -82,6 +58,10 @@ const StyledAuthorCard = styled.div<StyledAuthorCardProps>`
         font-weight: 300;
         line-height: 1.3em;
         margin: 0;
+    }
+
+    > :first-child {
+        width: 2.8em;
     }
 `;
 
@@ -100,10 +80,12 @@ export function AuthorCard({
 }: AuthorCardProps) {
     return (
         <StyledAuthorCard className={className} $direction={direction}>
-            <ProfilePhoto member={author} />
+            <div>
+                <ProfilePhoto teamMember={author} />
+            </div>
 
             <div>
-                <Paragraph>Written by {author}</Paragraph>
+                <Paragraph>Written by {getShortName(author)}</Paragraph>
                 <Paragraph>{date}</Paragraph>
             </div>
         </StyledAuthorCard>

@@ -1,8 +1,10 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { StringLiteral } from "typescript";
 
-import { MetaImage, RichText, TeamMember } from ".";
+import TeamMember from "./components/TeamMember";
+
+import { MetaImage } from ".";
 import Asset from "./Asset";
+import { RichTextResponse } from "./RichText";
 
 export default interface BlogPost {
     __typename: "ContentfulBlogPost";
@@ -14,10 +16,10 @@ export default interface BlogPost {
     banner: Asset;
     bannerMiddle: number;
     metaImage: MetaImage;
-    content: RichText;
+    content: RichTextResponse;
     slug: string;
-    description: {
-        description: string;
+    summary: {
+        summary: string;
     };
 }
 
@@ -40,7 +42,9 @@ export const blogPostFragment = graphql`
         title
         date(formatString: "MMMM D, YYYY")
         dateDotted: date(formatString: "MM.DD.YYYY")
-        author
+        author {
+            ...TeamMember
+        }
         banner {
             ...Asset
         }
@@ -55,15 +59,47 @@ export const blogPostFragment = graphql`
         bannerMiddle
         content {
             raw
-            references {
+            assetReferences: references {
                 ...Asset
+            }
+            socialMediaEmbedReferences: references {
                 ...SocialMediaEmbed
-                ...MultiImageBlock
+            }
+            mediaCollectionReferences: references {
+                ...MediaCollection
+            }
+            portfolioItemReferences: references {
+                ...PortfolioItemRef
+            }
+            blogPostReferences: references {
+                ...BlogPostRef
             }
         }
         slug
-        description {
-            description
+        summary {
+            summary
+        }
+    }
+
+    fragment BlogPostRef on ContentfulBlogPost {
+        __typename
+        contentful_id
+        title
+        date(formatString: "MMMM D, YYYY")
+        dateDotted: date(formatString: "MM.DD.YYYY")
+        author {
+            ...TeamMember
+        }
+        banner {
+            ...AssetSmall
+        }
+        bannerMiddle
+        slug
+        content {
+            raw
+        }
+        summary {
+            summary
         }
     }
 `;

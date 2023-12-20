@@ -2,6 +2,10 @@ import { graphql, useStaticQuery } from "gatsby";
 
 import { MetaImage, RichText } from ".";
 import Asset from "./Asset";
+import BlogPost from "./BlogPost";
+import Service from "./Service";
+
+export type SidebarElement = Service | PortfolioItem | BlogPost;
 
 export default interface PortfolioItem {
     __typename: "ContentfulPortfolioItem";
@@ -15,6 +19,10 @@ export default interface PortfolioItem {
     slideshow?: Asset[];
     gallery?: Asset[];
     youTube?: string;
+    sidebarService: (Service | {})[];
+    sidebarPortfolioItem: (PortfolioItem | {})[];
+    sidebarBlogPost: (BlogPost | {})[];
+    hidden: boolean;
     slug: string;
 }
 
@@ -41,7 +49,7 @@ export const portfolioEntryFragment = graphql`
             raw
         }
         thumbnail {
-            ...Asset
+            ...AssetSmall
         }
         metaImage: thumbnail {
             gatsbyImageData(
@@ -58,6 +66,66 @@ export const portfolioEntryFragment = graphql`
             ...Asset
         }
         youTube
+        sidebarService: sidebar {
+            ...ServiceRef
+        }
+        sidebarPortfolioItem: sidebar {
+            ...PortfolioItemRef
+        }
+        sidebarBlogPost: sidebar {
+            ...BlogPostRef
+        }
+        hidden
+        slug
+    }
+
+    fragment PortfolioItemRef on ContentfulPortfolioItem {
+        __typename
+        contentful_id
+        title
+        date(formatString: "MM.DD.YYYY")
+        tags
+        description {
+            raw
+        }
+        thumbnail {
+            ...AssetSmall
+        }
+        slideshow {
+            ...Asset
+        }
+        youTube
+        hidden
         slug
     }
 `;
+
+function isSidebarElem(obj: SidebarElement | {}): obj is SidebarElement {
+    return obj.hasOwnProperty("__typename");
+}
+
+function insertSidebarElems<T extends SidebarElement | {}>(
+    elemArray: (SidebarElement | {})[],
+    items: T[],
+) {
+    for (let i = 0; i < items.length; i++) {
+        var item = items[i];
+        if (isSidebarElem(item)) {
+            elemArray[i] = item;
+        }
+    }
+}
+
+export function getSidebar(item: PortfolioItem): SidebarElement[] {
+    if (!item.sidebarBlogPost) return [];
+
+    var sidebarElements: (SidebarElement | {})[] = Array(
+        item.sidebarBlogPost.length,
+    ).fill({});
+
+    insertSidebarElems(sidebarElements, item.sidebarService || []);
+    insertSidebarElems(sidebarElements, item.sidebarPortfolioItem || []);
+    insertSidebarElems(sidebarElements, item.sidebarBlogPost || []);
+
+    return sidebarElements.filter(isSidebarElem);
+}

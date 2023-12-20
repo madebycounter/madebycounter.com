@@ -30,8 +30,9 @@ export default function MultiImageBlock({
 
     return (
         <StyledMultiImageBlock>
-            {images.map((image) => (
+            {images.map((image, idx) => (
                 <Media
+                    key={idx}
                     src={image}
                     aspectRatio={aspectRatio}
                     onClick={onClick}

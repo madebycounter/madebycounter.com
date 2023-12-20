@@ -53,3 +53,7 @@ export const TestTheme: Theme = {
 export type ThemedProps = {
     theme: Theme;
 };
+
+export function oppositeTheme(theme: Theme): Theme {
+    return theme === DarkTheme ? LightTheme : DarkTheme;
+}

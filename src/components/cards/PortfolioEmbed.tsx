@@ -4,17 +4,10 @@ import React from "react";
 import styled from "styled-components";
 
 import useContainerQuery from "../../global/containerQuery";
-import {
-    firstSentence,
-    renderPlainText,
-    smartShorten,
-} from "../../global/textHelpers";
+import { firstSentence, renderPlainText } from "../../global/textHelpers";
 
 import PortfolioItem from "../../types/PortfolioItem";
-import Details, {
-    DetailsDescription,
-    StyledDetails,
-} from "../PortfolioDetails";
+import Details from "../PortfolioDetails";
 import { Heading2, Paragraph, Tags } from "../Typography";
 import Slideshow from "../media/Slideshow";
 import LinkDiv from "./utils/LinkDiv";
@@ -71,10 +64,6 @@ const StyledEmbed = styled.div`
     &.small {
         grid-template-columns: 2fr 1fr;
 
-        ${DetailsDescription} {
-            display: none;
-        }
-
         ${Heading2} {
             font-size: 1.6rem;
         }
@@ -99,8 +88,6 @@ export function PortfolioEmbed({ item }: PortfolioEmbedProps) {
         },
     });
 
-    console.log(matches);
-
     return (
         <StyledEmbed ref={ref} className={classnames(matches)}>
             <StyledEmbedInfo to={`/portfolio/${item.slug}`}>
@@ -114,6 +101,7 @@ export function PortfolioEmbed({ item }: PortfolioEmbedProps) {
                             ? renderPlainText(item.description)
                             : firstSentence(renderPlainText(item.description))
                     }
+                    showDescription={matches.indexOf("small") === -1}
                 />
             </StyledEmbedInfo>
 
@@ -123,6 +111,7 @@ export function PortfolioEmbed({ item }: PortfolioEmbedProps) {
                 <Slideshow
                     src={item.gallery || [item.thumbnail]}
                     autoplayDelay={2000}
+                    resizeMode="cover"
                 />
             </StyledEmbedSlideshow>
         </StyledEmbed>

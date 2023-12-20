@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 
 import useContainerQuery from "../../global/containerQuery";
+import { DarkTheme } from "../../global/themes";
 
 import PortfolioItem from "../../types/PortfolioItem";
 import { Heading2, Tags } from "../Typography";
@@ -17,10 +18,26 @@ type PortfolioCardProps = {
 const StyledCard = styled(Link)`
     position: relative;
     display: block;
+    aspect-ratio: 4 / 3;
+
+    width: 100%;
+    height: 100%;
+
+    min-width: 280px;
+
+    &.small {
+        ${Heading2} {
+            font-size: 2rem;
+        }
+
+        ${Tags} {
+            font-size: 1rem;
+        }
+    }
 
     ${Heading2} {
         position: absolute;
-        color: ${(props) => props.theme.backgroundColor};
+        color: ${DarkTheme.color};
         bottom: 0.5rem;
         left: 0.5rem;
         z-index: 10;
@@ -32,7 +49,7 @@ const StyledCard = styled(Link)`
 
     ${Tags} {
         position: absolute;
-        color: ${(props) => props.theme.backgroundColor};
+        color: ${DarkTheme.color};
         top: 0.5rem;
         right: 0.5rem;
         text-align: right;
@@ -48,6 +65,8 @@ const StyledCard = styled(Link)`
     }
 
     .media-wrapper {
+        width: 100%;
+        height: 100%;
         transform: scale(1);
         transition: transform 0.1s ease-in-out;
         filter: blur(2px);
@@ -65,20 +84,30 @@ const StyledCard = styled(Link)`
 `;
 
 export function PortfolioCard({ item }: PortfolioCardProps) {
-    return (
-        <StyledCard to={`/portfolio/${item.slug}`}>
-            <Media src={item.thumbnail} aspectRatio={4 / 3} />
+    const [matches, ref] = useContainerQuery<HTMLDivElement>({
+        small: {
+            max: 350,
+        },
+    });
 
-            <Overlay />
+    return (
+        <StyledCard
+            to={`/portfolio/${item.slug}`}
+            className={classnames(matches)}
+        >
+            <Media src={item.thumbnail} resizeMode="cover" />
+
+            {/* stupid typescript weirdness with putting ref on styledcard. overlay is always the same width though */}
+            <Overlay ref={ref} />
 
             <Heading2>{item.title}</Heading2>
 
             <Tags>
                 {item.tags.map((tag, idx) => (
-                    <>
-                        <span key={idx}>{tag}</span>
+                    <span key={idx}>
+                        {tag}
                         <br />
-                    </>
+                    </span>
                 ))}
             </Tags>
         </StyledCard>

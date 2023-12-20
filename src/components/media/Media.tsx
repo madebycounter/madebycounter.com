@@ -1,4 +1,3 @@
-import classnames from "classnames";
 import { graphql } from "gatsby";
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import React, { useEffect, useRef } from "react";
@@ -13,105 +12,135 @@ export function isVideo(mimeType: string): boolean {
 }
 
 export function isImage(mimeType: string): boolean {
-    return ["image/jpeg", "image/png"].includes(mimeType);
+    return ["image/jpeg", "image/png", "image/webp"].includes(mimeType);
 }
 
 export function isGif(mimeType: string): boolean {
     return mimeType === "image/gif";
 }
 
-export enum ResizeMode {
-    Width,
-    Height,
-    Fill,
-    Contain,
-}
+export type AspectRatio = number | "original";
 
-type StyledMediaProps = ThemedProps & {
+export type ResizeMode = "width" | "height" | "cover" | "contain";
+
+type MediaWrapperProps = ThemedProps & {
     $aspectRatio: number;
-    $center: number;
     $resizeMode: ResizeMode;
     $hasClickEvent: boolean;
+    $center: number;
+    $height?: number;
+    $width?: number;
 };
 
-const StyledMedia = styled.div<StyledMediaProps>`
-    aspect-ratio: ${({ $aspectRatio }) => $aspectRatio};
+const MediaWrapper = styled.div<MediaWrapperProps>`
     overflow: hidden;
 
-    ${({ $hasClickEvent }) =>
-        $hasClickEvent &&
+    ${(props) =>
+        props.$hasClickEvent &&
         css`
             cursor: pointer;
         `}
 
-    ${({ $resizeMode }) => {
-        switch ($resizeMode) {
-            case ResizeMode.Width:
-                return css`
-                    width: 100%;
-                `;
-            case ResizeMode.Height:
-                return css`
-                    height: 100%;
-                `;
-            case ResizeMode.Fill:
-                return css`
-                    width: 100%;
-                    height: 100%;
-                `;
-            case ResizeMode.Contain:
-                return css`
-                    max-width: 100%;
-                    max-height: 100%;
-                    margin: auto;
-                `;
+    ${(props) => {
+        if (props.$height) {
+            return css`
+                height: ${props.$height}px;
+                width: ${props.$height * props.$aspectRatio}px;
+            `;
+        }
+        if (props.$width) {
+            return css`
+                width: ${props.$width}px;
+                height: ${props.$width / props.$aspectRatio}px;
+            `;
+        } else {
+            switch (props.$resizeMode) {
+                case "width":
+                    return css`
+                        width: 100%;
+
+                        aspect-ratio: ${props.$aspectRatio};
+
+                        max-width: inherit;
+                        max-height: inherit;
+                    `;
+                case "height":
+                    return css`
+                        height: 100%;
+
+                        aspect-ratio: ${props.$aspectRatio};
+
+                        max-width: inherit;
+                        max-height: inherit;
+                    `;
+                case "cover":
+                    return css`
+                        width: 100%;
+                        height: 100%;
+
+                        max-width: inherit;
+                        max-height: inherit;
+                    `;
+                case "contain":
+                    return css`
+                        aspect-ratio: ${props.$aspectRatio};
+
+                        max-width: 100%;
+                        max-height: 100%;
+                    `;
+            }
         }
     }}
 
-    > div {
+    .media-wrapper {
         width: 100%;
         height: 100%;
 
-        > img,
-        > video {
+        max-width: inherit;
+        max-height: inherit;
+
+        img,
+        video {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: 50% ${({ $center }) => $center}%;
-        }
-    }
 
-    .gatsby-image-wrapper {
-        [data-main-image] {
-            object-position: 50% ${({ $center }) => $center}%;
+            max-width: inherit;
+            max-height: inherit;
+
+            object-fit: cover;
+            object-position: 50% ${(props) => props.$center}%;
         }
     }
 `;
 
 export type MediaProps = {
     src: Asset;
-    aspectRatio?: number | null;
-    center?: number;
+    aspectRatio?: AspectRatio;
     resizeMode?: ResizeMode;
-    className?: string;
+    center?: number;
     videoPlaying?: boolean;
     videoLoop?: boolean;
     onVideoEnd?: () => void;
     onClick?: (id: string) => void;
     onReady?: () => void;
+    className?: string;
+    height?: number;
+    width?: number;
 };
 
 export default function Media({
     src,
-    aspectRatio,
-    className,
+    aspectRatio = "original",
+    resizeMode = "width",
     center = 50,
-    resizeMode = ResizeMode.Contain,
     videoPlaying = true,
     videoLoop = true,
     onVideoEnd = () => {},
     onClick,
     onReady = () => {},
+    className,
+    height,
+    width,
 }: MediaProps) {
     if (!src) {
         return <span>No source</span>;
@@ -134,16 +163,18 @@ export default function Media({
         }
     }, [videoPlaying]);
 
-    if (aspectRatio === null || aspectRatio === undefined) {
-        aspectRatio = dimensions.width / dimensions.height;
-    }
-
     return (
-        <StyledMedia
-            $aspectRatio={aspectRatio}
-            $center={center}
+        <MediaWrapper
+            $aspectRatio={
+                aspectRatio === "original"
+                    ? dimensions.width / dimensions.height
+                    : aspectRatio
+            }
             $resizeMode={resizeMode}
             $hasClickEvent={!!onClick}
+            $center={center}
+            $height={height}
+            $width={width}
             onClick={() => onClick && onClick(src.contentful_id)}
             className={className}
         >
@@ -182,22 +213,6 @@ export default function Media({
                     </video>
                 </div>
             )}
-        </StyledMedia>
+        </MediaWrapper>
     );
 }
-
-export const query = graphql`
-    fragment Media on ContentfulAsset {
-        __typename
-        contentful_id
-        title
-        description
-        mimeType
-        publicUrl
-        gatsbyImageData(breakpoints: [750, 1080, 1366, 1920])
-        dimensions {
-            width
-            height
-        }
-    }
-`;

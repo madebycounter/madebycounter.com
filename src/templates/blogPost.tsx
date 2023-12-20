@@ -1,4 +1,3 @@
-import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { graphql } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import React, { useState } from "react";
@@ -16,30 +15,19 @@ import { LayoutNarrow } from "../components/Layout";
 import Navbar from "../components/Navbar";
 import { Heading1 } from "../components/Typography";
 import Lightbox from "../components/media/Lightbox";
-import Media, { ResizeMode } from "../components/media/Media";
+import Media from "../components/media/Media";
 
 import defaultImage from "../images/meta.png";
 
+import Asset from "../types/Asset";
 import BlogPost from "../types/BlogPost";
+import { packRichText } from "../types/RichText";
+import MediaCollection from "../types/collections/MediaCollection";
 
 const StyledBlogBanner = styled.div`
     width: 100%;
     margin-bottom: 1rem;
-
-    .gatsby-image-wrapper {
-        max-height: 500px;
-        div {
-            max-height: 500px;
-        }
-    }
-
-    .gif-wrapper,
-    .video-wrapper {
-        img,
-        video {
-            max-height: 500px;
-        }
-    }
+    max-height: 500px;
 `;
 
 type BlogPostProps = {
@@ -71,6 +59,15 @@ const BlogPostPage = ({ data }: BlogPostProps) => {
     const { title, author, date, content, banner, bannerMiddle } =
         data.contentfulBlogPost;
 
+    const richText = packRichText(content);
+    const richTextAssets = richText.references.filter(
+        (obj): obj is Asset => obj.__typename === "ContentfulAsset",
+    );
+    const richTextMediaCollections = richText.references.filter(
+        (obj): obj is MediaCollection =>
+            obj.__typename === "ContentfulMediaCollection",
+    );
+
     return (
         <ThemeProvider theme={LightTheme}>
             <GlobalStyle />
@@ -81,8 +78,7 @@ const BlogPostPage = ({ data }: BlogPostProps) => {
                 <Media
                     src={banner}
                     center={bannerMiddle}
-                    resizeMode={ResizeMode.Fill}
-                    aspectRatio={0}
+                    resizeMode="cover"
                     onClick={openLightbox}
                 />
             </StyledBlogBanner>
@@ -93,27 +89,15 @@ const BlogPostPage = ({ data }: BlogPostProps) => {
                 <AuthorCard author={author} date={date} />
 
                 <div>
-                    {renderRichText(content, blogPostOptions(openLightbox))}
+                    {renderRichText(richText, blogPostOptions(openLightbox))}
                 </div>
             </LayoutNarrow>
 
             <Lightbox
                 // merge banner with images from contentful references
                 media={[banner].concat(
-                    content.references
-                        .filter(
-                            (ref: any) => ref.__typename === "ContentfulAsset",
-                        )
-                        .concat(
-                            content.references
-                                .filter(
-                                    (ref: any) =>
-                                        ref.__typename ===
-                                        "ContentfulMultiImageBlock",
-                                )
-                                .map((ref: any) => ref.images)
-                                .flat(),
-                        ),
+                    richTextAssets,
+                    richTextMediaCollections.map((obj) => obj.items).flat(),
                 )}
                 open={state.lightbox}
                 current={state.lightboxCurrent}
