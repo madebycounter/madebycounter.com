@@ -207,10 +207,7 @@ const HeroWrapper = styled.div`
 
 const MediaWrapper = styled.div`
     grid-area: media;
-
-    @media (max-width: 1200px) {
-        aspect-ratio: 4096 / 2160;
-    }
+    aspect-ratio: 4096 / 2160;
 `;
 
 type HeroProps = {
@@ -228,7 +225,6 @@ export default function Hero({ service, onCtaClick }: HeroProps) {
                     <Slideshow
                         src={service.slideshow.items}
                         aspectRatio={4096 / 2160}
-                        resizeMode="cover"
                     />
                 )}
 
